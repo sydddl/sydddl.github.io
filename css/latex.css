@@ -10,9 +10,9 @@
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: url('./fonts/LM-regular.woff2') format('woff2'),
-    url('./fonts/LM-regular.woff') format('woff'),
-    url('./fonts/LM-regular.ttf') format('truetype');
+  src: url('./fonts/beleren.woff2') format('woff2'),
+    url('./fonts/beleren.woff') format('woff'),
+    url('./fonts/beleren.ttf') format('truetype');
 }
 
 @font-face {
@@ -79,11 +79,11 @@ body {
   font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
   line-height: 1.8;
 
-  max-width: 80ch;
+  max-width: 90ch;
   min-height: 100vh;
   overflow-x: hidden;
   margin: 0 auto;
-  padding: 2rem 1.25rem;
+  padding: 5rem 0.5rem;
 
   counter-reset: theorem;
   counter-reset: definition;

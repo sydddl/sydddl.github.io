@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cas蛋白作用机制 on DeathSprout&#39;s Blog</title>
+    <link>https://deathsprout.gitee.io/tags/cas%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/</link>
+    <description>Recent content in Cas蛋白作用机制 on DeathSprout&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 15 May 2021 22:38:53 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/cas%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cas Protein</title>
+      <link>https://deathsprout.gitee.io/posts/cas%E8%9B%8B%E7%99%BD/</link>
+      <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/posts/cas%E8%9B%8B%E7%99%BD/</guid>
+      <description>为什么写这个文章？ Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CR</description>
+    </item>
+    
+  </channel>
+</rss>
