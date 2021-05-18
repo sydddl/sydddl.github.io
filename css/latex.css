@@ -79,7 +79,7 @@ body {
   font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
   line-height: 1.8;
 
-  max-width: 85ch;
+  max-width: 82.5ch;
   min-height: 100vh;
   overflow-x: hidden;
   margin: 0 auto;
@@ -89,7 +89,7 @@ body {
   counter-reset: definition;
 
   color: hsl(0, 5%, 10%);
-  background-color: hsl(210, 20%, 98%);
+  background-color: hsl(210, 20%, 99.5%);
 
   text-rendering: optimizeLegibility;
 }
@@ -123,6 +123,41 @@ a:focus {
 img {
   max-width: 100%;
   display: block;
+}
+
+.post-entry img[alt$=">"] {
+    float: right;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    box-shadow: 0 0 10px #555;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0px #ece7e7;
+    -moz-box-shadow: 0 0 0px #ece7e7;
+    max-width: 45%;
+}
+
+.post-entry img[alt$="<"] {
+    float: left;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    box-shadow: 0 0 10px #555;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0px #ece7e7;
+    -moz-box-shadow: 0 0 0px #ece7e7;
+    max-width: 45%;
+}
+
+.post-entry img[alt$="><"] {
+    display: block;
+    float: none!important;
+    margin: 0.7rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+    box-shadow: 0 0 10px #555;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0px #ece7e7;
+    -moz-box-shadow: 0 0 0px #ece7e7;
+    max-width: 75%;
+    vertical-align: middle;
+    /* whatever else styles you fancy here */ 
 }
 
 /* Inherit fonts for inputs and buttons */
