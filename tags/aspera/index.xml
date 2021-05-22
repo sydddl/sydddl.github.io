@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aspera on DeathSprout&#39;s Blog</title>
+    <link>https://deathsprout.gitee.io/tags/aspera/</link>
+    <description>Recent content in Aspera on DeathSprout&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 22 May 2021 13:23:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/aspera/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ENA下载FASTQ文件</title>
+      <link>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
+      <description>系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在</description>
+    </item>
+    
+  </channel>
+</rss>
