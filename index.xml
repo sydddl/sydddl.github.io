@@ -6,9 +6,18 @@
     <description>Recent content on DeathSprout&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 22 May 2021 13:23:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 May 2021 19:35:28 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ENA下载FASTQ文件</title>
+      <title>Perl实验课程笔记</title>
+      <link>https://deathsprout.gitee.io/posts/perl/</link>
+      <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/posts/perl/</guid>
+      <description>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，</description>
+    </item>
+    
+    <item>
+      <title>从ENA高速下载FASTQ文件</title>
       <link>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
       <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
       

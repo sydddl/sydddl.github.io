@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>课程笔记 on DeathSprout&#39;s Blog</title>
+    <link>https://deathsprout.gitee.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 课程笔记 on DeathSprout&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 22 May 2021 19:35:28 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Perl实验课程笔记</title>
+      <link>https://deathsprout.gitee.io/posts/perl/</link>
+      <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/posts/perl/</guid>
+      <description>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，</description>
+    </item>
+    
+  </channel>
+</rss>

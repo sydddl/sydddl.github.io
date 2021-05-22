@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><meta charset="utf-8" />
+
+  <title>Perl实验课程笔记 - DeathSprout&#39;s Blog</title>
+
+
+  <meta name="description" content="博客网站，我先搞他一搞" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://deathsprout.gitee.io/css/latex.css" />
+<link rel="stylesheet" href="https://deathsprout.gitee.io/css/main.css" />
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta name="generator" content="Hugo 0.82.0" /><body>
+
+
+
+
+
+
+<header>
+  <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+    </ul>
+  </div>
+</nav>
+  <div class="intro-header">
+    <div class="container">
+      <div class="posts-heading">
+        
+          <h1>Perl实验课程笔记</h1>
+          
+        
+      </div>
+    </div>
+  </div>
+</header>
+<div id="content">
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      <div class="postmeta">
+        <span class="meta-post">
+  <i class="fa fa-calendar-alt"></i>May 22, 2021
+  
+    <br><i class="fa fa-folder-open"></i>
+    
+      <a href="https://deathsprout.gitee.io//categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
+    
+      <a href="https://deathsprout.gitee.io//categories/perl/">Perl</a>&nbsp;
+    
+      <a href="https://deathsprout.gitee.io//categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
+    
+  
+</span>
+      </div>
+      <br>
+      
+    <p>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">sort <span style="color:#75715e">#对数组排序（默认按照字符串排序）</span>
+reverse <span style="color:#75715e">#列表反向排列</span>
+
+sort{$a <span style="color:#f92672">cmp</span> $b}; <span style="color:#75715e">#（由小到大）</span>
+sort{$b <span style="color:#f92672">cmp</span> $a}; <span style="color:#75715e">#（由大到小）</span>
+sort{$a <span style="color:#e6db74">&lt;=&gt;</span> $b}; <span style="color:#75715e">#(按照数值进行排序)</span>
+sort {$h{$a}<span style="color:#e6db74">&lt;=&gt;</span>$h{$b}} key %h; <span style="color:#75715e">#对哈希 比value排key</span>
+
+<span style="color:#75715e"># 用 . 可以将字符串连接</span>
+substr $总串,开始位置,长度,该内容替换被取出的内容;<span style="color:#75715e">#用来取子串</span>
+index $字符串,<span style="color:#e6db74">&#34;寻找的内容&#34;</span>,起始位置;<span style="color:#75715e">#搜寻字符串内容，返回位置</span>
+<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xal&#34;</span> x <span style="color:#ae81ff">5</span>; <span style="color:#75715e">#输出xalxalxalxalxal</span>
+join <span style="color:#e6db74">&#34;自定分隔符&#34;</span>,@arr; <span style="color:#75715e">#连接数组中所有的字符串</span>
+split <span style="color:#e6db74">/自定分割符/</span>,$str; <span style="color:#75715e">#分割字符串</span>
+</code></pre></div><p>2021/04/28</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">my</span> @lines; <span style="color:#75715e">#数组的每一项对应文件的每一行</span>
+<span style="color:#66d9ef">my</span> $tmp; <span style="color:#75715e">#依次把每一行赋值给临时变量</span>
+open IN,<span style="color:#e6db74">&#34;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to read:$!\n&#34;</span>;
+<span style="color:#66d9ef">while</span> ($tmp <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;IN&gt;</span>) {
+	chomp $tmp; <span style="color:#75715e">#把字符串尾巴的换行符切掉</span>
+	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$tmp,<span style="color:#e6db74">&#34;|\n&#34;</span>;
+}
+<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) { <span style="color:#75715e">#因为上一个while以及把指针指到文件末尾了，此while将没有输出</span>
+	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$_,<span style="color:#e6db74">&#34;|\n&#34;</span>;<span style="color:#75715e">#临时变量</span>
+}
+close IN;
+
+open IN,<span style="color:#e6db74">&#34;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to read:$!\n&#34;</span>;
+<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
+	chomp $_;
+	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$_,<span style="color:#e6db74">&#34;|\n&#34;</span>;<span style="color:#75715e">#临时变量</span>
+}
+close IN;
+
+open OUT,<span style="color:#e6db74">&#34;&gt;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to write:$!&#34;</span>;<span style="color:#75715e"># $!是存放最近的出错信息的变量</span>
+<span style="color:#66d9ef">print</span> OUT <span style="color:#e6db74">&#34;this is the 1 line.\n&#34;</span>;
+<span style="color:#66d9ef">print</span> OUT <span style="color:#e6db74">&#34;this is the 2 line.\n&#34;</span>;
+close OUT;
+
+<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;list&#34;</span>);
+$arr[$#arr<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;new&#34;</span>;<span style="color:#75715e">#尾添</span>
+
+push @arr,<span style="color:#e6db74">&#34;new_push&#34;</span>;<span style="color:#75715e">#尾添</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+
+pop @arr;<span style="color:#75715e">#尾删</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+
+shift @arr;<span style="color:#75715e">#头删</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+
+unshift @arr,<span style="color:#e6db74">&#34;interposition&#34;</span>;<span style="color:#75715e">#头插入</span>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+
+<span style="color:#66d9ef">my</span> $return;
+$return <span style="color:#f92672">=</span> shift @arr;<span style="color:#75715e"># 将@arr的头删除并将其作为返回值赋值给$return</span>
+<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$return\n @arr\n&#34;</span>;
+
+<span style="color:#75715e"># $return = shift; #在运行perl文件时输入数据作为参数</span>
+<span style="color:#75715e"># such as  perl input_output.pm 1 2 3</span>
+$return <span style="color:#f92672">=</span> shift @ARGV;<span style="color:#75715e"># 通过添加@ 使其能添加多个参数</span>
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $return){
+	die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;
+}<span style="color:#75715e">#没给参数，杀死并报错</span>
+<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$return\n @arr\n&#34;</span>;
+
+
+<span style="color:#75715e"># 使得脚本可以接受文件名作为参数，打开该文件并逐行输出</span>
+<span style="color:#66d9ef">my</span> $filename;
+$filename <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $filename){die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;}
+open IN,$filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open $filename to write:$!&#34;</span>;
+<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
+	chomp $_;
+	<span style="color:#66d9ef">print</span> $_,<span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+close IN;
+</code></pre></div><p>读取fasta文件，读取并输出序列信息和序列本身。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
+	<span style="color:#66d9ef">use</span> strict;
+	<span style="color:#66d9ef">use</span> warnings;
+	
+	<span style="color:#66d9ef">my</span> $filename;
+	<span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> ();<span style="color:#66d9ef">my</span> @name <span style="color:#f92672">=</span> ();
+	<span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">my</span> $lnbuf ;<span style="color:#66d9ef">my</span> $ch ;
+	<span style="color:#66d9ef">my</span> $tmpname;<span style="color:#66d9ef">my</span>$tmpseq;
+	
+	$filename <span style="color:#f92672">=</span> shift;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $filename){die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;}
+	open IN,$filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open $filename to write:$!&#34;</span>;
+	<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
+		chomp;
+		$ch <span style="color:#f92672">=</span> substr $_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
+		<span style="color:#66d9ef">if</span> ($ch <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;&gt;&#34;</span>){
+			<span style="color:#66d9ef">if</span> ($cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+				$tmpname <span style="color:#f92672">=</span> $_; <span style="color:#75715e"># push @name,$_;</span>
+				$cnt <span style="color:#f92672">++</span>;
+			}
+			<span style="color:#66d9ef">else</span>{
+				push @name,$tmpname;
+				push @seq,$tmpseq;
+				$tmpseq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+				$cnt <span style="color:#f92672">++</span>;
+				$tmpname<span style="color:#f92672">=</span>$_;}
+		}
+		<span style="color:#66d9ef">else</span> {
+			$tmpseq <span style="color:#f92672">.=</span> $_; <span style="color:#75715e"># 连接缩写 .=</span>
+			<span style="color:#75715e"># @seq[$cnt-1] .= $_;</span>
+		}
+	}
+	close IN;
+	
+	<span style="color:#66d9ef">if</span>($tmpname <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;&#34;</span>){
+		push @name,$tmpname;
+		push @seq,$tmpseq;
+	}
+	
+	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#name){
+		<span style="color:#66d9ef">print</span> $name[$i],<span style="color:#e6db74">&#34;\n&#34;</span>,$seq[$i],<span style="color:#e6db74">&#34;\n&#34;</span>;
+	}
+</code></pre></div><p>Perl的正则表达式的三种形式，分别是匹配，替换和转化:</p>
+<ul>
+<li>
+<p>匹配：m//（还可以简写为//，略去m）</p>
+</li>
+<li>
+<p>替换：s///</p>
+</li>
+<li>
+<p>转化：tr///</p>
+</li>
+</ul>
+<p>这三种形式一般都和 =~ 或 !~ 搭配使用， =~ 表示相匹配，!~ 表示不匹配。</p>
+<p>perl处理完后会给匹配到的值存在三个特殊变量名:</p>
+<ul>
+<li>
+<p>$`: 匹配部分的前一部分字符串</p>
+</li>
+<li>
+<p>$&amp;: 匹配的字符串</p>
+</li>
+<li>
+<p>$': 还没有匹配的剩余字符串</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">	<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello the perl world&#34;</span>;
+	$str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Hello/</span>; <span style="color:#75715e">#搜索  搜到返回为真</span>
+	$str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Hello/</span> ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;found Hello\n&#34;</span> : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;can&#39;t found\n&#34;</span> ;
+	
+	<span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&gt;seq1 &gt;seq2 &gt;seq3&#34;</span>;
+	$str2 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^&gt;/</span> ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;found &gt; at begin\n&#34;</span> : <span style="color:#66d9ef">last</span> ; <span style="color:#75715e">#  ^ 锚定到句首</span>
+	<span style="color:#75715e">#  $ 锚定到句末， bp$ 搜索句末的bp</span>
+	
+	<span style="color:#66d9ef">my</span> $str3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;total length 10000000 bp, N50 20000 bp&#34;</span>;
+	$str3 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /total length (\d{1,}) bp/</span> ? <span style="color:#66d9ef">my</span> $tot_len <span style="color:#f92672">=</span> $1 : <span style="color:#66d9ef">last</span> ;  <span style="color:#66d9ef">print</span> $tot_len,<span style="color:#e6db74">&#34;\n&#34;</span>;
+	<span style="color:#75715e"># () 里面的值会被抓取出来，存在临时变量里 第一个放在 $1,第二个放在 $2  ...</span>
+	<span style="color:#75715e"># \d 匹配任何Unicode十进制数（就是在Unicode字符目录[Nd]里的字符）</span>
+	<span style="color:#75715e">## 这包括了 [0-9] ，和很多其他的数字字符。如果设置了 ASCII 标志，就只匹配 [0-9] </span>
+	<span style="color:#75715e"># {1,} 表示匹配次数，1次以上</span>
+	
+	<span style="color:#66d9ef">my</span> $str4 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;joadfffff               
+</span><span style="color:#e6db74">	the&#34;</span>;
+	$str4 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(f*)\s*(the)/</span> ? <span style="color:#66d9ef">my</span> $jiaf <span style="color:#f92672">=</span> $1<span style="color:#f92672">.</span>$2 : <span style="color:#66d9ef">last</span> ;  <span style="color:#66d9ef">print</span> $jiaf,<span style="color:#e6db74">&#34;\n&#34;</span>;
+	<span style="color:#75715e"># \s  匹配任何Unicode空白字符（包括 [\t\n\r\f\v])</span>
+	
+	<span style="color:#75715e"># *?    &#39;*&#39;, &#39;+&#39;，和 &#39;?&#39; 修饰符都是贪婪的,在后面加？，表示非贪婪匹配</span>
+	
+	<span style="color:#66d9ef">my</span> $str5 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;01234569acespvnmgogjbtfgg&#34;</span>;
+	$str5 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([0-9a-h]+)/</span> ? <span style="color:#66d9ef">print</span> $1,<span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#66d9ef">last</span> ;
+	$str5 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([^0-9a-h]+)/</span> ? <span style="color:#66d9ef">print</span> $1,<span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#66d9ef">last</span> ; <span style="color:#75715e"># [^ ]表示反选字符集合</span>
+	
+	<span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4runoooob2,57&#39;</span>;
+	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/a-z/</span>A<span style="color:#f92672">-</span>Z<span style="color:#f92672">/</span>s ; <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>; <span style="color:#75715e"># s把多个相同的输出字符缩成一个</span>
+	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/N/</span> <span style="color:#f92672">/</span>c ;  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>;   <span style="color:#75715e"># 把所有非N 替换为空格</span>
+	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/\t /</span><span style="color:#f92672">/</span>d ;  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>;   <span style="color:#75715e"># 删除tab和空格</span>
+	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0-9/</span> <span style="color:#f92672">/</span>cs ; <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>; <span style="color:#75715e"># 把数字间的其它字符替换为一个空格。</span>
+	
+</code></pre></div><p>引用：用来弄高维数据结构（实际是指针）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $addr <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>$str ; <span style="color:#66d9ef">print</span> $addr,<span style="color:#e6db74">&#34;\t&#34;</span>,$$addr,<span style="color:#e6db74">&#34;\n&#34;</span>;
+	<span style="color:#75715e"># \$str 取地址，|   ${ $addr } 解引用，也可缩写为 $$addr</span>
+	<span style="color:#75715e">#输出：  SCALAR(0x7fffc0a84060)  Hello the perl world</span>
+	
+	<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">7</span>);
+	<span style="color:#66d9ef">my</span> $addr2 <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arr ; <span style="color:#66d9ef">print</span> $addr2,<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{ $addr2 }&#34;</span>,<span style="color:#e6db74">&#34;\t&#34;</span>,${ $addr2 }[<span style="color:#ae81ff">0</span>],<span style="color:#e6db74">&#34;\n&#34;</span>;
+	<span style="color:#75715e">#  ARRAY(0x7ffff5b228c8)   1 2 3 4 5 6 7   1</span>
+	
+	<span style="color:#66d9ef">my</span> %h <span style="color:#f92672">=</span> (a<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,b<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>,c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">3</span>);
+	<span style="color:#66d9ef">my</span> $addr3 <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>%h;  <span style="color:#66d9ef">print</span> $addr3,<span style="color:#e6db74">&#34;\t&#34;</span>,keys %{$addr3},<span style="color:#e6db74">&#34;\n&#34;</span>;
+	<span style="color:#66d9ef">print</span> ref($addr),<span style="color:#e6db74">&#34;\t&#34;</span>,ref($addr2),<span style="color:#e6db74">&#34;\t&#34;</span>,ref($addr3); <span style="color:#75715e"># ref()  返回引用的类型</span>
+	<span style="color:#75715e"># HASH(0x7fffdae689e8)    cab</span>
+	
+	<span style="color:#66d9ef">my</span> @arrac1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;4 -1 -4 0 1&#34;</span>;
+	<span style="color:#66d9ef">my</span> @arrac2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;2 -3 -4 0 1&#34;</span>;
+	<span style="color:#66d9ef">my</span> @arrac3 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;1 -5 -4 0 1&#34;</span>;
+	<span style="color:#66d9ef">my</span> @arr_of_arr ;
+	$arr_of_arr[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac1;$arr_of_arr[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac2;$arr_of_arr[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac3;
+	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arr_of_arr){
+		<span style="color:#66d9ef">print</span> $i,<span style="color:#e6db74">&#34;\t&#34;</span>,$arr_of_arr[$i],<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{$arr_of_arr[$i]}&#34;</span>,<span style="color:#e6db74">&#34;\n&#34;</span>;
+	}<span style="color:#75715e"># 演示，非实际用法，麻烦的写法</span>
+
+	@{ $arr_of_arr[<span style="color:#ae81ff">0</span>] } <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;1 2 3 4 5&#34;</span>; <span style="color:#75715e"># 省事操作</span>
+	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arr_of_arr){
+		<span style="color:#66d9ef">print</span> $i,<span style="color:#e6db74">&#34;:&#34;</span>;
+		<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{$arr_of_arr[$i]}){
+			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span>,$j,<span style="color:#e6db74">&#34;(&#34;</span>,$arr_of_arr[$i][$j],<span style="color:#e6db74">&#34;)&#34;</span>; 
+		}
+		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+	}   <span style="color:#75715e"># can  $arr_of_arr[$i] -&gt; [$j]</span>
+	
+	<span style="color:#66d9ef">my</span> $arrlist <span style="color:#f92672">=</span> [
+	[<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">5</span>],
+	[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>],
+	[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>],
+	]; <span style="color:#75715e">#匿名数组</span>
+	<span style="color:#66d9ef">print</span> @$arrlist,<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{@$arrlist[0]}&#34;</span>;
+</code></pre></div><p>
+  <img src="https://gitee.com/deathsprout/giteeimage/raw/master/arr_of_arr.png" alt="">
+
+上图是部分输出结果</p>
+
+
+
+      
+        <div class="blog-tags">
+          
+            <a href="https://deathsprout.gitee.io//tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
+          
+            <a href="https://deathsprout.gitee.io//tags/perl/">Perl</a>&nbsp;
+          
+            <a href="https://deathsprout.gitee.io//tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
+          
+        </div>
+      
+    </article>
+    
+  </div>
+
+        </div><footer>
+  <div class="container">
+    <p class="credits copyright">
+      <p class="credits theme-by">
+        Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/HelloRusk/HugoTeX">HugoTeX</a>
+        <br>
+        <a href="https://deathsprout.gitee.io/about">王子辰</a>
+        &copy;
+        2021
+      </p>
+  </div>
+</footer></body>
+</html>
