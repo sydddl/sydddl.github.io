@@ -71,7 +71,7 @@
 <p>在 <a href="https://www.ibm.com/aspera/connect/">https://www.ibm.com/aspera/connect/</a>下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。</p>
 <p>配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加</p>
 <pre><code>export PATH=/home/sprout/.aspera/connect/bin:$PATH 
-</code></pre><p>asperaweb_id_dsa.putty  和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加,,,-i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。</p>
+</code></pre><p>asperaweb_id_dsa.putty  和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。</p>
 <pre><code>export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH
 </code></pre><h3 id="使用">使用</h3>
 <p>Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。</p>
