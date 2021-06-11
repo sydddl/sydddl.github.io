@@ -134,7 +134,8 @@ usedata = 1    * 0: no data; 1:seq like; 2:normal approximation; 3:out.BV (in.BV
 </code></pre><p>运行</p>
 <pre><code>mcmctree mcmctree.ctl
 </code></pre><p>之后会生成一系列文件，删除out.BV和rst文件，将wag.dat拷贝进来，
-打开文件tmp0001.ctl，全部替换为下列内容。</p>
+(wag.dat在paml  dat 目录里，我是在..pamlX\paml4.9j\dat\ 里面)</p>
+<p>打开文件tmp0001.ctl，全部替换为下列内容。</p>
 <pre><code>seqfile = tmp0001.txt
 treefile = tmp0001.trees
 outfile = tmp0001.out
