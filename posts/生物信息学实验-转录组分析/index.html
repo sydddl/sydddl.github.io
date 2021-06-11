@@ -211,7 +211,7 @@ gene_id	A	B	p<span style="color:#f92672">-</span>value	FDR	significance
     <span style="color:#66d9ef">while</span> True:
         line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
         strline <span style="color:#f92672">=</span> str(line)
-        h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a:|relationship: part_of|id:&#39;</span>,strline)
+        h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of|id: GO&#39;</span>,strline)
         <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None :
             clean <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;a&#39;</span>)
             clean<span style="color:#f92672">.</span>write(line)
@@ -227,7 +227,7 @@ f<span style="color:#f92672">.</span>close()
             line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
             strline <span style="color:#f92672">=</span> str(line)
             
-            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: &#39;</span>,line)
+            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
             <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
                 <span style="color:#66d9ef">if</span> len(father_list) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
                     dict_[term] <span style="color:#f92672">=</span> father_list
@@ -235,7 +235,7 @@ f<span style="color:#f92672">.</span>close()
                 term <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
                 
             <span style="color:#66d9ef">else</span>:
-                h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a:|relationship: part_of&#39;</span>,strline)
+                h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of&#39;</span>,strline)
                 <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
                     father <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
                     father_list<span style="color:#f92672">.</span>append(father)
@@ -262,6 +262,8 @@ f<span style="color:#f92672">.</span>close()
 dict_ <span style="color:#f92672">=</span>{}
 dictGO()
 
+tab <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;1.csv&#39;</span>) <span style="color:#75715e">#读入1.obo数据，可以将之换成csv读入，反正能读成数据框就行</span>
+
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;dict.csv&#34;</span>,<span style="color:#e6db74">&#34;w&#34;</span>,newline<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#66d9ef">as</span> csvfile: 
     writer <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>writer(csvfile, delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
     writer<span style="color:#f92672">.</span>writerow([<span style="color:#e6db74">&#34;GO_id,&#34;</span>,<span style="color:#e6db74">&#34;father_num,&#34;</span>,<span style="color:#e6db74">&#34;father_generation,&#34;</span>,<span style="color:#e6db74">&#34;father_id&#34;</span>]) <span style="color:#75715e">#&#34;GO_id,&#34;结尾的逗号作为csv的分隔符</span>
@@ -278,7 +280,21 @@ dictGO()
 csvfile<span style="color:#f92672">.</span>close()
 </code></pre></div><h5 id="计算trichoderma-reesei-qm6a中每一个go分别有多少个基因">计算Trichoderma reesei QM6a中每一个GO分别有多少个基因</h5>
 <p>方便起见，稍微改一改，另外建一个记录下级节点的字典。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#找所有儿子</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gocleanlist <span style="color:#f92672">=</span> []  <span style="color:#75715e">#所有GO的非重复列表</span>
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    <span style="color:#66d9ef">while</span> True:
+            line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
+            strline <span style="color:#f92672">=</span> str(line)
+            
+            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
+            <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+                gocleanlist<span style="color:#f92672">.</span>append(re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group())
+                
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> line:
+                <span style="color:#66d9ef">break</span>
+f<span style="color:#f92672">.</span>close()
+len(gocleanlist)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#找所有儿子</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dictsonGO</span>():
     
     <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
@@ -286,11 +302,11 @@ csvfile<span style="color:#f92672">.</span>close()
             line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
             strline <span style="color:#f92672">=</span> str(line)
             
-            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: &#39;</span>,line)
+            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
             <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None: 
                 son_m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
             
-            h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a:|relationship: part_of&#39;</span>,strline)
+            h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of&#39;</span>,strline)
             <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
                 father <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
                 <span style="color:#66d9ef">if</span> father <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> dict_son:
@@ -309,7 +325,7 @@ csvfile<span style="color:#f92672">.</span>close()
         son_list<span style="color:#f92672">.</span>extend(son)
         
         <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> son:
-            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> finished: <span style="color:#75715e">#找完所有儿子并统计过的GO跳过</span>
+            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> finished: <span style="color:#75715e">#找完所有儿子并统计过的GO跳过，相当于剪枝了</span>
                 <span style="color:#66d9ef">pass</span>
             <span style="color:#66d9ef">else</span>:
                 finderson(i)
@@ -354,6 +370,7 @@ Up_dict <span style="color:#f92672">=</span> {}
     finish_up<span style="color:#f92672">=</span>{}
     time <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
     <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> gocleanlist:
+        <span style="color:#75715e">#可以加个输出计量运行到哪儿了</span>
         son_list <span style="color:#f92672">=</span> []
         Down_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
         Up_num<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
