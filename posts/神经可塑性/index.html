@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><meta charset="utf-8" />
+
+  <title>神经可塑性 - DeathSprout&#39;s Blog</title>
+
+
+  <meta name="description" content="博客网站，我先搞他一搞" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://deathsprout.gitee.io/css/latex.css" />
+<link rel="stylesheet" href="https://deathsprout.gitee.io/css/main.css" />
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta name="generator" content="Hugo 0.82.0" /><body>
+
+
+
+
+
+
+<header>
+  <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+    </ul>
+  </div>
+</nav>
+  <div class="intro-header">
+    <div class="container">
+      <div class="posts-heading">
+        
+          <h1>神经可塑性</h1>
+          
+        
+      </div>
+    </div>
+  </div>
+</header>
+<div id="content">
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      <div class="postmeta">
+        <span class="meta-post">
+  <i class="fa fa-calendar-alt"></i>Jun 25, 2021
+  
+    <br><i class="fa fa-folder-open"></i>
+    
+      <a href="https://deathsprout.gitee.io//categories/%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/">计算神经生物学</a>&nbsp;
+    
+      <a href="https://deathsprout.gitee.io//categories/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+    
+      <a href="https://deathsprout.gitee.io//categories/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/">神经生物学</a>&nbsp;
+    
+  
+</span>
+      </div>
+      <br>
+      
+    <p>摘要：本文是一篇浅谈神经可塑性的综述，将在三个层面上简要介绍神经可塑性，
+并在其中穿插一些新的研究进展。文章有两个部分，第一部分在宏观层次简要介
+绍了动物的认知可塑性和组织的功能可塑性。第二部分则结合介观表现和分子机
+制，相对详细的阐述了突触可塑性，主要集中在LTP 现象和机制的分析，该部分
+余下还有短时突触可塑性、稳态突触可塑性。</p>
+<p>关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性，
+LTP，稳态可塑性</p>
+<p>神经科学领域，可变性或可修饰性被称为可塑性（Plasticity），可塑性是神经
+系统的重要特性，很少用于生命科学的其他领域。神经可塑性的表现形式涉及多
+个层次，也涉及多种多样的影响因素，可以说神经可塑性的内涵非常广泛，从宏
+观上遵循特定模式形成的行为逻辑，到微观上分子作用导致的结构变化等等
+[1]。简要的说，神经可塑性是包括了神经组合形式改变、神经活动方式变化、神经发
+育演化、神经损伤修复等一系列体现了生物体神经系统的适应性的自然属性。</p>
+<p>神经可塑性就物理尺度上可以分成三个层次，宏观层次、细胞层次（介观层
+次）、分子层次（微观层次）。宏观层次上就影响对象还可以分成:涉及特定脑区，
+影响个体生物信息加工和行为逻辑的认知可塑性;涉及非特定脑区，脑损伤后引
+起功能重组的功能可塑性;以及功能重组过程中结构改变表现出的结构可塑性。
+细胞层次上，神经可塑性的主要表现形式是突触可塑性，具体又可划分为突触传
+递的可塑性（易化、压抑、PTP、长时程增强（Long-term potentiation（LTP））、
+长时程抑制（Long-term depression（LTD）、PHP、突触缩放等等）和突触再可塑
+性（描述可塑性的可塑性）。分子层次主要指神经可塑性的分子机制，大体包括
+参与突触可塑性的蛋白分子和离子、形成神经可塑性的信号通路、控制神经系统
+发育的遗传物质。</p>
+<h2 id="宏观水平上的神经可塑性">宏观水平上的神经可塑性</h2>
+<h3 id="认知可塑性">认知可塑性</h3>
+<p>对认知可塑性的概念向前追溯，甚至可以追溯到亚里士多德在《论灵魂》中
+的蜡块说，随着科技的进步，人们也意识到神经是认知活动的主要载体，但在
+Hebb 提出神经学习理论之前，这些认知更多的是没有理论框架的猜想和纯粹事
+实[2]。Hebb 在他的书《行为的组织》中，提出现在称为赫布定律的假设:“当神
+经元A 的轴突与神经元B 很近并重复持续的参与了对B 的兴奋时，这两个神经元
+或其中一个便会发生某些生长过程或代谢变化，致使A使B兴奋的效能增强了。”
+[3]
+在后来，有相当多的研究从分子和细胞层面证明了这一假设的正确性
+[4]，Markram 在赫布理论的基础上，提出了“脉冲时间依赖可塑性（STDP）”的理论，
+通过神经元激发的时间顺序来影响神经元之间的联系的强弱，即突触对时间信号
+具有敏感性，时间仅在数十毫秒内，正相关的突触后放电会引起突触联系增强，
+负相关则相反
+[5]
+。</p>
+<p>根据赫布理论和后续的大量研究，对脑的记忆、知觉等功能的认识逐渐丰富。
+就记忆形成方面来说，记忆是外界刺激对神经元集合作用的结果，以神经元集合
+间突触强度改变的形式分布于大脑中，在记忆形成的过程中，神经元结构进行快
+速的重构，神经元间会以快速的协同放电来加强相关神经元之间的连接，而这种
+连接是广泛存在于大脑，包括纹状体、杏仁核、前额叶、小脑和内侧颞叶等，并
+非集中于某个区域，但不同的解剖区域储存的记忆的类型是不同的，比如前额叶
+脑区与工作记忆有关，海马与空间记忆高度相关等
+[6]
+。</p>
+<p>神经可塑性在行为方面主要体现为条件反射上，这是关联性学习，由于在记
+忆提取时会激活形成该记忆的相关连接和脑区
+[7]
+，可以将条件反射视为通过学习
+产生的记忆中的一种。经典条件反射指将正常不引起反应的条件刺激和会引起某
+种反应的非条件刺激（比如食物（非条件刺激）对于分泌唾液）在时序上联系起
+来。其他还有操作式条件反射（将一种动作与有意义刺激联系起来）、评价性条
+件反射
+[8]
+（当一条件刺激与另一积极或消极刺激反复联系起来，被试者对原刺激
+的喜好发生改变）等类型。</p>
+<h3 id="功能可塑性和结构可塑性">功能可塑性和结构可塑性</h3>
+<p>功能可塑性体现在神经系统功能重组的过程中，功能重组指神经系统损伤后，
+有一定能力去进行结构改变和功能代偿，进而代替或部分代替受损区域原有功能
+[9]
+。虽然发育成熟的神经细胞不具备增殖和分裂能力，但神经元会持续具有形成
+新的突触连接和修饰自身显微形态的能力。按照损伤发生的部位，可以将功能可
+塑性划分为中枢神经系统功能可塑性和脊髓功能可塑性。</p>
+<p>相对于中枢神经系统，脊髓的功能可塑性单一且较弱，主要表现为不完全损
+伤后出芽，主要包括再生性出芽（regenerating sprouting，轴突受损的神经元存活，
+近侧段长出新芽）、侧枝出芽（lateral sprouting，整个神经元死亡，附近未受伤神
+经元从侧枝上长出新芽）、代偿性出芽（compensatory sprouting，发育中神经元轴
+突部分侧枝死亡，正常侧枝发出新芽），而完全性损伤后运动功能的恢复机制尚
+不明确
+[10]
+。</p>
+<p>
+  <img src="https://gitee.com/deathsprout/giteeimage/raw/master/20210625212758.png" alt="">
+</p>
+<center>图1 功能重组示意图</center>
+<p>对于中枢神经系统来说，在1969 年，Luria 等人提出并完善了功能重组理论
+（也被称为再训练理论），认为脑损伤后的余下部分，通过在功能上的重新组合
+实现在损伤中丧失的功能
+[11]
+。细胞层次上的突触可塑性是损伤后参与
+脑功能重组的重要神经生理过程，抗稳态和稳态可塑性都可能促进损伤后的神经
+网络功能重组
+[12，13]
+，特别是LTP 的效率，即突触增强的效率，对神经功能重组有
+重要影响，甚至直接与临床恢复程度相关
+[14]
+。神经元间突触连接广泛增加是应对
+各种类型损伤的常见反应，可能有助于去适应因损伤造成的神经元连接数量下降，
+以此来部分恢复神经网络功能，延缓症状的出现
+[15]
+。在神经功能重塑早期，突触
+连接的增加是过量的，可以广泛的引起神经兴奋过度，进而使现存神经网络连通
+性增强，有利于提升未损伤神经网络效率
+[15]
+。在神经功能重塑后期，根据稳态可
+塑性和STDP 的双向调节，有效的降低过量的突触连接，选择性的保留并增强活
+跃的突触连接，实现功能和结构的重塑
+[15]
+。</p>
+<h2 id="分子细胞水平上的神经可塑性">分子细胞水平上的神经可塑性</h2>
+<p>本部分主要介绍神经可塑性中最重要的突触可塑性，鉴于属于细胞水平的表
+象和属于分子水平的机制不适合分开阐述，故将两个层次上的神经可塑性放在一
+起。</p>
+<h3 id="突触可塑性及机制">突触可塑性及机制</h3>
+<p>突触可塑性是经验依赖性可塑性，这些突触多为化学性突触，其表现与个体
+神经元历史活动高度相关，常规意义上的突触可塑性特指由LTP 或LTD 表现出
+的经验依赖性的突触效能改变。这里将之含义扩大，除了突触传递的可塑性（比
+如LTP、LTD、短时程突触可塑性、突触缩放等），还包括突触再可塑性
+[16，17，18]
+。</p>
+<h4 id="短时突触可塑性">短时突触可塑性</h4>
+<p>从简单的无脊椎动物到哺乳动物，几乎每一个突触都可以观察到多种形式的、
+持续时间从毫秒到几分钟不等的短期突触可塑性
+[19]
+，表现为突触易化、突触压抑、
+强直后增强这些形式。突触后电位在相邻数百毫秒的时间间隔上对后续刺激反应
+的增强，叫突触易化（synaptic facilitation），相反，对后续刺激反应减弱叫突触
+压抑（synaptic depression）。长串的高频刺激往往会先引起突触压抑，数秒后再
+形成持续数分钟乃至数十分钟的突触后电位增强，被称为强直后增强（posttetanic
+potentiation）
+[20]
+。</p>
+<p>在研究的所有突触中，短时突触可塑性都被证明是突触前机制引起的，易化、
+增强和强直后增强具体表现是统计上动作电位释放的递质量子数量增加，没有突
+触后的效应，作为量子的囊泡本身大小也没有变化，在统计上表现出的数量增加
+反应了突触前囊泡预备池中释放概率的增加
+[19]
+。Katz 和Miledi（1968）认为可能
+在初次刺激后仍有Ca2+ 存在于突触前神经元中，并导致后续更大的钙信号引起突
+触强度变化
+[21]
+，这在后来完善成为残留钙假说，并有诸多研究观察到与该假说一
+致的促进作用。Ca2+ 离子在此过程中至关重要，囊泡融合的核心是由syt1
+（syntaxin-1）、突触囊泡蛋白和SNAP-25 形成复合物共同将囊泡和质膜相连，而
+复合物SNARE 对Ca2+ 敏感，Ca2+ 浓度提升能促进囊泡释放
+[22]
+。Schneggenburger
+和Neher（2000）研究发现在大型突触末端的杯状突起处，仅10μM 幅度的Ca2
++
+的阶梯状升高诱导了快速的递质释放，能在3ms 内消耗大约80％的囊泡预备池
+[23]
+，表明Ca2
++
+的短时增多能触发神经递质的快速释放。在短时间内，初次刺激过
+后突触前神经元Ca2
++
+浓度上升，产生易化，但过多的Ca2
++
+将囊泡预备池耗竭，
+引起短时间的压抑，而高频刺激先引起突触压抑，后续的强直后增强对应的是囊
+泡预备池的增大（以及Ca2
++
+的积聚）
+[20]
+。</p>
+<h4 id="突触可塑性--ltp">突触可塑性&ndash;LTP</h4>
+<p>突触可塑性最受关注的现象是长时程增强（LTP）和长时程抑制（LTD），尤
+其是LTP，自从1973 年在海马中发现长时程增强以来
+[24]
+，大量关键相关论文发
+表，LTP 目前为学习和记忆提供了一个有说服力的细胞模型。经历高频刺激的突
+触，其会产生长达数小时甚至数天的兴奋性突触电位幅度增强，这种现象被称为
+长时程增强。后续的研究发现LTP 有多种特性，McNaughton（1978）和Levy and
+Stewart（1979）先后报道LTP 具有“协同性（（1）该突触的前神经元兴奋并释放
+神经递质;（2）该突触后神经元处于去极化状态。某突触的LTP 可以在上述这两
+种条件同时存在时产生）”和“关联性（强刺激作用后，一定时间内一个弱刺激
+也能引发LTP 的性质）”，以及“输入特异性（LTP 只发生在经历刺激的突触上，
+不发生在同一突触后神经元的其他未受刺激的突触上）”，这些发现将LTP 视为
+赫布假设实现的过程
+[25]
+。接着一方面通过向突触后神经元注入去极化电流
+（Gustafsson，1987），一方面通过超极化等方式防止LTP 期间产生去极化电位
+（Malinow、Miller, 1986），证明了产生LTP 不需要一定存在高频刺激，只有两
+个硬性要求:突触刺激和突触后去极化
+[25]
+。这些特性使得LTP 适用于调节突触连
+接网络，动物的个体经历能够在单个突触水平上改变所在突触连接网络上每个突
+触的强度，比如输入特异性能使独立调控突触后神经元与不同突触前神经元形成
+的连接强度成为可能;协同性可以使单一输入信号同时去极化复数突触后神经元，
+调节一组突触连接的强度;关联性使同时的输入信号之间可以互相影响
+[26]
+。大多
+表现LTP 的突触也表现一种或多种形式的LTD，其机制和效应虽然不同，但LTD
+与LTP 两者都描述了一类现象。</p>
+<p>目前认为LTP 的分子机制（见图2）同时涉及突触前和突触后的因素，不过
+突触前因素没有突触后因素重要，根据LTP 的过程可以划分为LTP 的诱导、维
+持和表达三个阶段，根据维持的持续时间又将LTP 分成E-LTP（Early Phase LTP）
+和L-LTP（Late Phase LTP）。</p>
+<p>LTP 和LTD 的突触前因素除了部分与短时效应类似，表现在突触前神经元
+神经递质释放量的增加/减少上之外
+[20]
+，一些突触的突触后神经元会有一个逆行
+信号“NO”促进突触前神经元释放神经递质
+[25]
+。突触后因素中，NMDA 受体对
+LTP 的诱导至关重要，如果敲除掉NMDAR1 基因，LTP 无法发生
+[27]
+。NMDA 型
+谷氨酸受体在神经元处于静息电位时被Mg2+ 占据，而在去极化时与Mg2+ 分离（突
+触后去极化），此时NMDA 受体与神经递质谷氨酸结合（突触刺激），能引起Ca2+
+内流，这是LTP 的诱导过程。</p>
+<p>E-LTP 的刺激量小，持续时间短，这个过程没有新蛋白质的合成，而L-LTP
+刺激量大，产生后维持的持续时间能超过24 小时，会有cAMP、PKA 等的参与，
+最后合成蛋白质实现表达。钙离子内流会激活两个关键的信号蛋白，CaMKII 和
+蛋白激酶PKC。钙与钙调蛋白结合激活CaMKII 后，CaMKII 磷酸化细胞膜上的
+AMPA 型通道受体，增强其通道电导，使得突触后膜上的AMPA 受体对刺激反
+应幅度更大
+[28]
+。这些AMPA 受体并非完全位于细胞膜上，沉默突触的发现表明
+在LTP 发生之前，突触后的终扣只有部分有AMPA 受体，都有NMDA 受体但是
+被Mg2+ 堵塞，而激活的蛋白激酶PKC 和CaMKII 能导致含有AMPA 受体的囊泡
+与细胞膜融合，将AMPA 受体插入突触后膜上，CaMKII 还能将AMPA 的结合
+蛋白stargzin 磷酸化，使stargzin 结合PSD95，引导AMPA 受体处在突触后膜区
+域，使该突触的效能上升
+[28]
+。这里的PSD（postsynaptic density）指的是突触后致
+密区域，根据Bosch 等人的研究，PSD 在LTP 诱导后一个小时左右出现，PSD
+的形成会改变突触可塑性的规则，这可能能解释为什么突触可塑性的规则会随时
+间改变
+[29]
+。L-LTP 在此基础上，强烈的钙离子内流还会激活存在于突触旁的
+mRNA 翻译产生PKMζ，该蛋白再磷酸化囊泡上的AMPA 蛋白。这是LTP 的维
+持过程，CaMKII 能够自身磷酸化，在没有钙离子存在的情况下也能长时间保持
+活性，而PKMζ没有调控域，只靠亚单位催化，在激活后无法自主的失活，同
+样因为其能调控突触位置蛋白的翻译，能在没有钙离子存在的情况下保持较高的
+水平
+[28]
+。</p>
+<p>
+  <img src="https://gitee.com/deathsprout/giteeimage/raw/master/20210625213242.png" alt="">
+</p>
+<center>图2 LTP分子机制示意图</center>
+<p>值得注意的是，CaMKII 被发现占据脑蛋白量的2%[
+30]
+，在突触中调节许多
+的过程，应当有严格调节CaMKII 的机制存在，可能涉及两种内源性的分子抑制
+剂CaMK2N1 和CaMK2N2[
+31]
+。在一项新的研究中，研究者发现在LTP 诱导产生
+后，CaMK2N2 基因呈现分级上调，意味着CaMK2N2 蛋白可能会在LTP 过程中
+发挥作用，也许会参与形成突触的再可塑性
+[32]
+。</p>
+<p>LTP 的最后一个阶段对应蛋白质性质改变，在L-LTP 中还有新蛋白质合成
+和新突触的形成。重复刺激引起的钙离子信号激活腺苷酸环化酶，进而激活
+cAMP/PKA 信号途径，PKA 的调节亚基脱落后，PKA 的催化亚基进入细胞核，
+磷酸化CREB-1 转录因子，开启部分相关基因的表达。</p>
+<p>对LTP 的影响因素还有很多，Cortese 等人发现丰富的环境提高了不同行为
+任务中探索记忆和学习的表现，而且丰富的环境可以增强老年大鼠的mGluR5 依
+赖性LTP[
+33]
+。</p>
+<h4 id="稳态可塑性">稳态可塑性</h4>
+<p>另外突触传递的可塑性形式还有稳态可塑性，突触前稳态可塑性（PHP），主
+要是由于神经递质受体功能或动作电位活性受损引起的，神经递质受体水平的绕
+动都会导致相应神经递质释放的增多
+[34]
+。谷氨酸受体干扰实验中神经递质释放增
+加精确的补偿了施加的干扰
+[35]
+，表明PHP 过程含有逆行的跨突触信号系统
+[34]
+，
+但目前对PHP 机制的了解不多，2017 年有实验组发现信号素2b 作为突触前
+plexin B 的受体，形成缩写为Sema2b–PlexB 的跨突触信号传导通路
+[36]
+。</p>
+<p>突触后稳态可塑性表现形式是神经递质受体的稳态调节，即突触缩放。突触
+缩放这一现象，具体是指神经元细胞在特定条件下会调节细胞上所有突触连接的
+强度，不同突触之间的相对效能不发生变化，以此响应长时间的变化
+[37]
+。突触后
+神经元上活动总体的短期持续下降会导致突触缩放，总突出强度净增长，长期不
+活动会导致相反的趋势，而如果将一个神经元的全部输入阻断，该神经元表现出
+超敏感性，可兴奋性和突触输入增强
+[37]
+。</p>
+<h2 id="参考文献">参考文献</h2>
+<p>[1]吴馥梅.脑神经可塑性[J].现代特殊教育,1999(06):12-13.</p>
+<p>[2] 黄家裕. 认知神经的可塑性:赫布理论的哲学意蕴[J]. 哲学动态, 2015,
+000(009):104-108.</p>
+<p>[3] Hebb, D. (1949)The Organisation of Behaviour, Wiley</p>
+<p>[4] Bi, G. and Poo, M. (2001) Synaptic modification by correlated activity:Hebb’s
+postulate revisited.Annu. Rev. Neurosci.24, 139–166</p>
+<p>[5] Roberts P D , Bell C C . Spike timing dependent synaptic plasticity in biological
+systems[J]. Biological Cybernetics, 2002, 87(5-6):392-403.</p>
+<p>[6] Howard Eichenbaum 著，周仁来等译，杨治良审校:记忆的认知神经科学&ndash;导
+论。北京师范大学出版社</p>
+<p>[7] A R C , A F D , A S E P , et al. Attention-related activity during episodic memory
+retrieval: a cross-function fMRI study[J]. Neuropsychologia, 2003, 41( 3):390-399.</p>
+<p>[8] De Houwer J , Thomas S , Baeyens F . Associative learning of likes and dislikes:
+A review of 25 years of research on human evaluative conditioning[J]. Psychological
+Bulletin, 2001, 127(6):853-869.</p>
+<p>[9] Ward N S . Mechanisms underlying recovery of motor function after stroke[J].
+Postgraduate Medical Journal, 2005, 81(958):510-.</p>
+<p>[10] 肖志峰,陈冰,赵燕南,李佳音,韩素芳,陈艳艳,戴建武.脊髓损伤再生研究进展
+——搭建脊髓损伤修复的希望之桥[J].中国科学:生命科学,2019,49(11):1395-1408.</p>
+<p>[11] 缪鸿石. 中枢神经系统(CNS)损伤后功能恢复的理论(一)[J]. 中国康复理论
+与实践, 1995, 001(001):1-4.</p>
+<p>[12] Desai, N.S.; Cudmore, R.H.; Nelson, S.B.; Turrigiano, G.G. Critical periods for
+experience-dependent synaptic scaling in visual cortex. Nat. Neurosci. 2002, 5, 783–
+789.</p>
+<p>[13] Turrigiano, G. Homeostatic synaptic plasticity: Local and global mechanisms for
+stabilizing neuronal function. Cold. Spring Harb. Perspect. Biol. 2012, 4, a005736.</p>
+<p>[14] Mori, F.; Kusayanagi, H.; Nicoletti, C.G.; Weiss, S.; Marciani, M.G.; Centonze,
+D. Cortical plasticity predicts recovery from relapse in multiple sclerosis. Mult. Scler.
+2014, 20, 451–457.</p>
+<p>[15] Stampanoni Bassi, M.; Iezzi, E.; Gilio, L.; Centonze, D.; Buttari, F. Synaptic
+Plasticity Shapes Brain Connectivity: Implications for Network Topology. Int. J. Mol.
+Sci. 2019, 20, 6193.</p>
+<p>[16] Citri A , Malenka R C . Synaptic Plasticity: Multiple Forms, Functions, and
+Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.</p>
+<p>[17] Singh P, Heera PK, Kaur G.Expression of neuronal plasticity markers in
+hypoglycemia induced brain injury[J].Mol Cell Biochem2003, 247 (1) :69-74.</p>
+<p>[18] 王韶莉,陆巍.再可塑性在学习记忆中作用的研究进展[J].生理学
+报,2016,68(04):475-482.</p>
+<p>[19]Zucker R S , Regehr W G . SHORT -TERM SYNAPTIC PLASTICITY[J]. Annual
+Review of Physiology, 2002, 64(1):355-405.</p>
+<p>[20]Nicholls J G . From Neuron to Brain[M]. Sinauer Associates, 2001.</p>
+<p>[21]Katz B, Miledi R. 1968. The role of calcium in neuromuscular facilitation. J.
+Physiol. 195:481–92</p>
+<p>[22]Jackman S L , Regehr W G . The Mechanisms and Functions of Synaptic
+Facilitation[J]. Neuron, 2017, 94(3):447-464.</p>
+<p>[23]Schneggenburger R , Neher E . Intracellular calcium dependence of transmitter
+release rates at a fast central synapse[J]. Nature, 2000, 406(6798):889-893.</p>
+<p>[24]Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.</p>
+<p>[25] Nicoll, Roger A . A Brief History of Long-Term Potentiation[J]. Neuron, 2017,
+93(2):281-290.</p>
+<p>[26]Liqun Luo. Principles of Neurobiology[J]. crc press, 2015.</p>
+<p>[27]Tsien, J. Z., Huerta, P. T., &amp; Tonegawa, S. (1996). The essential role of hippocampal
+CA1 NMDA receptor–dependent synaptic plasticity in spatial memory.Cell,87(7),
+1327-1338.</p>
+<p>[28]Lisman J , Yasuda R , Raghavachari S . Mechanisms of CaMKII action in long-
+term potentiation[J]. Nature Reviews Neuroscience, 2012, 13:2358.</p>
+<p>[29]Bosch M , Castro J , Saneyoshi T , et al. Structural and Molecular Remodeling of
+Dendritic Spine Substructures during Long-Term Potentiation[J]. Neuron, 2014,
+82(2):444-459.</p>
+<p>[30]Nikolai, Otmakhov, and, John, &amp; Lisman. Measuring CaMKII concentration in
+dendritic spines[J]. Journal of Neuroscience Methods, 2012.</p>
+<p>[31] B.H. Chang, S. Mukherji, T.R. Soderling. Calcium/calmodulin-dependent protein
+kinase II inhibitor protein: localization of isoforms in rat brain[J]. Neuroscience, 2001,
+102(4):0-777.</p>
+<p>[32]Sanhueza, M.CaMKII inhibitor 1 (CaMK2N1) mRNA is upregulated following
+LTP induction in hippocampal slices[J]. Neurosciences , 2020.</p>
+<p>[33]Cortese G P , Olin A , O’Riordan, Kenneth, et al. Environmental Enrichment
+Improves Hippocampal Function in Aged Rats by Enhancing Learning and Memory,
+LTP and mGluR5-Homer1c Activity[J]. Neurobiology of Aging,
+2017:S0197458017303731.</p>
+<p>[34] Delvendahl I , Müller, Martin. Homeostatic plasticity—a presynaptic
+perspective[J]. Current Opinion in Neurobiology, 2019, 54:155-162.</p>
+<p>[35]Frank CA, Kennedy MJ, Goold CP, Marek KW, Davis GW: Mechanisms
+underlying the rapid induction and sustained expression of synaptic homeostasis.
+Neuron 2006, 52:663-677.</p>
+<p>[36] Orr B O , Fetter R D , Davis G W . Retrograde semaphorin-plexin signalling drives
+homeostatic synaptic plasticity[J]. Nature, 2017, 550(7674):109-113.</p>
+<p>[37] Citri A , Malenka R C . Synaptic Plasticity: Multiple Forms, Functions, and
+Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.</p>
+
+
+
+      
+        <div class="blog-tags">
+          
+            <a href="https://deathsprout.gitee.io//tags/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/">神经生物学</a>&nbsp;
+          
+            <a href="https://deathsprout.gitee.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+          
+            <a href="https://deathsprout.gitee.io//tags/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/">神经可塑性</a>&nbsp;
+          
+        </div>
+      
+    </article>
+    
+  </div>
+
+        </div><footer>
+  <div class="container">
+    <p class="credits copyright">
+      <p class="credits theme-by">
+        Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/HelloRusk/HugoTeX">HugoTeX</a>
+        <br>
+        <a href="https://deathsprout.gitee.io/about">王子辰</a>
+        &copy;
+        2021
+      </p>
+  </div>
+</footer></body>
+</html>

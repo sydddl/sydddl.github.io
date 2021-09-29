@@ -59,7 +59,7 @@
       </div>
       <br>
       
-    <p>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。</p>
+    <p>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">sort <span style="color:#75715e">#对数组排序（默认按照字符串排序）</span>
 reverse <span style="color:#75715e">#列表反向排列</span>
 
@@ -284,7 +284,63 @@ close IN;
   <img src="https://gitee.com/deathsprout/giteeimage/raw/master/arr_of_arr.png" alt="">
 
 上图是部分输出结果</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># 计算拼接成contig的文件 N50的perl程序</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
+<span style="color:#66d9ef">my</span> @name;<span style="color:#66d9ef">my</span> @seq;<span style="color:#66d9ef">my</span> $seq; <span style="color:#66d9ef">my</span> @long ;  
+<span style="color:#66d9ef">my</span> $alllong <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#66d9ef">my</span> $contig <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; <span style="color:#66d9ef">my</span> $longest; <span style="color:#66d9ef">my</span> $shortest;
+<span style="color:#66d9ef">my</span> $GC<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ; <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">my</span> $N50;
+
+open IN,<span style="color:#e6db74">&#34;data/a9_k63.contig.long1500&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$!&#34;</span>; <span style="color:#75715e"># a9_k63.contig.long1500</span>
+<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
+    chomp;
+    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> substr $_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> ($head <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;&gt;&#34;</span>){
+        <span style="color:#66d9ef">if</span> ($contig <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+            $contig <span style="color:#f92672">++</span>;
+            push @name,$_;
+            }
+        <span style="color:#66d9ef">else</span>{
+        $contig <span style="color:#f92672">++</span>;
+        push @name,$_;
+        $alllong <span style="color:#f92672">.=</span> $seq ;
+        push @seq,$seq; push @long,length($seq);
+        $seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        }
+    }
+    <span style="color:#66d9ef">else</span>{
+        $seq <span style="color:#f92672">.=</span> $_;
+    }
+}
+push @seq,$seq; 
+$alllong <span style="color:#f92672">.=</span> $seq ;
+push @long,length($seq);
+close IN;
+
+<span style="color:#66d9ef">my</span> @arrlong <span style="color:#f92672">=</span> sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @long;
+$longest <span style="color:#f92672">=</span> $arrlong[<span style="color:#ae81ff">0</span>];$shortest <span style="color:#f92672">=</span> $arrlong[$#long];
+
+<span style="color:#66d9ef">my</span> $G <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/G/</span>G<span style="color:#f92672">/</span>; 
+<span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/C/</span>C<span style="color:#f92672">/</span>;
+$N <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/N/</span>N<span style="color:#f92672">/</span>;
+$GC <span style="color:#f92672">=</span> ($G<span style="color:#f92672">+</span>$C)<span style="color:#f92672">/</span>length($alllong);
+
+<span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#66d9ef">my</span> $lo2 <span style="color:#f92672">=</span> length($alllong)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arrlong){
+    $sum <span style="color:#f92672">=</span> $sum<span style="color:#f92672">+</span>$arrlong[$i];
+    <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> $lo2){
+        $N50 <span style="color:#f92672">=</span> $arrlong[$i];
+        <span style="color:#66d9ef">last</span>;
+    }
+}
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@long\n&#34;</span>;
+
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;大小：&#34;</span>,length($alllong),<span style="color:#e6db74">&#34;\tcontig数:&#34;</span>,$contig,<span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;最短contig：&#34;</span>,$longest,<span style="color:#e6db74">&#34;\t最长contig:&#34;</span>,$shortest,<span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;GC含量:&#34;</span>,$GC,<span style="color:#e6db74">&#34;\t\tN数量:&#34;</span>,$N,<span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;N50:&#34;</span>,$N50,<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div>
 
 
       
