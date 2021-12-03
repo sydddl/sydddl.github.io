@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ENA on DeathSprout&#39;s Blog</title>
+    <title>ENA on DeathSprout</title>
     <link>https://deathsprout.gitee.io/tags/ena/</link>
-    <description>Recent content in ENA on DeathSprout&#39;s Blog</description>
+    <description>Recent content in ENA on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Sat, 22 May 2021 13:23:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/ena/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从ENA高速下载FASTQ文件</title>
@@ -13,7 +13,16 @@
       <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
-      <description>系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在</description>
+      <description>系统：Ubuntu 20.0.4
+轮子：ena-fast-download
+环境需求：
+ An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3  Aspera 配置 在 https://www.ibm.com/aspera/connect/下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。
+配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加
+export PATH=/home/sprout/.aspera/connect/bin:$PATH asperaweb_id_dsa.putty 和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。
+export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH 使用 Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。
+./ena-fast-download.py ERR1701760 实际上这个脚本是用ERR1701760得到完整的路径去使用ascp，比如上面这个最终会生成(其中一个，双端测序数据，还一个2)
+ascp-T-1 300m -P33001-i $HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/ERR1701/000/ERR1701760/ ERR1701760 1.fastq.gz . 问题 我一开始使用下着下着会中断，不清楚是什么问题，可能是Ubuntu长时间不动熄屏导致，也可能是流程里有什么东西变了导致现在用不了。 单纯的运行ascp脚本报错如下：
+Session Stop (Error:Session data transfer timeout(server),Session data transfer timeout) 后来发现是实验室网络问题，在宿舍运行速度可以达到60MB/s。</description>
     </item>
     
   </channel>

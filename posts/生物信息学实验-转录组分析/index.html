@@ -1,70 +1,162 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><meta charset="utf-8" />
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的皆不做解释，有几道需要python或R的题目，虽然没什么难度，但或多或少有些同学不会写，在这里把我的思路分享一下，不过我也不希望后来的学弟学妹不做思考直接照抄（说不定本文都搜不到呢），仅作参考。
+问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.'><title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
 
-  <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析 - DeathSprout&#39;s Blog</title>
+<link rel='canonical' href='https://deathsprout.gitee.io/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='山东大学生物信息学实验 - 转录组学数据分析和富集分析'>
+<meta property='og:description' content='本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的皆不做解释，有几道需要python或R的题目，虽然没什么难度，但或多或少有些同学不会写，在这里把我的思路分享一下，不过我也不希望后来的学弟学妹不做思考直接照抄（说不定本文都搜不到呢），仅作参考。
+问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.'>
+<meta property='og:url' content='https://deathsprout.gitee.io/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='课程笔记' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='R' /><meta property='article:tag' content='编程语言' /><meta property='article:tag' content='数据分析' /><meta property='article:tag' content='富集分析' /><meta property='article:published_time' content='2021-06-11T20:11:25&#43;08:00'/><meta property='article:modified_time' content='2021-06-11T20:11:25&#43;08:00'/>
+<meta name="twitter:title" content="山东大学生物信息学实验 - 转录组学数据分析和富集分析">
+<meta name="twitter:description" content="本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的皆不做解释，有几道需要python或R的题目，虽然没什么难度，但或多或少有些同学不会写，在这里把我的思路分享一下，不过我也不希望后来的学弟学妹不做思考直接照抄（说不定本文都搜不到呢），仅作参考。
+问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.">
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
 
 
-  <meta name="description" content="博客网站，我先搞他一搞" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/latex.css" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/main.css" />
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<meta name="generator" content="Hugo 0.82.0" /><body>
+                <span>返回</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
 
-
-
-
-
-
-<header>
-  <nav class="navbar">
-  <div class="nav">
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" >
+                课程笔记
+            </a>
+        
+            <a href="/categories/python/" >
+                Python
+            </a>
+        
+            <a href="/categories/r/" >
+                R
+            </a>
+        
+            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" >
+                编程语言
+            </a>
+        
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" >
+                数据分析
+            </a>
+        
+            <a href="/categories/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/" >
+                富集分析
+            </a>
+        
+    </header>
     
 
-    <ul class="nav-links">
-      
-    </ul>
-  </div>
-</nav>
-  <div class="intro-header">
-    <div class="container">
-      <div class="posts-heading">
+    <h2 class="article-title">
+        <a href="/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/">山东大学生物信息学实验 - 转录组学数据分析和富集分析</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
         
-          <h1>山东大学生物信息学实验 - 转录组学数据分析和富集分析</h1>
-          
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 11, 2021</time>
+            </div>
         
-      </div>
-    </div>
-  </div>
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 7 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
 </header>
-<div id="content">
-  <div class="container" role="main">
-    <article class="article" class="blog-post">
-      <div class="postmeta">
-        <span class="meta-post">
-  <i class="fa fa-calendar-alt"></i>Jun 11, 2021
-  
-    <br><i class="fa fa-folder-open"></i>
-    
-      <a href="https://deathsprout.gitee.io//categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/python/">Python</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/r/">R</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">富集分析</a>&nbsp;
-    
-  
-</span>
-      </div>
-      <br>
-      
+
+    <section class="article-content">
     <p>本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的皆不做解释，有几道需要python或R的题目，虽然没什么难度，但或多或少有些同学不会写，在这里把我的思路分享一下，不过我也不希望后来的学弟学妹不做思考直接照抄（说不定本文都搜不到呢），仅作参考。</p>
 <h3 id="问题如下">问题如下：</h3>
 <p>|使用Python或者Perl编程，完成以下任务：</p>
@@ -80,419 +172,695 @@
 <p>(b)	哪些GO发生了显著的上调或者下调的富集？</p>
 <h3 id="文件解释">文件解释：</h3>
 <p>先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">proteinId	gotermId	goName	gotermType	goAcc
-<span style="color:#ae81ff">1673</span>	<span style="color:#ae81ff">3504</span>	translational initiation	biological_process	GO:<span style="color:#ae81ff">0006413</span>
-<span style="color:#ae81ff">1673</span>	<span style="color:#ae81ff">2855</span>	cytoplasm	cellular_component	GO:<span style="color:#ae81ff">0005737</span>
-<span style="color:#ae81ff">1673</span>	<span style="color:#ae81ff">1108</span>	translation initiation factor activity	molecular_function	GO:<span style="color:#ae81ff">0003743</span>
-<span style="color:#ae81ff">1673</span>	<span style="color:#ae81ff">1096</span>	RNA binding	molecular_function	GO:<span style="color:#ae81ff">0003723</span>
-<span style="color:#ae81ff">1692</span>	<span style="color:#ae81ff">3503</span>	protein biosynthesis	biological_process	GO:<span style="color:#ae81ff">0006412</span>
-<span style="color:#ae81ff">1692</span>	<span style="color:#ae81ff">2953</span>	ribosome	cellular_component	GO:<span style="color:#ae81ff">0005</span><span style="color:#ae81ff">840</span>
-<span style="color:#ae81ff">1692</span>	<span style="color:#ae81ff">2746</span>	intracellular	cellular_component	GO:<span style="color:#ae81ff">0005622</span>
-<span style="color:#ae81ff">1692</span>	<span style="color:#ae81ff">1107</span>	structural constituent of ribosome	molecular_function	GO:<span style="color:#ae81ff">0003735</span>
-<span style="color:#ae81ff">1692</span>	<span style="color:#ae81ff">1096</span>	RNA binding	molecular_function	GO:<span style="color:#ae81ff">0003723</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">3444</span>	transcription	biological_process	GO:<span style="color:#ae81ff">0006350</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">1233</span>	DNA<span style="color:#f92672">-</span>directed DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">0003</span><span style="color:#ae81ff">887</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">1056</span>	DNA binding	molecular_function	GO:<span style="color:#ae81ff">0003677</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">10782</span>	sigma DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">001</span><span style="color:#ae81ff">9984</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">8197</span>	theta DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">0016452</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">8196</span>	nu DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">0016451</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">8195</span>	kappa DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">0016450</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">8194</span>	<span style="color:#66d9ef">lambda</span> DNA polymerase activity	molecular_function	GO:<span style="color:#ae81ff">001644</span><span style="color:#ae81ff">9</span>
-<span style="color:#ae81ff">1702</span>	<span style="color:#ae81ff">8193</span>	mu DNA polymerase activity	molecular_function	
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">proteinId</span>	<span class="n">gotermId</span>	<span class="n">goName</span>	<span class="n">gotermType</span>	<span class="n">goAcc</span>
+<span class="mi">1673</span>	<span class="mi">3504</span>	<span class="n">translational</span> <span class="n">initiation</span>	<span class="n">biological_process</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0006413</span>
+<span class="mi">1673</span>	<span class="mi">2855</span>	<span class="n">cytoplasm</span>	<span class="n">cellular_component</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0005737</span>
+<span class="mi">1673</span>	<span class="mi">1108</span>	<span class="n">translation</span> <span class="n">initiation</span> <span class="n">factor</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003743</span>
+<span class="mi">1673</span>	<span class="mi">1096</span>	<span class="n">RNA</span> <span class="n">binding</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003723</span>
+<span class="mi">1692</span>	<span class="mi">3503</span>	<span class="n">protein</span> <span class="n">biosynthesis</span>	<span class="n">biological_process</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0006412</span>
+<span class="mi">1692</span>	<span class="mi">2953</span>	<span class="n">ribosome</span>	<span class="n">cellular_component</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0005840</span>
+<span class="mi">1692</span>	<span class="mi">2746</span>	<span class="n">intracellular</span>	<span class="n">cellular_component</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0005622</span>
+<span class="mi">1692</span>	<span class="mi">1107</span>	<span class="n">structural</span> <span class="n">constituent</span> <span class="n">of</span> <span class="n">ribosome</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003735</span>
+<span class="mi">1692</span>	<span class="mi">1096</span>	<span class="n">RNA</span> <span class="n">binding</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003723</span>
+<span class="mi">1702</span>	<span class="mi">3444</span>	<span class="n">transcription</span>	<span class="n">biological_process</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0006350</span>
+<span class="mi">1702</span>	<span class="mi">1233</span>	<span class="n">DNA</span><span class="o">-</span><span class="n">directed</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003887</span>
+<span class="mi">1702</span>	<span class="mi">1056</span>	<span class="n">DNA</span> <span class="n">binding</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0003677</span>
+<span class="mi">1702</span>	<span class="mi">10782</span>	<span class="n">sigma</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0019984</span>
+<span class="mi">1702</span>	<span class="mi">8197</span>	<span class="n">theta</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0016452</span>
+<span class="mi">1702</span>	<span class="mi">8196</span>	<span class="n">nu</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0016451</span>
+<span class="mi">1702</span>	<span class="mi">8195</span>	<span class="n">kappa</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0016450</span>
+<span class="mi">1702</span>	<span class="mi">8194</span>	<span class="k">lambda</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	<span class="n">GO</span><span class="p">:</span><span class="mi">0016449</span>
+<span class="mi">1702</span>	<span class="mi">8193</span>	<span class="n">mu</span> <span class="n">DNA</span> <span class="n">polymerase</span> <span class="n">activity</span>	<span class="n">molecular_function</span>	
 </code></pre></div><p>2.obo记录了GO之间的上下级关系，文件本身三十几万行，47125个GO，如下所示的[Term]表示一个GO，随后id：GO：XXXXXXX就是这个GO的 id，namespace就是这个GO属于本体论里三个顶级GO的哪一个，比如GO:0000001属于biological_process。</p>
 <p>第一题的（a）就是要找到所有GO的所有上级GO（或者说父亲），最终归宿到biological_process、molecular_function、cellular_component。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">format<span style="color:#f92672">-</span>version: <span style="color:#ae81ff">1.2</span>
-data<span style="color:#f92672">-</span>version: releases<span style="color:#f92672">/</span><span style="color:#ae81ff">2018</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span><span style="color:#f92672">-</span><span style="color:#ae81ff">12</span>
-subsetdef: goantislim_grouping <span style="color:#e6db74">&#34;Grouping classes that can be excluded&#34;</span>
-subsetdef: gocheck_do_not_annotate <span style="color:#e6db74">&#34;Term not to be used for direct annotation&#34;</span>
-subsetdef: gocheck_do_not_manually_annotate <span style="color:#e6db74">&#34;Term not to be used for direct manual annotation&#34;</span>
-subsetdef: goslim_agr <span style="color:#e6db74">&#34;AGR slim&#34;</span>
-subsetdef: goslim_aspergillus <span style="color:#e6db74">&#34;Aspergillus GO slim&#34;</span>
-subsetdef: goslim_candida <span style="color:#e6db74">&#34;Candida GO slim&#34;</span>
-subsetdef: goslim_chembl <span style="color:#e6db74">&#34;ChEMBL protein targets summary&#34;</span>
-subsetdef: goslim_generic <span style="color:#e6db74">&#34;Generic GO slim&#34;</span>
-subsetdef: goslim_goa <span style="color:#e6db74">&#34;GOA and proteome slim&#34;</span>
-subsetdef: goslim_metagenomics <span style="color:#e6db74">&#34;Metagenomics GO slim&#34;</span>
-subsetdef: goslim_mouse <span style="color:#e6db74">&#34;Mouse GO slim&#34;</span>
-subsetdef: goslim_pir <span style="color:#e6db74">&#34;PIR GO slim&#34;</span>
-subsetdef: goslim_plant <span style="color:#e6db74">&#34;Plant GO slim&#34;</span>
-subsetdef: goslim_pombe <span style="color:#e6db74">&#34;Fission yeast GO slim&#34;</span>
-subsetdef: goslim_synapse <span style="color:#e6db74">&#34;synapse GO slim&#34;</span>
-subsetdef: goslim_virus <span style="color:#e6db74">&#34;Viral GO slim&#34;</span>
-subsetdef: goslim_yeast <span style="color:#e6db74">&#34;Yeast GO slim&#34;</span>
-subsetdef: gosubset_prok <span style="color:#e6db74">&#34;Prokaryotic GO subset&#34;</span>
-subsetdef: mf_needs_review <span style="color:#e6db74">&#34;Catalytic activity terms in need of attention&#34;</span>
-subsetdef: termgenie_unvetted <span style="color:#e6db74">&#34;Terms created by TermGenie that do not follow a template and require additional vetting by editors&#34;</span>
-subsetdef: virus_checked <span style="color:#e6db74">&#34;Viral overhaul terms&#34;</span>
-synonymtypedef: syngo_official_label <span style="color:#e6db74">&#34;label approved by the SynGO project&#34;</span>
-synonymtypedef: systematic_synonym <span style="color:#e6db74">&#34;Systematic synonym&#34;</span> EXACT
-default<span style="color:#f92672">-</span>namespace: gene_ontology
-remark: cvs version: use data<span style="color:#f92672">-</span>version
-remark: Includes Ontology(OntologyID(Anonymous<span style="color:#f92672">-</span><span style="color:#ae81ff">35</span>)) [Axioms: <span style="color:#ae81ff">230</span> Logical Axioms: <span style="color:#ae81ff">228</span>]
-remark: Includes Ontology(OntologyID(OntologyIRI(<span style="color:#f92672">&lt;</span>http:<span style="color:#f92672">//</span>purl<span style="color:#f92672">.</span>obolibrary<span style="color:#f92672">.</span>org<span style="color:#f92672">/</span>obo<span style="color:#f92672">/</span>go<span style="color:#f92672">/</span>never_in_taxon<span style="color:#f92672">.</span>owl<span style="color:#f92672">&gt;</span>))) [Axioms: <span style="color:#ae81ff">18</span> Logical Axioms: <span style="color:#ae81ff">0</span>]
-ontology: go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">format</span><span class="o">-</span><span class="n">version</span><span class="p">:</span> <span class="mf">1.2</span>
+<span class="n">data</span><span class="o">-</span><span class="n">version</span><span class="p">:</span> <span class="n">releases</span><span class="o">/</span><span class="mi">2018</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">12</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goantislim_grouping</span> <span class="s2">&#34;Grouping classes that can be excluded&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">gocheck_do_not_annotate</span> <span class="s2">&#34;Term not to be used for direct annotation&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">gocheck_do_not_manually_annotate</span> <span class="s2">&#34;Term not to be used for direct manual annotation&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_agr</span> <span class="s2">&#34;AGR slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_aspergillus</span> <span class="s2">&#34;Aspergillus GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_candida</span> <span class="s2">&#34;Candida GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_chembl</span> <span class="s2">&#34;ChEMBL protein targets summary&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_generic</span> <span class="s2">&#34;Generic GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_goa</span> <span class="s2">&#34;GOA and proteome slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_metagenomics</span> <span class="s2">&#34;Metagenomics GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_mouse</span> <span class="s2">&#34;Mouse GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_pir</span> <span class="s2">&#34;PIR GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_plant</span> <span class="s2">&#34;Plant GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_pombe</span> <span class="s2">&#34;Fission yeast GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_synapse</span> <span class="s2">&#34;synapse GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_virus</span> <span class="s2">&#34;Viral GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">goslim_yeast</span> <span class="s2">&#34;Yeast GO slim&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">gosubset_prok</span> <span class="s2">&#34;Prokaryotic GO subset&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">mf_needs_review</span> <span class="s2">&#34;Catalytic activity terms in need of attention&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">termgenie_unvetted</span> <span class="s2">&#34;Terms created by TermGenie that do not follow a template and require additional vetting by editors&#34;</span>
+<span class="n">subsetdef</span><span class="p">:</span> <span class="n">virus_checked</span> <span class="s2">&#34;Viral overhaul terms&#34;</span>
+<span class="n">synonymtypedef</span><span class="p">:</span> <span class="n">syngo_official_label</span> <span class="s2">&#34;label approved by the SynGO project&#34;</span>
+<span class="n">synonymtypedef</span><span class="p">:</span> <span class="n">systematic_synonym</span> <span class="s2">&#34;Systematic synonym&#34;</span> <span class="n">EXACT</span>
+<span class="n">default</span><span class="o">-</span><span class="n">namespace</span><span class="p">:</span> <span class="n">gene_ontology</span>
+<span class="n">remark</span><span class="p">:</span> <span class="n">cvs</span> <span class="n">version</span><span class="p">:</span> <span class="n">use</span> <span class="n">data</span><span class="o">-</span><span class="n">version</span>
+<span class="n">remark</span><span class="p">:</span> <span class="n">Includes</span> <span class="n">Ontology</span><span class="p">(</span><span class="n">OntologyID</span><span class="p">(</span><span class="n">Anonymous</span><span class="o">-</span><span class="mi">35</span><span class="p">))</span> <span class="p">[</span><span class="n">Axioms</span><span class="p">:</span> <span class="mi">230</span> <span class="n">Logical</span> <span class="n">Axioms</span><span class="p">:</span> <span class="mi">228</span><span class="p">]</span>
+<span class="n">remark</span><span class="p">:</span> <span class="n">Includes</span> <span class="n">Ontology</span><span class="p">(</span><span class="n">OntologyID</span><span class="p">(</span><span class="n">OntologyIRI</span><span class="p">(</span><span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="o">.</span><span class="n">obolibrary</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">obo</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">never_in_taxon</span><span class="o">.</span><span class="n">owl</span><span class="o">&gt;</span><span class="p">)))</span> <span class="p">[</span><span class="n">Axioms</span><span class="p">:</span> <span class="mi">18</span> <span class="n">Logical</span> <span class="n">Axioms</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">ontology</span><span class="p">:</span> <span class="n">go</span>
 
-[Term]
-id: GO:<span style="color:#ae81ff">0000001</span>
-name: mitochondrion inheritance
-namespace: biological_process
-def: <span style="color:#e6db74">&#34;The distribution of mitochondria, including the mitochondrial genome, into daughter cells after mitosis or meiosis, mediated by interactions between mitochondria and the cytoskeleton.&#34;</span> [GOC:mcc, PMID:<span style="color:#ae81ff">10873824</span>, PMID:<span style="color:#ae81ff">11389764</span>]
-synonym: <span style="color:#e6db74">&#34;mitochondrial inheritance&#34;</span> EXACT []
-is_a: GO:<span style="color:#ae81ff">004</span><span style="color:#ae81ff">8308</span> <span style="color:#960050;background-color:#1e0010">!</span> organelle inheritance
-is_a: GO:<span style="color:#ae81ff">004</span><span style="color:#ae81ff">8311</span> <span style="color:#960050;background-color:#1e0010">!</span> mitochondrion distribution
+<span class="p">[</span><span class="n">Term</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0000001</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">mitochondrion</span> <span class="n">inheritance</span>
+<span class="n">namespace</span><span class="p">:</span> <span class="n">biological_process</span>
+<span class="n">def</span><span class="p">:</span> <span class="s2">&#34;The distribution of mitochondria, including the mitochondrial genome, into daughter cells after mitosis or meiosis, mediated by interactions between mitochondria and the cytoskeleton.&#34;</span> <span class="p">[</span><span class="n">GOC</span><span class="p">:</span><span class="n">mcc</span><span class="p">,</span> <span class="n">PMID</span><span class="p">:</span><span class="mi">10873824</span><span class="p">,</span> <span class="n">PMID</span><span class="p">:</span><span class="mi">11389764</span><span class="p">]</span>
+<span class="n">synonym</span><span class="p">:</span> <span class="s2">&#34;mitochondrial inheritance&#34;</span> <span class="n">EXACT</span> <span class="p">[]</span>
+<span class="n">is_a</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0048308</span> <span class="err">!</span> <span class="n">organelle</span> <span class="n">inheritance</span>
+<span class="n">is_a</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0048311</span> <span class="err">!</span> <span class="n">mitochondrion</span> <span class="n">distribution</span>
 
-[Term]
-id: GO:<span style="color:#ae81ff">0000002</span>
-name: mitochondrial genome maintenance
-namespace: biological_process
-def: <span style="color:#e6db74">&#34;The maintenance of the structure and integrity of the mitochondrial genome; includes replication and segregation of the mitochondrial chromosome.&#34;</span> [GOC:ai, GOC:vw]
-is_a: GO:<span style="color:#ae81ff">0007005</span> <span style="color:#960050;background-color:#1e0010">!</span> mitochondrion organization
+<span class="p">[</span><span class="n">Term</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0000002</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">mitochondrial</span> <span class="n">genome</span> <span class="n">maintenance</span>
+<span class="n">namespace</span><span class="p">:</span> <span class="n">biological_process</span>
+<span class="n">def</span><span class="p">:</span> <span class="s2">&#34;The maintenance of the structure and integrity of the mitochondrial genome; includes replication and segregation of the mitochondrial chromosome.&#34;</span> <span class="p">[</span><span class="n">GOC</span><span class="p">:</span><span class="n">ai</span><span class="p">,</span> <span class="n">GOC</span><span class="p">:</span><span class="n">vw</span><span class="p">]</span>
+<span class="n">is_a</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0007005</span> <span class="err">!</span> <span class="n">mitochondrion</span> <span class="n">organization</span>
 
-[Term]
-id: GO:<span style="color:#ae81ff">0000003</span>
-name: reproduction
-namespace: biological_process
-alt_id: GO:<span style="color:#ae81ff">001</span><span style="color:#ae81ff">9952</span>
-alt_id: GO:<span style="color:#ae81ff">0050</span><span style="color:#ae81ff">876</span>
-def: <span style="color:#e6db74">&#34;The production of new individuals that contain some portion of genetic material inherited from one or more parent organisms.&#34;</span> [GOC:go_curators, GOC:isa_complete, GOC:jl, ISBN:<span style="color:#ae81ff">01</span><span style="color:#ae81ff">98506732</span>]
-subset: goslim_agr
-subset: goslim_chembl
-subset: goslim_generic
-subset: goslim_pir
-subset: goslim_plant
-subset: gosubset_prok
-synonym: <span style="color:#e6db74">&#34;reproductive physiological process&#34;</span> EXACT []
-xref: Wikipedia:Reproduction
-is_a: GO:<span style="color:#ae81ff">000</span><span style="color:#ae81ff">8150</span> <span style="color:#960050;background-color:#1e0010">!</span> biological_process
+<span class="p">[</span><span class="n">Term</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0000003</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">reproduction</span>
+<span class="n">namespace</span><span class="p">:</span> <span class="n">biological_process</span>
+<span class="n">alt_id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0019952</span>
+<span class="n">alt_id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0050876</span>
+<span class="n">def</span><span class="p">:</span> <span class="s2">&#34;The production of new individuals that contain some portion of genetic material inherited from one or more parent organisms.&#34;</span> <span class="p">[</span><span class="n">GOC</span><span class="p">:</span><span class="n">go_curators</span><span class="p">,</span> <span class="n">GOC</span><span class="p">:</span><span class="n">isa_complete</span><span class="p">,</span> <span class="n">GOC</span><span class="p">:</span><span class="n">jl</span><span class="p">,</span> <span class="n">ISBN</span><span class="p">:</span><span class="mi">0198506732</span><span class="p">]</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">goslim_agr</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">goslim_chembl</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">goslim_generic</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">goslim_pir</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">goslim_plant</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">gosubset_prok</span>
+<span class="n">synonym</span><span class="p">:</span> <span class="s2">&#34;reproductive physiological process&#34;</span> <span class="n">EXACT</span> <span class="p">[]</span>
+<span class="n">xref</span><span class="p">:</span> <span class="n">Wikipedia</span><span class="p">:</span><span class="n">Reproduction</span>
+<span class="n">is_a</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0008150</span> <span class="err">!</span> <span class="n">biological_process</span>
 
-[Term]
-id: GO:<span style="color:#ae81ff">0000005</span>
-name: obsolete ribosomal chaperone activity
-namespace: molecular_function
-def: <span style="color:#e6db74">&#34;OBSOLETE. Assists in the correct assembly of ribosomes or ribosomal subunits in vivo, but is not a component of the assembled ribosome when performing its normal biological function.&#34;</span> [GOC:jl, PMID:<span style="color:#ae81ff">12150913</span>]
-comment: This term was made obsolete because it refers to a <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">of</span> gene products <span style="color:#f92672">and</span> a biological process rather than a molecular function<span style="color:#f92672">.</span>
-synonym: <span style="color:#e6db74">&#34;ribosomal chaperone activity&#34;</span> EXACT []
-is_obsolete: true
-consider: GO:<span style="color:#ae81ff">0042254</span>
-consider: GO:<span style="color:#ae81ff">00441</span><span style="color:#ae81ff">83</span>
-consider: GO:<span style="color:#ae81ff">00510</span><span style="color:#ae81ff">82</span>
-<span style="color:#f92672">......</span>
-<span style="color:#f92672">......</span>
+<span class="p">[</span><span class="n">Term</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0000005</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">obsolete</span> <span class="n">ribosomal</span> <span class="n">chaperone</span> <span class="n">activity</span>
+<span class="n">namespace</span><span class="p">:</span> <span class="n">molecular_function</span>
+<span class="n">def</span><span class="p">:</span> <span class="s2">&#34;OBSOLETE. Assists in the correct assembly of ribosomes or ribosomal subunits in vivo, but is not a component of the assembled ribosome when performing its normal biological function.&#34;</span> <span class="p">[</span><span class="n">GOC</span><span class="p">:</span><span class="n">jl</span><span class="p">,</span> <span class="n">PMID</span><span class="p">:</span><span class="mi">12150913</span><span class="p">]</span>
+<span class="n">comment</span><span class="p">:</span> <span class="n">This</span> <span class="n">term</span> <span class="n">was</span> <span class="n">made</span> <span class="n">obsolete</span> <span class="n">because</span> <span class="n">it</span> <span class="n">refers</span> <span class="n">to</span> <span class="n">a</span> <span class="k">class</span> <span class="nc">of</span> <span class="n">gene</span> <span class="n">products</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">biological</span> <span class="n">process</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">a</span> <span class="n">molecular</span> <span class="n">function</span><span class="o">.</span>
+<span class="n">synonym</span><span class="p">:</span> <span class="s2">&#34;ribosomal chaperone activity&#34;</span> <span class="n">EXACT</span> <span class="p">[]</span>
+<span class="n">is_obsolete</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">consider</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0042254</span>
+<span class="n">consider</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0044183</span>
+<span class="n">consider</span><span class="p">:</span> <span class="n">GO</span><span class="p">:</span><span class="mi">0051082</span>
+<span class="o">......</span>
+<span class="o">......</span>
 </code></pre></div><p>这最后的is_a: GO：XXXXXXX! 意思是本GO是后面这个GO的一部分，是它的下级，relationship: part_of GO：XXXXXXX!是同样的意思。</p>
 <p>有些GO和其他GO什么关系都没有，最后有个is_obsolete: true，说明它过时了，同时还会在def:最前面加上 OBSOLETE 。</p>
-<p>还有一些其他的关系，在这里暂时无须明白里面的所有内容,可以去看看<a href="https://blog.csdn.net/u011262253/article/details/103761279">一文极速读懂 Gene Ontology</a>，老师说找relationship: part_of、is_a:建关系即可。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#DEG.txt中记录了某一次转录组分析的差异基因结果</span>
-gene_id	A	B	p<span style="color:#f92672">-</span>value	FDR	significance
-<span style="color:#ae81ff">105313</span>	<span style="color:#ae81ff">476.125</span>	<span style="color:#ae81ff">2.01685</span>	<span style="color:#ae81ff">0</span>	<span style="color:#ae81ff">0</span>	DOWN
-<span style="color:#ae81ff">81082</span>	<span style="color:#ae81ff">188.012</span>	<span style="color:#ae81ff">0.388781</span>	<span style="color:#ae81ff">4.44E-16</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">70204</span>	<span style="color:#ae81ff">30.8683</span>	<span style="color:#ae81ff">0.0378778</span>	<span style="color:#ae81ff">3.33E-15</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">112031</span>	<span style="color:#ae81ff">74.6035</span>	<span style="color:#ae81ff">0.708632</span>	<span style="color:#ae81ff">4.66E-15</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">122511</span>	<span style="color:#ae81ff">1065.56</span>	<span style="color:#ae81ff">8.16165</span>	<span style="color:#ae81ff">1.44E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">49274</span>	<span style="color:#ae81ff">106.879</span>	<span style="color:#ae81ff">1.05212</span>	<span style="color:#ae81ff">1.44E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">68803</span>	<span style="color:#ae81ff">186.04</span>	<span style="color:#ae81ff">2.46745</span>	<span style="color:#ae81ff">1.69E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">123914</span>	<span style="color:#ae81ff">149.261</span>	<span style="color:#ae81ff">1.65829</span>	<span style="color:#ae81ff">3.82E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">59362</span>	<span style="color:#ae81ff">56.5321</span>	<span style="color:#ae81ff">0.138204</span>	<span style="color:#ae81ff">4.22E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">105882</span>	<span style="color:#ae81ff">195.885</span>	<span style="color:#ae81ff">0.663057</span>	<span style="color:#ae81ff">5.64E-14</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">108676</span>	<span style="color:#ae81ff">703.881</span>	<span style="color:#ae81ff">2.29893</span>	<span style="color:#ae81ff">1.20E-13</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
-<span style="color:#ae81ff">60489</span>	<span style="color:#ae81ff">1.33266</span>	<span style="color:#ae81ff">157.422</span>	<span style="color:#ae81ff">4.06E-13</span>	<span style="color:#ae81ff">0.000106687</span>	UP
-<span style="color:#ae81ff">66935</span>	<span style="color:#ae81ff">2.52345</span>	<span style="color:#ae81ff">123.558</span>	<span style="color:#ae81ff">2.10E-12</span>	<span style="color:#ae81ff">0.000106687</span>	UP
-<span style="color:#ae81ff">76659</span>	<span style="color:#ae81ff">214.616</span>	<span style="color:#ae81ff">1.82799</span>	<span style="color:#ae81ff">3.86E-12</span>	<span style="color:#ae81ff">0.000106687</span>	DOWN
+<p>还有一些其他的关系，在这里暂时无须明白里面的所有内容,可以去看看<a class="link" href="https://blog.csdn.net/u011262253/article/details/103761279"  target="_blank" rel="noopener"
+    >一文极速读懂 Gene Ontology</a>，老师说找relationship: part_of、is_a:建关系即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#DEG.txt中记录了某一次转录组分析的差异基因结果</span>
+<span class="n">gene_id</span>	<span class="n">A</span>	<span class="n">B</span>	<span class="n">p</span><span class="o">-</span><span class="n">value</span>	<span class="n">FDR</span>	<span class="n">significance</span>
+<span class="mi">105313</span>	<span class="mf">476.125</span>	<span class="mf">2.01685</span>	<span class="mi">0</span>	<span class="mi">0</span>	<span class="n">DOWN</span>
+<span class="mi">81082</span>	<span class="mf">188.012</span>	<span class="mf">0.388781</span>	<span class="mf">4.44E-16</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">70204</span>	<span class="mf">30.8683</span>	<span class="mf">0.0378778</span>	<span class="mf">3.33E-15</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">112031</span>	<span class="mf">74.6035</span>	<span class="mf">0.708632</span>	<span class="mf">4.66E-15</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">122511</span>	<span class="mf">1065.56</span>	<span class="mf">8.16165</span>	<span class="mf">1.44E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">49274</span>	<span class="mf">106.879</span>	<span class="mf">1.05212</span>	<span class="mf">1.44E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">68803</span>	<span class="mf">186.04</span>	<span class="mf">2.46745</span>	<span class="mf">1.69E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">123914</span>	<span class="mf">149.261</span>	<span class="mf">1.65829</span>	<span class="mf">3.82E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">59362</span>	<span class="mf">56.5321</span>	<span class="mf">0.138204</span>	<span class="mf">4.22E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">105882</span>	<span class="mf">195.885</span>	<span class="mf">0.663057</span>	<span class="mf">5.64E-14</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">108676</span>	<span class="mf">703.881</span>	<span class="mf">2.29893</span>	<span class="mf">1.20E-13</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
+<span class="mi">60489</span>	<span class="mf">1.33266</span>	<span class="mf">157.422</span>	<span class="mf">4.06E-13</span>	<span class="mf">0.000106687</span>	<span class="n">UP</span>
+<span class="mi">66935</span>	<span class="mf">2.52345</span>	<span class="mf">123.558</span>	<span class="mf">2.10E-12</span>	<span class="mf">0.000106687</span>	<span class="n">UP</span>
+<span class="mi">76659</span>	<span class="mf">214.616</span>	<span class="mf">1.82799</span>	<span class="mf">3.86E-12</span>	<span class="mf">0.000106687</span>	<span class="n">DOWN</span>
 </code></pre></div><h3 id="解决问题">解决问题</h3>
 <h5 id="获得已注释的所有基因属于哪一个go的全部列表">获得已注释的所有基因属于哪一个GO的全部列表</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#引入包</span>
-<span style="color:#f92672">import</span> os
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> csv
-<span style="color:#f92672">import</span> re
-<span style="color:#f92672">import</span> time
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#一开始想减少耗时，把2.obo中用不到的，即除is_a:|relationship: part_of|id: 的行全删了。</span>
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
-    <span style="color:#66d9ef">while</span> True:
-        line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
-        strline <span style="color:#f92672">=</span> str(line)
-        h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of|id: GO&#39;</span>,strline)
-        <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None :
-            clean <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;a&#39;</span>)
-            clean<span style="color:#f92672">.</span>write(line)
-            clean<span style="color:#f92672">.</span>close()
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> line:
-            <span style="color:#66d9ef">break</span>
-f<span style="color:#f92672">.</span>close()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#字典法</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dictGO</span>():
-    father_list <span style="color:#f92672">=</span>[]
-    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
-        <span style="color:#66d9ef">while</span> True:
-            line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
-            strline <span style="color:#f92672">=</span> str(line)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#引入包</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#一开始想减少耗时，把2.obo中用不到的，即除is_a:|relationship: part_of|id: 的行全删了。</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;2.obo&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">strline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;is_a: GO|relationship: part_of|id: GO&#39;</span><span class="p">,</span><span class="n">strline</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="p">:</span>
+            <span class="n">clean</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;2_clean.obo&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            <span class="n">clean</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">clean</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">break</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#字典法</span>
+<span class="k">def</span> <span class="nf">dictGO</span><span class="p">():</span>
+    <span class="n">father_list</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;2_clean.obo&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="n">strline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             
-            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
-            <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
-                <span style="color:#66d9ef">if</span> len(father_list) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
-                    dict_[term] <span style="color:#f92672">=</span> father_list
-                    father_list <span style="color:#f92672">=</span> []
-                term <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
+            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;id: GO&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">father_list</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dict_</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">father_list</span>
+                    <span class="n">father_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">term</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;GO:\d</span><span class="si">{7}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
                 
-            <span style="color:#66d9ef">else</span>:
-                h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of&#39;</span>,strline)
-                <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
-                    father <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
-                    father_list<span style="color:#f92672">.</span>append(father)
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;is_a: GO|relationship: part_of&#39;</span><span class="p">,</span><span class="n">strline</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">father</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;GO:\d</span><span class="si">{7}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+                    <span class="n">father_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">father</span><span class="p">)</span>
                     
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> line:
-                <span style="color:#66d9ef">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">break</span>
                 
-    f<span style="color:#f92672">.</span>close()
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     
-<span style="color:#75715e">#迭代找爹</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">finder</span>(a):
-    <span style="color:#66d9ef">global</span> num
-    father <span style="color:#f92672">=</span> dict_<span style="color:#f92672">.</span>get(a)
-    <span style="color:#66d9ef">if</span> father:
-        father_list<span style="color:#f92672">.</span>extend(father)
-        num <span style="color:#f92672">=</span> num <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span class="c1">#迭代找爹</span>
+<span class="k">def</span> <span class="nf">finder</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">num</span>
+    <span class="n">father</span> <span class="o">=</span> <span class="n">dict_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">father</span><span class="p">:</span>
+        <span class="n">father_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">father</span><span class="p">)</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span>
         
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> father:
-            finder(i)
-    <span style="color:#66d9ef">else</span>:
-        num_list<span style="color:#f92672">.</span>append(num)
-        num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#构建字典</span>
-dict_ <span style="color:#f92672">=</span>{}
-dictGO()
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">father</span><span class="p">:</span>
+            <span class="n">finder</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">num_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#构建字典</span>
+<span class="n">dict_</span> <span class="o">=</span><span class="p">{}</span>
+<span class="n">dictGO</span><span class="p">()</span>
 
-tab <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;1.csv&#39;</span>) <span style="color:#75715e">#读入1.obo数据，可以将之换成csv读入，反正能读成数据框就行</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;1.csv&#39;</span><span class="p">)</span> <span class="c1">#读入1.obo数据，可以将之换成csv读入，反正能读成数据框就行</span>
 
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;dict.csv&#34;</span>,<span style="color:#e6db74">&#34;w&#34;</span>,newline<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#66d9ef">as</span> csvfile: 
-    writer <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>writer(csvfile, delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
-    writer<span style="color:#f92672">.</span>writerow([<span style="color:#e6db74">&#34;GO_id,&#34;</span>,<span style="color:#e6db74">&#34;father_num,&#34;</span>,<span style="color:#e6db74">&#34;father_generation,&#34;</span>,<span style="color:#e6db74">&#34;father_id&#34;</span>]) <span style="color:#75715e">#&#34;GO_id,&#34;结尾的逗号作为csv的分隔符</span>
-    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>])<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
-        a <span style="color:#f92672">=</span> tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>][j]
-        father_list <span style="color:#f92672">=</span> []
-        num_list <span style="color:#f92672">=</span> []
-        num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        finder(a)
-        father_list <span style="color:#f92672">=</span> sorted(set(father_list),key<span style="color:#f92672">=</span>father_list<span style="color:#f92672">.</span>index)<span style="color:#75715e">#列表去重复</span>
-        nummax <span style="color:#f92672">=</span> max(num_list) <span style="color:#75715e">#这里求了父节点有几代，因为计算方法是深度优先，取了最大值</span>
-        writer<span style="color:#f92672">.</span>writerow([tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>][j],<span style="color:#e6db74">&#34;,&#34;</span>,len(father_list),<span style="color:#e6db74">&#34;,&#34;</span>,nummax,<span style="color:#e6db74">&#34;,&#34;</span>,father_list])
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;dict.csv&#34;</span><span class="p">,</span><span class="s2">&#34;w&#34;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span> 
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&#34;GO_id,&#34;</span><span class="p">,</span><span class="s2">&#34;father_num,&#34;</span><span class="p">,</span><span class="s2">&#34;father_generation,&#34;</span><span class="p">,</span><span class="s2">&#34;father_id&#34;</span><span class="p">])</span> <span class="c1">#&#34;GO_id,&#34;结尾的逗号作为csv的分隔符</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">father_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">finder</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">father_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">father_list</span><span class="p">),</span><span class="n">key</span><span class="o">=</span><span class="n">father_list</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="c1">#列表去重复</span>
+        <span class="n">nummax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">num_list</span><span class="p">)</span> <span class="c1">#这里求了父节点有几代，因为计算方法是深度优先，取了最大值</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">father_list</span><span class="p">),</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">nummax</span><span class="p">,</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">father_list</span><span class="p">])</span>
 
-csvfile<span style="color:#f92672">.</span>close()
+<span class="n">csvfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div><h5 id="计算trichoderma-reesei-qm6a中每一个go分别有多少个基因">计算Trichoderma reesei QM6a中每一个GO分别有多少个基因</h5>
 <p>方便起见，稍微改一改，另外建一个记录下级节点的字典。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gocleanlist <span style="color:#f92672">=</span> []  <span style="color:#75715e">#所有GO的非重复列表</span>
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
-    <span style="color:#66d9ef">while</span> True:
-            line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
-            strline <span style="color:#f92672">=</span> str(line)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">gocleanlist</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#所有GO的非重复列表</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;2_clean.obo&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="n">strline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             
-            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
-            <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
-                gocleanlist<span style="color:#f92672">.</span>append(re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group())
+            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;id: GO&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">gocleanlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;GO:\d</span><span class="si">{7}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
                 
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> line:
-                <span style="color:#66d9ef">break</span>
-f<span style="color:#f92672">.</span>close()
-len(gocleanlist)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#找所有儿子</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dictsonGO</span>():
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">break</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">gocleanlist</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#找所有儿子</span>
+<span class="k">def</span> <span class="nf">dictsonGO</span><span class="p">():</span>
     
-    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;2_clean.obo&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
-        <span style="color:#66d9ef">while</span> True:
-            line <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()
-            strline <span style="color:#f92672">=</span> str(line)
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;2_clean.obo&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="n">strline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             
-            m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;id: GO&#39;</span>,line)
-            <span style="color:#66d9ef">if</span> m <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None: 
-                son_m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
+            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;id: GO&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> 
+                <span class="n">son_m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;GO:\d</span><span class="si">{7}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
             
-            h <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;is_a: GO|relationship: part_of&#39;</span>,strline)
-            <span style="color:#66d9ef">if</span> h <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
-                father <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#39;GO:\d{7}&#39;</span>,line)<span style="color:#f92672">.</span>group()
-                <span style="color:#66d9ef">if</span> father <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> dict_son:
-                    dict_son[father] <span style="color:#f92672">=</span> [son_m]
-                <span style="color:#66d9ef">else</span>:
-                    dict_son[father]<span style="color:#f92672">.</span>append(son_m)
+            <span class="n">h</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;is_a: GO|relationship: part_of&#39;</span><span class="p">,</span><span class="n">strline</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">father</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;GO:\d</span><span class="si">{7}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">father</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dict_son</span><span class="p">:</span>
+                    <span class="n">dict_son</span><span class="p">[</span><span class="n">father</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">son_m</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dict_son</span><span class="p">[</span><span class="n">father</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">son_m</span><span class="p">)</span>
                 
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> line:
-                <span style="color:#66d9ef">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">break</span>
                 
-    f<span style="color:#f92672">.</span>close()
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">finderson</span>(a):
-    son <span style="color:#f92672">=</span> dict_son<span style="color:#f92672">.</span>get(a)
-    <span style="color:#66d9ef">if</span> son:
-        son_list<span style="color:#f92672">.</span>extend(son)
+<span class="k">def</span> <span class="nf">finderson</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">son</span> <span class="o">=</span> <span class="n">dict_son</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">son</span><span class="p">:</span>
+        <span class="n">son_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">son</span><span class="p">)</span>
         
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> son:
-            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> finished: <span style="color:#75715e">#找完所有儿子并统计过的GO跳过，相当于剪枝了</span>
-                <span style="color:#66d9ef">pass</span>
-            <span style="color:#66d9ef">else</span>:
-                finderson(i)
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">son</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">finished</span><span class="p">:</span> <span class="c1">#找完所有儿子并统计过的GO跳过，相当于剪枝了</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">finderson</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-dict_son <span style="color:#f92672">=</span>{}
-dictsonGO()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#儿子计数</span>
-list_ <span style="color:#f92672">=</span>[]
-<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>])<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>): 
-    a <span style="color:#f92672">=</span> tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>][j]
-    list_<span style="color:#f92672">.</span>append(a)
-result <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>value_counts(list_) <span style="color:#75715e">#将Trichoderma reesei QM6a里所有基因所在的GO计数，基因数量最高的GO有500+个基因</span>
-result_frame <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>to_frame()
-dict_result <span style="color:#f92672">=</span>{} <span style="color:#75715e">#见字典好去索引，比如A是B的父级，B在该字典里，就把键值（基因数量）也给A加上</span>
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(result)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
-    dict_result[result_frame[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>keys()[i]] <span style="color:#f92672">=</span> result_frame[<span style="color:#ae81ff">0</span>][i]
+<span class="n">dict_son</span> <span class="o">=</span><span class="p">{}</span>
+<span class="n">dictsonGO</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#儿子计数</span>
+<span class="n">list_</span> <span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> 
+    <span class="n">a</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">list_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span> <span class="c1">#将Trichoderma reesei QM6a里所有基因所在的GO计数，基因数量最高的GO有500+个基因</span>
+<span class="n">result_frame</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="n">dict_result</span> <span class="o">=</span><span class="p">{}</span> <span class="c1">#见字典好去索引，比如A是B的父级，B在该字典里，就把键值（基因数量）也给A加上</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">dict_result</span><span class="p">[</span><span class="n">result_frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">result_frame</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
 </code></pre></div><p>后面就是对所有GO进行计数，想了想，干脆一起把下一问也一起干了。</p>
 <p>即每一个GO中所属的基因显著上调和下调的个数有多少？</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">deg <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;DEG.txt&#39;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf8&#39;</span>)
-Down <span style="color:#f92672">=</span> []
-Up <span style="color:#f92672">=</span> []
-<span style="color:#75715e">#这个也不多，我循环套循环跑了，觉得浑身难受的就直接建字典。</span>
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(deg[<span style="color:#e6db74">&#39;gene_id&#39;</span>])):
-    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(tab[<span style="color:#e6db74">&#39;proteinId&#39;</span>])):
-        <span style="color:#66d9ef">if</span> deg[<span style="color:#e6db74">&#39;gene_id&#39;</span>][i] <span style="color:#f92672">==</span> tab[<span style="color:#e6db74">&#39;proteinId&#39;</span>][j]:
-            <span style="color:#66d9ef">if</span> deg[<span style="color:#e6db74">&#39;significance&#39;</span>][i] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;DOWN&#39;</span>:
-                Down<span style="color:#f92672">.</span>append(tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>][j])
-            <span style="color:#66d9ef">if</span> deg[<span style="color:#e6db74">&#39;significance&#39;</span>][i] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;UP&#39;</span>:
-                Up<span style="color:#f92672">.</span>append(tab[<span style="color:#e6db74">&#39;goAcc&#39;</span>][j])
-<span style="color:#75715e">#列表建字典，主要后面搜索省时间</span>
-Down_dict <span style="color:#f92672">=</span> {}
-Up_dict <span style="color:#f92672">=</span> {}
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> Down:
-    Down_dict[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> Up:
-    Up_dict[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;count_all.csv&#34;</span>,<span style="color:#e6db74">&#34;w&#34;</span>,newline<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#66d9ef">as</span> csvfile: 
-    writer <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>writer(csvfile, delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
-    writer<span style="color:#f92672">.</span>writerow([<span style="color:#e6db74">&#34;GO_id,&#34;</span>,<span style="color:#e6db74">&#34;direct_Gene_number,&#34;</span>,<span style="color:#e6db74">&#34;all_of_gene,&#34;</span>,<span style="color:#e6db74">&#34;Down,&#34;</span>,<span style="color:#e6db74">&#34;Up&#34;</span>]) <span style="color:#75715e">#direct_Gene_number是直属于这个GO的基因，all_of_gene额外加上了下级GO的基因数量。</span>
-    finished <span style="color:#f92672">=</span> [] <span style="color:#75715e"># finderson 找完的记录在里面</span>
-    finish_down<span style="color:#f92672">=</span>{} <span style="color:#75715e"># 顺便把down</span>
-    finish_up<span style="color:#f92672">=</span>{}
-    time <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> gocleanlist:
-        <span style="color:#75715e">#可以加个输出计量运行到哪儿了</span>
-        son_list <span style="color:#f92672">=</span> []
-        Down_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        Up_num<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-        n <span style="color:#f92672">=</span> dict_result<span style="color:#f92672">.</span>get(a,<span style="color:#ae81ff">0</span>)
-        all_of_gene <span style="color:#f92672">=</span> n
-        finderson(a) 
-        son_list <span style="color:#f92672">=</span> sorted(set(son_list),key<span style="color:#f92672">=</span>son_list<span style="color:#f92672">.</span>index)
-        <span style="color:#66d9ef">for</span> z <span style="color:#f92672">in</span> son_list:
-            all_of_gene <span style="color:#f92672">=</span> all_of_gene <span style="color:#f92672">+</span> dict_result<span style="color:#f92672">.</span>get(z,<span style="color:#ae81ff">0</span>)
-            <span style="color:#66d9ef">if</span> z <span style="color:#f92672">in</span> Down_dict:
-                <span style="color:#66d9ef">if</span> z <span style="color:#f92672">in</span> finish_down:
-                    Down_num <span style="color:#f92672">=</span> Down_num <span style="color:#f92672">+</span> finish_down[z]
-                <span style="color:#66d9ef">else</span>:
-                    Down_num <span style="color:#f92672">=</span>Down_num<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">if</span> z <span style="color:#f92672">in</span> Up_dict:
-                <span style="color:#66d9ef">if</span> z <span style="color:#f92672">in</span> finish_up:
-                    Up_num <span style="color:#f92672">=</span> Up_num <span style="color:#f92672">+</span> finish_up[z]
-                <span style="color:#66d9ef">else</span>:
-                    Up_num <span style="color:#f92672">=</span>Up_num<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">if</span> all_of_gene <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>: <span style="color:#75715e">#没有就不记了，省地方，不然得一堆0中找值</span>
-            <span style="color:#66d9ef">pass</span>
-        <span style="color:#66d9ef">else</span>:
-            writer<span style="color:#f92672">.</span>writerow([a,<span style="color:#e6db74">&#34;,&#34;</span>,n,<span style="color:#e6db74">&#34;,&#34;</span>,all_of_gene,<span style="color:#e6db74">&#34;,&#34;</span>,Down_num,<span style="color:#e6db74">&#34;,&#34;</span>,Up_num])
-        finished<span style="color:#f92672">.</span>append(a)
-        finish_down[a]<span style="color:#f92672">=</span>Down_num
-        finish_up[a]<span style="color:#f92672">=</span>Up_num
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">deg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;DEG.txt&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+<span class="n">Down</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Up</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#这个也不多，我循环套循环跑了，觉得浑身难受的就直接建字典。</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">deg</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">])):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;proteinId&#39;</span><span class="p">])):</span>
+        <span class="k">if</span> <span class="n">deg</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">tab</span><span class="p">[</span><span class="s1">&#39;proteinId&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">deg</span><span class="p">[</span><span class="s1">&#39;significance&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DOWN&#39;</span><span class="p">:</span>
+                <span class="n">Down</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">deg</span><span class="p">[</span><span class="s1">&#39;significance&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;UP&#39;</span><span class="p">:</span>
+                <span class="n">Up</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="s1">&#39;goAcc&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+<span class="c1">#列表建字典，主要后面搜索省时间</span>
+<span class="n">Down_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">Up_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Down</span><span class="p">:</span>
+    <span class="n">Down_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Up</span><span class="p">:</span>
+    <span class="n">Up_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;count_all.csv&#34;</span><span class="p">,</span><span class="s2">&#34;w&#34;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span> 
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&#34;GO_id,&#34;</span><span class="p">,</span><span class="s2">&#34;direct_Gene_number,&#34;</span><span class="p">,</span><span class="s2">&#34;all_of_gene,&#34;</span><span class="p">,</span><span class="s2">&#34;Down,&#34;</span><span class="p">,</span><span class="s2">&#34;Up&#34;</span><span class="p">])</span> <span class="c1">#direct_Gene_number是直属于这个GO的基因，all_of_gene额外加上了下级GO的基因数量。</span>
+    <span class="n">finished</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># finderson 找完的记录在里面</span>
+    <span class="n">finish_down</span><span class="o">=</span><span class="p">{}</span> <span class="c1"># 顺便把down</span>
+    <span class="n">finish_up</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">time</span> <span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">gocleanlist</span><span class="p">:</span>
+        <span class="c1">#可以加个输出计量运行到哪儿了</span>
+        <span class="n">son_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">Down_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">Up_num</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">dict_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">all_of_gene</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">finderson</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
+        <span class="n">son_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">son_list</span><span class="p">),</span><span class="n">key</span><span class="o">=</span><span class="n">son_list</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">son_list</span><span class="p">:</span>
+            <span class="n">all_of_gene</span> <span class="o">=</span> <span class="n">all_of_gene</span> <span class="o">+</span> <span class="n">dict_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Down_dict</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">finish_down</span><span class="p">:</span>
+                    <span class="n">Down_num</span> <span class="o">=</span> <span class="n">Down_num</span> <span class="o">+</span> <span class="n">finish_down</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Down_num</span> <span class="o">=</span><span class="n">Down_num</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Up_dict</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">finish_up</span><span class="p">:</span>
+                    <span class="n">Up_num</span> <span class="o">=</span> <span class="n">Up_num</span> <span class="o">+</span> <span class="n">finish_up</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Up_num</span> <span class="o">=</span><span class="n">Up_num</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">all_of_gene</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#没有就不记了，省地方，不然得一堆0中找值</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">all_of_gene</span><span class="p">,</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">Down_num</span><span class="p">,</span><span class="s2">&#34;,&#34;</span><span class="p">,</span><span class="n">Up_num</span><span class="p">])</span>
+        <span class="n">finished</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">finish_down</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">=</span><span class="n">Down_num</span>
+        <span class="n">finish_up</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">=</span><span class="n">Up_num</span>
         
-csvfile<span style="color:#f92672">.</span>close()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#输出便是此番结果</span>
-GO_id, direct_Gene_number, all_of_gene, Down, Up
-GO:<span style="color:#ae81ff">0000002</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000003</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">000000</span><span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">15</span> , <span style="color:#ae81ff">15</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000015</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000026</span> , <span style="color:#ae81ff">15</span> , <span style="color:#ae81ff">18</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000030</span> , <span style="color:#ae81ff">19</span> , <span style="color:#ae81ff">104</span> , <span style="color:#ae81ff">5</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000033</span> , <span style="color:#ae81ff">15</span> , <span style="color:#ae81ff">15</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000036</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000041</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">8</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">1</span>
-GO:<span style="color:#ae81ff">000004</span><span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">000005</span><span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">10</span> , <span style="color:#ae81ff">10</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000062</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">00000</span><span style="color:#ae81ff">87</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">00000</span><span style="color:#ae81ff">96</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">11</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">00000</span><span style="color:#ae81ff">97</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">8</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000103</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000104</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">6</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000105</span> , <span style="color:#ae81ff">7</span> , <span style="color:#ae81ff">7</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000107</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000121</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">000013</span><span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000140</span> , <span style="color:#ae81ff">8</span> , <span style="color:#ae81ff">8</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000145</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">000014</span><span style="color:#ae81ff">8</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000150</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-GO:<span style="color:#ae81ff">0000151</span> , <span style="color:#ae81ff">56</span> , <span style="color:#ae81ff">58</span> , <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span>
-<span style="color:#f92672">......</span>
+<span class="n">csvfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1">#输出便是此番结果</span>
+<span class="n">GO_id</span><span class="p">,</span> <span class="n">direct_Gene_number</span><span class="p">,</span> <span class="n">all_of_gene</span><span class="p">,</span> <span class="n">Down</span><span class="p">,</span> <span class="n">Up</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000002</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000003</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000009</span> <span class="p">,</span> <span class="mi">15</span> <span class="p">,</span> <span class="mi">15</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000015</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000026</span> <span class="p">,</span> <span class="mi">15</span> <span class="p">,</span> <span class="mi">18</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000030</span> <span class="p">,</span> <span class="mi">19</span> <span class="p">,</span> <span class="mi">104</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000033</span> <span class="p">,</span> <span class="mi">15</span> <span class="p">,</span> <span class="mi">15</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000036</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000041</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">8</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000049</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000059</span> <span class="p">,</span> <span class="mi">10</span> <span class="p">,</span> <span class="mi">10</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000062</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000087</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000096</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">11</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000097</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">8</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000103</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000104</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000105</span> <span class="p">,</span> <span class="mi">7</span> <span class="p">,</span> <span class="mi">7</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000107</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000121</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000139</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000140</span> <span class="p">,</span> <span class="mi">8</span> <span class="p">,</span> <span class="mi">8</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000145</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">3</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000148</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000150</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="n">GO</span><span class="p">:</span><span class="mi">0000151</span> <span class="p">,</span> <span class="mi">56</span> <span class="p">,</span> <span class="mi">58</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span>
+<span class="o">......</span>
 </code></pre></div><h5 id="哪些go发生了显著的上调或者下调的富集">哪些GO发生了显著的上调或者下调的富集？</h5>
 <p>做GO的富集是算超几何分布，相比python，使用R更简单。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">library</span>(dplyr)
-<span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:/Users/syddd/bioinfomation&#34;</span>)
-cou <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;count_all.csv&#34;</span>)
-N <span style="color:#f92672">=</span> <span style="color:#ae81ff">13267+3043+2410</span>  <span style="color:#75715e"># 三个顶级GO的基因数量相加</span>
-n_down <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">22</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">9</span>
-n_up <span style="color:#f92672">=</span> <span style="color:#ae81ff">222</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">16</span>
-df1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">data.frame</span>(GO_id<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(), down_p_value<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(), up_p_value<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>())
-df2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">data.frame</span>(GO_id<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(), down_p_value<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>())
-df3<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">data.frame</span>(GO_id<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(), up_p_value<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>())
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;C:/Users/syddd/bioinfomation&#34;</span><span class="p">)</span>
+<span class="n">cou</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;count_all.csv&#34;</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="m">13267+3043+2410</span>  <span class="c1"># 三个顶级GO的基因数量相加</span>
+<span class="n">n_down</span> <span class="o">=</span> <span class="m">150</span> <span class="o">+</span> <span class="m">22</span> <span class="o">+</span> <span class="m">9</span>
+<span class="n">n_up</span> <span class="o">=</span> <span class="m">222</span> <span class="o">+</span> <span class="m">32</span> <span class="o">+</span> <span class="m">16</span>
+<span class="n">df1</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="nf">c</span><span class="p">(),</span> <span class="n">down_p_value</span><span class="o">=</span><span class="nf">c</span><span class="p">(),</span> <span class="n">up_p_value</span><span class="o">=</span><span class="nf">c</span><span class="p">())</span>
+<span class="n">df2</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="nf">c</span><span class="p">(),</span> <span class="n">down_p_value</span><span class="o">=</span><span class="nf">c</span><span class="p">())</span>
+<span class="n">df3</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="nf">c</span><span class="p">(),</span> <span class="n">up_p_value</span><span class="o">=</span><span class="nf">c</span><span class="p">())</span>
 
-<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(cou)) {
-  k_down <span style="color:#f92672">&lt;-</span> cou[i,<span style="color:#e6db74">&#34;Down&#34;</span>] 
-  k_up <span style="color:#f92672">&lt;-</span> cou[i,<span style="color:#e6db74">&#34;Up&#34;</span>]
-  m <span style="color:#f92672">&lt;-</span> cou[i,<span style="color:#e6db74">&#34;all_of_gene&#34;</span>]
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">cou</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">k_down</span> <span class="o">&lt;-</span> <span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;Down&#34;</span><span class="n">]</span> 
+  <span class="n">k_up</span> <span class="o">&lt;-</span> <span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;Up&#34;</span><span class="n">]</span>
+  <span class="n">m</span> <span class="o">&lt;-</span> <span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;all_of_gene&#34;</span><span class="n">]</span>
   
-  p_down <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">phyper</span>(k_down<span style="color:#ae81ff">-1</span>,m, N<span style="color:#f92672">-</span>m, n_down)
-  p_up <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">phyper</span>(k_up<span style="color:#ae81ff">-1</span>,m, N<span style="color:#f92672">-</span>m, n_up)
-  list1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(GO_id<span style="color:#f92672">=</span>cou[i,<span style="color:#e6db74">&#34;GO_id&#34;</span>], down_p_value<span style="color:#f92672">=</span>p_down, up_p_value<span style="color:#f92672">=</span>p_up)
-  df1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbind</span>(df1,<span style="color:#a6e22e">as.data.frame</span>(list1))
-  <span style="color:#a6e22e">if </span>(p_down <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.05</span>){ <span style="color:#75715e">#挑出来下调显著的</span>
-    list2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(GO_id<span style="color:#f92672">=</span>cou[i,<span style="color:#e6db74">&#34;GO_id&#34;</span>], down_p_value<span style="color:#f92672">=</span>p_down)
-    df2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbind</span>(df2,<span style="color:#a6e22e">as.data.frame</span>(list2)) 
-  } 
-  <span style="color:#a6e22e">if </span>(p_up <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.05</span>){ <span style="color:#75715e">#挑出来上调显著的</span>
-    list3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(GO_id<span style="color:#f92672">=</span>cou[i,<span style="color:#e6db74">&#34;GO_id&#34;</span>], up_p_value<span style="color:#f92672">=</span>p_up)
-    df3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbind</span>(df3,<span style="color:#a6e22e">as.data.frame</span>(list3))
-  }
-}
+  <span class="n">p_down</span> <span class="o">=</span> <span class="m">1</span><span class="o">-</span><span class="nf">phyper</span><span class="p">(</span><span class="n">k_down</span><span class="m">-1</span><span class="p">,</span><span class="n">m</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">n_down</span><span class="p">)</span>
+  <span class="n">p_up</span> <span class="o">=</span> <span class="m">1</span><span class="o">-</span><span class="nf">phyper</span><span class="p">(</span><span class="n">k_up</span><span class="m">-1</span><span class="p">,</span><span class="n">m</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">n_up</span><span class="p">)</span>
+  <span class="n">list1</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;GO_id&#34;</span><span class="n">]</span><span class="p">,</span> <span class="n">down_p_value</span><span class="o">=</span><span class="n">p_down</span><span class="p">,</span> <span class="n">up_p_value</span><span class="o">=</span><span class="n">p_up</span><span class="p">)</span>
+  <span class="n">df1</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">list1</span><span class="p">))</span>
+  <span class="nf">if </span><span class="p">(</span><span class="n">p_down</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">){</span> <span class="c1">#挑出来下调显著的</span>
+    <span class="n">list2</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;GO_id&#34;</span><span class="n">]</span><span class="p">,</span> <span class="n">down_p_value</span><span class="o">=</span><span class="n">p_down</span><span class="p">)</span>
+    <span class="n">df2</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">list2</span><span class="p">))</span> 
+  <span class="p">}</span> 
+  <span class="nf">if </span><span class="p">(</span><span class="n">p_up</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">){</span> <span class="c1">#挑出来上调显著的</span>
+    <span class="n">list3</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">GO_id</span><span class="o">=</span><span class="n">cou[i</span><span class="p">,</span><span class="s">&#34;GO_id&#34;</span><span class="n">]</span><span class="p">,</span> <span class="n">up_p_value</span><span class="o">=</span><span class="n">p_up</span><span class="p">)</span>
+    <span class="n">df3</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">list3</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre></div>
+</section>
 
 
-      
-        <div class="blog-tags">
-          
-            <a href="https://deathsprout.gitee.io//tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/python/">Python</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/r/">R</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">富集分析</a>&nbsp;
-          
-        </div>
-      
-    </article>
+    <footer class="article-footer">
     
-  </div>
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
+        
+            <a href="/tags/python/">Python</a>
+        
+            <a href="/tags/r/">R</a>
+        
+            <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+        
+            <a href="/tags/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">富集分析</a>
+        
+    </section>
 
-        </div><footer>
-  <div class="container">
-    <p class="credits copyright">
-      <p class="credits theme-by">
-        Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/HelloRusk/HugoTeX">HugoTeX</a>
-        <br>
-        <a href="https://deathsprout.gitee.io/about">王子辰</a>
-        &copy;
-        2021
-      </p>
-  </div>
-</footer></body>
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/posts/perl/perl/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg" loading="lazy" data-key="" data-hash="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Perl实验课程笔记</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">目录</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#问题如下">问题如下：</a></li>
+        <li><a href="#文件解释">文件解释：</a></li>
+        <li><a href="#解决问题">解决问题</a>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>

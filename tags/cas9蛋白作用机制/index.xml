@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cas9蛋白作用机制 on DeathSprout&#39;s Blog</title>
+    <title>Cas9蛋白作用机制 on DeathSprout</title>
     <link>https://deathsprout.gitee.io/tags/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/</link>
-    <description>Recent content in Cas9蛋白作用机制 on DeathSprout&#39;s Blog</description>
+    <description>Recent content in Cas9蛋白作用机制 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Sat, 15 May 2021 22:38:53 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cas Protein</title>
@@ -13,7 +13,18 @@
       <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/cas%E8%9B%8B%E7%99%BD/</guid>
-      <description>为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白</description>
+      <description>为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。
+Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统1，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。
+ CRISPR系统的三大类和十个子类的关系  上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。2
+第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。3
+ 基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型 
+ 不同种类的Cas蛋白数量分布  上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。
+Cas9蛋白结构 Cas9蛋白立体结构   SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。4
+  3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构, SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。
+Cas9蛋白结构域   Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。
+  a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。5
+Cas9蛋白功能及作用机制 Cas9蛋白在CRISPR-Cas系统中的功能 上图8显示的是Type II 系统的作用过程。3 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。
+Cas9蛋白功能的机制 结合DNA并识别目标序列   上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&amp;rsquo;至5&#39;），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。6</description>
     </item>
     
   </channel>

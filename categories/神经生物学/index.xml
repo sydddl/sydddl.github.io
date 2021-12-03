@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>神经生物学 on DeathSprout&#39;s Blog</title>
+    <title>神经生物学 on DeathSprout</title>
     <link>https://deathsprout.gitee.io/categories/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/</link>
-    <description>Recent content in 神经生物学 on DeathSprout&#39;s Blog</description>
+    <description>Recent content in 神经生物学 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Fri, 25 Jun 2021 20:54:26 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>神经可塑性</title>
@@ -13,7 +13,14 @@
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
-      <description>摘要：本文是一篇浅谈神经可塑性的综述，将在三个层面上简要介绍神经可塑性， 并在其中穿插一些新的研究进展。文章有两个部分，第一部分在宏观层次简要</description>
+      <description>摘要：本文是一篇浅谈神经可塑性的综述，将在三个层面上简要介绍神经可塑性， 并在其中穿插一些新的研究进展。文章有两个部分，第一部分在宏观层次简要介 绍了动物的认知可塑性和组织的功能可塑性。第二部分则结合介观表现和分子机 制，相对详细的阐述了突触可塑性，主要集中在LTP 现象和机制的分析，该部分 余下还有短时突触可塑性、稳态突触可塑性。
+关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性， LTP，稳态可塑性
+神经科学领域，可变性或可修饰性被称为可塑性（Plasticity），可塑性是神经 系统的重要特性，很少用于生命科学的其他领域。神经可塑性的表现形式涉及多 个层次，也涉及多种多样的影响因素，可以说神经可塑性的内涵非常广泛，从宏 观上遵循特定模式形成的行为逻辑，到微观上分子作用导致的结构变化等等 [1]。简要的说，神经可塑性是包括了神经组合形式改变、神经活动方式变化、神经发 育演化、神经损伤修复等一系列体现了生物体神经系统的适应性的自然属性。
+神经可塑性就物理尺度上可以分成三个层次，宏观层次、细胞层次（介观层 次）、分子层次（微观层次）。宏观层次上就影响对象还可以分成:涉及特定脑区， 影响个体生物信息加工和行为逻辑的认知可塑性;涉及非特定脑区，脑损伤后引 起功能重组的功能可塑性;以及功能重组过程中结构改变表现出的结构可塑性。 细胞层次上，神经可塑性的主要表现形式是突触可塑性，具体又可划分为突触传 递的可塑性（易化、压抑、PTP、长时程增强（Long-term potentiation（LTP））、 长时程抑制（Long-term depression（LTD）、PHP、突触缩放等等）和突触再可塑 性（描述可塑性的可塑性）。分子层次主要指神经可塑性的分子机制，大体包括 参与突触可塑性的蛋白分子和离子、形成神经可塑性的信号通路、控制神经系统 发育的遗传物质。
+宏观水平上的神经可塑性 认知可塑性 对认知可塑性的概念向前追溯，甚至可以追溯到亚里士多德在《论灵魂》中 的蜡块说，随着科技的进步，人们也意识到神经是认知活动的主要载体，但在 Hebb 提出神经学习理论之前，这些认知更多的是没有理论框架的猜想和纯粹事 实[2]。Hebb 在他的书《行为的组织》中，提出现在称为赫布定律的假设:“当神 经元A 的轴突与神经元B 很近并重复持续的参与了对B 的兴奋时，这两个神经元 或其中一个便会发生某些生长过程或代谢变化，致使A使B兴奋的效能增强了。” [3] 在后来，有相当多的研究从分子和细胞层面证明了这一假设的正确性 [4]，Markram 在赫布理论的基础上，提出了“脉冲时间依赖可塑性（STDP）”的理论， 通过神经元激发的时间顺序来影响神经元之间的联系的强弱，即突触对时间信号 具有敏感性，时间仅在数十毫秒内，正相关的突触后放电会引起突触联系增强， 负相关则相反 [5] 。
+根据赫布理论和后续的大量研究，对脑的记忆、知觉等功能的认识逐渐丰富。 就记忆形成方面来说，记忆是外界刺激对神经元集合作用的结果，以神经元集合 间突触强度改变的形式分布于大脑中，在记忆形成的过程中，神经元结构进行快 速的重构，神经元间会以快速的协同放电来加强相关神经元之间的连接，而这种 连接是广泛存在于大脑，包括纹状体、杏仁核、前额叶、小脑和内侧颞叶等，并 非集中于某个区域，但不同的解剖区域储存的记忆的类型是不同的，比如前额叶 脑区与工作记忆有关，海马与空间记忆高度相关等 [6] 。
+神经可塑性在行为方面主要体现为条件反射上，这是关联性学习，由于在记 忆提取时会激活形成该记忆的相关连接和脑区 [7] ，可以将条件反射视为通过学习 产生的记忆中的一种。经典条件反射指将正常不引起反应的条件刺激和会引起某 种反应的非条件刺激（比如食物（非条件刺激）对于分泌唾液）在时序上联系起 来。其他还有操作式条件反射（将一种动作与有意义刺激联系起来）、评价性条 件反射 [8] （当一条件刺激与另一积极或消极刺激反复联系起来，被试者对原刺激 的喜好发生改变）等类型。
+功能可塑性和结构可塑性 功能可塑性体现在神经系统功能重组的过程中，功能重组指神经系统损伤后， 有一定能力去进行结构改变和功能代偿，进而代替或部分代替受损区域原有功能 [9] 。虽然发育成熟的神经细胞不具备增殖和分裂能力，但神经元会持续具有形成 新的突触连接和修饰自身显微形态的能力。按照损伤发生的部位，可以将功能可 塑性划分为中枢神经系统功能可塑性和脊髓功能可塑性。</description>
     </item>
     
     <item>
@@ -22,7 +29,11 @@
       <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
-      <description>神经生物 中枢神经系统 central nervous system CNS 脑 brain 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem 中脑 midbrain 脑桥 pons 延髓 medulla 脊髓 spinal cord 神经解剖学 neurianatomical 组织学切</description>
+      <description>神经生物   中枢神经系统 central nervous system CNS
+  脑 brain
+ 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem  中脑 midbrain 脑桥 pons 延髓 medulla      脊髓 spinal cord
+    神经解剖学 neurianatomical 组织学切面
+ 冠状切面 coronal section：又名横截面，拦腰的那种 矢状切面 sagittal section： 从头劈到尾，左右分开 水平切面 horizontal section：字面意思    神经节 ganglia（ganglion（组织、医学范围，说神经节细胞一般是ganglion cell））：神经元集群</description>
     </item>
     
   </channel>

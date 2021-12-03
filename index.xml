@@ -1,101 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>DeathSprout&#39;s Blog</title>
-    <link>https://deathsprout.gitee.io/</link>
-    <description>Recent content on DeathSprout&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 26 Sep 2021 19:16:13 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>重装电脑导致matlab遇到的二三事</title>
-      <link>https://deathsprout.gitee.io/posts/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
-      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
-      <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用mat</description>
-    </item>
-    
-    <item>
-      <title>神经可塑性</title>
-      <link>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
-      <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
-      <description>摘要：本文是一篇浅谈神经可塑性的综述，将在三个层面上简要介绍神经可塑性， 并在其中穿插一些新的研究进展。文章有两个部分，第一部分在宏观层次简要</description>
-    </item>
-    
-    <item>
-      <title>神经生物和计算神经英文名词</title>
-      <link>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
-      <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
-      <description>神经生物 中枢神经系统 central nervous system CNS 脑 brain 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem 中脑 midbrain 脑桥 pons 延髓 medulla 脊髓 spinal cord 神经解剖学 neurianatomical 组织学切</description>
-    </item>
-    
-    <item>
-      <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
-      <link>https://deathsprout.gitee.io/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/</guid>
-      <description>本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的</description>
-    </item>
-    
-    <item>
-      <title>mcmctree 定年 —— 使用氨基酸序列</title>
-      <link>https://deathsprout.gitee.io/posts/mcmctree%E5%AE%9A%E5%B9%B4/</link>
-      <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/mcmctree%E5%AE%9A%E5%B9%B4/</guid>
-      <description>常见定年软件 最大似然法： r8s Reltime 贝叶斯法： PAML-MCMCTree（PAML4软件包内含） 其他（Timetree） 这里是mcmctree的手册</description>
-    </item>
-    
-    <item>
-      <title>分形艺术 Chaotica作品</title>
-      <link>https://deathsprout.gitee.io/posts/%E6%8A%BD%E8%B1%A1%E8%89%BA%E6%9C%AF-chaotica%E8%BD%AF%E4%BB%B6/</link>
-      <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E6%8A%BD%E8%B1%A1%E8%89%BA%E6%9C%AF-chaotica%E8%BD%AF%E4%BB%B6/</guid>
-      <description>chaotica 这个软件是我在一年前发现，那时候正满怀热情的学习Blender，在那之前还兴致勃勃的修完了许德民教授讲关于抽象艺术的尔雅网课。 老师关于抽象</description>
-    </item>
-    
-    <item>
-      <title>Perl实验课程笔记</title>
-      <link>https://deathsprout.gitee.io/posts/perl/</link>
-      <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/perl/</guid>
-      <description>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，</description>
-    </item>
-    
-    <item>
-      <title>从ENA高速下载FASTQ文件</title>
-      <link>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
-      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
-      <description>系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在</description>
-    </item>
-    
-    <item>
-      <title>Cas Protein</title>
-      <link>https://deathsprout.gitee.io/posts/cas%E8%9B%8B%E7%99%BD/</link>
-      <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/cas%E8%9B%8B%E7%99%BD/</guid>
-      <description>为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白</description>
-    </item>
-    
-    <item>
-      <title>一些不重要的事——为什么建这个博客</title>
-      <link>https://deathsprout.gitee.io/posts/%E7%BC%98%E8%B5%B7-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</link>
-      <pubDate>Wed, 12 May 2021 22:38:53 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/posts/%E7%BC%98%E8%B5%B7-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</guid>
-      <description>人总有表达自我的需求，从高中到现在大三，这种需求愈发强，宣泄通路倒是逐渐弱。现在不同的领域有各自的论坛、各自的账号，也无非是一个侧写，于我，</description>
-    </item>
-    
-  </channel>
+    <channel>
+        <title>DeathSprout</title>
+        <link>https://deathsprout.gitee.io/</link>
+        <description>Recent content on DeathSprout</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 26 Sep 2021 19:16:13 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
 </rss>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>分子定年 on DeathSprout&#39;s Blog</title>
+    <title>分子定年 on DeathSprout</title>
     <link>https://deathsprout.gitee.io/categories/%E5%88%86%E5%AD%90%E5%AE%9A%E5%B9%B4/</link>
-    <description>Recent content in 分子定年 on DeathSprout&#39;s Blog</description>
+    <description>Recent content in 分子定年 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Tue, 25 May 2021 06:52:23 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E5%88%86%E5%AD%90%E5%AE%9A%E5%B9%B4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mcmctree 定年 —— 使用氨基酸序列</title>
@@ -13,7 +13,28 @@
       <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/mcmctree%E5%AE%9A%E5%B9%B4/</guid>
-      <description>常见定年软件 最大似然法： r8s Reltime 贝叶斯法： PAML-MCMCTree（PAML4软件包内含） 其他（Timetree） 这里是mcmctree的手册</description>
+      <description>常见定年软件
+ 最大似然法：  r8s Reltime   贝叶斯法：  PAML-MCMCTree（PAML4软件包内含） 其他（Timetree）    这里是mcmctree的手册
+事先声明，mcmctree使用氨基酸序列进行定年比使用核酸序列麻烦的多，而且在此之前，能找到帖子的都语焉不详，手册里的Tutorial 4是主要参考，可以先跑一遍示例文件，坑主要是体现在文件格式上。
+若使用氨基酸序列来进行分析，由于mcmctree不能选择较好的氨基酸替换模型进行分析，需要自己手动运行codeml进行分析后，在生成中间文件用于运行mcmctree。若非是因为数据原因必须用氨基酸序列进行定年，还是推荐使用核酸序列。
+前置 需求文件：(后面称其为那三个文件)
+ 多序列比对文件 带有校准信息有根树 控制文件 mcmctree.ctl  前两个文件的格式很重要，参考examples里的abglobin.aa 和 abglobin.trees
+ 
+ 
+树文件一定保证有至少一个时间校正点，&amp;lsquo;B(1.7,1.9)&amp;lsquo;的意思是最外面的这个分支点的时间，经化石证据矫正约束在170Mya到190Mya1年之间。
+多序列对比文件第一行是： 序列数 序列长 （大写的）i 下面每行是一个序列名，和后面序列对应，序列名与序列之间的有空行，数字则是表明其下的序列们第一个位置是第几位。
+我将fasta文件转变为phylip后，如下图所示，序列名并没有单独成行，它的格式并不能直接用，会报错。我也没找到合适的现有格式能方便的转换过去。 我参考的其他博客都是将其转化为phylip就能正常使用，唯一的区别是他们使用核酸序列而我用的是氨基酸序列，这是我踩的坑。
+ 
+数字不要紧，我在第一行后面加了个I后，除了第一行以外都能识别出，下面是识别过程的输出。  
+所以重点是将
+G000238395 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+G000263075 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+这种形式变成下面那种形式
+G000238395
+G000263075
+（空行）
+IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
     </item>
     
   </channel>

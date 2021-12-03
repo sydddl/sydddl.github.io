@@ -1,190 +1,439 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><meta charset="utf-8" />
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
+sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
+#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.'><title>Perl实验课程笔记</title>
 
-  <title>Perl实验课程笔记 - DeathSprout&#39;s Blog</title>
+<link rel='canonical' href='https://deathsprout.gitee.io/posts/perl/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Perl实验课程笔记'>
+<meta property='og:description' content='这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
+sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
+#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.'>
+<meta property='og:url' content='https://deathsprout.gitee.io/posts/perl/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='课程笔记' /><meta property='article:tag' content='Perl' /><meta property='article:tag' content='编程语言' /><meta property='article:published_time' content='2021-05-22T19:35:28&#43;08:00'/><meta property='article:modified_time' content='2021-05-22T19:35:28&#43;08:00'/><meta property='og:image' content='https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg' />
+<meta name="twitter:title" content="Perl实验课程笔记">
+<meta name="twitter:description" content="这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
+sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
+#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg' />
+    </head>
+    <body class="
+    article-page 
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        on-phone--column extended
+    
+">
+    
+        <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hufbc9dc5a6fdabfcb7bc64a3668907b4c_1259297_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">^-^</span>
+                
+            </figure>
+            
+        
+        
+        <h1 class="site-name"><a href="/">DeathSprout</a></h1>
+        <h2 class="site-description">王子辰，目前（2021年）是山东大学生命科学院生物信息专业的大四学生</h2><ol class="social-menu">
+                
+                    <li>
+                        <a 
+                            href='https://github.com/sydddl'
+                            target="_blank"
+                            title="GitHub"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
 
 
-  <meta name="description" content="博客网站，我先搞他一搞" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/latex.css" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/main.css" />
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<meta name="generator" content="Hugo 0.82.0" /><body>
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a 
+                            href='https://twitter.com'
+                            target="_blank"
+                            title="Twitter"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
 
 
 
+                            
+                        </a>
+                    </li>
+                
+            </ol></header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' target="_blank">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
 
 
 
-<header>
-  <nav class="navbar">
-  <div class="nav">
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/perl/">
+                
+                    <img src="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg" loading="lazy" alt="Featured image of post Perl实验课程笔记" />
+                
+            </a>
+        </div>
     
 
-    <ul class="nav-links">
-      
-    </ul>
-  </div>
-</nav>
-  <div class="intro-header">
-    <div class="container">
-      <div class="posts-heading">
+    <div class="article-details">
+    
+    <header class="article-category">
         
-          <h1>Perl实验课程笔记</h1>
-          
+            <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" >
+                课程笔记
+            </a>
         
-      </div>
-    </div>
-  </div>
+            <a href="/categories/perl/" >
+                Perl
+            </a>
+        
+            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" >
+                编程语言
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/posts/perl/">Perl实验课程笔记</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 22, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
 </header>
-<div id="content">
-  <div class="container" role="main">
-    <article class="article" class="blog-post">
-      <div class="postmeta">
-        <span class="meta-post">
-  <i class="fa fa-calendar-alt"></i>May 22, 2021
-  
-    <br><i class="fa fa-folder-open"></i>
-    
-      <a href="https://deathsprout.gitee.io//categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/perl/">Perl</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
-    
-  
-</span>
-      </div>
-      <br>
-      
+
+    <section class="article-content">
     <p>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">sort <span style="color:#75715e">#对数组排序（默认按照字符串排序）</span>
-reverse <span style="color:#75715e">#列表反向排列</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="nb">sort</span> <span class="c1">#对数组排序（默认按照字符串排序）</span>
+<span class="nb">reverse</span> <span class="c1">#列表反向排列</span>
 
-sort{$a <span style="color:#f92672">cmp</span> $b}; <span style="color:#75715e">#（由小到大）</span>
-sort{$b <span style="color:#f92672">cmp</span> $a}; <span style="color:#75715e">#（由大到小）</span>
-sort{$a <span style="color:#e6db74">&lt;=&gt;</span> $b}; <span style="color:#75715e">#(按照数值进行排序)</span>
-sort {$h{$a}<span style="color:#e6db74">&lt;=&gt;</span>$h{$b}} key %h; <span style="color:#75715e">#对哈希 比value排key</span>
+<span class="nb">sort</span><span class="p">{</span><span class="nv">$a</span> <span class="ow">cmp</span> <span class="nv">$b</span><span class="p">};</span> <span class="c1">#（由小到大）</span>
+<span class="nb">sort</span><span class="p">{</span><span class="nv">$b</span> <span class="ow">cmp</span> <span class="nv">$a</span><span class="p">};</span> <span class="c1">#（由大到小）</span>
+<span class="nb">sort</span><span class="p">{</span><span class="nv">$a</span> <span class="sr">&lt;=&gt;</span> <span class="nv">$b</span><span class="p">};</span> <span class="c1">#(按照数值进行排序)</span>
+<span class="nb">sort</span> <span class="p">{</span><span class="nv">$h</span><span class="p">{</span><span class="nv">$a</span><span class="p">}</span><span class="sr">&lt;=&gt;</span><span class="nv">$h</span><span class="p">{</span><span class="nv">$b</span><span class="p">}}</span> <span class="n">key</span> <span class="nv">%h</span><span class="p">;</span> <span class="c1">#对哈希 比value排key</span>
 
-<span style="color:#75715e"># 用 . 可以将字符串连接</span>
-substr $总串,开始位置,长度,该内容替换被取出的内容;<span style="color:#75715e">#用来取子串</span>
-index $字符串,<span style="color:#e6db74">&#34;寻找的内容&#34;</span>,起始位置;<span style="color:#75715e">#搜寻字符串内容，返回位置</span>
-<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xal&#34;</span> x <span style="color:#ae81ff">5</span>; <span style="color:#75715e">#输出xalxalxalxalxal</span>
-join <span style="color:#e6db74">&#34;自定分隔符&#34;</span>,@arr; <span style="color:#75715e">#连接数组中所有的字符串</span>
-split <span style="color:#e6db74">/自定分割符/</span>,$str; <span style="color:#75715e">#分割字符串</span>
+<span class="c1"># 用 . 可以将字符串连接</span>
+<span class="nb">substr</span> <span class="nv">$总串</span><span class="p">,</span><span class="n">开始位置</span><span class="p">,</span><span class="n">长度</span><span class="p">,</span><span class="n">该内容替换被取出的内容</span><span class="p">;</span><span class="c1">#用来取子串</span>
+<span class="nb">index</span> <span class="nv">$字符串</span><span class="p">,</span><span class="s">&#34;寻找的内容&#34;</span><span class="p">,</span><span class="n">起始位置</span><span class="p">;</span><span class="c1">#搜寻字符串内容，返回位置</span>
+<span class="k">my</span> <span class="nv">$str</span> <span class="o">=</span> <span class="s">&#34;xal&#34;</span> <span class="n">x</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">#输出xalxalxalxalxal</span>
+<span class="nb">join</span> <span class="s">&#34;自定分隔符&#34;</span><span class="p">,</span><span class="nv">@arr</span><span class="p">;</span> <span class="c1">#连接数组中所有的字符串</span>
+<span class="nb">split</span> <span class="sr">/自定分割符/</span><span class="p">,</span><span class="nv">$str</span><span class="p">;</span> <span class="c1">#分割字符串</span>
 </code></pre></div><p>2021/04/28</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="ch">#! /usr/bin/perl</span>
+<span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 
-<span style="color:#66d9ef">my</span> @lines; <span style="color:#75715e">#数组的每一项对应文件的每一行</span>
-<span style="color:#66d9ef">my</span> $tmp; <span style="color:#75715e">#依次把每一行赋值给临时变量</span>
-open IN,<span style="color:#e6db74">&#34;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to read:$!\n&#34;</span>;
-<span style="color:#66d9ef">while</span> ($tmp <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;IN&gt;</span>) {
-	chomp $tmp; <span style="color:#75715e">#把字符串尾巴的换行符切掉</span>
-	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$tmp,<span style="color:#e6db74">&#34;|\n&#34;</span>;
-}
-<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) { <span style="color:#75715e">#因为上一个while以及把指针指到文件末尾了，此while将没有输出</span>
-	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$_,<span style="color:#e6db74">&#34;|\n&#34;</span>;<span style="color:#75715e">#临时变量</span>
-}
-close IN;
+<span class="k">my</span> <span class="nv">@lines</span><span class="p">;</span> <span class="c1">#数组的每一项对应文件的每一行</span>
+<span class="k">my</span> <span class="nv">$tmp</span><span class="p">;</span> <span class="c1">#依次把每一行赋值给临时变量</span>
+<span class="nb">open</span> <span class="n">IN</span><span class="p">,</span><span class="s">&#34;testout.txt&#34;</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;fail to open testout.txt to read:$!\n&#34;</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$tmp</span> <span class="o">=</span> <span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">chomp</span> <span class="nv">$tmp</span><span class="p">;</span> <span class="c1">#把字符串尾巴的换行符切掉</span>
+	<span class="k">print</span><span class="s">&#34;line:|&#34;</span><span class="p">,</span><span class="nv">$tmp</span><span class="p">,</span><span class="s">&#34;|\n&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">while</span> <span class="p">(</span><span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">#因为上一个while以及把指针指到文件末尾了，此while将没有输出</span>
+	<span class="k">print</span><span class="s">&#34;line:|&#34;</span><span class="p">,</span><span class="nv">$_</span><span class="p">,</span><span class="s">&#34;|\n&#34;</span><span class="p">;</span><span class="c1">#临时变量</span>
+<span class="p">}</span>
+<span class="nb">close</span> <span class="n">IN</span><span class="p">;</span>
 
-open IN,<span style="color:#e6db74">&#34;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to read:$!\n&#34;</span>;
-<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
-	chomp $_;
-	<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;line:|&#34;</span>,$_,<span style="color:#e6db74">&#34;|\n&#34;</span>;<span style="color:#75715e">#临时变量</span>
-}
-close IN;
+<span class="nb">open</span> <span class="n">IN</span><span class="p">,</span><span class="s">&#34;testout.txt&#34;</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;fail to open testout.txt to read:$!\n&#34;</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">chomp</span> <span class="nv">$_</span><span class="p">;</span>
+	<span class="k">print</span><span class="s">&#34;line:|&#34;</span><span class="p">,</span><span class="nv">$_</span><span class="p">,</span><span class="s">&#34;|\n&#34;</span><span class="p">;</span><span class="c1">#临时变量</span>
+<span class="p">}</span>
+<span class="nb">close</span> <span class="n">IN</span><span class="p">;</span>
 
-open OUT,<span style="color:#e6db74">&#34;&gt;testout.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open testout.txt to write:$!&#34;</span>;<span style="color:#75715e"># $!是存放最近的出错信息的变量</span>
-<span style="color:#66d9ef">print</span> OUT <span style="color:#e6db74">&#34;this is the 1 line.\n&#34;</span>;
-<span style="color:#66d9ef">print</span> OUT <span style="color:#e6db74">&#34;this is the 2 line.\n&#34;</span>;
-close OUT;
+<span class="nb">open</span> <span class="n">OUT</span><span class="p">,</span><span class="s">&#34;&gt;testout.txt&#34;</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;fail to open testout.txt to write:$!&#34;</span><span class="p">;</span><span class="c1"># $!是存放最近的出错信息的变量</span>
+<span class="k">print</span> <span class="n">OUT</span> <span class="s">&#34;this is the 1 line.\n&#34;</span><span class="p">;</span>
+<span class="k">print</span> <span class="n">OUT</span> <span class="s">&#34;this is the 2 line.\n&#34;</span><span class="p">;</span>
+<span class="nb">close</span> <span class="n">OUT</span><span class="p">;</span>
 
-<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;list&#34;</span>);
-$arr[$#arr<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;new&#34;</span>;<span style="color:#75715e">#尾添</span>
+<span class="k">my</span> <span class="nv">@arr</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#34;list&#34;</span><span class="p">);</span>
+<span class="nv">$arr</span><span class="p">[</span><span class="nv">$#arr</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;new&#34;</span><span class="p">;</span><span class="c1">#尾添</span>
 
-push @arr,<span style="color:#e6db74">&#34;new_push&#34;</span>;<span style="color:#75715e">#尾添</span>
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+<span class="nb">push</span> <span class="nv">@arr</span><span class="p">,</span><span class="s">&#34;new_push&#34;</span><span class="p">;</span><span class="c1">#尾添</span>
+<span class="k">print</span> <span class="s">&#34;@arr\n&#34;</span><span class="p">;</span>
 
-pop @arr;<span style="color:#75715e">#尾删</span>
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+<span class="nb">pop</span> <span class="nv">@arr</span><span class="p">;</span><span class="c1">#尾删</span>
+<span class="k">print</span> <span class="s">&#34;@arr\n&#34;</span><span class="p">;</span>
 
-shift @arr;<span style="color:#75715e">#头删</span>
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+<span class="nb">shift</span> <span class="nv">@arr</span><span class="p">;</span><span class="c1">#头删</span>
+<span class="k">print</span> <span class="s">&#34;@arr\n&#34;</span><span class="p">;</span>
 
-unshift @arr,<span style="color:#e6db74">&#34;interposition&#34;</span>;<span style="color:#75715e">#头插入</span>
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr\n&#34;</span>;
+<span class="nb">unshift</span> <span class="nv">@arr</span><span class="p">,</span><span class="s">&#34;interposition&#34;</span><span class="p">;</span><span class="c1">#头插入</span>
+<span class="k">print</span> <span class="s">&#34;@arr\n&#34;</span><span class="p">;</span>
 
-<span style="color:#66d9ef">my</span> $return;
-$return <span style="color:#f92672">=</span> shift @arr;<span style="color:#75715e"># 将@arr的头删除并将其作为返回值赋值给$return</span>
-<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$return\n @arr\n&#34;</span>;
+<span class="k">my</span> <span class="nv">$return</span><span class="p">;</span>
+<span class="nv">$return</span> <span class="o">=</span> <span class="nb">shift</span> <span class="nv">@arr</span><span class="p">;</span><span class="c1"># 将@arr的头删除并将其作为返回值赋值给$return</span>
+<span class="k">print</span><span class="s">&#34;$return\n @arr\n&#34;</span><span class="p">;</span>
 
-<span style="color:#75715e"># $return = shift; #在运行perl文件时输入数据作为参数</span>
-<span style="color:#75715e"># such as  perl input_output.pm 1 2 3</span>
-$return <span style="color:#f92672">=</span> shift @ARGV;<span style="color:#75715e"># 通过添加@ 使其能添加多个参数</span>
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $return){
-	die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;
-}<span style="color:#75715e">#没给参数，杀死并报错</span>
-<span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;$return\n @arr\n&#34;</span>;
+<span class="c1"># $return = shift; #在运行perl文件时输入数据作为参数</span>
+<span class="c1"># such as  perl input_output.pm 1 2 3</span>
+<span class="nv">$return</span> <span class="o">=</span> <span class="nb">shift</span> <span class="nv">@ARGV</span><span class="p">;</span><span class="c1"># 通过添加@ 使其能添加多个参数</span>
+<span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nv">$return</span><span class="p">){</span>
+	<span class="nb">die</span> <span class="s">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span><span class="p">;</span>
+<span class="p">}</span><span class="c1">#没给参数，杀死并报错</span>
+<span class="k">print</span><span class="s">&#34;$return\n @arr\n&#34;</span><span class="p">;</span>
 
 
-<span style="color:#75715e"># 使得脚本可以接受文件名作为参数，打开该文件并逐行输出</span>
-<span style="color:#66d9ef">my</span> $filename;
-$filename <span style="color:#f92672">=</span> shift;
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $filename){die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;}
-open IN,$filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open $filename to write:$!&#34;</span>;
-<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
-	chomp $_;
-	<span style="color:#66d9ef">print</span> $_,<span style="color:#e6db74">&#34;\n&#34;</span>;
-}
-close IN;
+<span class="c1"># 使得脚本可以接受文件名作为参数，打开该文件并逐行输出</span>
+<span class="k">my</span> <span class="nv">$filename</span><span class="p">;</span>
+<span class="nv">$filename</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nv">$filename</span><span class="p">){</span><span class="nb">die</span> <span class="s">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span><span class="p">;}</span>
+<span class="nb">open</span> <span class="n">IN</span><span class="p">,</span><span class="nv">$filename</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;fail to open $filename to write:$!&#34;</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">chomp</span> <span class="nv">$_</span><span class="p">;</span>
+	<span class="k">print</span> <span class="nv">$_</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">close</span> <span class="n">IN</span><span class="p">;</span>
 </code></pre></div><p>读取fasta文件，读取并输出序列信息和序列本身。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
-	<span style="color:#66d9ef">use</span> strict;
-	<span style="color:#66d9ef">use</span> warnings;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="ch">#! /usr/bin/perl</span>
+	<span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+	<span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 	
-	<span style="color:#66d9ef">my</span> $filename;
-	<span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> ();<span style="color:#66d9ef">my</span> @name <span style="color:#f92672">=</span> ();
-	<span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	<span style="color:#66d9ef">my</span> $lnbuf ;<span style="color:#66d9ef">my</span> $ch ;
-	<span style="color:#66d9ef">my</span> $tmpname;<span style="color:#66d9ef">my</span>$tmpseq;
+	<span class="k">my</span> <span class="nv">$filename</span><span class="p">;</span>
+	<span class="k">my</span> <span class="nv">@seq</span> <span class="o">=</span> <span class="p">();</span><span class="k">my</span> <span class="nv">@name</span> <span class="o">=</span> <span class="p">();</span>
+	<span class="k">my</span> <span class="nv">$cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">my</span> <span class="nv">$lnbuf</span> <span class="p">;</span><span class="k">my</span> <span class="nv">$ch</span> <span class="p">;</span>
+	<span class="k">my</span> <span class="nv">$tmpname</span><span class="p">;</span><span class="k">my</span><span class="nv">$tmpseq</span><span class="p">;</span>
 	
-	$filename <span style="color:#f92672">=</span> shift;
-	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">not</span> $filename){die <span style="color:#e6db74">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span>;}
-	open IN,$filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;fail to open $filename to write:$!&#34;</span>;
-	<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
-		chomp;
-		$ch <span style="color:#f92672">=</span> substr $_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
-		<span style="color:#66d9ef">if</span> ($ch <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;&gt;&#34;</span>){
-			<span style="color:#66d9ef">if</span> ($cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
-				$tmpname <span style="color:#f92672">=</span> $_; <span style="color:#75715e"># push @name,$_;</span>
-				$cnt <span style="color:#f92672">++</span>;
-			}
-			<span style="color:#66d9ef">else</span>{
-				push @name,$tmpname;
-				push @seq,$tmpseq;
-				$tmpseq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-				$cnt <span style="color:#f92672">++</span>;
-				$tmpname<span style="color:#f92672">=</span>$_;}
-		}
-		<span style="color:#66d9ef">else</span> {
-			$tmpseq <span style="color:#f92672">.=</span> $_; <span style="color:#75715e"># 连接缩写 .=</span>
-			<span style="color:#75715e"># @seq[$cnt-1] .= $_;</span>
-		}
-	}
-	close IN;
+	<span class="nv">$filename</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nv">$filename</span><span class="p">){</span><span class="nb">die</span> <span class="s">&#34;usage:perl arg.plx&lt;paramter&gt;\n&#34;</span><span class="p">;}</span>
+	<span class="nb">open</span> <span class="n">IN</span><span class="p">,</span><span class="nv">$filename</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;fail to open $filename to write:$!&#34;</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nb">chomp</span><span class="p">;</span>
+		<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">substr</span> <span class="nv">$_</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nv">$ch</span> <span class="ow">eq</span> <span class="s">&#34;&gt;&#34;</span><span class="p">){</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nv">$cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+				<span class="nv">$tmpname</span> <span class="o">=</span> <span class="nv">$_</span><span class="p">;</span> <span class="c1"># push @name,$_;</span>
+				<span class="nv">$cnt</span> <span class="o">++</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span><span class="p">{</span>
+				<span class="nb">push</span> <span class="nv">@name</span><span class="p">,</span><span class="nv">$tmpname</span><span class="p">;</span>
+				<span class="nb">push</span> <span class="nv">@seq</span><span class="p">,</span><span class="nv">$tmpseq</span><span class="p">;</span>
+				<span class="nv">$tmpseq</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+				<span class="nv">$cnt</span> <span class="o">++</span><span class="p">;</span>
+				<span class="nv">$tmpname</span><span class="o">=</span><span class="nv">$_</span><span class="p">;}</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="nv">$tmpseq</span> <span class="o">.=</span> <span class="nv">$_</span><span class="p">;</span> <span class="c1"># 连接缩写 .=</span>
+			<span class="c1"># @seq[$cnt-1] .= $_;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nb">close</span> <span class="n">IN</span><span class="p">;</span>
 	
-	<span style="color:#66d9ef">if</span>($tmpname <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;&#34;</span>){
-		push @name,$tmpname;
-		push @seq,$tmpseq;
-	}
+	<span class="k">if</span><span class="p">(</span><span class="nv">$tmpname</span> <span class="ow">ne</span> <span class="s">&#34;&#34;</span><span class="p">){</span>
+		<span class="nb">push</span> <span class="nv">@name</span><span class="p">,</span><span class="nv">$tmpname</span><span class="p">;</span>
+		<span class="nb">push</span> <span class="nv">@seq</span><span class="p">,</span><span class="nv">$tmpseq</span><span class="p">;</span>
+	<span class="p">}</span>
 	
-	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#name){
-		<span style="color:#66d9ef">print</span> $name[$i],<span style="color:#e6db74">&#34;\n&#34;</span>,$seq[$i],<span style="color:#e6db74">&#34;\n&#34;</span>;
-	}
+	<span class="k">foreach</span> <span class="k">my</span> <span class="nv">$i</span><span class="p">(</span><span class="mi">0</span> <span class="o">..</span> <span class="nv">$#name</span><span class="p">){</span>
+		<span class="k">print</span> <span class="nv">$name</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span><span class="s">&#34;\n&#34;</span><span class="p">,</span><span class="nv">$seq</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="p">}</span>
 </code></pre></div><p>Perl的正则表达式的三种形式，分别是匹配，替换和转化:</p>
 <ul>
 <li>
@@ -210,164 +459,406 @@ close IN;
 <p>$': 还没有匹配的剩余字符串</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">	<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello the perl world&#34;</span>;
-	$str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Hello/</span>; <span style="color:#75715e">#搜索  搜到返回为真</span>
-	$str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Hello/</span> ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;found Hello\n&#34;</span> : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;can&#39;t found\n&#34;</span> ;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl">	<span class="k">my</span> <span class="nv">$str</span> <span class="o">=</span> <span class="s">&#34;Hello the perl world&#34;</span><span class="p">;</span>
+	<span class="nv">$str</span> <span class="o">=~</span><span class="sr"> /Hello/</span><span class="p">;</span> <span class="c1">#搜索  搜到返回为真</span>
+	<span class="nv">$str</span> <span class="o">=~</span><span class="sr"> /Hello/</span> <span class="p">?</span> <span class="k">print</span> <span class="s">&#34;found Hello\n&#34;</span> <span class="p">:</span> <span class="k">print</span> <span class="s">&#34;can&#39;t found\n&#34;</span> <span class="p">;</span>
 	
-	<span style="color:#66d9ef">my</span> $str2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&gt;seq1 &gt;seq2 &gt;seq3&#34;</span>;
-	$str2 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^&gt;/</span> ? <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;found &gt; at begin\n&#34;</span> : <span style="color:#66d9ef">last</span> ; <span style="color:#75715e">#  ^ 锚定到句首</span>
-	<span style="color:#75715e">#  $ 锚定到句末， bp$ 搜索句末的bp</span>
+	<span class="k">my</span> <span class="nv">$str2</span> <span class="o">=</span> <span class="s">&#34;&gt;seq1 &gt;seq2 &gt;seq3&#34;</span><span class="p">;</span>
+	<span class="nv">$str2</span> <span class="o">=~</span><span class="sr"> /^&gt;/</span> <span class="p">?</span> <span class="k">print</span> <span class="s">&#34;found &gt; at begin\n&#34;</span> <span class="p">:</span> <span class="k">last</span> <span class="p">;</span> <span class="c1">#  ^ 锚定到句首</span>
+	<span class="c1">#  $ 锚定到句末， bp$ 搜索句末的bp</span>
 	
-	<span style="color:#66d9ef">my</span> $str3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;total length 10000000 bp, N50 20000 bp&#34;</span>;
-	$str3 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /total length (\d{1,}) bp/</span> ? <span style="color:#66d9ef">my</span> $tot_len <span style="color:#f92672">=</span> $1 : <span style="color:#66d9ef">last</span> ;  <span style="color:#66d9ef">print</span> $tot_len,<span style="color:#e6db74">&#34;\n&#34;</span>;
-	<span style="color:#75715e"># () 里面的值会被抓取出来，存在临时变量里 第一个放在 $1,第二个放在 $2  ...</span>
-	<span style="color:#75715e"># \d 匹配任何Unicode十进制数（就是在Unicode字符目录[Nd]里的字符）</span>
-	<span style="color:#75715e">## 这包括了 [0-9] ，和很多其他的数字字符。如果设置了 ASCII 标志，就只匹配 [0-9] </span>
-	<span style="color:#75715e"># {1,} 表示匹配次数，1次以上</span>
+	<span class="k">my</span> <span class="nv">$str3</span> <span class="o">=</span> <span class="s">&#34;total length 10000000 bp, N50 20000 bp&#34;</span><span class="p">;</span>
+	<span class="nv">$str3</span> <span class="o">=~</span><span class="sr"> /total length (\d{1,}) bp/</span> <span class="p">?</span> <span class="k">my</span> <span class="nv">$tot_len</span> <span class="o">=</span> <span class="nv">$1</span> <span class="p">:</span> <span class="k">last</span> <span class="p">;</span>  <span class="k">print</span> <span class="nv">$tot_len</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="c1"># () 里面的值会被抓取出来，存在临时变量里 第一个放在 $1,第二个放在 $2  ...</span>
+	<span class="c1"># \d 匹配任何Unicode十进制数（就是在Unicode字符目录[Nd]里的字符）</span>
+	<span class="c1">## 这包括了 [0-9] ，和很多其他的数字字符。如果设置了 ASCII 标志，就只匹配 [0-9] </span>
+	<span class="c1"># {1,} 表示匹配次数，1次以上</span>
 	
-	<span style="color:#66d9ef">my</span> $str4 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;joadfffff               
-</span><span style="color:#e6db74">	the&#34;</span>;
-	$str4 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(f*)\s*(the)/</span> ? <span style="color:#66d9ef">my</span> $jiaf <span style="color:#f92672">=</span> $1<span style="color:#f92672">.</span>$2 : <span style="color:#66d9ef">last</span> ;  <span style="color:#66d9ef">print</span> $jiaf,<span style="color:#e6db74">&#34;\n&#34;</span>;
-	<span style="color:#75715e"># \s  匹配任何Unicode空白字符（包括 [\t\n\r\f\v])</span>
+	<span class="k">my</span> <span class="nv">$str4</span> <span class="o">=</span> <span class="s">&#34;joadfffff               
+</span><span class="s">	the&#34;</span><span class="p">;</span>
+	<span class="nv">$str4</span> <span class="o">=~</span><span class="sr"> /(f*)\s*(the)/</span> <span class="p">?</span> <span class="k">my</span> <span class="nv">$jiaf</span> <span class="o">=</span> <span class="nv">$1</span><span class="o">.</span><span class="nv">$2</span> <span class="p">:</span> <span class="k">last</span> <span class="p">;</span>  <span class="k">print</span> <span class="nv">$jiaf</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="c1"># \s  匹配任何Unicode空白字符（包括 [\t\n\r\f\v])</span>
 	
-	<span style="color:#75715e"># *?    &#39;*&#39;, &#39;+&#39;，和 &#39;?&#39; 修饰符都是贪婪的,在后面加？，表示非贪婪匹配</span>
+	<span class="c1"># *?    &#39;*&#39;, &#39;+&#39;，和 &#39;?&#39; 修饰符都是贪婪的,在后面加？，表示非贪婪匹配</span>
 	
-	<span style="color:#66d9ef">my</span> $str5 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;01234569acespvnmgogjbtfgg&#34;</span>;
-	$str5 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([0-9a-h]+)/</span> ? <span style="color:#66d9ef">print</span> $1,<span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#66d9ef">last</span> ;
-	$str5 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([^0-9a-h]+)/</span> ? <span style="color:#66d9ef">print</span> $1,<span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#66d9ef">last</span> ; <span style="color:#75715e"># [^ ]表示反选字符集合</span>
+	<span class="k">my</span> <span class="nv">$str5</span> <span class="o">=</span> <span class="s">&#34;01234569acespvnmgogjbtfgg&#34;</span><span class="p">;</span>
+	<span class="nv">$str5</span> <span class="o">=~</span><span class="sr"> /([0-9a-h]+)/</span> <span class="p">?</span> <span class="k">print</span> <span class="nv">$1</span><span class="p">,</span><span class="s">&#34;\n&#34;</span> <span class="p">:</span> <span class="k">last</span> <span class="p">;</span>
+	<span class="nv">$str5</span> <span class="o">=~</span><span class="sr"> /([^0-9a-h]+)/</span> <span class="p">?</span> <span class="k">print</span> <span class="nv">$1</span><span class="p">,</span><span class="s">&#34;\n&#34;</span> <span class="p">:</span> <span class="k">last</span> <span class="p">;</span> <span class="c1"># [^ ]表示反选字符集合</span>
 	
-	<span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4runoooob2,57&#39;</span>;
-	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/a-z/</span>A<span style="color:#f92672">-</span>Z<span style="color:#f92672">/</span>s ; <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>; <span style="color:#75715e"># s把多个相同的输出字符缩成一个</span>
-	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/N/</span> <span style="color:#f92672">/</span>c ;  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>;   <span style="color:#75715e"># 把所有非N 替换为空格</span>
-	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/\t /</span><span style="color:#f92672">/</span>d ;  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>;   <span style="color:#75715e"># 删除tab和空格</span>
-	$string <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0-9/</span> <span style="color:#f92672">/</span>cs ; <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string\n&#34;</span>; <span style="color:#75715e"># 把数字间的其它字符替换为一个空格。</span>
+	<span class="k">my</span> <span class="nv">$string</span> <span class="o">=</span> <span class="s">&#39;4runoooob2,57&#39;</span><span class="p">;</span>
+	<span class="nv">$string</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/a-z/</span><span class="n">A</span><span class="o">-</span><span class="n">Z</span><span class="o">/</span><span class="n">s</span> <span class="p">;</span> <span class="k">print</span> <span class="s">&#34;$string\n&#34;</span><span class="p">;</span> <span class="c1"># s把多个相同的输出字符缩成一个</span>
+	<span class="nv">$string</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/N/</span> <span class="o">/</span><span class="n">c</span> <span class="p">;</span>  <span class="k">print</span> <span class="s">&#34;$string\n&#34;</span><span class="p">;</span>   <span class="c1"># 把所有非N 替换为空格</span>
+	<span class="nv">$string</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/\t /</span><span class="o">/</span><span class="n">d</span> <span class="p">;</span>  <span class="k">print</span> <span class="s">&#34;$string\n&#34;</span><span class="p">;</span>   <span class="c1"># 删除tab和空格</span>
+	<span class="nv">$string</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/0-9/</span> <span class="o">/</span><span class="n">cs</span> <span class="p">;</span> <span class="k">print</span> <span class="s">&#34;$string\n&#34;</span><span class="p">;</span> <span class="c1"># 把数字间的其它字符替换为一个空格。</span>
 	
 </code></pre></div><p>引用：用来弄高维数据结构（实际是指针）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $addr <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>$str ; <span style="color:#66d9ef">print</span> $addr,<span style="color:#e6db74">&#34;\t&#34;</span>,$$addr,<span style="color:#e6db74">&#34;\n&#34;</span>;
-	<span style="color:#75715e"># \$str 取地址，|   ${ $addr } 解引用，也可缩写为 $$addr</span>
-	<span style="color:#75715e">#输出：  SCALAR(0x7fffc0a84060)  Hello the perl world</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="k">my</span> <span class="nv">$addr</span> <span class="o">=</span> <span class="o">\</span><span class="nv">$str</span> <span class="p">;</span> <span class="k">print</span> <span class="nv">$addr</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nv">$$addr</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="c1"># \$str 取地址，|   ${ $addr } 解引用，也可缩写为 $$addr</span>
+	<span class="c1">#输出：  SCALAR(0x7fffc0a84060)  Hello the perl world</span>
 	
-	<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">7</span>);
-	<span style="color:#66d9ef">my</span> $addr2 <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arr ; <span style="color:#66d9ef">print</span> $addr2,<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{ $addr2 }&#34;</span>,<span style="color:#e6db74">&#34;\t&#34;</span>,${ $addr2 }[<span style="color:#ae81ff">0</span>],<span style="color:#e6db74">&#34;\n&#34;</span>;
-	<span style="color:#75715e">#  ARRAY(0x7ffff5b228c8)   1 2 3 4 5 6 7   1</span>
+	<span class="k">my</span> <span class="nv">@arr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">..</span> <span class="mi">7</span><span class="p">);</span>
+	<span class="k">my</span> <span class="nv">$addr2</span> <span class="o">=</span> <span class="o">\</span><span class="nv">@arr</span> <span class="p">;</span> <span class="k">print</span> <span class="nv">$addr2</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="s">&#34;@{ $addr2 }&#34;</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nv">$</span><span class="p">{</span> <span class="nv">$addr2</span> <span class="p">}[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="c1">#  ARRAY(0x7ffff5b228c8)   1 2 3 4 5 6 7   1</span>
 	
-	<span style="color:#66d9ef">my</span> %h <span style="color:#f92672">=</span> (a<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,b<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>,c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">3</span>);
-	<span style="color:#66d9ef">my</span> $addr3 <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>%h;  <span style="color:#66d9ef">print</span> $addr3,<span style="color:#e6db74">&#34;\t&#34;</span>,keys %{$addr3},<span style="color:#e6db74">&#34;\n&#34;</span>;
-	<span style="color:#66d9ef">print</span> ref($addr),<span style="color:#e6db74">&#34;\t&#34;</span>,ref($addr2),<span style="color:#e6db74">&#34;\t&#34;</span>,ref($addr3); <span style="color:#75715e"># ref()  返回引用的类型</span>
-	<span style="color:#75715e"># HASH(0x7fffdae689e8)    cab</span>
+	<span class="k">my</span> <span class="nv">%h</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="o">=&gt;</span><span class="mi">3</span><span class="p">);</span>
+	<span class="k">my</span> <span class="nv">$addr3</span> <span class="o">=</span> <span class="o">\</span><span class="nv">%h</span><span class="p">;</span>  <span class="k">print</span> <span class="nv">$addr3</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nb">keys</span> <span class="nv">%</span><span class="p">{</span><span class="nv">$addr3</span><span class="p">},</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="k">print</span> <span class="nb">ref</span><span class="p">(</span><span class="nv">$addr</span><span class="p">),</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nb">ref</span><span class="p">(</span><span class="nv">$addr2</span><span class="p">),</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nb">ref</span><span class="p">(</span><span class="nv">$addr3</span><span class="p">);</span> <span class="c1"># ref()  返回引用的类型</span>
+	<span class="c1"># HASH(0x7fffdae689e8)    cab</span>
 	
-	<span style="color:#66d9ef">my</span> @arrac1 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;4 -1 -4 0 1&#34;</span>;
-	<span style="color:#66d9ef">my</span> @arrac2 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;2 -3 -4 0 1&#34;</span>;
-	<span style="color:#66d9ef">my</span> @arrac3 <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;1 -5 -4 0 1&#34;</span>;
-	<span style="color:#66d9ef">my</span> @arr_of_arr ;
-	$arr_of_arr[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac1;$arr_of_arr[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac2;$arr_of_arr[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@arrac3;
-	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arr_of_arr){
-		<span style="color:#66d9ef">print</span> $i,<span style="color:#e6db74">&#34;\t&#34;</span>,$arr_of_arr[$i],<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{$arr_of_arr[$i]}&#34;</span>,<span style="color:#e6db74">&#34;\n&#34;</span>;
-	}<span style="color:#75715e"># 演示，非实际用法，麻烦的写法</span>
+	<span class="k">my</span> <span class="nv">@arrac1</span> <span class="o">=</span> <span class="nb">split</span> <span class="sr">/ +/</span><span class="p">,</span><span class="s">&#34;4 -1 -4 0 1&#34;</span><span class="p">;</span>
+	<span class="k">my</span> <span class="nv">@arrac2</span> <span class="o">=</span> <span class="nb">split</span> <span class="sr">/ +/</span><span class="p">,</span><span class="s">&#34;2 -3 -4 0 1&#34;</span><span class="p">;</span>
+	<span class="k">my</span> <span class="nv">@arrac3</span> <span class="o">=</span> <span class="nb">split</span> <span class="sr">/ +/</span><span class="p">,</span><span class="s">&#34;1 -5 -4 0 1&#34;</span><span class="p">;</span>
+	<span class="k">my</span> <span class="nv">@arr_of_arr</span> <span class="p">;</span>
+	<span class="nv">$arr_of_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="o">\</span><span class="nv">@arrac1</span><span class="p">;</span><span class="nv">$arr_of_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="o">\</span><span class="nv">@arrac2</span><span class="p">;</span><span class="nv">$arr_of_arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span> <span class="o">\</span><span class="nv">@arrac3</span><span class="p">;</span>
+	<span class="k">foreach</span> <span class="k">my</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..</span> <span class="nv">$#arr_of_arr</span><span class="p">){</span>
+		<span class="k">print</span> <span class="nv">$i</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="nv">$arr_of_arr</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="s">&#34;@{$arr_of_arr[$i]}&#34;</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="p">}</span><span class="c1"># 演示，非实际用法，麻烦的写法</span>
 
-	@{ $arr_of_arr[<span style="color:#ae81ff">0</span>] } <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ +/</span>,<span style="color:#e6db74">&#34;1 2 3 4 5&#34;</span>; <span style="color:#75715e"># 省事操作</span>
-	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arr_of_arr){
-		<span style="color:#66d9ef">print</span> $i,<span style="color:#e6db74">&#34;:&#34;</span>;
-		<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{$arr_of_arr[$i]}){
-			<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span>,$j,<span style="color:#e6db74">&#34;(&#34;</span>,$arr_of_arr[$i][$j],<span style="color:#e6db74">&#34;)&#34;</span>; 
-		}
-		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-	}   <span style="color:#75715e"># can  $arr_of_arr[$i] -&gt; [$j]</span>
+	<span class="nv">@</span><span class="p">{</span> <span class="nv">$arr_of_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">split</span> <span class="sr">/ +/</span><span class="p">,</span><span class="s">&#34;1 2 3 4 5&#34;</span><span class="p">;</span> <span class="c1"># 省事操作</span>
+	<span class="k">foreach</span> <span class="k">my</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..</span> <span class="nv">$#arr_of_arr</span><span class="p">){</span>
+		<span class="k">print</span> <span class="nv">$i</span><span class="p">,</span><span class="s">&#34;:&#34;</span><span class="p">;</span>
+		<span class="k">foreach</span> <span class="k">my</span> <span class="nv">$j</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..</span> <span class="nv">$#</span><span class="p">{</span><span class="nv">$arr_of_arr</span><span class="p">[</span><span class="nv">$i</span><span class="p">]}){</span>
+			<span class="k">print</span> <span class="s">&#34; &#34;</span><span class="p">,</span><span class="nv">$j</span><span class="p">,</span><span class="s">&#34;(&#34;</span><span class="p">,</span><span class="nv">$arr_of_arr</span><span class="p">[</span><span class="nv">$i</span><span class="p">][</span><span class="nv">$j</span><span class="p">],</span><span class="s">&#34;)&#34;</span><span class="p">;</span> 
+		<span class="p">}</span>
+		<span class="k">print</span> <span class="s">&#34;\n&#34;</span><span class="p">;</span>
+	<span class="p">}</span>   <span class="c1"># can  $arr_of_arr[$i] -&gt; [$j]</span>
 	
-	<span style="color:#66d9ef">my</span> $arrlist <span style="color:#f92672">=</span> [
-	[<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">5</span>],
-	[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>],
-	[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>],
-	]; <span style="color:#75715e">#匿名数组</span>
-	<span style="color:#66d9ef">print</span> @$arrlist,<span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34;@{@$arrlist[0]}&#34;</span>;
-</code></pre></div><p>
-  <img src="https://gitee.com/deathsprout/giteeimage/raw/master/arr_of_arr.png" alt="">
-
+	<span class="k">my</span> <span class="nv">$arrlist</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+	<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+	<span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+	<span class="p">];</span> <span class="c1">#匿名数组</span>
+	<span class="k">print</span> <span class="nv">@$arrlist</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="s">&#34;@{@$arrlist[0]}&#34;</span><span class="p">;</span>
+</code></pre></div><p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/arr_of_arr.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/arr_of_arr.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
 上图是部分输出结果</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># 计算拼接成contig的文件 N50的perl程序</span>
-<span style="color:#66d9ef">use</span> strict;
-<span style="color:#66d9ef">use</span> warnings;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="c1"># 计算拼接成contig的文件 N50的perl程序</span>
+<span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 
-<span style="color:#66d9ef">my</span> @name;<span style="color:#66d9ef">my</span> @seq;<span style="color:#66d9ef">my</span> $seq; <span style="color:#66d9ef">my</span> @long ;  
-<span style="color:#66d9ef">my</span> $alllong <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#66d9ef">my</span> $contig <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; <span style="color:#66d9ef">my</span> $longest; <span style="color:#66d9ef">my</span> $shortest;
-<span style="color:#66d9ef">my</span> $GC<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ; <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">my</span> $N50;
+<span class="k">my</span> <span class="nv">@name</span><span class="p">;</span><span class="k">my</span> <span class="nv">@seq</span><span class="p">;</span><span class="k">my</span> <span class="nv">$seq</span><span class="p">;</span> <span class="k">my</span> <span class="nv">@long</span> <span class="p">;</span>  
+<span class="k">my</span> <span class="nv">$alllong</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$contig</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="k">my</span> <span class="nv">$longest</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$shortest</span><span class="p">;</span>
+<span class="k">my</span> <span class="nv">$GC</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="k">my</span> <span class="nv">$N</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$N50</span><span class="p">;</span>
 
-open IN,<span style="color:#e6db74">&#34;data/a9_k63.contig.long1500&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$!&#34;</span>; <span style="color:#75715e"># a9_k63.contig.long1500</span>
-<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;IN&gt;</span>) {
-    chomp;
-    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> substr $_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">if</span> ($head <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;&gt;&#34;</span>){
-        <span style="color:#66d9ef">if</span> ($contig <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
-            $contig <span style="color:#f92672">++</span>;
-            push @name,$_;
-            }
-        <span style="color:#66d9ef">else</span>{
-        $contig <span style="color:#f92672">++</span>;
-        push @name,$_;
-        $alllong <span style="color:#f92672">.=</span> $seq ;
-        push @seq,$seq; push @long,length($seq);
-        $seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-        }
-    }
-    <span style="color:#66d9ef">else</span>{
-        $seq <span style="color:#f92672">.=</span> $_;
-    }
-}
-push @seq,$seq; 
-$alllong <span style="color:#f92672">.=</span> $seq ;
-push @long,length($seq);
-close IN;
+<span class="nb">open</span> <span class="n">IN</span><span class="p">,</span><span class="s">&#34;data/a9_k63.contig.long1500&#34;</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&#34;$!&#34;</span><span class="p">;</span> <span class="c1"># a9_k63.contig.long1500</span>
+<span class="k">while</span> <span class="p">(</span><span class="sr">&lt;IN&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">chomp</span><span class="p">;</span>
+    <span class="k">my</span> <span class="nv">$head</span> <span class="o">=</span> <span class="nb">substr</span> <span class="nv">$_</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$head</span> <span class="ow">eq</span> <span class="s">&#34;&gt;&#34;</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$contig</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="nv">$contig</span> <span class="o">++</span><span class="p">;</span>
+            <span class="nb">push</span> <span class="nv">@name</span><span class="p">,</span><span class="nv">$_</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+        <span class="nv">$contig</span> <span class="o">++</span><span class="p">;</span>
+        <span class="nb">push</span> <span class="nv">@name</span><span class="p">,</span><span class="nv">$_</span><span class="p">;</span>
+        <span class="nv">$alllong</span> <span class="o">.=</span> <span class="nv">$seq</span> <span class="p">;</span>
+        <span class="nb">push</span> <span class="nv">@seq</span><span class="p">,</span><span class="nv">$seq</span><span class="p">;</span> <span class="nb">push</span> <span class="nv">@long</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="nv">$seq</span><span class="p">);</span>
+        <span class="nv">$seq</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="nv">$seq</span> <span class="o">.=</span> <span class="nv">$_</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nb">push</span> <span class="nv">@seq</span><span class="p">,</span><span class="nv">$seq</span><span class="p">;</span> 
+<span class="nv">$alllong</span> <span class="o">.=</span> <span class="nv">$seq</span> <span class="p">;</span>
+<span class="nb">push</span> <span class="nv">@long</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="nv">$seq</span><span class="p">);</span>
+<span class="nb">close</span> <span class="n">IN</span><span class="p">;</span>
 
-<span style="color:#66d9ef">my</span> @arrlong <span style="color:#f92672">=</span> sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @long;
-$longest <span style="color:#f92672">=</span> $arrlong[<span style="color:#ae81ff">0</span>];$shortest <span style="color:#f92672">=</span> $arrlong[$#long];
+<span class="k">my</span> <span class="nv">@arrlong</span> <span class="o">=</span> <span class="nb">sort</span><span class="p">{</span><span class="nv">$a</span><span class="sr">&lt;=&gt;</span><span class="nv">$b</span><span class="p">}</span> <span class="nv">@long</span><span class="p">;</span>
+<span class="nv">$longest</span> <span class="o">=</span> <span class="nv">$arrlong</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="nv">$shortest</span> <span class="o">=</span> <span class="nv">$arrlong</span><span class="p">[</span><span class="nv">$#long</span><span class="p">];</span>
 
-<span style="color:#66d9ef">my</span> $G <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/G/</span>G<span style="color:#f92672">/</span>; 
-<span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/C/</span>C<span style="color:#f92672">/</span>;
-$N <span style="color:#f92672">=</span> $alllong <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/N/</span>N<span style="color:#f92672">/</span>;
-$GC <span style="color:#f92672">=</span> ($G<span style="color:#f92672">+</span>$C)<span style="color:#f92672">/</span>length($alllong);
+<span class="k">my</span> <span class="nv">$G</span> <span class="o">=</span> <span class="nv">$alllong</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/G/</span><span class="n">G</span><span class="o">/</span><span class="p">;</span> 
+<span class="k">my</span> <span class="nv">$C</span> <span class="o">=</span> <span class="nv">$alllong</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/C/</span><span class="n">C</span><span class="o">/</span><span class="p">;</span>
+<span class="nv">$N</span> <span class="o">=</span> <span class="nv">$alllong</span> <span class="o">=~</span> <span class="nb">tr</span><span class="sr">/N/</span><span class="n">N</span><span class="o">/</span><span class="p">;</span>
+<span class="nv">$GC</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$G</span><span class="o">+</span><span class="nv">$C</span><span class="p">)</span><span class="o">/</span><span class="nb">length</span><span class="p">(</span><span class="nv">$alllong</span><span class="p">);</span>
 
-<span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#66d9ef">my</span> $lo2 <span style="color:#f92672">=</span> length($alllong)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
-<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arrlong){
-    $sum <span style="color:#f92672">=</span> $sum<span style="color:#f92672">+</span>$arrlong[$i];
-    <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">&gt;</span> $lo2){
-        $N50 <span style="color:#f92672">=</span> $arrlong[$i];
-        <span style="color:#66d9ef">last</span>;
-    }
-}
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@long\n&#34;</span>;
+<span class="k">my</span> <span class="nv">$sum</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="k">my</span> <span class="nv">$lo2</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="nv">$alllong</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="k">my</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span> <span class="o">..</span> <span class="nv">$#arrlong</span><span class="p">){</span>
+    <span class="nv">$sum</span> <span class="o">=</span> <span class="nv">$sum</span><span class="o">+</span><span class="nv">$arrlong</span><span class="p">[</span><span class="nv">$i</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$sum</span> <span class="o">&gt;</span> <span class="nv">$lo2</span><span class="p">){</span>
+        <span class="nv">$N50</span> <span class="o">=</span> <span class="nv">$arrlong</span><span class="p">[</span><span class="nv">$i</span><span class="p">];</span>
+        <span class="k">last</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">print</span> <span class="s">&#34;@long\n&#34;</span><span class="p">;</span>
 
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;大小：&#34;</span>,length($alllong),<span style="color:#e6db74">&#34;\tcontig数:&#34;</span>,$contig,<span style="color:#e6db74">&#34;\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;最短contig：&#34;</span>,$longest,<span style="color:#e6db74">&#34;\t最长contig:&#34;</span>,$shortest,<span style="color:#e6db74">&#34;\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;GC含量:&#34;</span>,$GC,<span style="color:#e6db74">&#34;\t\tN数量:&#34;</span>,$N,<span style="color:#e6db74">&#34;\n&#34;</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;N50:&#34;</span>,$N50,<span style="color:#e6db74">&#34;\n&#34;</span>;
+<span class="k">print</span> <span class="s">&#34;大小：&#34;</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="nv">$alllong</span><span class="p">),</span><span class="s">&#34;\tcontig数:&#34;</span><span class="p">,</span><span class="nv">$contig</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&#34;最短contig：&#34;</span><span class="p">,</span><span class="nv">$longest</span><span class="p">,</span><span class="s">&#34;\t最长contig:&#34;</span><span class="p">,</span><span class="nv">$shortest</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&#34;GC含量:&#34;</span><span class="p">,</span><span class="nv">$GC</span><span class="p">,</span><span class="s">&#34;\t\tN数量:&#34;</span><span class="p">,</span><span class="nv">$N</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&#34;N50:&#34;</span><span class="p">,</span><span class="nv">$N50</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">;</span>
 </code></pre></div>
+</section>
 
 
-      
-        <div class="blog-tags">
-          
-            <a href="https://deathsprout.gitee.io//tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/perl/">Perl</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>&nbsp;
-          
-        </div>
-      
-    </article>
+    <footer class="article-footer">
     
-  </div>
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
+        
+            <a href="/tags/perl/">Perl</a>
+        
+            <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+        
+    </section>
 
-        </div><footer>
-  <div class="container">
-    <p class="credits copyright">
-      <p class="credits theme-by">
-        Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/HelloRusk/HugoTeX">HugoTeX</a>
-        <br>
-        <a href="https://deathsprout.gitee.io/about">王子辰</a>
-        &copy;
-        2021
-      </p>
-  </div>
-</footer></body>
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">山东大学生物信息学实验 - 转录组学数据分析和富集分析</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>编程语言 on DeathSprout&#39;s Blog</title>
+    <title>编程语言 on DeathSprout</title>
     <link>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
-    <description>Recent content in 编程语言 on DeathSprout&#39;s Blog</description>
+    <description>Recent content in 编程语言 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Fri, 11 Jun 2021 20:11:25 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
@@ -13,16 +13,25 @@
       <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/posts/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/</guid>
-      <description>本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的</description>
+      <description>本文是山东大学生物信息学实验某次课程上的部分内容，是由王明钰老师授课的，这堂课主要内容是转录组学数据分析和富集分析，有很多道题去完成，其他的皆不做解释，有几道需要python或R的题目，虽然没什么难度，但或多或少有些同学不会写，在这里把我的思路分享一下，不过我也不希望后来的学弟学妹不做思考直接照抄（说不定本文都搜不到呢），仅作参考。
+问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.</description>
     </item>
     
     <item>
       <title>Perl实验课程笔记</title>
-      <link>https://deathsprout.gitee.io/posts/perl/</link>
+      <link>https://deathsprout.gitee.io/posts/perl/perl/</link>
       <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/posts/perl/</guid>
-      <description>这本是在上生物信息学实验课程中解彬彬老师教授的perl语言内容，内容也不多倒是非常实用，关于笔记难免会选择性记忆，自己已然掌握的便不会记录，</description>
+      <guid>https://deathsprout.gitee.io/posts/perl/perl/</guid>
+      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
+sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
+#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.</description>
     </item>
     
   </channel>

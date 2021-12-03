@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on DeathSprout&#39;s Blog</title>
+    <title>Categories on DeathSprout</title>
     <link>https://deathsprout.gitee.io/categories/</link>
-    <description>Recent content in Categories on DeathSprout&#39;s Blog</description>
+    <description>Recent content in Categories on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>en-us</language>
     <lastBuildDate>Sun, 26 Sep 2021 19:16:13 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>坑</title>
@@ -247,6 +247,15 @@
       <pubDate>Wed, 12 May 2021 22:38:53 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/categories/%E6%9D%82%E6%96%87/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://deathsprout.gitee.io/categories/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/categories/test/</guid>
       <description></description>
     </item>
     

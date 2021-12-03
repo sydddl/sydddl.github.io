@@ -1,64 +1,147 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><meta charset="utf-8" />
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
+  问题一     mex -setup
+    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C&#43;&#43; 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
+  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
+详细报错
+&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
+&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C&#43;&#43; mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.'><title>重装电脑导致matlab遇到的二三事</title>
 
-  <title>重装电脑导致matlab遇到的二三事 - DeathSprout&#39;s Blog</title>
+<link rel='canonical' href='https://deathsprout.gitee.io/posts/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='重装电脑导致matlab遇到的二三事'>
+<meta property='og:description' content='问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
+  问题一     mex -setup
+    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C&#43;&#43; 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
+  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
+详细报错
+&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
+&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C&#43;&#43; mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.'>
+<meta property='og:url' content='https://deathsprout.gitee.io/posts/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='麻烦' /><meta property='article:tag' content='坑' /><meta property='article:tag' content='解决方法记录' /><meta property='article:published_time' content='2021-09-26T19:16:13&#43;08:00'/><meta property='article:modified_time' content='2021-09-26T19:16:13&#43;08:00'/>
+<meta name="twitter:title" content="重装电脑导致matlab遇到的二三事">
+<meta name="twitter:description" content="问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
+  问题一     mex -setup
+    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C&#43;&#43; 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
+  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
+详细报错
+&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
+&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C&#43;&#43; mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C&#43;&#43;)&amp;#39; 以进行 C&#43;&#43; 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.">
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
 
 
-  <meta name="description" content="博客网站，我先搞他一搞" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/latex.css" />
-<link rel="stylesheet" href="https://deathsprout.gitee.io/css/main.css" />
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<meta name="generator" content="Hugo 0.82.0" /><body>
+                <span>返回</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
 
-
-
-
-
-
-<header>
-  <nav class="navbar">
-  <div class="nav">
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%BA%BB%E7%83%A6/" >
+                麻烦
+            </a>
+        
+            <a href="/categories/%E5%9D%91/" >
+                坑
+            </a>
+        
+            <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/" >
+                解决方法记录
+            </a>
+        
+    </header>
     
 
-    <ul class="nav-links">
-      
-    </ul>
-  </div>
-</nav>
-  <div class="intro-header">
-    <div class="container">
-      <div class="posts-heading">
+    <h2 class="article-title">
+        <a href="/posts/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/">重装电脑导致matlab遇到的二三事</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
         
-          <h1>重装电脑导致matlab遇到的二三事</h1>
-          
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 26, 2021</time>
+            </div>
         
-      </div>
-    </div>
-  </div>
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
 </header>
-<div id="content">
-  <div class="container" role="main">
-    <article class="article" class="blog-post">
-      <div class="postmeta">
-        <span class="meta-post">
-  <i class="fa fa-calendar-alt"></i>Sep 26, 2021
-  
-    <br><i class="fa fa-folder-open"></i>
-    
-      <a href="https://deathsprout.gitee.io//categories/%E9%BA%BB%E7%83%A6/">麻烦</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E5%9D%91/">坑</a>&nbsp;
-    
-      <a href="https://deathsprout.gitee.io//categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/">解决方法记录</a>&nbsp;
-    
-  
-</span>
-      </div>
-      <br>
-      
+
+    <section class="article-content">
     <h2 id="问题描述">问题描述</h2>
 <p>在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。</p>
 <ul>
@@ -75,79 +158,340 @@
 <blockquote>
 <p>错误使用 mex
 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C++ 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问
-<a href="https://www.mathworks.com/support/compilers">https://www.mathworks.com/support/compilers</a>。</p>
+<a class="link" href="https://www.mathworks.com/support/compilers"  target="_blank" rel="noopener"
+    >https://www.mathworks.com/support/compilers</a>。</p>
 </blockquote>
 </blockquote>
 <p>重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。</p>
 <p>详细报错</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> mex <span style="color:#f92672">-</span>setup <span style="color:#f92672">-</span>V
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">mex</span> <span class="o">-</span><span class="n">setup</span> <span class="o">-</span><span class="n">V</span>
 详细模式已开。
 
 略
 
-<span style="color:#75715e">... 正在查找编译器 &#39;MinGW64 Compiler (C)&#39;...</span>
-<span style="color:#75715e">... 正在查找环境变量 &#39;MW_MINGW64_LOC&#39;...否。</span>
-找不到已安装的编译器 <span style="color:#e6db74">&#39;MinGW64 Compiler (C)&#39;</span>。
+<span class="c">... 正在查找编译器 &#39;MinGW64 Compiler (C)&#39;...</span>
+<span class="c">... 正在查找环境变量 &#39;MW_MINGW64_LOC&#39;...否。</span>
+找不到已安装的编译器 <span class="s">&#39;MinGW64 Compiler (C)&#39;</span>。
 
 略
 </code></pre></div><p>可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> setenv(<span style="color:#e6db74">&#39;MW_MINGW64_LOC&#39;</span>,<span style="color:#e6db74">&#39;D:\for_sci\new_minGW\mingw64&#39;</span>)
-<span style="color:#f92672">&gt;&gt;</span> mex <span style="color:#f92672">-</span>setup
-MEX 配置为使用 <span style="color:#e6db74">&#39;MinGW64 Compiler (C)&#39;</span> 以进行 C 语言编译。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">setenv</span><span class="p">(</span><span class="s">&#39;MW_MINGW64_LOC&#39;</span><span class="p">,</span><span class="s">&#39;D:\for_sci\new_minGW\mingw64&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">mex</span> <span class="o">-</span><span class="n">setup</span>
+<span class="n">MEX</span> 配置为使用 <span class="s">&#39;MinGW64 Compiler (C)&#39;</span> 以进行 <span class="n">C</span> 语言编译。
 
-要选择不同的语言，请从以下选项中选择一种命令:
- mex <span style="color:#f92672">-</span>setup C<span style="color:#f92672">++</span> 
- mex <span style="color:#f92672">-</span>setup FORTRAN
-MEX 配置为使用 <span style="color:#e6db74">&#39;MinGW64 Compiler (C++)&#39;</span> 以进行 C<span style="color:#f92672">++</span> 语言编译。
-MEX 配置为使用 <span style="color:#e6db74">&#39;MinGW64 Compiler (C++)&#39;</span> 以进行 C<span style="color:#f92672">++</span> 语言编译。
+要选择不同的语言，请从以下选项中选择一种命令<span class="p">:</span>
+ <span class="n">mex</span> <span class="o">-</span><span class="n">setup</span> <span class="n">C</span><span class="o">++</span> 
+ <span class="n">mex</span> <span class="o">-</span><span class="n">setup</span> <span class="n">FORTRAN</span>
+<span class="n">MEX</span> 配置为使用 <span class="s">&#39;MinGW64 Compiler (C++)&#39;</span> 以进行 <span class="n">C</span><span class="o">++</span> 语言编译。
+<span class="n">MEX</span> 配置为使用 <span class="s">&#39;MinGW64 Compiler (C++)&#39;</span> 以进行 <span class="n">C</span><span class="o">++</span> 语言编译。
 </code></pre></div><ul>
 <li>
 <h3 id="问题二">问题二</h3>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-matlab" data-lang="matlab"><span style="color:#f92672">&gt;&gt;</span> vl_compilenn(<span style="color:#e6db74">&#39;verbose&#39;</span>, <span style="color:#ae81ff">1</span>)
-警告: 以后的版本中将会取消对 toolboxdir(<span style="color:#e6db74">&#39;distcomp&#39;</span>) 的支持。请改用 toolboxdir(<span style="color:#e6db74">&#39;parallel&#39;</span>)。 
-<span style="color:#f92672">&gt;</span> In toolboxdir (line <span style="color:#ae81ff">49</span>)
-  In vl_compilenn (line <span style="color:#ae81ff">367</span>) 
-警告: CL.EXE not found in PATH. Trying to guess out of mex setup. 
-<span style="color:#f92672">&gt;</span> In vl_compilenn<span style="color:#f92672">&gt;</span>check_clpath (line <span style="color:#ae81ff">650</span>)
-  In vl_compilenn (line <span style="color:#ae81ff">426</span>) 
-<span style="color:#e6db74">&#39;cl.exe&#39;</span> 不是内部或外部命令，也不是可运行的程序 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="o">&gt;&gt;</span> <span class="n">vl_compilenn</span><span class="p">(</span><span class="s">&#39;verbose&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+警告<span class="p">:</span> 以后的版本中将会取消对 <span class="n">toolboxdir</span><span class="p">(</span><span class="s">&#39;distcomp&#39;</span><span class="p">)</span> 的支持。请改用 <span class="n">toolboxdir</span><span class="p">(</span><span class="s">&#39;parallel&#39;</span><span class="p">)</span>。 
+<span class="o">&gt;</span> <span class="n">In</span> <span class="n">toolboxdir</span> <span class="p">(</span><span class="n">line</span> <span class="mi">49</span><span class="p">)</span>
+  <span class="n">In</span> <span class="n">vl_compilenn</span> <span class="p">(</span><span class="n">line</span> <span class="mi">367</span><span class="p">)</span> 
+警告<span class="p">:</span> <span class="n">CL</span><span class="p">.</span><span class="n">EXE</span> <span class="n">not</span> <span class="n">found</span> <span class="n">in</span> <span class="n">PATH</span><span class="p">.</span> <span class="n">Trying</span> <span class="n">to</span> <span class="n">guess</span> <span class="n">out</span> <span class="n">of</span> <span class="n">mex</span> <span class="n">setup</span><span class="p">.</span> 
+<span class="o">&gt;</span> <span class="n">In</span> <span class="n">vl_compilenn</span><span class="o">&gt;</span><span class="n">check_clpath</span> <span class="p">(</span><span class="n">line</span> <span class="mi">650</span><span class="p">)</span>
+  <span class="n">In</span> <span class="n">vl_compilenn</span> <span class="p">(</span><span class="n">line</span> <span class="mi">426</span><span class="p">)</span> 
+<span class="s">&#39;cl.exe&#39;</span> 不是内部或外部命令，也不是可运行的程序 
 或批处理文件。 
-错误使用 vl_compilenn<span style="color:#f92672">&gt;</span>check_clpath (line <span style="color:#ae81ff">656</span>)
-Unable to find cl.exe
+错误使用 <span class="n">vl_compilenn</span><span class="o">&gt;</span><span class="n">check_clpath</span> <span class="p">(</span><span class="n">line</span> <span class="mi">656</span><span class="p">)</span>
+<span class="n">Unable</span> <span class="n">to</span> <span class="nb">find</span> <span class="n">cl</span><span class="p">.</span><span class="n">exe</span>
 
-出错 vl_compilenn (line <span style="color:#ae81ff">426</span>)
-    cl_path = fileparts(check_clpath()); <span style="color:#75715e">% check whether cl.exe in path</span>
-</code></pre></div><p><a href="https://stackoverflow.com/questions/40226354/matconvnet-error-cl-exe-not-found">Matconvnet error cl.exe not found</a></p>
+出错 <span class="n">vl_compilenn</span> <span class="p">(</span><span class="n">line</span> <span class="mi">426</span><span class="p">)</span>
+    <span class="n">cl_path</span> <span class="p">=</span> <span class="n">fileparts</span><span class="p">(</span><span class="n">check_clpath</span><span class="p">());</span> <span class="c">% check whether cl.exe in path</span>
+</code></pre></div><p>这里是缺少&rsquo;cl.exe'，观察我所使用的vscode，发现其并没有&rsquo;cl.exe'，从而安装了vs2019，将该文件的路径加到配置文件中去。详见
+<a class="link" href="https://stackoverflow.com/questions/40226354/matconvnet-error-cl-exe-not-found"  target="_blank" rel="noopener"
+    >Matconvnet error cl.exe not found</a></p>
+<ul>
+<li>
+<h3 id="问题三">问题三</h3>
+</li>
+</ul>
+<p>旧版本的matlab，如2015b，如果后安装的vs，配置文件里是没有相关的文件的，在max -setup -V 的时候能发现不会去寻找该编译器。经尝试，将高版本已有的配置文件选择好vs的版本，复制过去是可行的。</p>
+<ul>
+<li>
+<h3 id="问题四">问题四</h3>
+</li>
+</ul>
+
+</section>
 
 
-
-      
-        <div class="blog-tags">
-          
-            <a href="https://deathsprout.gitee.io//tags/%E9%BA%BB%E7%83%A6/">麻烦</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E5%9D%91/">坑</a>&nbsp;
-          
-            <a href="https://deathsprout.gitee.io//tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/">解决方法记录</a>&nbsp;
-          
-        </div>
-      
-    </article>
+    <footer class="article-footer">
     
-  </div>
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%BA%BB%E7%83%A6/">麻烦</a>
+        
+            <a href="/tags/%E5%9D%91/">坑</a>
+        
+            <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/">解决方法记录</a>
+        
+    </section>
 
-        </div><footer>
-  <div class="container">
-    <p class="credits copyright">
-      <p class="credits theme-by">
-        Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/HelloRusk/HugoTeX">HugoTeX</a>
-        <br>
-        <a href="https://deathsprout.gitee.io/about">王子辰</a>
-        &copy;
-        2021
-      </p>
-  </div>
-</footer></body>
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">目录</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#问题描述">问题描述</a>
+      <ol>
+        <li><a href="#问题一">问题一</a></li>
+        <li><a href="#问题二">问题二</a></li>
+        <li><a href="#问题三">问题三</a></li>
+        <li><a href="#问题四">问题四</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>
