@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='同样发表在知乎上
+为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。
+Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统1，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。
+ CRISPR系统的三大类和十个子类的关系  上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。2
+第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。3
+ 基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型 
+ 不同种类的Cas蛋白数量分布  上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。
+Cas9蛋白结构 Cas9蛋白立体结构   SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。4
+  3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构, SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。
+Cas9蛋白结构域   Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。
+  a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。5
+Cas9蛋白功能及作用机制 Cas9蛋白在CRISPR-Cas系统中的功能 上图8显示的是Type II 系统的作用过程。3 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。
+Cas9蛋白功能的机制 结合DNA并识别目标序列   上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&amp;rsquo;至5&#39;），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。6'><title>Cas Protein</title>
+
+<link rel='canonical' href='https://deathsprout.gitee.io/p/cas-protein/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Cas Protein'>
+<meta property='og:description' content='同样发表在知乎上
+为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。
+Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统1，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。
+ CRISPR系统的三大类和十个子类的关系  上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。2
+第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。3
+ 基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型 
+ 不同种类的Cas蛋白数量分布  上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。
+Cas9蛋白结构 Cas9蛋白立体结构   SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。4
+  3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构, SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。
+Cas9蛋白结构域   Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。
+  a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。5
+Cas9蛋白功能及作用机制 Cas9蛋白在CRISPR-Cas系统中的功能 上图8显示的是Type II 系统的作用过程。3 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。
+Cas9蛋白功能的机制 结合DNA并识别目标序列   上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&amp;rsquo;至5&#39;），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。6'>
+<meta property='og:url' content='https://deathsprout.gitee.io/p/cas-protein/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CRISPR-Cas' /><meta property='article:tag' content='Cas9蛋白作用机制' /><meta property='article:published_time' content='2021-05-15T22:38:53&#43;08:00'/><meta property='article:modified_time' content='2021-05-15T22:38:53&#43;08:00'/><meta property='og:image' content='https://pica.zhimg.com/v2-ffc7d038737eaeb8f680cf26b6b45df1_1440w.jpg?source=172ae18b' />
+<meta name="twitter:title" content="Cas Protein">
+<meta name="twitter:description" content="同样发表在知乎上
+为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。
+Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统1，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。
+ CRISPR系统的三大类和十个子类的关系  上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。2
+第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。3
+ 基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型 
+ 不同种类的Cas蛋白数量分布  上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。
+Cas9蛋白结构 Cas9蛋白立体结构   SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。4
+  3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构, SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。
+Cas9蛋白结构域   Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。
+  a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。5
+Cas9蛋白功能及作用机制 Cas9蛋白在CRISPR-Cas系统中的功能 上图8显示的是Type II 系统的作用过程。3 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。
+Cas9蛋白功能的机制 结合DNA并识别目标序列   上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&amp;rsquo;至5&#39;），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。6"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pica.zhimg.com/v2-ffc7d038737eaeb8f680cf26b6b45df1_1440w.jpg?source=172ae18b' />
+    <link rel="shortcut icon" href="icons/BRAIN%20SIMULATION.svg" />
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/cas-protein/">
+                
+                    <img src="https://pica.zhimg.com/v2-ffc7d038737eaeb8f680cf26b6b45df1_1440w.jpg?source=172ae18b" loading="lazy" alt="Featured image of post Cas Protein" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/crispr-cas/" >
+                CRISPR-Cas
+            </a>
+        
+            <a href="/categories/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/" >
+                Cas9蛋白作用机制
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/cas-protein/">Cas Protein</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 15, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p><a class="link" href="https://zhuanlan.zhihu.com/p/381529366"  target="_blank" rel="noopener"
+    >同样发表在知乎上</a></p>
+<h3 id="为什么写这篇文章">为什么写这篇文章？</h3>
+<p>这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。</p>
+<h3 id="cas蛋白简介">Cas蛋白简介</h3>
+<p>Cas是CRISPR相关蛋白的简称，
+簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。</p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/crisper.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/crisper.png"
+			
+			
+			
+			loading="lazy"
+			alt="CRISPR系统的三大类和十个子类的关系">
+	</a>
+	
+	<figcaption>CRISPR系统的三大类和十个子类的关系</figcaption>
+	
+</figure>
+上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/239.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/239.png"
+			
+			
+			
+			loading="lazy"
+			alt="基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型">
+	</a>
+	
+	<figcaption>基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/cas_number.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/cas_number.png"
+			
+			
+			
+			loading="lazy"
+			alt="不同种类的Cas蛋白数量分布">
+	</a>
+	
+	<figcaption>不同种类的Cas蛋白数量分布</figcaption>
+	
+</figure>
+上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。</p>
+<h3 id="cas9蛋白结构">Cas9蛋白结构</h3>
+<h4 id="cas9蛋白立体结构">Cas9蛋白立体结构</h4>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/jie.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/jie.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/jie2.jpg" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/jie2.jpg"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构,
+SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。</p>
+<h4 id="cas9蛋白结构域">Cas9蛋白结构域</h4>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/domain.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/domain.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。</p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/PAM.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/PAM.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。
+在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5'-NGG-3&rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<h3 id="cas9蛋白功能及作用机制">Cas9蛋白功能及作用机制</h3>
+<h4 id="cas9蛋白在crispr-cas系统中的功能">Cas9蛋白在CRISPR-Cas系统中的功能</h4>
+<!-- raw HTML omitted -->
+<p>上图8显示的是Type II 系统的作用过程。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>
+首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。</p>
+<h3 id="cas9蛋白功能的机制">Cas9蛋白功能的机制</h3>
+<h4 id="结合dna并识别目标序列">结合DNA并识别目标序列</h4>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/F3.jpg" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/F3.jpg"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&rsquo;至5'），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p>就这样借助sgRNA的部分序列与靶DNA位点进行碱基配对，能够引导Cas9结合到这个靶位点上并进行切割。II型和V-B型系统需要tracrRNA才能正常发挥功能，而V-A型系统则需要单独使用crRNA 。在实际应用时，人们可以将tracrRNA和crRNA作为两种向导RNA（gRNA）或者融合在一起形成单向导RNA（single guide RNA, sgRNA），后一种方式已经广泛用于Cas9引导酶Cas9结合到靶DNA序列上并进行切割，Cas9与sgRNA一起被称作Cas9-sgRNA系统。</p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/PAM2.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/PAM2.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+a.Cas9中PAM结合区的放大视图。b.Cas9与PAM相互作用示意图,红圈表示桥接水分子。c.主要凹槽的详细视图。 与GG-PAM的特异性氢键相互作用用虚线表示。
+非靶链中的 dG2 * 和 dG3 * 的鸟嘌呤核酸碱基在主槽中分别被 arg1333和 arg1335的碱基特异性氢键相互作用读出，
+这些氢键来自 Cas9 C末端的 $\beta$发夹，而与PAM互补的靶链核苷酸不被主沟槽相互作用识别。与PAM相互作用的精氨酸残基在Cas9序列中是保守的。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+<p><figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/&#43;1P.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/&#43;1P.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<!-- raw HTML omitted -->
+<p>残基Glu 1108和ser 1109与靶DNA链中的+1磷酸二酯基团相互作用，直接导致PAM上游的局部链分离，将靶链转为与sgRNA结合（1-2bp），靶链DNA与sgRNA之间的碱基配对促进了引导-靶标异质双链的进一步逐步置换和传播。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h5 id="切割">切割</h5>
+<p>Cas9的基因组编辑能力只有在被称作前间隔序列邻近基序(protospacer adjacent motif, PAM)的短片段DNA序列的存在下才成为可能。只有DNA靶位点附近存在PAM时，Cas9才能进行准确切割。PAM的存在也是激活酶Cas9所必需的，PAM 序列的特征为 NGG（其中 N 为任意核苷酸）。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
+<p>核酸酶Cas9含有两个具有切割活性的结构域：HNH结构域和RuvC结构域，其中
+HNH结构域切割与crRNA互补的DNA链，而RuvC结构域切割非互补链(即HNH和
+RuvC结构域协同切割TS和NTS)。RuvC结构域可分为三个亚结构域：RuvC I、RuvC II和RuvC III，RuvC I接近于Cas9的氨基端，RuvC II和RuvC III位于HNH结构域的两侧（见图5）。<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
+<p>当Cas9与靶基因位点结合时发生了构象变化，核酸酶功能区对靶标DNA的反向链进行定位切割。Cas9介导的DNA切割最后结果是目标DNA（PAM序列上游约
+3～4个核苷酸）的双链断裂（double strand break，DSB）。
+<figure 
+	>
+	<a href="https://gitee.com/deathsprout/giteeimage/raw/master/weidian.png" >
+		<img src="https://gitee.com/deathsprout/giteeimage/raw/master/weidian.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+上图是切割位置示意图，实验中观察到的切割位点由黑色（HNH）和蓝色（RuvC）三角形标记（蓝色填充:首选位点，无填充:典型位点(较不利)，青色填充:不利位点）。<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup></p>
+<p>传统的Cas9蛋白包含RuvC和HNH两个催化结构， RuvC和HNH可分别剪切DNA的两条链形成双链断裂，如gRNA与非目标区域结合就有造成不必要插入突变的可能。</p>
+<h3 id="其他">其他</h3>
+<h4 id="存在的问题">存在的问题</h4>
+<p>基因组极为复杂，gRNA可能与非靶向序列局部匹配，这种局部匹配也会激活Cas
+9内切酶活性，从而产生脱靶效应。<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup></p>
+<p>此外，Cas9不仅识别标准PAM，也可识别非标准PAM，这也可能会引起一定程度的脱靶。脱靶可能影响正常基因的功能表达，甚至激活致癌因子、抑制抑癌基因，造成安全隐患，这极大的阻碍了该技术在临床的进一步应用。目前主要通过优化gRNA
+设计，改造Cas9蛋白，使用RNP递送方式等策略来提高CRISPR/Cas9系统特异性以降低脱靶现象。</p>
+<h4 id="cas9蛋白突变体">Cas9蛋白突变体</h4>
+<p>博德研究所的研究人员对Cas9进行突变使RuvC和HNH两个催化结构域中的一个缺失核酸酶活性形成Cas9n，Cas9n与DNA双链作用时仅产生单链切口。应用CRISPR/Cas9n系统进行基因编辑需要使用两个相邻且相反链上的gRNA序列。虽然所用的每条gRNA的脱靶结合位点可能出现在全基因组范围内，但是Cas9n仅催化每个位置的单链断裂 （Single-strand break，SSB）。SSB优先通过HDR进行修复，而不是NHEJ，这可降低不必要的插入缺失突变的发生。应用CRISPR/Cas9n系统进行基因编辑能将脱靶活性降低50-1000倍。<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>本文不介绍与Cas蛋白无关的CRISPR–Cas技术细节，有兴趣的详见 <a class="link" href="https://www.addgene.org/guides/crispr/"  target="_blank" rel="noopener"
+    >CRISPR Guide</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Makarova K S , Haft D H , Barrangou R , et al. Evolution and classification of the CRISPR–Cas systems[J]. Nature Reviews Microbiology.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Makarova K S , Zhang F , Koonin E V . SnapShot: Class 2 CRISPR-Cas Systems[J]. Cell, 2017, 168(1-2):328-328.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>DOI: 10.2210/pdb6VPC/pdb&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>Anders, Carolin, Niewoehner, et al. Structural basis of PAM-dependent target DNA recognition by the Cas9 endonuclease.[J]. Nature, 2014.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>Lapinaite A , Knott G J , Palumbo C M , et al. DNA capture by a CRISPR-Cas9–guided adenine base editor[J]. ence, 2020, 369(6503):566-571.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p>Anders, Carolin, Niewoehner, et al. Structural basis of PAM-dependent target DNA recognition by the Cas9 endonuclease.[J]. Nature, 2014.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p>Nierzwicki U , Arantes P R , Saha A , et al. Establishing the allosteric mechanism in CRISPR‐Cas9[J]. Wiley Interdiplinary Reviews: Computational Molecular ence.&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9" role="doc-endnote">
+<p>Huai C , Li G , Yao R , et al. Structural insights into DNA cleavage activation of CRISPR-Cas9 system[J]. Nature Communications, 2017, 8(1):1375.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10" role="doc-endnote">
+<p>Stephenson A , Raper A T , Suo Z . Bidirectional Degradation of DNA Cleavage Products Catalyzed by CRISPR/Cas9[J]. Journal of the American Chemical Society, 2018, 140(10):3743.&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11" role="doc-endnote">
+<p>Kuscu, C., Arslan, S., Singh, R., Thorpe, J. &amp; Adli, M. Genome-wide analysis reveals characteristics of off-target sites bound by the Cas9 endonuclease. Nat Biotechnol 32, 677-683, doi:10.1038/nbt.2916 (2014)&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:12" role="doc-endnote">
+<p>Slaymaker, l. M. et al. Rationally engineered Cas9 nucleases with improved specificity. Science 351, 84-88, doi:10.1126/science.aad5227 (2016)&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/crispr-cas/">CRISPR-Cas</a>
+        
+            <a href="/tags/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/">Cas9蛋白作用机制</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#为什么写这篇文章">为什么写这篇文章？</a></li>
+        <li><a href="#cas蛋白简介">Cas蛋白简介</a></li>
+        <li><a href="#cas9蛋白结构">Cas9蛋白结构</a>
+          <ol>
+            <li><a href="#cas9蛋白立体结构">Cas9蛋白立体结构</a></li>
+            <li><a href="#cas9蛋白结构域">Cas9蛋白结构域</a></li>
+          </ol>
+        </li>
+        <li><a href="#cas9蛋白功能及作用机制">Cas9蛋白功能及作用机制</a>
+          <ol>
+            <li><a href="#cas9蛋白在crispr-cas系统中的功能">Cas9蛋白在CRISPR-Cas系统中的功能</a></li>
+          </ol>
+        </li>
+        <li><a href="#cas9蛋白功能的机制">Cas9蛋白功能的机制</a>
+          <ol>
+            <li><a href="#结合dna并识别目标序列">结合DNA并识别目标序列</a></li>
+          </ol>
+        </li>
+        <li><a href="#其他">其他</a>
+          <ol>
+            <li><a href="#存在的问题">存在的问题</a></li>
+            <li><a href="#cas9蛋白突变体">Cas9蛋白突变体</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

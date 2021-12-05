@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 22 May 2021 13:23:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从ENA高速下载FASTQ文件</title>
-      <link>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
+      <link>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
       <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/posts/ena%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
       <description>系统：Ubuntu 20.0.4
 轮子：ena-fast-download
 环境需求：

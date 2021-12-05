@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
+ Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
+  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
+维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
+参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
+$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
+ 在花书中，缩写为 $L(x,g(f(x)))$
+ Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
+$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
+$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
+最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
+Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
+这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
+ 
+ Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
+ Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。'><title>变分自编码器</title>
+
+<link rel='canonical' href='https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='变分自编码器'>
+<meta property='og:description' content='Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
+ Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
+  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
+维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
+参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
+$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
+ 在花书中，缩写为 $L(x,g(f(x)))$
+ Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
+$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
+$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
+最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
+Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
+这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
+ 
+ Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
+ Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。'>
+<meta property='og:url' content='https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='深度学习' /><meta property='article:published_time' content='2021-12-05T23:49:21&#43;08:00'/><meta property='article:modified_time' content='2021-12-05T23:49:21&#43;08:00'/><meta property='og:image' content='https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png' />
+<meta name="twitter:title" content="变分自编码器">
+<meta name="twitter:description" content="Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
+ Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
+  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
+维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
+参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
+$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
+ 在花书中，缩写为 $L(x,g(f(x)))$
+ Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
+$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
+$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
+最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
+Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
+这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
+ 
+ Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
+ Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png' />
+    <link rel="shortcut icon" href="icons/BRAIN%20SIMULATION.svg" />
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/">
+                
+                    <img src="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png" loading="lazy" alt="Featured image of post 变分自编码器" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" >
+                笔记
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" >
+                深度学习
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/">变分自编码器</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 05, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="autoencoder">Autoencoder</h2>
+<p>自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。</p>
+<ul>
+<li>Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。</li>
+<li>Decoder network $f_\theta(.)$：从编码中复原数据.</li>
+<li>bottleneck layer 是 $z=g_\phi(x)$
+<blockquote>
+<p>花书以 $h=f(x)$ 表示编码器的输出</p>
+</blockquote>
+</li>
+<li>重建数据 ：$x'=f_\theta(g_\phi(x))$</li>
+</ul>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/23/8ob5eCkxEsZYKMa.png" >
+		<img src="https://i.loli.net/2021/11/23/8ob5eCkxEsZYKMa.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。</p>
+<p>参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失</p>
+<p>$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$</p>
+<blockquote>
+<p>在花书中，缩写为 $L(x,g(f(x)))$</p>
+</blockquote>
+<h3 id="denoising-autoencoder-dae">Denoising Autoencoder (DAE)</h3>
+<p>当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为</p>
+<p>$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$</p>
+<p>$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射</p>
+<p>最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的
+<figure 
+	>
+	<a href="https://i.loli.net/2021/11/23/7xdwoJALptc9aUs.png" >
+		<img src="https://i.loli.net/2021/11/23/7xdwoJALptc9aUs.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<h3 id="sparse-autoencoder">Sparse Autoencoder</h3>
+<p>迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。
+一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$</p>
+<p>这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/23/LJp95Mux2H7myWs.png" >
+		<img src="https://i.loli.net/2021/11/23/LJp95Mux2H7myWs.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<blockquote>
+<p><strong>Notation</strong>：
+关于自编码器符号，花书和<a class="link" href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html"  target="_blank" rel="noopener"
+    >From Autoencoder to Beta-VAE</a>是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.</p>
+</blockquote>
+<h1 id="structured-probabilistic-model">Structured probabilistic model</h1>
+<p>结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model）
+。</p>
+<p>忽略间接相互作用，能大大减少模型的参数个数，更小的模型大大减少了在模型存储、模型推断以及在模型中采样时的计算开销。</p>
+<h2 id="图描述模型结构">图描述模型结构</h2>
+<h3 id="有向模型">有向模型</h3>
+<p>有向图模型（directed graphical model），也被称为信念网络（belief network）或者贝叶斯网络（Bayesian network）。</p>
+<p>变量$x$的有向概率模型是通过有向无环图$\mathcal{G}$和一系列<strong>局部条件概率分布</strong>来定义的。其中，$P_{a\mathcal{G}}(x_i)$表示节点$x_i$的所有父节点。
+$$p(x)=\prod_ip(x_i|P_{a\mathcal{G}}(x_i))$$</p>
+<h3 id="无向模型">无向模型</h3>
+<p>无向模型（undirected model），也被称为马尔可夫随机场（Markov random field，MRF）或者马尔可夫网络。</p>
+<p>并不是所有情况的相互作用都有一个明确的方向关系，当相互作用没有本质性的指向或者是明确的双向关系作用时，用无向模型更合适。</p>
+<p>对于图中的每一个团 $\mathcal{C}$ (图中的团是图中节点的一个子集，其中的点是<strong>全连接</strong>的), 一个因子 $\phi(\mathcal{C})$ (也被称为团势能（clique potential）)，衡量了团中每个变量每一种可能的联合状态所对应的密切程度。它们一起定义了<strong>未归一化概率函数</strong>：
+$$\tilde{p}(x)=\prod_{\mathcal{C\in G}}\phi(\mathcal{C})$$</p>
+<h4 id="配分函数">配分函数</h4>
+<p>为了保证概率之和或积分为1，需要使用对应的归一化的概率分布</p>
+<p>$$p(x)=\frac{1}{Z}\tilde{p}(x)$$</p>
+<p>$$Z = \int \tilde{p}(x) dx$$</p>
+<p>当函数$\phi$固定时，$Z$就是个常数，如果函数$\phi$带有参数，$Z$就是这些参数的一个函数，$Z$被称为配分函数。</p>
+<h3 id="分离与d-分离">分离与d-分离</h3>
+<p>想知道在给定其他变量子集的值时，哪些变量子集彼此条件独立。</p>
+<p>无向模型中，识别图中的条件独立性是非常简单的，这时候图中隐含的条件独立性称为<strong>分离</strong>。
+如果变量a和b的连接路径仅涉及未观察变量，那么这些变量不是分离的。如果之间没有路径，或者所有路径都包含可观测的变量，那么他们是分离的。认为仅涉及未观察到的变量的路径是“活跃”的，包括可观察变量的路径称为“非活跃”的。</p>
+<p>有向模型中，这些概念叫做<strong>d-分离</strong>。</p>
+<h2 id="vae-variational-autoencoder">VAE: Variational Autoencoder</h2>
+<p>不想把输入映射到一个固定的向量，而是要把它映射到一个概率分布$p_\theta$ 。输入$x$和latent encoding vector $z$ 之间的关系可以被下面的定义：</p>
+<ul>
+<li>先验分布 $p_\theta(z)$</li>
+<li>似然分布 $p_\theta(x|z)$</li>
+<li>后验分布 $p_\theta(z|x)$</li>
+</ul>
+<p>为了生成一个像是真实数据的样本$x^i$，以下步骤：</p>
+<ol>
+<li>从先验分布$p_{\theta^*}(z)$中抽样$z^i$</li>
+<li>从条件概率分布$p_{\theta^*}(x|z=z^i)$中生成值$x^i$</li>
+</ol>
+<p>最佳参数 $\theta^*$ 是使生成真实样本数据概率最大的参数。</p>
+<p>$$ \theta^* = arg \ max_\theta\prod^n_{i=1}p_\theta(x^i)$$</p>
+<p>通常会变形为log形式，将乘法换成加法</p>
+<p>$$\theta^* = arg \ max_\theta\prod^n_{i=1}log \ p_\theta(x^i)$$</p>
+<p>$$p_\theta(x^i)=\int p_\theta(x^i|z)p_\theta(z)dz$$</p>
+<p>但是检查所有可能的$z$值，并将对应的x的概率积分的代价是很昂贵的。引入概率分布$q_\phi(z|x)$去近似$p_\theta(z|x)$，用输出$x$给定输入可能的$z$</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/sobI79mdS1tEFLG.png" >
+		<img src="https://i.loli.net/2021/11/24/sobI79mdS1tEFLG.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>如上，现在的结构很像一个自编码器</p>
+<ul>
+<li>$p_\theta(x|z)$ 定义了一个生成模型，类似于解码器，$p_\theta(x|z)$ 也叫概率解码器</li>
+<li>估计的函数 $q_\phi(z|x)$ 是概率编码器</li>
+</ul>
+<h3 id="loss-functionelbo">Loss function：ELBO</h3>
+<p>可以用KL散度去量化这两个分布之间的距离，$D_{KL}(X||Y)$ ,度量用分布Y表示X时丢失了多少信息。</p>
+<p>我们想要参数$\phi$，使得$D_{KL}(q_\phi(z|x)||p_\theta(z|x))$最小</p>
+<p>!!! note 为什么是 $D_{KL}(q_\phi||p_\theta)$ (reversed KL)  而不是 $D_{KL}(p_\theta||q_\phi)$ (forward KL)
+<a class="link" href="https://blog.evjang.com/2016/08/variational-bayes.html"  target="_blank" rel="noopener"
+    >Bayesian Variational methods &ndash; Eric Jang</a></p>
+<pre><code>![](https://i.loli.net/2021/11/24/N15t2gJQXbAmLRE.png)
+</code></pre>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/iaMBWCxvVHXsfR8.png" >
+		<img src="https://i.loli.net/2021/11/24/iaMBWCxvVHXsfR8.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/AKLIf9caMTjmvo4.png" >
+		<img src="https://i.loli.net/2021/11/24/AKLIf9caMTjmvo4.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>这个是学习真实分布时想要最大化的：最大化log形式的产生真实数据的可能性( $log \  p_\theta(x)$ ),最小化真实后验分布和估计的后验分布的差异。</p>
+<p>损失函数的定义如下：</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/79wcQSqyoODTMPE.png" >
+		<img src="https://i.loli.net/2021/11/24/79wcQSqyoODTMPE.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>在变分贝叶斯方法中，这个损失函数被称为变分下界或证据下界。KL散度总是非负的，$-L_{VAE}$ 就是 $log \  p_\theta(x)$ 的下界。</p>
+<p>$$-L_{VAE}=log \  p_\theta(x) - D_{KL}(q_\phi(z|x)||p_\theta(z|x)) \leq log \ p_\theta(x)$$</p>
+<p>最小化损失函数，就能最大化产生真实数据样本的概率下界</p>
+<h3 id="reparameterization-trick-重新参数化技巧">Reparameterization Trick （重新参数化技巧）</h3>
+<p>损失函数中调用了$z\sim q_\theta(z|x)$的生成样本，采样是一个随机过程，不能反向传播梯度，为了使之可以训练，引入了重新参数化技巧。
+通常是将随机变量$z$转化为确定性变量 $z=\mathcal{T}_\theta(x,\epsilon)$,其中$\epsilon$是一个独立的随机变量。</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/f9d5tLTNmGIhKvP.png" >
+		<img src="https://i.loli.net/2021/11/24/f9d5tLTNmGIhKvP.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/wYjfM8rT7ZkAQpR.png" >
+		<img src="https://i.loli.net/2021/11/24/wYjfM8rT7ZkAQpR.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>上图说明了重新参数化技巧如何使$z$采样过程可训练</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/lxPdGnykucgSWER.png" >
+		<img src="https://i.loli.net/2021/11/24/lxPdGnykucgSWER.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>!!! note $\odot$ Hadamard product
+Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot B \ or \ A \circ B$</p>
+<pre><code>运算则是逐元素相乘
+
+![](https://i.loli.net/2021/11/24/cdhFupXg52fmlKM.png)
+</code></pre>
+<h3 id="beta-vae">$\beta$-VAE</h3>
+<p>如果 inferred latent representation $z$ 只对单一生成因素敏感，对其他因素不敏感，叫这种表示为解纠缠（disentangled）或因子化的（factorized）。好处是可解释性好，而且易于迁移到其他任务。</p>
+<p>例如，一个模型在训练人脸照片时可能会捕捉肤色、头发颜色、头发长度、情绪、是否戴眼镜以及许多其他相对独立的因素。这样的解纠缠表示对于人脸图像的生成是非常有益的。</p>
+<p>$\beta$-VAE是修改的VAE,特别强调发现解纠缠的潜在因素。</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/CbvtghePrMKy3LQ.png" >
+		<img src="https://i.loli.net/2021/11/24/CbvtghePrMKy3LQ.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p><a class="link" href="https://www.cs.cmu.edu/~ggordon/10725-F12/slides/16-kkt.pdf"  target="_blank" rel="noopener"
+    >KKT条件</a>下可以重写为有拉格朗日乘子$\beta$的拉格朗日函数，上述只有一个不等式约束的优化问题等价于最大化方程$\mathcal{F}(\theta,\phi,\beta)$</p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/wWXZsCRduxaOnKz.png" >
+		<img src="https://i.loli.net/2021/11/24/wWXZsCRduxaOnKz.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="https://i.loli.net/2021/11/24/pC4uzsLXbSQdmNc.png" >
+		<img src="https://i.loli.net/2021/11/24/pC4uzsLXbSQdmNc.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>$\beta$作为超参数，如果$\beta=1$，和VAE相同，更高的$\beta$值强化了对latent bottleneck的约束，能增强解纠缠。（和正则化中的权重衰减类似）</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 花书第十四章</li>
+<li><input checked="" disabled="" type="checkbox"> 花书 第16章 深度学习中的结构化概率模型</li>
+<li><input checked="" disabled="" type="checkbox"> <a class="link" href="https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html"  target="_blank" rel="noopener"
+    >From Autoencoder to Beta-VAE</a></li>
+<li><input disabled="" type="checkbox"> <a class="link" href="https://www.jeremyjordan.me/variational-autoencoders/"  target="_blank" rel="noopener"
+    >Variational autoencoders.</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/05/EAlSkpHZeyqDF24.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/05/EAlSkpHZeyqDF24.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">神经可塑性</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">神经生物和计算神经英文名词</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#autoencoder">Autoencoder</a>
+      <ol>
+        <li><a href="#denoising-autoencoder-dae">Denoising Autoencoder (DAE)</a></li>
+        <li><a href="#sparse-autoencoder">Sparse Autoencoder</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#图描述模型结构">图描述模型结构</a>
+      <ol>
+        <li><a href="#有向模型">有向模型</a></li>
+        <li><a href="#无向模型">无向模型</a>
+          <ol>
+            <li><a href="#配分函数">配分函数</a></li>
+          </ol>
+        </li>
+        <li><a href="#分离与d-分离">分离与d-分离</a></li>
+      </ol>
+    </li>
+    <li><a href="#vae-variational-autoencoder">VAE: Variational Autoencoder</a>
+      <ol>
+        <li><a href="#loss-functionelbo">Loss function：ELBO</a></li>
+        <li><a href="#reparameterization-trick-重新参数化技巧">Reparameterization Trick （重新参数化技巧）</a></li>
+        <li><a href="#beta-vae">$\beta$-VAE</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

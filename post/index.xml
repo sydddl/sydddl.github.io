@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on DeathSprout</title>
+    <link>https://deathsprout.gitee.io/post/</link>
+    <description>Recent content in Posts on DeathSprout</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>变分自编码器</title>
+      <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
+      <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
+      <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
+ Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
+  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
+维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
+参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
+$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
+ 在花书中，缩写为 $L(x,g(f(x)))$
+ Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
+$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
+$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
+最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
+Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
+这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
+ 
+ Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
+ Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。</description>
+    </item>
+    
+    <item>
+      <title>重装电脑导致matlab遇到的二三事</title>
+      <link>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
+      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
+      <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
+  问题一     mex -setup
+    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C++ 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
+  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
+详细报错
+&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
+&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C++ mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.</description>
+    </item>
+    
+    <item>
+      <title>神经可塑性</title>
+      <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
+      <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
+      <description>关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性， LTP，稳态可塑性
+神经科学领域，可变性或可修饰性被称为可塑性（Plasticity），可塑性是神经 系统的重要特性，很少用于生命科学的其他领域。神经可塑性的表现形式涉及多 个层次，也涉及多种多样的影响因素，可以说神经可塑性的内涵非常广泛，从宏 观上遵循特定模式形成的行为逻辑，到微观上分子作用导致的结构变化等等 [1]。简要的说，神经可塑性是包括了神经组合形式改变、神经活动方式变化、神经发 育演化、神经损伤修复等一系列体现了生物体神经系统的适应性的自然属性。
+神经可塑性就物理尺度上可以分成三个层次，宏观层次、细胞层次（介观层 次）、分子层次（微观层次）。宏观层次上就影响对象还可以分成:涉及特定脑区， 影响个体生物信息加工和行为逻辑的认知可塑性;涉及非特定脑区，脑损伤后引 起功能重组的功能可塑性;以及功能重组过程中结构改变表现出的结构可塑性。 细胞层次上，神经可塑性的主要表现形式是突触可塑性，具体又可划分为突触传 递的可塑性（易化、压抑、PTP、长时程增强（Long-term potentiation（LTP））、 长时程抑制（Long-term depression（LTD）、PHP、突触缩放等等）和突触再可塑 性（描述可塑性的可塑性）。分子层次主要指神经可塑性的分子机制，大体包括 参与突触可塑性的蛋白分子和离子、形成神经可塑性的信号通路、控制神经系统 发育的遗传物质。
+宏观水平上的神经可塑性 认知可塑性 对认知可塑性的概念向前追溯，甚至可以追溯到亚里士多德在《论灵魂》中 的蜡块说，随着科技的进步，人们也意识到神经是认知活动的主要载体，但在 Hebb 提出神经学习理论之前，这些认知更多的是没有理论框架的猜想和纯粹事 实[2]。Hebb 在他的书《行为的组织》中，提出现在称为赫布定律的假设:“当神 经元A 的轴突与神经元B 很近并重复持续的参与了对B 的兴奋时，这两个神经元 或其中一个便会发生某些生长过程或代谢变化，致使A使B兴奋的效能增强了。” [3] 在后来，有相当多的研究从分子和细胞层面证明了这一假设的正确性 [4]，Markram 在赫布理论的基础上，提出了“脉冲时间依赖可塑性（STDP）”的理论， 通过神经元激发的时间顺序来影响神经元之间的联系的强弱，即突触对时间信号 具有敏感性，时间仅在数十毫秒内，正相关的突触后放电会引起突触联系增强， 负相关则相反 [5] 。
+根据赫布理论和后续的大量研究，对脑的记忆、知觉等功能的认识逐渐丰富。 就记忆形成方面来说，记忆是外界刺激对神经元集合作用的结果，以神经元集合 间突触强度改变的形式分布于大脑中，在记忆形成的过程中，神经元结构进行快 速的重构，神经元间会以快速的协同放电来加强相关神经元之间的连接，而这种 连接是广泛存在于大脑，包括纹状体、杏仁核、前额叶、小脑和内侧颞叶等，并 非集中于某个区域，但不同的解剖区域储存的记忆的类型是不同的，比如前额叶 脑区与工作记忆有关，海马与空间记忆高度相关等 [6] 。
+神经可塑性在行为方面主要体现为条件反射上，这是关联性学习，由于在记 忆提取时会激活形成该记忆的相关连接和脑区 [7] ，可以将条件反射视为通过学习 产生的记忆中的一种。经典条件反射指将正常不引起反应的条件刺激和会引起某 种反应的非条件刺激（比如食物（非条件刺激）对于分泌唾液）在时序上联系起 来。其他还有操作式条件反射（将一种动作与有意义刺激联系起来）、评价性条 件反射 [8] （当一条件刺激与另一积极或消极刺激反复联系起来，被试者对原刺激 的喜好发生改变）等类型。
+功能可塑性和结构可塑性 功能可塑性体现在神经系统功能重组的过程中，功能重组指神经系统损伤后， 有一定能力去进行结构改变和功能代偿，进而代替或部分代替受损区域原有功能 [9] 。虽然发育成熟的神经细胞不具备增殖和分裂能力，但神经元会持续具有形成 新的突触连接和修饰自身显微形态的能力。按照损伤发生的部位，可以将功能可 塑性划分为中枢神经系统功能可塑性和脊髓功能可塑性。
+相对于中枢神经系统，脊髓的功能可塑性单一且较弱，主要表现为不完全损 伤后出芽，主要包括再生性出芽（regenerating sprouting，轴突受损的神经元存活， 近侧段长出新芽）、侧枝出芽（lateral sprouting，整个神经元死亡，附近未受伤神 经元从侧枝上长出新芽）、代偿性出芽（compensatory sprouting，发育中神经元轴 突部分侧枝死亡，正常侧枝发出新芽），而完全性损伤后运动功能的恢复机制尚 不明确 [10] 。</description>
+    </item>
+    
+    <item>
+      <title>神经生物和计算神经英文名词</title>
+      <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
+      <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
+      <description>神经生物   中枢神经系统 central nervous system CNS
+  脑 brain
+ 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem  中脑 midbrain 脑桥 pons 延髓 medulla      脊髓 spinal cord
+    神经解剖学 neurianatomical 组织学切面
+ 冠状切面 coronal section：又名横截面，拦腰的那种 矢状切面 sagittal section： 从头劈到尾，左右分开 水平切面 horizontal section：字面意思    神经节 ganglia（ganglion（组织、医学范围，说神经节细胞一般是ganglion cell））：神经元集群</description>
+    </item>
+    
+    <item>
+      <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
+      <link>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
+      <description>问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.</description>
+    </item>
+    
+    <item>
+      <title>mcmctree 定年 —— 使用氨基酸序列</title>
+      <link>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</link>
+      <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
+      <description>常见定年软件
+ 最大似然法：  r8s Reltime   贝叶斯法：  PAML-MCMCTree（PAML4软件包内含） 其他（Timetree）    这里是mcmctree的手册
+事先声明，mcmctree使用氨基酸序列进行定年比使用核酸序列麻烦的多，而且在此之前，能找到帖子的都语焉不详，手册里的Tutorial 4是主要参考，可以先跑一遍示例文件，坑主要是体现在文件格式上。
+若使用氨基酸序列来进行分析，由于mcmctree不能选择较好的氨基酸替换模型进行分析，需要自己手动运行codeml进行分析后，在生成中间文件用于运行mcmctree。若非是因为数据原因必须用氨基酸序列进行定年，还是推荐使用核酸序列。
+前置 需求文件：(后面称其为那三个文件)
+ 多序列比对文件 带有校准信息有根树 控制文件 mcmctree.ctl  前两个文件的格式很重要，参考examples里的abglobin.aa 和 abglobin.trees
+ 
+ 
+树文件一定保证有至少一个时间校正点，&amp;lsquo;B(1.7,1.9)&amp;lsquo;的意思是最外面的这个分支点的时间，经化石证据矫正约束在170Mya到190Mya1年之间。
+多序列对比文件第一行是： 序列数 序列长 （大写的）i 下面每行是一个序列名，和后面序列对应，序列名与序列之间的有空行，数字则是表明其下的序列们第一个位置是第几位。
+我将fasta文件转变为phylip后，如下图所示，序列名并没有单独成行，它的格式并不能直接用，会报错。我也没找到合适的现有格式能方便的转换过去。 我参考的其他博客都是将其转化为phylip就能正常使用，唯一的区别是他们使用核酸序列而我用的是氨基酸序列，这是我踩的坑。
+ 
+数字不要紧，我在第一行后面加了个I后，除了第一行以外都能识别出，下面是识别过程的输出。  
+所以重点是将
+G000238395 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+G000263075 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+这种形式变成下面那种形式
+G000238395
+G000263075
+（空行）
+IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
+IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
+    </item>
+    
+    <item>
+      <title>分形艺术 Chaotica作品</title>
+      <link>https://deathsprout.gitee.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</link>
+      <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</guid>
+      <description>chaotica 这个软件是我在一年前发现，那时候正满怀热情的学习Blender，在那之前还兴致勃勃的修完了许德民教授讲关于抽象艺术的尔雅网课。
+老师关于抽象艺术的讲解很大程度上改变了我对该类艺术作品的看法，说是醍醐灌顶也不为过（惭愧的是当时是第一次修习尔雅网课，忘记了最后的考试）。
+许德民教授很鼓励学生自己去创作抽象作品，也不要将其看的过高过于艰深遥远，他们课程的最后作业便是创做几幅抽象画了，我很是眼馋，然后用PS（上）和SAI 2（下）画了两幅抽象画。
+ 
+这张我很是满意，倒不是有什么寓意，有意思而且看着舒服罢了。
+ 
+（裁剪）本是像弄出影印版书封皮的质感的，灵感来源兴许是格林伍德元素化学。
+说了些无关的，介绍下本文的正主chaotica。 Chaotica是一款新一代分形艺术应用程序，新手用户可以享受编辑随机分形产生的惊人高清壁纸和动画。下面是他们的官方网站
+ 
+bilibili上有较为详细的入门教程，看完感兴趣可以去学学。
+https://www.bilibili.com/video/BV12f4y1X7JD/?spm_id_from=333.788.recommend_more_video.-1
+作品分享 我用chaotica制作了些图片，过程中偶尔出现惊喜，虽然没有chaotica里那些专业艺术家做的那么棒，但还是挺酷的，在这里分享给大家。</description>
+    </item>
+    
+    <item>
+      <title>Perl实验课程笔记</title>
+      <link>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
+      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
+sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
+#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.</description>
+    </item>
+    
+    <item>
+      <title>从ENA高速下载FASTQ文件</title>
+      <link>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
+      <description>系统：Ubuntu 20.0.4
+轮子：ena-fast-download
+环境需求：
+ An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3  Aspera 配置 在 https://www.ibm.com/aspera/connect/下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。
+配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加
+export PATH=/home/sprout/.aspera/connect/bin:$PATH asperaweb_id_dsa.putty 和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。
+export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH 使用 Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。
+./ena-fast-download.py ERR1701760 实际上这个脚本是用ERR1701760得到完整的路径去使用ascp，比如上面这个最终会生成(其中一个，双端测序数据，还一个2)
+ascp-T-1 300m -P33001-i $HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/ERR1701/000/ERR1701760/ ERR1701760 1.fastq.gz . 问题 我一开始使用下着下着会中断，不清楚是什么问题，可能是Ubuntu长时间不动熄屏导致，也可能是流程里有什么东西变了导致现在用不了。 单纯的运行ascp脚本报错如下：
+Session Stop (Error:Session data transfer timeout(server),Session data transfer timeout) 后来发现是实验室网络问题，在宿舍运行速度可以达到60MB/s。</description>
+    </item>
+    
+    <item>
+      <title>Cas Protein</title>
+      <link>https://deathsprout.gitee.io/p/cas-protein/</link>
+      <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/cas-protein/</guid>
+      <description>同样发表在知乎上
+为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难找到cas9蛋白的具体内容，它被介绍CRISPR-Cas的文章淹没了，在读了十几篇文献后，用latex写了笔记。鉴于关于CRISPR-Cas的内容随处可见，完全可以去看产品手册或者其他什么，这篇文章中删去了与Cas蛋白无直接关系的大量内容。
+Cas蛋白简介 Cas是CRISPR相关蛋白的简称， 簇状规则间隔的短回文重复序列（CRISPR）和相关蛋白（Cas）构成CRISPR–Cas系统1，是许多细菌和大多数古细菌中存在的抗噬菌体免疫系统。 近年来，CRISPR–Cas系统已发展成为可靠而强大的基因组编辑工具。
+ CRISPR系统的三大类和十个子类的关系  上图1表示有三大类的CRISPR系统（I、II、III），而又可以细分为十个子类，可以看出在CRISPR系统中含有很多种类的Cas蛋白，Cas1到Cas10以及如Cas8a1、Cas12a、Cas13a等比较稀少的类型。2
+第2类CRISPR-Cas系统的特征是由单一、大、多结构域的蛋白质组成复合体发挥作用，一些2类效应蛋白，如Cas9,已经成功地用于基因组工程。3
+ 基于不同的效应蛋白家族,CRISPR II类系统又可细分为3类、9亚型 
+ 不同种类的Cas蛋白数量分布  上图3则是CasPDB数据库统计的在不同种类的菌体中所含的Cas蛋白数量分布，在统计的所有 Cas 蛋白中，Cas1占20.11% ，cas2占17.46% ，Cas3、 Cas5和 Cas6占10% 以上。其余的较少，最著名的Cas9蛋白则在所有Cas蛋白中占2.59%，本文也将重点讨论Cas9蛋白。
+Cas9蛋白结构 Cas9蛋白立体结构   SpCas9 -ABE8e 结构, 是使用PyMOL将从PDB数据库中获取的Cas9结构简单的可视化后的图像。4
+  3.2 A分辨率下的SpCas9-ABE8e复合物的冷冻电镜建模结构, SpCas9-ABE8e 冷冻电镜结构：SpCas9灰色显示； sgRNA紫色； 靶链DNA蓝绿色； 非靶链DNA蓝色； TadA-8e二聚体红色和粉红色显示。 Cas9 N端与TadA-8e C端之间的直线距离显示为橙色虚线。
+Cas9蛋白结构域   Cas9蛋白结构域分为REC结构域、Ruvc结构域、HNH结构域、PI结构域,图6还特地将富含精氨酸的alpha螺旋用紫色标示出来。其中REC结构域可以分为REC1-A、REC2、REC1-B、REC3，作用是连接其他结构域。Ruvc结构域分为三个结构域，彼此之间并不靠近。
+  a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图。c是Cas9–sgRNA–DNA复合体的前视图和后视图。 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。5
+Cas9蛋白功能及作用机制 Cas9蛋白在CRISPR-Cas系统中的功能 上图8显示的是Type II 系统的作用过程。3 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。
+Cas9蛋白功能的机制 结合DNA并识别目标序列   上图是SpCas9寻找目标位点的步骤示意图，apo-Cas9 与DNA相互作用靠的是随机碰撞，结合后很快分开。在apo-Cas9 与sgRNA 结合后形成Cas9 RNP，使SpCas9发生形态和功能改变，允许目标通过沿双链DNA 的进行单向搜索约27个bp（非靶链DNA-3&amp;rsquo;至5&#39;），除非遇到PAM，否则就快速的与DNA分离。与 PAM 的稳定相互作用则促使互补底物上稳定R环的形成，从而激活 Cas9以进行 DNA 切割。6</description>
+    </item>
+    
+    <item>
+      <title>一些不重要的事——为什么建这个博客</title>
+      <link>https://deathsprout.gitee.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Wed, 12 May 2021 22:38:53 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>人总有表达自我的需求，从高中到现在大三，这种需求愈发强，宣泄通路倒是逐渐弱。现在不同的领域有各自的论坛、各自的账号，也无非是一个侧写，于我，于他/她，虽然这样说，这个个人博客也只不过是一些想让别人看到的东西罢了。
+我喜欢的东西很多，除本专业外，美术、音乐、哲学、物理、科幻、共产主义等等都很喜欢，自然会的挺杂。就拿美术举例，板绘参加过明日方舟的同人企划，给学校弄过些平面设计，会用blender建模，但我自己现在什么水平我自己清楚，半吊子一个不上不下，比如本来3D建模目的只是渲染出来好看就行，一到给做游戏的同学建模型时就各种破面各种问题，自己谱写的音乐少有灵动多半是狗屎。我懂分散精力在各个领域会导致我学的更浅，我体会得到自己的业余，自己毕竟不能只为了提升3D建模理解去硬啃计算机视觉的内容（或许看不懂还得有前置内容），倒也没有退缩，头脑里的莽劲已经让我将其视为足以坚持一生的爱好。
+在无意中接触到Latex，实在是优美，我在大三上学期决定用latex完全替代word的需求，包括实验报告与笔记，到现在也写八九十个文档了。特别是90页、2500行左右Latex代码的实习报告，花费了我极大的精力，从苦痛慢慢变成享受，精美的完成品PDF给了我很大的成就感，但除我之外估计只有课程老师能去抽出时间草草的浏览一遍，是躺在硬盘里可有可无的东西。
+其他笔记也不外如此，直到一次师兄让我去寻找并下载一组海洋宏基因组数据，我测试完整理了工具和流程，将跑出的PDF发给了师兄，师兄一脸新奇的说：“你写的好像博客哎”。这句话直接促使我产生了搭建个人博客的想法，详细解释一下，生物信息学专业涉及编程或技术细节上的内容，往往需要去阅读相关的手册，有幸不乏喜好惠泽后人的前辈，网上散着一些他们整理好的教程、帖子，实际做之前浏览阅读一些，常常省时省力。看多了，就能发现很多的精美的文章，出现在各式各样的个人博客里，也是因此我才了解了个人博客这一形式。
+我并非没有考虑过使用现有的平台写东西，知乎、CSDN、简书等都挺不错，一个高中朋友弄了个微信公众号也不错，自带平台的搜索权重岂不美哉。但多半是我想折腾，一开始打算使用我的树莓派4B作为服务器挂载这个网站（前段时间还用它挖了一天门罗币，产出和大肠杆菌鞭毛一样，无聊的紧），后来发现我并不需要一个动态的网站，仅仅挂载静态网页就可，鉴于在宿舍总不能一直开着树莓派，转向了借由github的服务挂载网页。便随意买了个网址，解析地址配置好，之后便发现使用github挂载的网页不科学上网不能稳定访问，最后就选择使用gitee了。
+现在这个页面排版是基于HugoTex theme的，原因自然是它的LaTex风格。虽然对它的css和toml等配置文件进行大量改动，增加了一些功能，但它的功能仍是贫弱。现在文章尚少还能接受，推测随着文章数目的增多，我会更改theme，又免不了一阵折腾。
+至于体会，一个长久居住在不同的集体宿舍的人，自己用别人提供的简单方法盖了个简陋的房子。</description>
+    </item>
+    
+  </channel>
+</rss>

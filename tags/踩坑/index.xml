@@ -6,13 +6,28 @@
     <description>Recent content in 踩坑 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 May 2021 06:52:23 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E8%B8%A9%E5%9D%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Sep 2021 19:16:13 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E8%B8%A9%E5%9D%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>重装电脑导致matlab遇到的二三事</title>
+      <link>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
+      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
+      <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
+  问题一     mex -setup
+    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C++ 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
+  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
+详细报错
+&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
+&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C++ mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.</description>
+    </item>
+    
     <item>
       <title>mcmctree 定年 —— 使用氨基酸序列</title>
-      <link>https://deathsprout.gitee.io/posts/mcmctree%E5%AE%9A%E5%B9%B4/</link>
+      <link>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</link>
       <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/posts/mcmctree%E5%AE%9A%E5%B9%B4/</guid>
+      <guid>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
       <description>常见定年软件
  最大似然法：  r8s Reltime   贝叶斯法：  PAML-MCMCTree（PAML4软件包内含） 其他（Timetree）    这里是mcmctree的手册
 事先声明，mcmctree使用氨基酸序列进行定年比使用核酸序列麻烦的多，而且在此之前，能找到帖子的都语焉不详，手册里的Tutorial 4是主要参考，可以先跑一遍示例文件，坑主要是体现在文件格式上。
