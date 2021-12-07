@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='大致是最好的在pytorch上实现vggface的指南（ 但为什么会有人在1202年还想用Vggface）'><title>Vggface Pytorch 完全指南</title>
+
+<link rel='canonical' href='https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Vggface Pytorch 完全指南'>
+<meta property='og:description' content='大致是最好的在pytorch上实现vggface的指南（ 但为什么会有人在1202年还想用Vggface）'>
+<meta property='og:url' content='https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-12-07T17:53:33&#43;08:00'/><meta property='article:modified_time' content='2021-12-07T17:53:33&#43;08:00'/><meta property='og:image' content='https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png' />
+<meta name="twitter:title" content="Vggface Pytorch 完全指南">
+<meta name="twitter:description" content="大致是最好的在pytorch上实现vggface的指南（ 但为什么会有人在1202年还想用Vggface）"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png' />
+    <link rel="shortcut icon" href="icons/BRAIN%20SIMULATION.svg" />
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">
+                
+                    <img src="https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png" loading="lazy" alt="Featured image of post Vggface Pytorch 完全指南" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/" >
+                麻烦解决记录
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" >
+                深度学习
+            </a>
+        
+            <a href="/categories/%E7%BC%96%E7%A8%8B/" >
+                编程
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">Vggface Pytorch 完全指南</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        大致是最好的在pytorch上实现vggface的指南（ 但为什么会有人在1202年还想用Vggface）
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。</p>
+<ul>
+<li><a class="link" href="https://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf"  target="_blank" rel="noopener"
+    >文献</a></li>
+<li><a class="link" href="https://www.robots.ox.ac.uk/~vgg/software/vgg_face/"  target="_blank" rel="noopener"
+    >官网</a></li>
+</ul>
+<h2 id="为什么不能在pytorch上丝滑使用vggface">为什么不能在pytorch上丝滑使用vggface</h2>
+<p>首先，vggface是基于vgg16架构的，pytorch本身也提供了vgg16等预训练模型（categories是imagenet_classes），见<a class="link" href="https://pytorch.org/hub/pytorch_vision_vgg/"  target="_blank" rel="noopener"
+    >VGG-NETS</a>。</p>
+<p>但是pytorch没有针对vggface数据集训练的vggface的预训练模型，你可以在官网的下载处看到提供的如下几种格式：</p>
+<ul>
+<li><a class="link" href="https://www.robots.ox.ac.uk/~vgg/software/vgg_face/src/vgg_face_matconvnet.tar.gz"  target="_blank" rel="noopener"
+    >vgg_face_matconvnet.tar.gz</a>: Face detection and VGG Face descriptor source code and models (MatConvNet)</li>
+<li><a class="link" href="https://www.robots.ox.ac.uk/~vgg/software/vgg_face/src/vgg_face_torch.tar.gz"  target="_blank" rel="noopener"
+    >vgg_face_torch.tar.gz</a>: VGG Face descriptor source code and models (Torch)</li>
+<li><a class="link" href="https://www.robots.ox.ac.uk/~vgg/software/vgg_face/src/vgg_face_caffe.tar.gz"  target="_blank" rel="noopener"
+    >vgg_face_caffe.tar.gz</a>: VGG Face descriptor source code and models (Caffe)</li>
+</ul>
+<p>也许你会想，这不是有Torch格式的预训练模型吗？ 如果进行尝试，会发现是不行的。</p>
+<p><strong>困难的真正原因</strong>是，之前的torch是使用lua语言，之后在2017年根据python重构了代码变成pytorch，而vgg-face的作者提供的是torch模型，而不是pytorch的模型。VGGface2是支持的（但vggface2数据集已经寄了），还是因为vggface有些年份了。</p>
+<h2 id="实践">实践</h2>
+<h3 id="所以问题出现了--pytorch-如何获得预训练模型">所以问题，出现了 ： pytorch 如何获得预训练模型</h3>
+<p>过去有</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">torch.utils.serialization</span> <span class="kn">import</span> <span class="n">load_lua</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">load_lua</span><span class="p">(</span><span class="s1">&#39;x.t7&#39;</span><span class="p">)</span>
+</code></pre></div><p>但pytorch在1.0之后删除了torch.utils.serialization，目前可以通过torchfile.load读取，但会报错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;numpy.ndarray&#39;</span>
+</code></pre></div><p>As of PyTorch 1.0 torch.utils.serialization is completely removed. Hence no one can import models from Lua Torch into PyTorch anymore. Instead, I would suggest installing PyTorch 0.4.1 through pip in a conda environment (so that you can remove it after this) and use this repo to convert your Lua Torch model to PyTorch model, not just the torch.nn.legacy model that you cannot use for training. Then use PyTorch 1.xx to do whatever with it. You can also train your converted Lua Torch models in PyTorch this way :) <a class="link" href="https://stackoverflow.com/questions/41861354/loading-torch7-trained-models-t7-in-pytorch"  target="_blank" rel="noopener"
+    >来源</a></p>
+<p>但尝试失败，包括之后尝试的三个github的repo：<a class="link" href="https://github.com/chi0tzp/PyVGGFace/"  target="_blank" rel="noopener"
+    >PyVGGFace</a> 、<a class="link" href="https://github.com/clcarwin/convert_torch_to_pytorch/"  target="_blank" rel="noopener"
+    >convert_torch_to_pytorch</a>和 <a class="link" href="https://github.com/prlz77/vgg-face.pytorch/"  target="_blank" rel="noopener"
+    >vgg-face.pytorch</a>(issue中作者提到他仍能在linux中运行（今年8月))，希望转化成能用的形式，均因为相同的原因失败。</p>
+<p>发现网页<a class="link" href="https://www.robots.ox.ac.uk/~albanie/pytorch-models.html"  target="_blank" rel="noopener"
+    >Samuel Albanie</a>,能<strong>下载网络框架的py文件</strong>，但不能下载含有权重信息的.pth文件（也可以不去下，底下完整代码里有这玩意）</p>
+<p>尝试使用GitHub上的<a class="link" href="https://github.com/vadimkantorov/caffemodel2pytorch/"  target="_blank" rel="noopener"
+    >caffemodel2pytorch</a>(这玩意获得proto是通过request的，本地的prototxt文件读不进去)和<a class="link" href="https://github.com/penguinnnnn/Caffe2Pytorch/"  target="_blank" rel="noopener"
+    >Caffe2Pytorch</a>(易用，但是0.4.1以上版本没有torch.legacy，而使用anaconda激活的虚拟环境中，pytorch0.4.1报错No module named “caffe”)</p>
+<p>依着<a class="link" href="https://github.com/prlz77/vgg-face.pytorch/issues/4"  target="_blank" rel="noopener"
+    >上面提到的vgg-face.pytorch的issue</a>的思路，使用自己电脑的Ubuntu子系统使用<a class="link" href="https://github.com/chi0tzp/PyVGGFace/"  target="_blank" rel="noopener"
+    >PyVGGFace</a>，<strong>成功得到权重文件vggface.pth</strong></p>
+<h3 id="如何将权重载入到模型框架里">如何将权重载入到模型框架里？</h3>
+<p>如果直接使用torch.load导入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;D:\Dataset\models\vggface.pth&#34;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="ne">AttributeError</span><span class="p">:</span> <span class="s1">&#39;collections.OrderedDict&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s1">&#39;eval&#39;</span>
+</code></pre></div><p>原因是这仅是字典形式的权重数据，没有模型的实体。想用来自<a class="link" href="https://www.robots.ox.ac.uk/~albanie/pytorch-models.html"  target="_blank" rel="noopener"
+    >Samuel Albanie</a>的模型框架文件获得转化后的权重数据，报错如下，可以看出是字典的键值不匹配。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">loading</span> <span class="n">state_dict</span> <span class="k">for</span> <span class="n">Vgg_face_dag</span><span class="p">:</span>
+ <span class="n">Missing</span> <span class="n">key</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span> <span class="s2">&#34;conv_1_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv_1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.bias&#34;</span><span class="o">.</span> 
+ <span class="n">Unexpected</span> <span class="n">key</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span> <span class="s2">&#34;features.conv_1_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.bias&#34;</span><span class="o">.</span> 
+</code></pre></div><p>实测不能通过在定义层时在conv前添加features.xxx解决</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s2">&#34;features.conv_1_1&#34;</span><span class="p">,</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;module name can</span><span class="se">\&#39;</span><span class="s1">t contain &#34;.&#34;, got: features.conv_1_1&#39;</span>
+</code></pre></div><p>写函数,得到新字典后成功获得完整模型实例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">transform_key</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="c1">#列表来自报错内容，可复制进来更改，创建一个新字典，将key 从post_names -&gt; names</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;conv_1_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv_1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.bias&#34;</span><span class="p">]</span>
+    <span class="n">post_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;features.conv_1_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.bias&#34;</span><span class="p">]</span>
+
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+    <span class="n">new_state_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="p">)):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">new_state_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">post_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">new_state_dict</span>
+</code></pre></div><h3 id="完整代码">完整代码</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py">
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="k">class</span> <span class="nc">Vgg_face_dag</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Vgg_face_dag</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">129.186279296875</span><span class="p">,</span> <span class="mf">104.76238250732422</span><span class="p">,</span> <span class="mf">93.59396362304688</span><span class="p">],</span>
+                     <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                     <span class="s1">&#39;imageSize&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu1_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu1_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu2_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu2_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu3_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu3_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu3_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu4_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu4_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu4_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv5_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu5_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv5_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu5_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv5_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu5_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool5</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">25088</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc7</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu7</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout7</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc8</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2622</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1_1</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu1_1</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        <span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1_2</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+        <span class="n">x4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu1_2</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+        <span class="n">x5</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">x4</span><span class="p">)</span>
+        <span class="n">x6</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2_1</span><span class="p">(</span><span class="n">x5</span><span class="p">)</span>
+        <span class="n">x7</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu2_1</span><span class="p">(</span><span class="n">x6</span><span class="p">)</span>
+        <span class="n">x8</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2_2</span><span class="p">(</span><span class="n">x7</span><span class="p">)</span>
+        <span class="n">x9</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu2_2</span><span class="p">(</span><span class="n">x8</span><span class="p">)</span>
+        <span class="n">x10</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">x9</span><span class="p">)</span>
+        <span class="n">x11</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3_1</span><span class="p">(</span><span class="n">x10</span><span class="p">)</span>
+        <span class="n">x12</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu3_1</span><span class="p">(</span><span class="n">x11</span><span class="p">)</span>
+        <span class="n">x13</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3_2</span><span class="p">(</span><span class="n">x12</span><span class="p">)</span>
+        <span class="n">x14</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu3_2</span><span class="p">(</span><span class="n">x13</span><span class="p">)</span>
+        <span class="n">x15</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3_3</span><span class="p">(</span><span class="n">x14</span><span class="p">)</span>
+        <span class="n">x16</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu3_3</span><span class="p">(</span><span class="n">x15</span><span class="p">)</span>
+        <span class="n">x17</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span><span class="p">(</span><span class="n">x16</span><span class="p">)</span>
+        <span class="n">x18</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv4_1</span><span class="p">(</span><span class="n">x17</span><span class="p">)</span>
+        <span class="n">x19</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu4_1</span><span class="p">(</span><span class="n">x18</span><span class="p">)</span>
+        <span class="n">x20</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv4_2</span><span class="p">(</span><span class="n">x19</span><span class="p">)</span>
+        <span class="n">x21</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu4_2</span><span class="p">(</span><span class="n">x20</span><span class="p">)</span>
+        <span class="n">x22</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv4_3</span><span class="p">(</span><span class="n">x21</span><span class="p">)</span>
+        <span class="n">x23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu4_3</span><span class="p">(</span><span class="n">x22</span><span class="p">)</span>
+        <span class="n">x24</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span><span class="p">(</span><span class="n">x23</span><span class="p">)</span>
+        <span class="n">x25</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv5_1</span><span class="p">(</span><span class="n">x24</span><span class="p">)</span>
+        <span class="n">x26</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu5_1</span><span class="p">(</span><span class="n">x25</span><span class="p">)</span>
+        <span class="n">x27</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv5_2</span><span class="p">(</span><span class="n">x26</span><span class="p">)</span>
+        <span class="n">x28</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu5_2</span><span class="p">(</span><span class="n">x27</span><span class="p">)</span>
+        <span class="n">x29</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv5_3</span><span class="p">(</span><span class="n">x28</span><span class="p">)</span>
+        <span class="n">x30</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu5_3</span><span class="p">(</span><span class="n">x29</span><span class="p">)</span>
+        <span class="n">x31_preflatten</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool5</span><span class="p">(</span><span class="n">x30</span><span class="p">)</span>
+        <span class="n">x31</span> <span class="o">=</span> <span class="n">x31_preflatten</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x31_preflatten</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x32</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc6</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+        <span class="n">x33</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu6</span><span class="p">(</span><span class="n">x32</span><span class="p">)</span>
+        <span class="n">x34</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout6</span><span class="p">(</span><span class="n">x33</span><span class="p">)</span>
+        <span class="n">x35</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc7</span><span class="p">(</span><span class="n">x34</span><span class="p">)</span>
+        <span class="n">x36</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu7</span><span class="p">(</span><span class="n">x35</span><span class="p">)</span>
+        <span class="n">x37</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout7</span><span class="p">(</span><span class="n">x36</span><span class="p">)</span>
+        <span class="n">x38</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc8</span><span class="p">(</span><span class="n">x37</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x38</span>
+
+    
+<span class="k">def</span> <span class="nf">transform_key</span><span class="p">(</span><span class="n">state_dict</span><span class="p">):</span>
+    <span class="c1">#列表来自报错内容，可复制进来更改，创建一个新字典，将key 从post_names -&gt; names</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;conv1_1.weight&#34;</span><span class="p">,</span><span class="s2">&#34;conv1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;conv5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc8.bias&#34;</span><span class="p">]</span>
+    <span class="n">post_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;features.conv_1_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_1_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_2_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_3_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_4_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_1.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_2.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;features.conv_5_3.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc6.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc7.bias&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.weight&#34;</span><span class="p">,</span> <span class="s2">&#34;fc.fc8.bias&#34;</span><span class="p">]</span>
+
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+    <span class="n">new_state_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">new_state_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">state_dict</span><span class="p">[</span><span class="n">post_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">new_state_dict</span>
+
+    
+<span class="k">def</span> <span class="nf">vgg_face</span><span class="p">(</span><span class="n">weights_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>      <span class="c1">#  实例化模型，weights_path=None 表示随机初始化权重</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    load imported model instance
+</span><span class="s2">    Args:
+</span><span class="s2">        weights_path (str): If set, loads model weights from the given path
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Vgg_face_dag</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">weights_path</span><span class="p">:</span>
+        <span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">weights_path</span><span class="p">)</span>
+        <span class="n">new_state_dict</span> <span class="o">=</span> <span class="n">transform_key</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">new_state_dict</span><span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="n">vggface</span> <span class="o">=</span> <span class="n">vgg_face</span><span class="p">(</span><span class="n">weights_path</span><span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;D:\Dataset\models\vggface.pth&#34;</span><span class="p">)</span> <span class="c1"># 实例化模型， weights_path 是权重文件路径</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">变分自编码器</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">重装电脑导致matlab遇到的二三事</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">山东大学生物信息学实验 - 转录组学数据分析和富集分析</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg" loading="lazy" data-key="" data-hash="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Perl实验课程笔记</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DeathSprout
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#为什么不能在pytorch上丝滑使用vggface">为什么不能在pytorch上丝滑使用vggface</a></li>
+    <li><a href="#实践">实践</a>
+      <ol>
+        <li><a href="#所以问题出现了--pytorch-如何获得预训练模型">所以问题，出现了 ： pytorch 如何获得预训练模型</a></li>
+        <li><a href="#如何将权重载入到模型框架里">如何将权重载入到模型框架里？</a></li>
+        <li><a href="#完整代码">完整代码</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

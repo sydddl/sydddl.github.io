@@ -6,13 +6,31 @@
     <description>Recent content in Categories on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Dec 2021 17:53:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>深度学习</title>
       <link>https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
+      <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>编程</title>
+      <link>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>麻烦解决记录</title>
+      <link>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     
@@ -26,218 +44,47 @@
     </item>
     
     <item>
-      <title>解决方法记录</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>踩坑</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%B8%A9%E5%9D%91/</link>
-      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E8%B8%A9%E5%9D%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>麻烦</title>
-      <link>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6/</link>
-      <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>神经生物学</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/</link>
+      <title>Sci-tech</title>
+      <link>https://deathsprout.gitee.io/categories/sci-tech/</link>
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/</guid>
+      <guid>https://deathsprout.gitee.io/categories/sci-tech/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>计算神经生物学</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/</link>
+      <title>非正式学术文章</title>
+      <link>https://deathsprout.gitee.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</link>
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%AD%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>英文名词</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
-      <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://deathsprout.gitee.io/categories/python/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>https://deathsprout.gitee.io/categories/r/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>富集分析</title>
-      <link>https://deathsprout.gitee.io/categories/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数据分析</title>
-      <link>https://deathsprout.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>编程语言</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>课程笔记</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mcmctree</title>
-      <link>https://deathsprout.gitee.io/categories/mcmctree/</link>
-      <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/mcmctree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>分子定年</title>
-      <link>https://deathsprout.gitee.io/categories/%E5%88%86%E5%AD%90%E5%AE%9A%E5%B9%B4/</link>
-      <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E5%88%86%E5%AD%90%E5%AE%9A%E5%B9%B4/</guid>
+      <guid>https://deathsprout.gitee.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>生物信息学</title>
       <link>https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</link>
-      <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
+      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>chaotica</title>
-      <link>https://deathsprout.gitee.io/categories/chaotica/</link>
+      <title>Art</title>
+      <link>https://deathsprout.gitee.io/categories/art/</link>
       <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/chaotica/</guid>
+      <guid>https://deathsprout.gitee.io/categories/art/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>美术作品</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%BE%8E%E6%9C%AF%E4%BD%9C%E5%93%81/</link>
+      <title>Create</title>
+      <link>https://deathsprout.gitee.io/categories/create/</link>
       <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E7%BE%8E%E6%9C%AF%E4%BD%9C%E5%93%81/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>艺术</title>
-      <link>https://deathsprout.gitee.io/categories/%E8%89%BA%E6%9C%AF/</link>
-      <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E8%89%BA%E6%9C%AF/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Perl</title>
-      <link>https://deathsprout.gitee.io/categories/perl/</link>
-      <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/perl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Aspera</title>
-      <link>https://deathsprout.gitee.io/categories/aspera/</link>
-      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/aspera/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ENA</title>
-      <link>https://deathsprout.gitee.io/categories/ena/</link>
-      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/ena/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>文件下载</title>
-      <link>https://deathsprout.gitee.io/categories/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</link>
-      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cas9蛋白作用机制</title>
-      <link>https://deathsprout.gitee.io/categories/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/</link>
-      <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/cas9%E8%9B%8B%E7%99%BD%E4%BD%9C%E7%94%A8%E6%9C%BA%E5%88%B6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CRISPR-Cas</title>
-      <link>https://deathsprout.gitee.io/categories/crispr-cas/</link>
-      <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
-      
-      <guid>https://deathsprout.gitee.io/categories/crispr-cas/</guid>
+      <guid>https://deathsprout.gitee.io/categories/create/</guid>
       <description></description>
     </item>
     

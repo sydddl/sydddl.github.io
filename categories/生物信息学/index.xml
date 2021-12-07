@@ -6,7 +6,22 @@
     <description>Recent content in 生物信息学 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 May 2021 06:52:23 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Jun 2021 20:11:25 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
+      <link>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
+      <description>问题如下： |使用Python或者Perl编程，完成以下任务：
+ 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
+(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
+DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
+(b)	哪些GO发生了显著的上调或者下调的富集？
+文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
+proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.</description>
+    </item>
+    
     <item>
       <title>mcmctree 定年 —— 使用氨基酸序列</title>
       <link>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</link>
@@ -35,6 +50,24 @@ G000263075
 （空行）
 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
+    </item>
+    
+    <item>
+      <title>从ENA高速下载FASTQ文件</title>
+      <link>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
+      <description>系统：Ubuntu 20.0.4
+轮子：ena-fast-download
+环境需求：
+ An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3  Aspera 配置 在 https://www.ibm.com/aspera/connect/下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。
+配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加
+export PATH=/home/sprout/.aspera/connect/bin:$PATH asperaweb_id_dsa.putty 和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。
+export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH 使用 Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。
+./ena-fast-download.py ERR1701760 实际上这个脚本是用ERR1701760得到完整的路径去使用ascp，比如上面这个最终会生成(其中一个，双端测序数据，还一个2)
+ascp-T-1 300m -P33001-i $HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/ERR1701/000/ERR1701760/ ERR1701760 1.fastq.gz . 问题 我一开始使用下着下着会中断，不清楚是什么问题，可能是Ubuntu长时间不动熄屏导致，也可能是流程里有什么东西变了导致现在用不了。 单纯的运行ascp脚本报错如下：
+Session Stop (Error:Session data transfer timeout(server),Session data transfer timeout) 后来发现是实验室网络问题，在宿舍运行速度可以达到60MB/s。</description>
     </item>
     
   </channel>

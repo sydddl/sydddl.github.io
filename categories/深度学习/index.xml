@@ -6,7 +6,23 @@
     <description>Recent content in 深度学习 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Dec 2021 17:53:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vggface Pytorch 完全指南</title>
+      <link>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
+      
+      <guid>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。
+ 文献 官网  为什么不能在pytorch上丝滑使用vggface 首先，vggface是基于vgg16架构的，pytorch本身也提供了vgg16等预训练模型（categories是imagenet_classes），见VGG-NETS。
+但是pytorch没有针对vggface数据集训练的vggface的预训练模型，你可以在官网的下载处看到提供的如下几种格式：
+ vgg_face_matconvnet.tar.gz: Face detection and VGG Face descriptor source code and models (MatConvNet) vgg_face_torch.tar.gz: VGG Face descriptor source code and models (Torch) vgg_face_caffe.tar.gz: VGG Face descriptor source code and models (Caffe)  也许你会想，这不是有Torch格式的预训练模型吗？ 如果进行尝试，会发现是不行的。
+困难的真正原因是，之前的torch是使用lua语言，之后在2017年根据python重构了代码变成pytorch，而vgg-face的作者提供的是torch模型，而不是pytorch的模型。VGGface2是支持的（但vggface2数据集已经寄了），还是因为vggface有些年份了。
+实践 所以问题，出现了 ： pytorch 如何获得预训练模型 过去有
+from torch.utils.serialization import load_lua x = load_lua(&amp;#39;x.t7&amp;#39;) 但pytorch在1.0之后删除了torch.utils.serialization，目前可以通过torchfile.load读取，但会报错：
+TypeError: unhashable type: &amp;#39;numpy.ndarray&amp;#39; As of PyTorch 1.0 torch.utils.serialization is completely removed. Hence no one can import models from Lua Torch into PyTorch anymore.</description>
+    </item>
+    
     <item>
       <title>变分自编码器</title>
       <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
