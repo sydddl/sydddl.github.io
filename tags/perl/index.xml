@@ -13,9 +13,7 @@
       <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
-      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
-sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
-#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.</description>
+      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学pyt</description>
     </item>
     
   </channel>

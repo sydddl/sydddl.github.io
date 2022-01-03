@@ -207,6 +207,156 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         </item>
         <item>
+        <title>Blog更改日志</title>
+        <link>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</link>
+        <pubDate>Mon, 06 Dec 2021 22:31:49 +0800</pubDate>
+        
+        <guid>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</guid>
+        <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 从 &lt;strong&gt;HugoTex&lt;/strong&gt; theme 更换到 &lt;strong&gt;stack&lt;/strong&gt; theme&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 更改 点击home会在新页面弹出 ——&amp;gt; 本页刷新&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 更改文章的归档类别，精简 categories&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Google 百度等收录网页&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 更换挂载服务商&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;垃圾gitee&lt;/del&gt;（ gitee page 显示index.json可能含有违规内容，删去，导致blog的搜索功能失效 ）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加字数统计&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 单文章字数统计&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; footer 总字数和文章数统计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加更多&lt;code&gt;Markdown&lt;/code&gt;支持&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支持表情&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支持github格式的 !!! note 和 !!! danger&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; github 风格的 chackbox ，明显的蓝色 √&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 将KaTex支持升级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 页面美化&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 字体&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 更换字体&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 调整字体大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 颜色&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 页面配色
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 底色&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 滑块颜色&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a class=&#34;link&#34; href=&#34;&#34; &gt;link 颜色&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 赛博朋克块阴影&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 头像与名称居中显示&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 调整页面比例，比较喜欢缩放到80%~90%&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 使用物色到的icon&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 字数统计、显示时间的icon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 修改 card 圆角 10 $\Rightarrow$ 7&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 圆角 tag &lt;code&gt;--tag-border-radius: 4px;&lt;/code&gt; $\Rightarrow$ 20&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 社交&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 编写自己的 about&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加评论功能&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 完善其他跳转信息，如脸书&lt;del&gt;可是我没有&lt;/del&gt;、知乎等账号链接&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加友链&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;记录&#34;&gt;记录&lt;/h2&gt;
+&lt;h3 id=&#34;hugotex-theme-更换到-stack-theme&#34;&gt;&lt;strong&gt;HugoTex&lt;/strong&gt; theme 更换到 &lt;strong&gt;stack&lt;/strong&gt; theme&lt;/h3&gt;
+&lt;h3 id=&#34;添加字数统计&#34;&gt;添加字数统计&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;单文章字数统计&lt;/strong&gt; :
+借鉴小球飞鱼，改&lt;code&gt;layouts\partials\article\components\details.html&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;        {{ if .Site.Params.article.readingTime }} 
+            &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+                {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;文本&amp;#34; }} 
+                &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-words&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+                    {{ .WordCount }}字
+                &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;并在&lt;code&gt;config.yaml&lt;/code&gt;设置&lt;code&gt;hasCJKLanguage: true&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;总字数和文章数统计&lt;/strong&gt; : &lt;a class=&#34;link&#34; href=&#34;https://immmmm.com/hugo-total-count/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo 总文章数和总字数&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;页面美化&#34;&gt;页面美化&lt;/h3&gt;
+&lt;h4 id=&#34;字体&#34;&gt;字体&lt;/h4&gt;
+&lt;h5 id=&#34;更换字体&#34;&gt;更换字体&lt;/h5&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mantyke.icu/2021/f9f0ec87/#%E4%BF%AE%E6%94%B9%E7%BD%91%E7%AB%99%E5%AD%97%E4%BD%93&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;看对应部分&lt;/a&gt;，简单的复制粘贴
+(不过之后想换成方正新书宋或者冬青黑，英文标题部分用贝连体)&lt;/p&gt;
+&lt;h5 id=&#34;调整字体大小&#34;&gt;调整字体大小&lt;/h5&gt;
+&lt;p&gt;位置 &lt;code&gt;assets\scss\variables.scss&lt;/code&gt; 中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;--article-font-size: 1.7rem;&lt;/code&gt;  $\Rightarrow$ 1.9&lt;/p&gt;
+&lt;h3 id=&#34;颜色&#34;&gt;颜色&lt;/h3&gt;
+&lt;h4 id=&#34;页面配色&#34;&gt;页面配色&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;底色&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;light ☞ 改了一圈 仅将背景色弄浅了一点&lt;/li&gt;
+&lt;li&gt;dark  ☞ &lt;code&gt;--body-background: #1e202b;&lt;/code&gt;  颜色是从中国传统色漆黑调浅&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;滑块颜色&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;light
+&lt;code&gt;--scrollbar-thumb: hsla(170, 94%, 55%, 0.575);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;dark
+&lt;code&gt;--scrollbar-thumb: #c91f37;&lt;/code&gt;   赫赤色&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;link-颜色&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;link 颜色&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;从灰色改为 &lt;code&gt;--link-background-color: 1, 255, 179;&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;赛博朋克块阴影&#34;&gt;赛博朋克块阴影&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;na&#34;&gt;--shadow-l1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;67&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;255&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;230&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.719&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.04&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;253&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;113&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.397&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mantyke.icu/2021/f9f0ec87/#%E4%BF%AE%E6%94%B9toc%E6%A0%B7%E5%BC%8F&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;小球飞鱼 | Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/CSS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CSS（层叠样式表）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://colors.ichuantong.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;中国传统颜色手册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mantyke.icu/2021/comment/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;小球飞鱼 | Hugo | 为 Blog 增加评论区&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.norevi.icu/2021/hugo%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;No.revi | Hugo｜引入外部字体&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.norevi.icu/2021/waline%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%83%85/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;No.revi | Waline｜添加自定义表情&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>变分自编码器</title>
         <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
         <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
@@ -1349,6 +1499,10 @@ Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.&lt;/p&gt;
 &lt;li&gt;封闭性 closedness&lt;/li&gt;
 &lt;li&gt;不透明的、难理解的、晦涩的  opaque&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h3 id=&#34;认知神经科学&#34;&gt;认知神经科学&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h3 id=&#34;论文中杂项&#34;&gt;论文中杂项&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;信条 tenet&lt;/li&gt;
@@ -1391,6 +1545,7 @@ Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.&lt;/p&gt;
 &lt;li&gt;精细的；精巧的 subtler&lt;/li&gt;
 &lt;li&gt;负责的；易控制的；经得起检验的 amenable&lt;/li&gt;
 &lt;li&gt;退化 degrad&lt;/li&gt;
+&lt;li&gt;处于个人的原因 for its own sake&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;物种专有名词&#34;&gt;物种专有名词&lt;/h3&gt;
 &lt;ol&gt;

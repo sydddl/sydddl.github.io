@@ -13,14 +13,7 @@
       <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
-      <description>VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。
- 文献 官网  为什么不能在pytorch上丝滑使用vggface 首先，vggface是基于vgg16架构的，pytorch本身也提供了vgg16等预训练模型（categories是imagenet_classes），见VGG-NETS。
-但是pytorch没有针对vggface数据集训练的vggface的预训练模型，你可以在官网的下载处看到提供的如下几种格式：
- vgg_face_matconvnet.tar.gz: Face detection and VGG Face descriptor source code and models (MatConvNet) vgg_face_torch.tar.gz: VGG Face descriptor source code and models (Torch) vgg_face_caffe.tar.gz: VGG Face descriptor source code and models (Caffe)  也许你会想，这不是有Torch格式的预训练模型吗？ 如果进行尝试，会发现是不行的。
-困难的真正原因是，之前的torch是使用lua语言，之后在2017年根据python重构了代码变成pytorch，而vgg-face的作者提供的是torch模型，而不是pytorch的模型。VGGface2是支持的（但vggface2数据集已经寄了），还是因为vggface有些年份了。
-实践 所以问题，出现了 ： pytorch 如何获得预训练模型 过去有
-from torch.utils.serialization import load_lua x = load_lua(&amp;#39;x.t7&amp;#39;) 但pytorch在1.0之后删除了torch.utils.serialization，目前可以通过torchfile.load读取，但会报错：
-TypeError: unhashable type: &amp;#39;numpy.ndarray&amp;#39; As of PyTorch 1.0 torch.utils.serialization is completely removed. Hence no one can import models from Lua Torch into PyTorch anymore.</description>
+      <description>VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。 文献 官网 为什么不能在pytor</description>
     </item>
     
     <item>
@@ -29,22 +22,7 @@ TypeError: unhashable type: &amp;#39;numpy.ndarray&amp;#39; As of PyTorch 1.0 to
       <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
-      <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
- Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
-  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
-维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
-参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
-$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
- 在花书中，缩写为 $L(x,g(f(x)))$
- Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
-$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
-$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
-最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
-Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
-这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
- 
- Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
- Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。</description>
+      <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。 Encoder network $g_\</description>
     </item>
     
   </channel>

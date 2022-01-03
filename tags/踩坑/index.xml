@@ -13,13 +13,7 @@
       <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
-      <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。
-  问题一     mex -setup
-    错误使用 mex 未找到支持的编译器。您可以安装免费提供的 MinGW-w64 C/C++ 编译器；请参阅安装 MinGW-w64 编译器。有关更多选项，请访问 https://www.mathworks.com/support/compilers。
-  重装系统之前，c的编译器电脑中是有MinGW以及vscode的，观察环境变量所指的位置仍然有这些文件，（但注册表那边肯定是无了）尝试重新安装了一个MinGW并配置好环境变量，仍然无用。一开始是怀疑配置文件中编辑器的版本和地址与实际情况不符，也因为我的matlab是2018b，顺手删了更新下2020a，发现问题仍然存在。
-详细报错
-&amp;gt;&amp;gt; mex -setup -V 详细模式已开。 略 ... 正在查找编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;... ... 正在查找环境变量 &amp;#39;MW_MINGW64_LOC&amp;#39;...否。 找不到已安装的编译器 &amp;#39;MinGW64 Compiler (C)&amp;#39;。 略 可以看出matlab找MinGW编辑器是以MW_MINGW64_LOC为环境变量名的,之前我都是将它的环境变量放到path里面去,在重新创建一个名为MW_MINGW64_LOC的环境变量,值设为新路径之后(D:\for_sci\new_minGW\mingw64)。
-&amp;gt;&amp;gt; setenv(&amp;#39;MW_MINGW64_LOC&amp;#39;,&amp;#39;D:\for_sci\new_minGW\mingw64&amp;#39;) &amp;gt;&amp;gt; mex -setup MEX 配置为使用 &amp;#39;MinGW64 Compiler (C)&amp;#39; 以进行 C 语言编译。 要选择不同的语言，请从以下选项中选择一种命令: mex -setup C++ mex -setup FORTRAN MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。 MEX 配置为使用 &amp;#39;MinGW64 Compiler (C++)&amp;#39; 以进行 C++ 语言编译。   问题二   &amp;gt;&amp;gt; vl_compilenn(&amp;#39;verbose&amp;#39;, 1) 警告: 以后的版本中将会取消对 toolboxdir(&amp;#39;distcomp&amp;#39;) 的支持。请改用 toolboxdir(&amp;#39;parallel&amp;#39;)。 &amp;gt; In toolboxdir (line 49) In vl_compilenn (line 367) 警告: CL.</description>
+      <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用mat</description>
     </item>
     
     <item>
@@ -28,28 +22,7 @@
       <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
-      <description>常见定年软件
- 最大似然法：  r8s Reltime   贝叶斯法：  PAML-MCMCTree（PAML4软件包内含） 其他（Timetree）    这里是mcmctree的手册
-事先声明，mcmctree使用氨基酸序列进行定年比使用核酸序列麻烦的多，而且在此之前，能找到帖子的都语焉不详，手册里的Tutorial 4是主要参考，可以先跑一遍示例文件，坑主要是体现在文件格式上。
-若使用氨基酸序列来进行分析，由于mcmctree不能选择较好的氨基酸替换模型进行分析，需要自己手动运行codeml进行分析后，在生成中间文件用于运行mcmctree。若非是因为数据原因必须用氨基酸序列进行定年，还是推荐使用核酸序列。
-前置 需求文件：(后面称其为那三个文件)
- 多序列比对文件 带有校准信息有根树 控制文件 mcmctree.ctl  前两个文件的格式很重要，参考examples里的abglobin.aa 和 abglobin.trees
- 
- 
-树文件一定保证有至少一个时间校正点，&amp;lsquo;B(1.7,1.9)&amp;lsquo;的意思是最外面的这个分支点的时间，经化石证据矫正约束在170Mya到190Mya1年之间。
-多序列对比文件第一行是： 序列数 序列长 （大写的）i 下面每行是一个序列名，和后面序列对应，序列名与序列之间的有空行，数字则是表明其下的序列们第一个位置是第几位。
-我将fasta文件转变为phylip后，如下图所示，序列名并没有单独成行，它的格式并不能直接用，会报错。我也没找到合适的现有格式能方便的转换过去。 我参考的其他博客都是将其转化为phylip就能正常使用，唯一的区别是他们使用核酸序列而我用的是氨基酸序列，这是我踩的坑。
- 
-数字不要紧，我在第一行后面加了个I后，除了第一行以外都能识别出，下面是识别过程的输出。  
-所以重点是将
-G000238395 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-G000263075 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-这种形式变成下面那种形式
-G000238395
-G000263075
-（空行）
-IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
+      <description>常见定年软件 最大似然法： r8s Reltime 贝叶斯法： PAML-MCMCTree（PAML4软件包内含） 其他（Timetree） 这里是mcmctree的手册</description>
     </item>
     
   </channel>

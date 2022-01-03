@@ -13,14 +13,7 @@
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
-      <description>关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性， LTP，稳态可塑性
-神经科学领域，可变性或可修饰性被称为可塑性（Plasticity），可塑性是神经 系统的重要特性，很少用于生命科学的其他领域。神经可塑性的表现形式涉及多 个层次，也涉及多种多样的影响因素，可以说神经可塑性的内涵非常广泛，从宏 观上遵循特定模式形成的行为逻辑，到微观上分子作用导致的结构变化等等 [1]。简要的说，神经可塑性是包括了神经组合形式改变、神经活动方式变化、神经发 育演化、神经损伤修复等一系列体现了生物体神经系统的适应性的自然属性。
-神经可塑性就物理尺度上可以分成三个层次，宏观层次、细胞层次（介观层 次）、分子层次（微观层次）。宏观层次上就影响对象还可以分成:涉及特定脑区， 影响个体生物信息加工和行为逻辑的认知可塑性;涉及非特定脑区，脑损伤后引 起功能重组的功能可塑性;以及功能重组过程中结构改变表现出的结构可塑性。 细胞层次上，神经可塑性的主要表现形式是突触可塑性，具体又可划分为突触传 递的可塑性（易化、压抑、PTP、长时程增强（Long-term potentiation（LTP））、 长时程抑制（Long-term depression（LTD）、PHP、突触缩放等等）和突触再可塑 性（描述可塑性的可塑性）。分子层次主要指神经可塑性的分子机制，大体包括 参与突触可塑性的蛋白分子和离子、形成神经可塑性的信号通路、控制神经系统 发育的遗传物质。
-宏观水平上的神经可塑性 认知可塑性 对认知可塑性的概念向前追溯，甚至可以追溯到亚里士多德在《论灵魂》中 的蜡块说，随着科技的进步，人们也意识到神经是认知活动的主要载体，但在 Hebb 提出神经学习理论之前，这些认知更多的是没有理论框架的猜想和纯粹事 实[2]。Hebb 在他的书《行为的组织》中，提出现在称为赫布定律的假设:“当神 经元A 的轴突与神经元B 很近并重复持续的参与了对B 的兴奋时，这两个神经元 或其中一个便会发生某些生长过程或代谢变化，致使A使B兴奋的效能增强了。” [3] 在后来，有相当多的研究从分子和细胞层面证明了这一假设的正确性 [4]，Markram 在赫布理论的基础上，提出了“脉冲时间依赖可塑性（STDP）”的理论， 通过神经元激发的时间顺序来影响神经元之间的联系的强弱，即突触对时间信号 具有敏感性，时间仅在数十毫秒内，正相关的突触后放电会引起突触联系增强， 负相关则相反 [5] 。
-根据赫布理论和后续的大量研究，对脑的记忆、知觉等功能的认识逐渐丰富。 就记忆形成方面来说，记忆是外界刺激对神经元集合作用的结果，以神经元集合 间突触强度改变的形式分布于大脑中，在记忆形成的过程中，神经元结构进行快 速的重构，神经元间会以快速的协同放电来加强相关神经元之间的连接，而这种 连接是广泛存在于大脑，包括纹状体、杏仁核、前额叶、小脑和内侧颞叶等，并 非集中于某个区域，但不同的解剖区域储存的记忆的类型是不同的，比如前额叶 脑区与工作记忆有关，海马与空间记忆高度相关等 [6] 。
-神经可塑性在行为方面主要体现为条件反射上，这是关联性学习，由于在记 忆提取时会激活形成该记忆的相关连接和脑区 [7] ，可以将条件反射视为通过学习 产生的记忆中的一种。经典条件反射指将正常不引起反应的条件刺激和会引起某 种反应的非条件刺激（比如食物（非条件刺激）对于分泌唾液）在时序上联系起 来。其他还有操作式条件反射（将一种动作与有意义刺激联系起来）、评价性条 件反射 [8] （当一条件刺激与另一积极或消极刺激反复联系起来，被试者对原刺激 的喜好发生改变）等类型。
-功能可塑性和结构可塑性 功能可塑性体现在神经系统功能重组的过程中，功能重组指神经系统损伤后， 有一定能力去进行结构改变和功能代偿，进而代替或部分代替受损区域原有功能 [9] 。虽然发育成熟的神经细胞不具备增殖和分裂能力，但神经元会持续具有形成 新的突触连接和修饰自身显微形态的能力。按照损伤发生的部位，可以将功能可 塑性划分为中枢神经系统功能可塑性和脊髓功能可塑性。
-相对于中枢神经系统，脊髓的功能可塑性单一且较弱，主要表现为不完全损 伤后出芽，主要包括再生性出芽（regenerating sprouting，轴突受损的神经元存活， 近侧段长出新芽）、侧枝出芽（lateral sprouting，整个神经元死亡，附近未受伤神 经元从侧枝上长出新芽）、代偿性出芽（compensatory sprouting，发育中神经元轴 突部分侧枝死亡，正常侧枝发出新芽），而完全性损伤后运动功能的恢复机制尚 不明确 [10] 。</description>
+      <description>关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性， LTP，稳态可塑性 神经科学领域，可变性或可修饰性被称为可塑性（Pla</description>
     </item>
     
     <item>
@@ -29,13 +22,7 @@
       <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
-      <description>问题如下： |使用Python或者Perl编程，完成以下任务：
- 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
-(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
-DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
-(b)	哪些GO发生了显著的上调或者下调的富集？
-文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
-proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.</description>
+      <description>问题如下： |使用Python或者Perl编程，完成以下任务： 1.tab是Trichoderma reesei QM6a的annotation文件，2.ob</description>
     </item>
     
     <item>
@@ -44,28 +31,7 @@ proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	bi
       <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
-      <description>常见定年软件
- 最大似然法：  r8s Reltime   贝叶斯法：  PAML-MCMCTree（PAML4软件包内含） 其他（Timetree）    这里是mcmctree的手册
-事先声明，mcmctree使用氨基酸序列进行定年比使用核酸序列麻烦的多，而且在此之前，能找到帖子的都语焉不详，手册里的Tutorial 4是主要参考，可以先跑一遍示例文件，坑主要是体现在文件格式上。
-若使用氨基酸序列来进行分析，由于mcmctree不能选择较好的氨基酸替换模型进行分析，需要自己手动运行codeml进行分析后，在生成中间文件用于运行mcmctree。若非是因为数据原因必须用氨基酸序列进行定年，还是推荐使用核酸序列。
-前置 需求文件：(后面称其为那三个文件)
- 多序列比对文件 带有校准信息有根树 控制文件 mcmctree.ctl  前两个文件的格式很重要，参考examples里的abglobin.aa 和 abglobin.trees
- 
- 
-树文件一定保证有至少一个时间校正点，&amp;lsquo;B(1.7,1.9)&amp;lsquo;的意思是最外面的这个分支点的时间，经化石证据矫正约束在170Mya到190Mya1年之间。
-多序列对比文件第一行是： 序列数 序列长 （大写的）i 下面每行是一个序列名，和后面序列对应，序列名与序列之间的有空行，数字则是表明其下的序列们第一个位置是第几位。
-我将fasta文件转变为phylip后，如下图所示，序列名并没有单独成行，它的格式并不能直接用，会报错。我也没找到合适的现有格式能方便的转换过去。 我参考的其他博客都是将其转化为phylip就能正常使用，唯一的区别是他们使用核酸序列而我用的是氨基酸序列，这是我踩的坑。
- 
-数字不要紧，我在第一行后面加了个I后，除了第一行以外都能识别出，下面是识别过程的输出。  
-所以重点是将
-G000238395 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-G000263075 IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-这种形式变成下面那种形式
-G000238395
-G000263075
-（空行）
-IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM
-IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
+      <description>常见定年软件 最大似然法： r8s Reltime 贝叶斯法： PAML-MCMCTree（PAML4软件包内含） 其他（Timetree） 这里是mcmctree的手册</description>
     </item>
     
     <item>
@@ -74,16 +40,7 @@ IVDLIDKVGL KDYQACCPFH NEKSPSFTVS QDKYHCFGCG ANGNAISFVM</description>
       <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
-      <description>系统：Ubuntu 20.0.4
-轮子：ena-fast-download
-环境需求：
- An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3  Aspera 配置 在 https://www.ibm.com/aspera/connect/下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。
-配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加
-export PATH=/home/sprout/.aspera/connect/bin:$PATH asperaweb_id_dsa.putty 和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。
-export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH 使用 Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。
-./ena-fast-download.py ERR1701760 实际上这个脚本是用ERR1701760得到完整的路径去使用ascp，比如上面这个最终会生成(其中一个，双端测序数据，还一个2)
-ascp-T-1 300m -P33001-i $HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/ERR1701/000/ERR1701760/ ERR1701760 1.fastq.gz . 问题 我一开始使用下着下着会中断，不清楚是什么问题，可能是Ubuntu长时间不动熄屏导致，也可能是流程里有什么东西变了导致现在用不了。 单纯的运行ascp脚本报错如下：
-Session Stop (Error:Session data transfer timeout(server),Session data transfer timeout) 后来发现是实验室网络问题，在宿舍运行速度可以达到60MB/s。</description>
+      <description>系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在</description>
     </item>
     
   </channel>

@@ -13,22 +13,7 @@
       <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
-      <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。
- Encoder network $g_\phi(.)$：把原始的高维输入转换成潜在的低维编码，输入大小大于输出大小。 Decoder network $f_\theta(.)$：从编码中复原数据. bottleneck layer 是 $z=g_\phi(x)$  花书以 $h=f(x)$ 表示编码器的输出
-  重建数据 ：$x&#39;=f_\theta(g_\phi(x))$   
-维度压缩就像PCA或MF，而从编码再重建数据，好的中间表示不仅可以捕获潜在变量，也有利于整个的解压缩过程，属于是对自编码器进行了显式优化。
-参数$(\theta,\phi)$一起学习，令$x\approx f_\theta(g_\phi(x))$,有很多方法可以量化这两个向量之间的差异，比如激活函数为sigmoid时的交叉熵，或者简单的MSE损失
-$$L_{AE}(θ,ϕ)=\frac{1}{n}∑_{i=1}^{n}(x^{(i)}−f_θ(g_ϕ(x^{(i)})))^2$$
- 在花书中，缩写为 $L(x,g(f(x)))$
- Denoising Autoencoder (DAE) 当网络参数大于数据点数的时候，面临着过拟合的风险，为避免过拟合和提高鲁棒性，输入被随机方式加入噪声或掩盖输入向量的某些值而部分损坏，记为
-$$\tilde{x}^{(i)} \sim \mathcal{M_D}(\tilde{x}^{(i)}|x^{(i)})$$
-$\mathcal{M_D}$定义了从真实的数据样本到噪声或损坏的数据样本的映射
-最小化 $L(x,g(f(\tilde{x})))$，重建的数据是无噪声的  
-Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激活，一个隐藏层的神经元应该在大部分时间被灭活。 一隐藏层神经元被激活的比例是一个参数 $\hat{\rho}$ ,期望应该是一个很小的数 $\rho$ (叫做稀疏参数),通常 $\rho=0.05$
-这个约束是通过在损失函数中添加一个惩罚项实现的，KL散度测量了平均值为$\rho$和$\hat{\rho}$两个伯努利分布（Bernoulli distributions）之间的差别。用超参数$\beta$来控制对稀疏损失的惩罚程度。
- 
- Notation： 关于自编码器符号，花书和From Autoencoder to Beta-VAE是有区别的，具体是Encoder、Decoder（相反）和中间数据表示符号（z 、h）不同.
- Structured probabilistic model 结构化概率模型使用图来描述概率分布中随机变量之间的直接相互作用,从而描述一个概率分布，这些模型也通常被称为图模型（graphical model） 。</description>
+      <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。 Encoder network $g_\</description>
     </item>
     
     <item>
@@ -37,11 +22,7 @@ Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激�
       <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
-      <description>神经生物   中枢神经系统 central nervous system CNS
-  脑 brain
- 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem  中脑 midbrain 脑桥 pons 延髓 medulla      脊髓 spinal cord
-    神经解剖学 neurianatomical 组织学切面
- 冠状切面 coronal section：又名横截面，拦腰的那种 矢状切面 sagittal section： 从头劈到尾，左右分开 水平切面 horizontal section：字面意思    神经节 ganglia（ganglion（组织、医学范围，说神经节细胞一般是ganglion cell））：神经元集群</description>
+      <description>神经生物 中枢神经系统 central nervous system CNS 脑 brain 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem 中脑 midbrain 脑桥 pons 延髓 medulla 脊髓 spinal cord 神经解剖学 neurianatomical 组织学切</description>
     </item>
     
     <item>
@@ -50,13 +31,7 @@ Sparse Autoencoder 迫使模型在同一时间只有少量的隐藏单元被激�
       <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
-      <description>问题如下： |使用Python或者Perl编程，完成以下任务：
- 1.tab是Trichoderma reesei QM6a的annotation文件，2.obo是GO的ontology文件，根据ontology文件中所记录的GO关系：  (a)	获得已注释的所有基因属于哪一个GO的全部列表
-(b)	计算Trichoderma reesei QM6a中每一个GO分别有多少个基因。
-DEG.txt中记录了某一次转录组分析的差异基因结果。请计算：  (a)	每一个GO中所属的基因显著上调和下调的个数有多少？
-(b)	哪些GO发生了显著的上调或者下调的富集？
-文件解释： 先说一下文件，1.tab是如下图所示的annotation文件，大概两万多行，有proteinId，gotermId，goName，gotermType，goAcc的信息，其中本次用到的的是proteinId和goAcc。goAcc是该基因所属的GO号，形式是GO:加七位数字。一个基因能对应多个GO id，一个GO id也能对应多个基因。
-proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	biological_process	GO:0006413 1673	2855	cytoplasm	cellular_component	GO:0005737 1673	1108	translation initiation factor activity	molecular_function	GO:0003743 1673	1096	RNA binding	molecular_function	GO:0003723 1692	3503	protein biosynthesis	biological_process	GO:0006412 1692	2953	ribosome	cellular_component	GO:0005840 1692	2746	intracellular	cellular_component	GO:0005622 1692	1107	structural constituent of ribosome	molecular_function	GO:0003735 1692	1096	RNA binding	molecular_function	GO:0003723 1702	3444	transcription	biological_process	GO:0006350 1702	1233	DNA-directed DNA polymerase activity	molecular_function	GO:0003887 1702	1056	DNA binding	molecular_function	GO:0003677 1702	10782	sigma DNA polymerase activity	molecular_function	GO:0019984 1702	8197	theta DNA polymerase activity	molecular_function	GO:0016452 1702	8196	nu DNA polymerase activity	molecular_function	GO:0016451 1702	8195	kappa DNA polymerase activity	molecular_function	GO:0016450 1702	8194	lambda DNA polymerase activity	molecular_function	GO:0016449 1702	8193	mu DNA polymerase activity	molecular_function	2.</description>
+      <description>问题如下： |使用Python或者Perl编程，完成以下任务： 1.tab是Trichoderma reesei QM6a的annotation文件，2.ob</description>
     </item>
     
     <item>
@@ -65,9 +40,7 @@ proteinId	gotermId	goName	gotermType	goAcc 1673	3504	translational initiation	bi
       <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
       
       <guid>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
-      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）
-sort #对数组排序（默认按照字符串排序） reverse #列表反向排列 sort{$a cmp $b}; #（由小到大） sort{$b cmp $a}; #（由大到小） sort{$a &amp;lt;=&amp;gt; $b}; #(按照数值进行排序) sort {$h{$a}&amp;lt;=&amp;gt;$h{$b}} key %h; #对哈希 比value排key # 用 . 可以将字符串连接 substr $总串,开始位置,长度,该内容替换被取出的内容;#用来取子串 index $字符串,&amp;#34;寻找的内容&amp;#34;,起始位置;#搜寻字符串内容，返回位置 my $str = &amp;#34;xal&amp;#34; x 5; #输出xalxalxalxalxal join &amp;#34;自定分隔符&amp;#34;,@arr; #连接数组中所有的字符串 split /自定分割符/,$str; #分割字符串 2021/04/28
-#! /usr/bin/perl use strict; use warnings; my @lines; #数组的每一项对应文件的每一行 my $tmp; #依次把每一行赋值给临时变量 open IN,&amp;#34;testout.txt&amp;#34; or die &amp;#34;fail to open testout.txt to read:$!\n&amp;#34;; while ($tmp = &amp;lt;IN&amp;gt;) { chomp $tmp; #把字符串尾巴的换行符切掉 print&amp;#34;line:|&amp;#34;,$tmp,&amp;#34;|\n&amp;#34;; } while (&amp;lt;IN&amp;gt;) { #因为上一个while以及把指针指到文件末尾了，此while将没有输出 print&amp;#34;line:|&amp;#34;,$_,&amp;#34;|\n&amp;#34;;#临时变量 } close IN; open IN,&amp;#34;testout.</description>
+      <description>关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学pyt</description>
     </item>
     
   </channel>
