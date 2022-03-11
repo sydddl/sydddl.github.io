@@ -13,7 +13,7 @@
 <meta name="twitter:title" content="分形艺术 Chaotica作品">
 <meta name="twitter:description" content="chaotica 这个软件是我在一年前发现，那时候正满怀热情的学习Blender，在那之前还兴致勃勃的修完了许德民教授讲关于抽象艺术的尔雅网课。 老师关于抽象"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://i.loli.net/2021/05/24/nQovGt7zCABKLXZ.png' />
-    <link rel="shortcut icon" href="icons/BRAIN%20SIMULATION.svg" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
 <style>
     :root {
         --article-font-family: "Noto Serif SC", var(--base-font-family);
@@ -439,47 +439,66 @@ Chaotica是一款新一代分形艺术应用程序，新手用户可以享受编
      
     
         
-    <div class="disqus-container">
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
+    <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+<div id="waline" class="waline-container"></div>
 
 <style>
-    .disqus-container {
+    .waline-container {
         background-color: var(--card-background);
         border-radius: var(--card-border-radius);
         box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
+        padding: 3%;  
+ 
     }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (DISQUS) {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
+    .waline-container .vcount {
+        color: var(--card-text-color-main);
+    }
+ 
+     
+    :root{
+        --waline-theme-color: #34495e;  
+        --waline-active-color: #bababa;  
+        --waline-badge-color: #34495e;  
+        --waline-avatar-size: 5rem;
+        --waline-dark-grey: #34495e;  
+    }
+ 
+   
+    :root[data-scheme="dark"] {
+        --waline-theme-color: #acc6e0;
+        --waline-white: #34495e;  
+        --waline-active-color: #8ab1d8;
+        --waline-light-grey: #666;
+        --waline-dark-grey: #acc6e0;  
+        --waline-badge-color: #acc6e0;
+ 
+         
+        --waline-text-color: rgba(255, 255, 255, 0.7);
+        --waline-bgcolor: #515151;
+        --waline-bgcolor-light: #66696b; 
+        --waline-border-color: #9B9C9C;
+        --waline-disable-bgcolor: #444;
+        --waline-disable-color: #272727;
+ 
+         
+        --waline-bq-color:  #9B9C9C;  
+ 
+         
+        --waline-info-bgcolor: #acc6e0;
+        --waline-info-color: #9B9C9C;
+    }
+        .v[data-class=v] .vcontent .vemoji {
+         width:2.2em;  
+         margin:.25em
+     }
+ </style><script>
+    
+    new Waline({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://cdn.jsdelivr.net/gh/norevi/blob-emoji-for-waline@2.0/blobs-gif"],"lang":"zh-CN","locale":{"admin":"Admin"},"requiredMeta":["name","email","url"],"serverURL":"https://blog-api-m42xyj2iz-sydddl.vercel.app/","visitor":true});
 </script>
+
+    
+
+    
 
     
 
@@ -524,7 +543,7 @@ Chaotica是一款新一代分形艺术应用程序，新手用户可以享受编
         
             2020 - 
         
-        2022  - | - DeathSprout <i class="fas fa-bell"></i> <br> 码了 28727 字 · 共 13 篇文章</br><span><p>
+        2022  - | - DeathSprout <i class="fas fa-bell"></i> <br> 码了 31624 字 · 共 15 篇文章</br><span><p>
     </section>
 
     <section class="powerby">

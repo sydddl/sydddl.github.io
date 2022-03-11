@@ -13,7 +13,7 @@
 <meta name="twitter:title" content="Cas Protein">
 <meta name="twitter:description" content="同样发表在知乎上 为什么写这篇文章？ 这是我在为完成《蛋白质工程》课程展示任务过程中写的，选题自然是cas蛋白，我发现在网络和各类博客上反而很难"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://pica.zhimg.com/v2-ffc7d038737eaeb8f680cf26b6b45df1_1440w.jpg?source=172ae18b' />
-    <link rel="shortcut icon" href="icons/BRAIN%20SIMULATION.svg" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
 <style>
     :root {
         --article-font-family: "Noto Serif SC", var(--base-font-family);
@@ -239,7 +239,9 @@ a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图�
 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5'-NGG-3&rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 <h3 id="cas9蛋白功能及作用机制">Cas9蛋白功能及作用机制</h3>
 <h4 id="cas9蛋白在crispr-cas系统中的功能">Cas9蛋白在CRISPR-Cas系统中的功能</h4>
-<!-- raw HTML omitted -->
+<div align=center>
+<img src="https://gitee.com/deathsprout/giteeimage/raw/master/type2.png" width = 70% height = 60%>
+</div>
 <p>上图8显示的是Type II 系统的作用过程。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>
 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。</p>
 <h3 id="cas9蛋白功能的机制">Cas9蛋白功能的机制</h3>
@@ -285,10 +287,12 @@ a.Cas9中PAM结合区的放大视图。b.Cas9与PAM相互作用示意图,红圈�
 	</a>
 	
 </figure></p>
-<!-- raw HTML omitted -->
+<div style="float:left;border:solid 1px 000;margin:2px;">
+<img align="left"
+src="https://gitee.com/deathsprout/giteeimage/raw/master/+1P2.png" width = 50% height = 50% />
 <p>残基Glu 1108和ser 1109与靶DNA链中的+1磷酸二酯基团相互作用，直接导致PAM上游的局部链分离，将靶链转为与sgRNA结合（1-2bp），靶链DNA与sgRNA之间的碱基配对促进了引导-靶标异质双链的进一步逐步置换和传播。<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div>
+<p><br/><br/></p>
 <h5 id="切割">切割</h5>
 <p>Cas9的基因组编辑能力只有在被称作前间隔序列邻近基序(protospacer adjacent motif, PAM)的短片段DNA序列的存在下才成为可能。只有DNA靶位点附近存在PAM时，Cas9才能进行准确切割。PAM的存在也是激活酶Cas9所必需的，PAM 序列的特征为 NGG（其中 N 为任意核苷酸）。<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
 <p>核酸酶Cas9含有两个具有切割活性的结构域：HNH结构域和RuvC结构域，其中
@@ -449,47 +453,66 @@ RuvC结构域协同切割TS和NTS)。RuvC结构域可分为三个亚结构域：
      
     
         
-    <div class="disqus-container">
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
+    <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+<div id="waline" class="waline-container"></div>
 
 <style>
-    .disqus-container {
+    .waline-container {
         background-color: var(--card-background);
         border-radius: var(--card-border-radius);
         box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
+        padding: 3%;  
+ 
     }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (DISQUS) {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
+    .waline-container .vcount {
+        color: var(--card-text-color-main);
+    }
+ 
+     
+    :root{
+        --waline-theme-color: #34495e;  
+        --waline-active-color: #bababa;  
+        --waline-badge-color: #34495e;  
+        --waline-avatar-size: 5rem;
+        --waline-dark-grey: #34495e;  
+    }
+ 
+   
+    :root[data-scheme="dark"] {
+        --waline-theme-color: #acc6e0;
+        --waline-white: #34495e;  
+        --waline-active-color: #8ab1d8;
+        --waline-light-grey: #666;
+        --waline-dark-grey: #acc6e0;  
+        --waline-badge-color: #acc6e0;
+ 
+         
+        --waline-text-color: rgba(255, 255, 255, 0.7);
+        --waline-bgcolor: #515151;
+        --waline-bgcolor-light: #66696b; 
+        --waline-border-color: #9B9C9C;
+        --waline-disable-bgcolor: #444;
+        --waline-disable-color: #272727;
+ 
+         
+        --waline-bq-color:  #9B9C9C;  
+ 
+         
+        --waline-info-bgcolor: #acc6e0;
+        --waline-info-color: #9B9C9C;
+    }
+        .v[data-class=v] .vcontent .vemoji {
+         width:2.2em;  
+         margin:.25em
+     }
+ </style><script>
+    
+    new Waline({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://cdn.jsdelivr.net/gh/norevi/blob-emoji-for-waline@2.0/blobs-gif"],"lang":"zh-CN","locale":{"admin":"Admin"},"requiredMeta":["name","email","url"],"serverURL":"https://blog-api-m42xyj2iz-sydddl.vercel.app/","visitor":true});
 </script>
+
+    
+
+    
 
     
 
@@ -534,7 +557,7 @@ RuvC结构域协同切割TS和NTS)。RuvC结构域可分为三个亚结构域：
         
             2020 - 
         
-        2022  - | - DeathSprout <i class="fas fa-bell"></i> <br> 码了 28727 字 · 共 13 篇文章</br><span><p>
+        2022  - | - DeathSprout <i class="fas fa-bell"></i> <br> 码了 31624 字 · 共 15 篇文章</br><span><p>
     </section>
 
     <section class="powerby">

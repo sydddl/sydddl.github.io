@@ -6,7 +6,393 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 07 Dec 2021 17:53:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 11 Mar 2022 11:52:08 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>旧物 | 大三实习报告 | PDF嵌入</title>
+        <link>https://deathsprout.gitee.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</link>
+        <pubDate>Fri, 11 Mar 2022 11:52:08 +0800</pubDate>
+        
+        <guid>https://deathsprout.gitee.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</guid>
+        <description>&lt;script src= &#39;/js/pdf-js/build/pdf.js&#39;&gt;&lt;/script&gt;
+&lt;style&gt;
+#the-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+#paginator {
+  display: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+#loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+&lt;/style&gt;
+
+&lt;div id=&#34;paginator&#34;&gt;
+    &lt;button id=&#34;prev&#34;&gt;Previous&lt;/button&gt;
+    &lt;button id=&#34;next&#34;&gt;Next&lt;/button&gt;
+    &amp;nbsp; &amp;nbsp;
+    &lt;span&gt;Page: &lt;span id=&#34;page_num&#34;&gt;&lt;/span&gt; / &lt;span id=&#34;page_count&#34;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id=&#34;embed-pdf-container&#34;&gt;
+    &lt;div id=&#34;loadingWrapper&#34;&gt;
+      &lt;div id=&#34;loading&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;canvas id=&#34;the-canvas&#34;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script type=&#34;text/javascript&#34;&gt;
+window.onload = function() {
+
+
+var url = &#34;https:\/\/deathsprout.gitee.io\/&#34; + &#39;post\/实习报告\/实习报告ya.pdf&#39;;
+
+var hidePaginator = &#34;&#34; === &#34;true&#34;;
+var hideLoader = &#34;&#34; === &#34;true&#34;;
+var selectedPageNum = parseInt(&#34;&#34;) || 1;
+
+
+var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/deathsprout.gitee.io\/&#34; + &#39;/js/pdf-js/build/pdf.worker.js&#39;;
+
+
+var pdfDoc = null,
+    pageNum = selectedPageNum,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    canvas = document.getElementById(&#39;the-canvas&#39;),
+    ctx = canvas.getContext(&#39;2d&#39;),
+    paginator = document.getElementById(&#34;paginator&#34;),
+    loadingWrapper = document.getElementById(&#39;loadingWrapper&#39;);
+
+
+
+showPaginator();
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent();
+      
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+  
+  document.getElementById(&#39;page_num&#39;).textContent = num;
+}
+
+
+
+function showContent() {
+  loadingWrapper.style.display = &#39;none&#39;;
+  canvas.style.display = &#39;block&#39;;
+}
+
+
+
+function showLoader() {
+  if(hideLoader) return
+  loadingWrapper.style.display = &#39;flex&#39;;
+  canvas.style.display = &#39;none&#39;;
+}
+
+
+
+function showPaginator() {
+  if(hidePaginator) return
+  paginator.style.display = &#39;block&#39;;
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function onPrevPage() {
+  if (pageNum &lt;= 1) {
+    return;
+  }
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+document.getElementById(&#39;prev&#39;).addEventListener(&#39;click&#39;, onPrevPage);
+
+
+
+function onNextPage() {
+  if (pageNum &gt;= pdfDoc.numPages) {
+    return;
+  }
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+document.getElementById(&#39;next&#39;).addEventListener(&#39;click&#39;, onNextPage);
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  var numPages = pdfDoc.numPages;
+  document.getElementById(&#39;page_count&#39;).textContent = numPages;
+  
+  
+  if(pageNum &gt; numPages) {
+    pageNum = numPages
+  }
+
+  
+  renderPage(pageNum);
+});
+}
+
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS ：如何实现 ？
+使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/anvithks/hugo-embed-pdf-shortcode&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo-embed-pdf-shortcode&lt;/a&gt; ，按照它写的来，但注意以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;url 路径一定搞清楚，比如我放在markdown文件旁边，&lt;code&gt;url=&amp;quot;post/实习报告/实习报告.pdf&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;把shortcode文件 embed-pdf.html 的第一行改成 &lt;code&gt;&amp;lt;script src= &#39;/js/pdf-js/build/pdf.js&#39;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>如何3D打印自己的大脑</title>
+        <link>https://deathsprout.gitee.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</link>
+        <pubDate>Tue, 08 Feb 2022 16:34:04 +0800</pubDate>
+        
+        <guid>https://deathsprout.gitee.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</guid>
+        <description>&lt;img src="https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png" alt="Featured image of post 如何3D打印自己的大脑" /&gt;&lt;h2 id=&#34;大脑打印计划-&#34;&gt;大脑打印计划 🧠&lt;/h2&gt;
+&lt;p&gt;主要参考 | &lt;a class=&#34;link&#34; href=&#34;https://christine.website/blog/brain-fmri-to-3d-model-2019-08-23&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt; &lt;i class=&#34;fas fa-link &#34;&gt;&lt;/i&gt; How I Converted my Brain fMRI to a 3D Model&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;大脑数据来源&#34;&gt;大脑数据来源？&lt;/h3&gt;
+&lt;p&gt;这需要你大脑的核磁共振扫描数据，推荐是关注周边高校和研究机构，有没有招被试的核磁实验，和实验者🥼沟通沟通，比如说希望试验结束能获得自己大脑的核磁数据。医院的核磁扫描是否能要到数据，目前我不了解。&lt;/p&gt;
+&lt;p&gt;如果对面做了后续处理，可以试着要T1像的nii.gz格式数据，就可以跳过后面数据格式转换，如果要到的是原始数据，虽说可以通过dicombrowser 查看数据信息，但还是推荐询问实验者哪些是T1像。&lt;/p&gt;
+&lt;p&gt;我的数据是3T场强的核磁扫出来了的，场强越大越精细，对3D打印模型精度影响不大，主要是可以通过建模软件对模型进行细分和平滑。&lt;/p&gt;
+&lt;h3 id=&#34;数据转换--学习-freesurfer-和熟悉-fmri-数据格式&#34;&gt;数据转换 | 学习 FreeSurfer 和熟悉 fMRI 数据格式&lt;/h3&gt;
+&lt;p&gt;先是在子系统里，用&lt;code&gt;cd /mnt/e&lt;/code&gt;切换到E盘，&lt;code&gt;mkdir freesurfer&lt;/code&gt;,&lt;code&gt;cd&lt;/code&gt;进去下载和安装软件。&lt;a class=&#34;link&#34; href=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/rel7downloads&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;可在此找符合电脑版本的安装包&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.2.0/freesurfer-linux-ubuntu18_amd64-7.2.0.tar.gz
+tar -zxv -f freesurfer-linux-ubuntu18_amd64-7.2.0.tar.gz &lt;span class=&#34;c1&#34;&gt;#解压缩&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;需要在&lt;a class=&#34;link&#34; href=&#34;https://surfer.nmr.mgh.harvard.edu/registration.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;FreeSurfer Download and Registration&lt;/a&gt;中先注册，为的是获得license.txt，可能会显示&lt;code&gt;FreeSurfer Registration Error reCAPTCHA not checked&lt;/code&gt; ,谷歌的人机验证reCAPTCHA无法正常使用，可以按照&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/jackjones_008/article/details/106102237&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;浏览器插件gooreplacer可以解决reCaptcha验证码无法加载的问题&lt;/a&gt;的方法解决（edge也有该插件），将license.txt放到&lt;code&gt;./freesurfer&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo chmod -R &lt;span class=&#34;m&#34;&gt;777&lt;/span&gt; ./freesurfer &lt;span class=&#34;c1&#34;&gt;#改变freesurfer的权限&lt;/span&gt;
+
+vi ~/.bashrc
+&lt;span class=&#34;c1&#34;&gt;# 在~/.bashrc文件中添加以下两行&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;FREESURFER_HOME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 你滴路径
+&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$FREESURFER_HOME&lt;/span&gt;/SetUpFreeSurfer.sh
+
+&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; ~/.bashrc
+sudo apt-get install tcsh &lt;span class=&#34;c1&#34;&gt;#安装tcsh，类似与bash，不安装运行的时候会报错，相关资料是真滴少&lt;/span&gt;
+
+recol-all --help &lt;span class=&#34;c1&#34;&gt;#最后查看是否安装成功&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关于数据 ：&lt;/strong&gt; 我获得的数据的格式全部为IMA格式，.ima是西门子ct设备生成的医学图像文件格式之一，和.dicm文件格式一样（是二维的多张图像），数据是原始的下机数据。参考中他直接上手的数据是.nii.gz格式，是二进制压缩的NIFTI文件（三维图像），需要进行处理才能得到。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo apt install dcm2niix  
+&lt;span class=&#34;c1&#34;&gt;# 装一个转换用的包&lt;/span&gt;
+sudo apt-get install pigz
+&lt;span class=&#34;c1&#34;&gt;# 按一个加速的支持&lt;/span&gt;
+dcm2niix -o my_brain -f my_brain -z y brain_data/
+&lt;span class=&#34;c1&#34;&gt;#       输出文件夹 | 输出文件名,格式.nii.gz | 输入数据文件夹&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;先试试 &lt;a class=&#34;link&#34; href=&#34;https://github.com/miykael/gif_your_nifti&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;gif_your_nifti&lt;/a&gt; 看看生成的gif结果如何，也是确保自己选的是否是T1的结构像。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;git clone https://github.com/miykael/gif_your_nifti
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; gif_your_nifti
+pip3 install -r requirements.txt &lt;span class=&#34;c1&#34;&gt;#安装所需的py包，可以自己看一眼有没有没装的&lt;/span&gt;
+python3 setup.py install &lt;span class=&#34;c1&#34;&gt;#好习惯是激活个虚拟环境&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 转换，gif文件在输入文件的文件夹里生成， 可以看示例中的gif 调--cmap&lt;/span&gt;
+gif_your_nifti ../my_brain/my_brain.nii.gz --mode pseudocolor --cmap viridis
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/01/ZrezHFsctnlphGm.gif&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/01/ZrezHFsctnlphGm.gif&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+为了能扔图床上引用，进行了一定程度的压缩，还是能看出来就是要用的。&lt;/p&gt;
+&lt;h3 id=&#34;剥头皮获得-stl-导入blender-i-i-classfas-fa-braini&#34;&gt;剥头皮，获得 stl 导入blender &lt;/i&gt; &lt;i class=&#34;fas fa-brain&#34;&gt;&lt;/i&gt;&lt;/h3&gt;
+&lt;p&gt;之后是使用freesurfer，进行漫长的剥头皮。（推荐过夜跑，我跑到快凌晨5点才弄完）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkdir -p subjects
+&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;SUBJECTS_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;/subjects
+recon-all -i 你滴.nii.gz -s 输出文件夹名字 -all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/02/3MIHcODdAyGJzio.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/02/3MIHcODdAyGJzio.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+进入 &lt;code&gt;surf&lt;/code&gt;，输入以下命令转化为&lt;code&gt;stl&lt;/code&gt;格式，用blender打开。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mris_convert lh.pial lh.pial.stl
+mris_convert rh.pial rh.pial.stl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/02/M2hznx6SB8wdrEs.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/02/M2hznx6SB8wdrEs.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+左半脑简单的添加了材质
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/02/7fML4sUZc5iXImq.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/02/7fML4sUZc5iXImq.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;part-1--联系3d打印农场&#34;&gt;Part 1 | 联系3D打印农场&lt;/h3&gt;
+&lt;p&gt;某群友推荐 wenext ，材料是树脂的话，价格0.3元/g，淘宝联系客服后加微信发了stl模型文件（记得将两半脑合并为一个stl导出，缩放选择0.001即是1：1大小 || 补：blender读取stl单位是m，那边的工业软件读取stl文件的单位是mm，所以不用放缩，具体和做3D打印的问问）&lt;/p&gt;
+&lt;p&gt;我的1:1大脑参数如下&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/04/EnIpCoOJlXDemN5.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/04/EnIpCoOJlXDemN5.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+有亿点贵，长宽高放缩了0.7倍，加上邮费329 。（感觉也可以试着弄1:1但是中空，节省小钱钱）&lt;/p&gt;
+&lt;h3 id=&#34;part-2--玩耍&#34;&gt;Part 2 | 玩耍&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/11/UTMmitIZCnRLqrF.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/11/UTMmitIZCnRLqrF.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;展示-ii-classfa-fa-cog-fa-spini&#34;&gt;展示 &lt;/i&gt;&lt;i class=&#34;fa fa-cog fa-spin&#34;&gt;&lt;/i&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://s2.loli.net/2022/02/08/7L8fGkDHQiPKT1t.png&#34; &gt;
+		&lt;img src=&#34;https://s2.loli.net/2022/02/08/7L8fGkDHQiPKT1t.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;✧*｡٩(ˊᗜˋ*)و✧*｡ 希望能在评论区看到大伙的大脑模型 🎉&lt;/p&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width=&#34;230&#34; height=&#34;200&#34; viewBox=&#39;0,0,0,0&#39;&gt;
+    &lt;use xlink:href=&#34;#icon-BRAINSIMULATION&#34; &gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width=&#34;250&#34; height=&#34;250&#34;&gt;
+    &lt;use xlink:href=&#34;#icon-BRAINSIMULATION&#34; &gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;head&gt;
+    &lt;!-- Place your kit&#39;s code here --&gt;
+    &lt;script src=&#34;https://kit.fontawesome.com/cbd1a514ae.js&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://at.alicdn.com/t/font_3178786_4oobptg3ovd.js&#34;&gt;&lt;/script&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;http://at.alicdn.com/t/font_3178786_4oobptg3ovd.css&#34;&gt;
+&lt;/head&gt;</description>
+        </item>
+        <item>
         <title>Vggface Pytorch 完全指南</title>
         <link>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
         <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
@@ -54,6 +440,10 @@
 &lt;p&gt;依着&lt;a class=&#34;link&#34; href=&#34;https://github.com/prlz77/vgg-face.pytorch/issues/4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;上面提到的vgg-face.pytorch的issue&lt;/a&gt;的思路，使用自己电脑的Ubuntu子系统使用&lt;a class=&#34;link&#34; href=&#34;https://github.com/chi0tzp/PyVGGFace/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;PyVGGFace&lt;/a&gt;，&lt;strong&gt;成功得到权重文件vggface.pth&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;链接: &lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1J8MbHZufFP2IRxUocomUxw?pwd=1wt6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://pan.baidu.com/s/1J8MbHZufFP2IRxUocomUxw?pwd=1wt6&lt;/a&gt; 提取码: 1wt6&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;如何将权重载入到模型框架里&#34;&gt;如何将权重载入到模型框架里？&lt;/h3&gt;
 &lt;p&gt;如果直接使用torch.load导入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;D:\Dataset\models\vggface.pth&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -212,7 +602,7 @@
         <pubDate>Mon, 06 Dec 2021 22:31:49 +0800</pubDate>
         
         <guid>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</guid>
-        <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
+        <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;h2 id=&#34;todo-i-classfa-solid-fa-listi&#34;&gt;TODO &lt;i class=&#34;fa-solid fa-list&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 从 &lt;strong&gt;HugoTex&lt;/strong&gt; theme 更换到 &lt;strong&gt;stack&lt;/strong&gt; theme&lt;/p&gt;
@@ -239,11 +629,16 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加更多&lt;code&gt;Markdown&lt;/code&gt;支持&lt;/p&gt;
+  &lt;details&gt;
+      &lt;summary&gt; shortcode &lt;/summary&gt;
+  &lt;p style=&#34;text-align:center&#34;&gt;文字居中&lt;/p&gt;
+  &lt;/details&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支持表情&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支持github格式的 !!! note 和 !!! danger&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; github 风格的 chackbox ，明显的蓝色 √&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 将KaTex支持升级&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支持使用 Font awesome  &lt;i class=&#34;fa-solid fa-font-awesome&#34;&gt;&lt;/i&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -276,7 +671,10 @@
 &lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 调整页面比例，比较喜欢缩放到80%~90%&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 使用物色到的icon&lt;/p&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 增加网站icon&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 使用物色到的icon&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 字数统计、显示时间的icon&lt;/li&gt;
 &lt;/ul&gt;
@@ -293,13 +691,13 @@
 &lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 社交&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 编写自己的 about&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加评论功能&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加评论功能&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 完善其他跳转信息，如脸书&lt;del&gt;可是我没有&lt;/del&gt;、知乎等账号链接&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加友链&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;记录&#34;&gt;记录&lt;/h2&gt;
+&lt;h2 id=&#34;记录-i-classfar-fa-sticky-notei&#34;&gt;记录 &lt;i class=&#34;far fa-sticky-note&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
 &lt;h3 id=&#34;hugotex-theme-更换到-stack-theme&#34;&gt;&lt;strong&gt;HugoTex&lt;/strong&gt; theme 更换到 &lt;strong&gt;stack&lt;/strong&gt; theme&lt;/h3&gt;
 &lt;h3 id=&#34;添加字数统计&#34;&gt;添加字数统计&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;单文章字数统计&lt;/strong&gt; :
@@ -341,7 +739,150 @@
 &lt;p&gt;从灰色改为 &lt;code&gt;--link-background-color: 1, 255, 179;&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;赛博朋克块阴影&#34;&gt;赛博朋克块阴影&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;na&#34;&gt;--shadow-l1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;67&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;255&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;230&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.719&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.04&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.4&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rgba&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;253&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;113&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;.397&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;更多markdown支持&#34;&gt;更多markdown支持&lt;/h3&gt;
+&lt;h4 id=&#34;i-classfa-solid-fa-iconsi&#34;&gt;&lt;i class=&#34;fa-solid fa-icons&#34;&gt;&lt;/i&gt;&lt;/h4&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =5em&gt;
+    &lt;use xlink:href=&#34;#icon-hebaodan&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =5em&gt;
+    &lt;use xlink:href=&#34;#icon-xihongshi&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =5em&gt;
+    &lt;use xlink:href=&#34;#icon-niuyouguo&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =5em&gt;
+    &lt;use xlink:href=&#34;#icon-duorou&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =5em&gt;
+    &lt;use xlink:href=&#34;#icon-github&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; width =6.5em&gt;
+    &lt;use xlink:href=&#34;#icon-yueqiugongzhuanSVG&#34;&gt;&lt;/use&gt;
+&lt;/svg&gt;
+&lt;p&gt;在文档末添加如下，就可以使用 Font awesome 5 的非Pro icon , 使用方式也很便捷，直接在Font awesome 里面找，点复制粘贴过来就可以了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://use.fontawesome.com/releases/v5.11.0/js/all.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://use.fontawesome.com/releases/v5.11.0/js/v4-shims.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://use.fontawesome.com/releases/v5.11.0/css/all.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不花钱 &lt;i class=&#34;fa-solid fa-dollar-sign&#34;&gt;&lt;/i&gt; 没必要使用Font awesome 6 ，不如去阿里弄得&lt;a class=&#34;link&#34; href=&#34;https://www.iconfont.cn/collections/index?spm=a313x.7781069.1998910419.d2b281273&amp;amp;type=2&amp;amp;sortType=favorite&amp;amp;page=9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;iconfont&lt;/a&gt; 去淘 icon，下面是后来的配置，两方面都能使用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://kit.fontawesome.com/cbd1a514ae.js&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;crossorigin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;anonymous&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; #Font awesome 的kit，注册后创建一个
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://at.alicdn.com/t/font_3178786_wcuwkyqh11.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; #iconfont 账号的项目，注册后创建一个
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是有一些问题，比如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;不能很好的显示彩色icon (包括font awesome)，后面的两个icon是下面彩色icon现在的显示情况。 &lt;i class=&#34;iconfont icon-pinglun&#34;&gt;&lt;/i&gt; &lt;i class=&#34;iconfont icon-10&#34;&gt;&lt;/i&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+  &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34;&gt;
+      &lt;use xlink:href=&#34;#icon-xinxi&#34;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34;&gt;
+      &lt;use xlink:href=&#34;#icon-10&#34;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;每次往iconfont项目库里添加新icon，都要更新项目库，把项目库新地址复制过来，有点麻烦。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;
+# 在head里添加
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://at.alicdn.com/t/font_3178786_idyehkf29xd.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+
+----------------
+
+# 上面两个彩svg的引用代码
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;svg&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;aria-hidden&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;xlink:href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#icon-xinxi&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;svg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;svg&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;aria-hidden&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;xlink:href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#icon-10&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;svg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+
+----------------
+
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;icon&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+       &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;em&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;height&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;em&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;可以通过这种方式控制icon大小&lt;/span&gt;
+       &lt;span class=&#34;k&#34;&gt;vertical-align&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;-0.15&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;em&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;fill&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;currentColor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;k&#34;&gt;overflow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;hidden&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;i class=&#34;fa-solid fa-angles-right fa-3x fa-pull-left&#34; style=&#34;color:black&#34;&gt;&lt;/i&gt;
+如果是做前端，还稍微可以接受。对于写markdown笔记，这么做实在是太麻烦了点(强迫症震怒)，看到有使用 vue &lt;i class=&#34;fa-brands fa-vuejs&#34;&gt;&lt;/i&gt; 封装&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f14982b2b737&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;简化操作的&lt;/a&gt;（有一点探索过头了，活该是有追求的前端干的事）。 但无论怎么说，在markdown里用这么多HTML语句和初衷有些本末倒置。 &lt;i class=&#34;fa-solid fa-angles-left fa-3x fa-pull-right&#34; style=&#34;color:black&#34;&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;shortcode&#34;&gt;Shortcode&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⭕ 能用  |  ❌ 一番尝试后失败&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一开始想将&lt;a class=&#34;link&#34; href=&#34;https://feelit.khusika.com/zh-cn/theme-documentation-extended-shortcodes/#11-script&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Feelit&lt;/a&gt;上的shortcode抄过来，具体是&lt;code&gt;admonition&lt;/code&gt;❌ &lt;code&gt;music&lt;/code&gt; &lt;code&gt;typeit&lt;/code&gt;，把&lt;code&gt;\layouts\shortcodes\&lt;/code&gt;复制进来没法正常用，&lt;a class=&#34;link&#34; href=&#34;https://guanqr.com/tech/website/hugo-shortcodes-customization/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;自定义 Hugo Shortcodes 简码&lt;/a&gt;写的很详细，搬过来&lt;code&gt;align&lt;/code&gt;⭕ &lt;code&gt;quote&lt;/code&gt;❌,&lt;/p&gt;
+
+
+
+&lt;blockquote class=&#34;quote&#34;&gt;
+        &lt;p&gt;水水水&lt;/p&gt;&lt;/blockquote&gt; 
+
+&lt;div class=&#34;details admonition tip&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;This is a tip&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;一个 &lt;strong&gt;技巧&lt;/strong&gt; 横幅&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.typeitjs.com/docs/vanilla&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Typeit&lt;/a&gt;❌&lt;/p&gt;
+&lt;script&gt;
+new TypeIt(&#34;#simpleUsage&#34;, {
+  strings: &#34;This is a simple string.&#34;,
+  speed: 50,
+  waitUntilVisible: true,
+}).go();
+&lt;/script&gt;
+&lt;h3 id=&#34;评论功能&#34;&gt;评论功能&lt;/h3&gt;
+&lt;p&gt;吆西，直接参照&lt;a class=&#34;link&#34; href=&#34;https://waline.js.org/guide/get-started.html#vercel-%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E7%AB%AF&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;waline文档&lt;/a&gt;，先注册个 LeanCloud , 注意是国际版，然后再GitHub登录下Vercel ，是从 快速上手&amp;ndash;Vercel 部署 点击过去（球球网你让我登录！）&lt;/p&gt;
+&lt;p&gt;waline文档 快速上手中 除了 HTML引入(客户端) 以外的照着做就好，之后在&lt;code&gt;config.yaml&lt;/code&gt; 里改&lt;a class=&#34;link&#34; href=&#34;https://waline.js.org/reference/client.html#lang&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;前端配置&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;comments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;provider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;waline&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;waline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;serverURL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;//你通过vercel获得的waline服务器地址&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zh-CN&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;visitor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;avatar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emoji&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;https://cdn.jsdelivr.net/gh/norevi/blob-emoji-for-waline@2.0/blobs-gif&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;requiredMeta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;placeholder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;locale&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Admin&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多的（表情包、修改黑暗模式和表情包大小）移步到参考链接，基本上是复制粘贴&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mantyke.icu/2021/f9f0ec87/#%E4%BF%AE%E6%94%B9toc%E6%A0%B7%E5%BC%8F&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;小球飞鱼 | Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/CSS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -350,10 +891,23 @@
     &gt;中国传统颜色手册&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mantyke.icu/2021/comment/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;小球飞鱼 | Hugo | 为 Blog 增加评论区&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://waline.js.org/guide/get-started.html#vercel-%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E7%AB%AF&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;waline文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.norevi.icu/2021/hugo%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;No.revi | Hugo｜引入外部字体&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.norevi.icu/2021/waline%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%83%85/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;No.revi | Waline｜添加自定义表情&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ayx.moefox.tech/waline/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;在 Hugo 主题 Stack 中轻松配置 Waline 评论系统&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f14982b2b737&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;花裤衩coder | 手摸手，带你优雅的使用 icon&lt;/a&gt;&lt;/p&gt;
+&lt;head&gt;
+    &lt;!-- Place your kit&#39;s code here --&gt;
+    &lt;script src=&#34;https://kit.fontawesome.com/cbd1a514ae.js&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://at.alicdn.com/t/font_3178786_onqo4ppg8m.js&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://unpkg.com/typeit@8.2.0/dist/index.umd.js&#34;&gt;&lt;/script&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;http://at.alicdn.com/t/font_3178786_onqo4ppg8m.css&#34;&gt;
+&lt;/head&gt;
 </description>
         </item>
         <item>
@@ -803,7 +1357,7 @@ Hebb 提出神经学习理论之前，这些认知更多的是没有理论框架
 	&lt;/a&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;center&gt;图1 功能重组示意图&lt;/center&gt;
 &lt;p&gt;对于中枢神经系统来说，在1969 年，Luria 等人提出并完善了功能重组理论
 （也被称为再训练理论），认为脑损伤后的余下部分，通过在功能上的重新组合
 实现在损伤中丧失的功能
@@ -969,7 +1523,7 @@ mRNA 翻译产生PKMζ，该蛋白再磷酸化囊泡上的AMPA 蛋白。这是LT
 	&lt;/a&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;center&gt;图2 LTP分子机制示意图&lt;/center&gt;
 &lt;p&gt;值得注意的是，CaMKII 被发现占据脑蛋白量的2%[
 30]
 ，在突触中调节许多
@@ -2823,7 +3377,9 @@ a是靶链DNA和sgRNA结合示意图。b是sgRNA-靶链DNA连接的正交视图�
 在上图7中，RNA均为橙色，靶链DNA为浅蓝色，非靶链DNA为黑色。 非靶链中的5&#39;-NGG-3&amp;rsquo;PAM三核苷酸以黄色突出显示。图中蛋白质上不同的颜色显示了不同的结构域。&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;h3 id=&#34;cas9蛋白功能及作用机制&#34;&gt;Cas9蛋白功能及作用机制&lt;/h3&gt;
 &lt;h4 id=&#34;cas9蛋白在crispr-cas系统中的功能&#34;&gt;Cas9蛋白在CRISPR-Cas系统中的功能&lt;/h4&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div align=center&gt;
+&lt;img src=&#34;https://gitee.com/deathsprout/giteeimage/raw/master/type2.png&#34; width = 70% height = 60%&gt;
+&lt;/div&gt;
 &lt;p&gt;上图8显示的是Type II 系统的作用过程。&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;
 首先是依靠Cas1、2复合体将原间隔序列的片段制作成间隔序列整合进CRISPR序列中，形成对外源DNA的记忆，然后在接下来的免疫中，间隔序列就能快速产生原间隔序列片段，这些序列片段与Cas9一起靶向地切除在细菌内的外源DNA，PAM在这里参与防止自身免疫疾病的机制，保障不会切除自身DNA。&lt;/p&gt;
 &lt;h3 id=&#34;cas9蛋白功能的机制&#34;&gt;Cas9蛋白功能的机制&lt;/h3&gt;
@@ -2869,10 +3425,12 @@ a.Cas9中PAM结合区的放大视图。b.Cas9与PAM相互作用示意图,红圈�
 	&lt;/a&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div style=&#34;float:left;border:solid 1px 000;margin:2px;&#34;&gt;
+&lt;img align=&#34;left&#34;
+src=&#34;https://gitee.com/deathsprout/giteeimage/raw/master/+1P2.png&#34; width = 50% height = 50% /&gt;
 &lt;p&gt;残基Glu 1108和ser 1109与靶DNA链中的+1磷酸二酯基团相互作用，直接导致PAM上游的局部链分离，将靶链转为与sgRNA结合（1-2bp），靶链DNA与sgRNA之间的碱基配对促进了引导-靶标异质双链的进一步逐步置换和传播。&lt;sup id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
 &lt;h5 id=&#34;切割&#34;&gt;切割&lt;/h5&gt;
 &lt;p&gt;Cas9的基因组编辑能力只有在被称作前间隔序列邻近基序(protospacer adjacent motif, PAM)的短片段DNA序列的存在下才成为可能。只有DNA靶位点附近存在PAM时，Cas9才能进行准确切割。PAM的存在也是激活酶Cas9所必需的，PAM 序列的特征为 NGG（其中 N 为任意核苷酸）。&lt;sup id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;核酸酶Cas9含有两个具有切割活性的结构域：HNH结构域和RuvC结构域，其中
