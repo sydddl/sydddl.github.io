@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <style>
+        button{
+        width: 80px;
+        padding:8px;
+        background-color: #1fc7be;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 5px; /* future proofing */
+        -khtml-border-radius: 10px; /* for old Konqueror browsers */
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 900;
+        font-size:80%
+        }
+        button:hover{
+          background-color: #ec6e74;
+        }
+        button:focus{
+          background-color: #ec6e74;
+        }
+        fieldset {
+        border:0;
+        border-top:1px dashed #ccc;
+        }
+        legend { 
+            color: #999;
+            /* for IE */
+            background-color: #fff;
+        }
+       </style>
+  </head>
+
+<body>
+  <div>
+    <fieldset>
+      <legend align="center"></legend>
+      <button id="button0" onclick="blur(0)">blur 0</button>
+      <button id="button1" onclick="blur(1)">blur 1</button>
+      <button id="button2" onclick="blur(2)">blur 2</button>
+      <button id="button4" onclick="blur(4)">blur 4</button>
+      <button id="button8" onclick="blur(8)">blur 8</button>
+      <button id="button16" onclick="blur(16)">blur 16</button>
+      <button id="button32" onclick="blur(32)">blur 32</button>
+      <button id="button64" onclick="blur(64)">blur 64</button>
+      <button id="button128" onclick="blur(128)">blur 128</button>
+    </fieldset>
+    <fieldset>
+      <legend align="center"></legend>
+      <button id="vit" onclick="model()"> ViT </button>
+      <button id="mask" onclick="model()"> ResMask </button>
+      <button id="dense" onclick="model()"> Dense121 </button>
+      <button id="enet" onclick="model()"> EffentNet </button>
+      <button id="resnet34" onclick="model()"> resnet34 </button>
+      <button id="vgg19" onclick="model()"> VGG19 </button>
+    </fieldset>
+    <embed id= "svg" 
+    width=99% 
+    src="./vit/confusion_matrix__vit_1.1_blur[3,0].svg">
+  </div>
+
+<script type="text/javascript">
+  document.getElementById('button0').onclick = function() {blur(0)};
+  document.getElementById('button1').onclick = function() {blur(1)};
+  document.getElementById('button2').onclick = function() {blur(2)};
+  document.getElementById('button4').onclick = function() {blur(4)};
+  document.getElementById('button8').onclick = function() {blur(8)};
+  document.getElementById('button16').onclick = function() {blur(16)};
+  document.getElementById('button32').onclick = function() {blur(32)};
+  document.getElementById('button64').onclick = function() {blur(64)};
+  document.getElementById('button128').onclick = function() {blur(128)};
+
+  document.getElementById('vit').onclick = function() {model('vit')};
+  document.getElementById('mask').onclick = function() {model('ResMasking')};
+  document.getElementById('dense').onclick = function() {model('DenseNet121')};
+  document.getElementById('enet').onclick = function() {model('enet_b2_7')};
+  document.getElementById('resnet34').onclick = function() {model('resnet34')};
+  document.getElementById('vgg19').onclick = function() {model('vgg19')};
+  var model_name = 'vit';
+  var number = 0;
+  function blur(blur_number){
+    number = blur_number;
+    document.getElementById('svg').src='./'+model_name+'/confusion_matrix__'+model_name+'_1.1_blur[3,'+number+'].svg'
+  }
+  function model(name){
+    model_name = name;
+    document.getElementById('svg').src='./'+model_name+'/confusion_matrix__'+model_name+'_1.1_blur[3,'+number+'].svg'
+  }
+</script>
+
+</body>
+  
+</html>
