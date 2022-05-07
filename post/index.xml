@@ -6,14 +6,14 @@
     <description>Recent content in Posts on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Mar 2022 21:28:15 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 May 2022 18:07:35 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>无病呻吟</title>
-      <link>https://deathsprout.gitee.io/p/%E6%97%A0%E7%97%85%E5%91%BB%E5%90%9F/</link>
-      <pubDate>Tue, 15 Mar 2022 21:28:15 +0800</pubDate>
+      <title>Blog嵌入音乐及个人创作分享</title>
+      <link>https://deathsprout.gitee.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Sat, 07 May 2022 18:07:35 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E6%97%A0%E7%97%85%E5%91%BB%E5%90%9F/</guid>
-      <description></description>
+      <guid>https://deathsprout.gitee.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</guid>
+      <description>怎么实现 APlayer 是一个简洁漂亮、功能强大的 Html5 音乐播放器 MetingJS 是为 APlayer 添加网易云、QQ音乐等支持的插件 需要在 \layouts\partials\head\</description>
     </item>
     
     <item>
