@@ -610,7 +610,9 @@ mris_convert rh.pial rh.pial.stl
         <pubDate>Mon, 06 Dec 2021 22:31:49 +0800</pubDate>
         
         <guid>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</guid>
-        <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;h2 id=&#34;todo-i-classfa-solid-fa-listi&#34;&gt;TODO &lt;i class=&#34;fa-solid fa-list&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
+        <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;p&gt;&lt;meting-js server = &#34;netease&#34; auto=&#34;https://music.163.com/song?id=1931747&amp;userid=412281089&#34; list-folded=true&gt;&lt;/meting-js&gt;&lt;/p&gt;
+&lt;p&gt;&lt;meting-js server = &#34;netease&#34; auto=&#34;https://music.163.com/song?id=22722861&amp;userid=412281089&#34; list-folded=true&gt;&lt;/meting-js&gt;&lt;/p&gt;
+&lt;h2 id=&#34;todo-i-classfa-solid-fa-listi&#34;&gt;TODO &lt;i class=&#34;fa-solid fa-list&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 从 &lt;strong&gt;HugoTex&lt;/strong&gt; theme 更换到 &lt;strong&gt;stack&lt;/strong&gt; theme&lt;/p&gt;
@@ -634,6 +636,9 @@ mris_convert rh.pial rh.pial.stl
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 单文章字数统计&lt;/li&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; footer 总字数和文章数统计&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加音乐&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 添加更多&lt;code&gt;Markdown&lt;/code&gt;支持&lt;/p&gt;
@@ -909,14 +914,15 @@ new TypeIt(&#34;#simpleUsage&#34;, {
     &gt;在 Hugo 主题 Stack 中轻松配置 Waline 评论系统&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f14982b2b737&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;花裤衩coder | 手摸手，带你优雅的使用 icon&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mrbruce516.top/2020/011/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo嵌入音乐播放器&lt;/a&gt;&lt;/p&gt;
 &lt;head&gt;
     &lt;!-- Place your kit&#39;s code here --&gt;
     &lt;script src=&#34;https://kit.fontawesome.com/cbd1a514ae.js&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
     &lt;script src=&#34;https://at.alicdn.com/t/font_3178786_onqo4ppg8m.js&#34;&gt;&lt;/script&gt;
     &lt;script src=&#34;https://unpkg.com/typeit@8.2.0/dist/index.umd.js&#34;&gt;&lt;/script&gt;
     &lt;link rel=&#34;stylesheet&#34; href=&#34;http://at.alicdn.com/t/font_3178786_onqo4ppg8m.css&#34;&gt;
-&lt;/head&gt;
-</description>
+&lt;/head&gt;</description>
         </item>
         <item>
         <title>变分自编码器</title>
