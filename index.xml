@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>DeathSprout</title>
-        <link>https://deathsprout.gitee.io/</link>
+        <link>https://deathsprout.github.io/</link>
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 07 May 2022 18:07:35 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 07 May 2022 18:07:35 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Blog嵌入音乐及个人创作分享</title>
-        <link>https://deathsprout.gitee.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</link>
+        <link>https://deathsprout.github.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</link>
         <pubDate>Sat, 07 May 2022 18:07:35 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</guid>
+        <guid>https://deathsprout.github.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</guid>
         <description>&lt;p&gt;&lt;meting-js server = &#34;netease&#34; type=&#34;song&#34; id=&#34;578090&#34; preload=&#34;auto&#34; loop=&#34;all&#34; volume=0.25 autoplay=true list-folded=true&gt;&lt;/meting-js&gt;&lt;/p&gt;
 &lt;h2 id=&#34;怎么实现&#34;&gt;怎么实现&lt;/h2&gt;
 &lt;ul&gt;
@@ -64,7 +64,7 @@
             name: &#39;低唤醒&#39;,           //歌曲名称
             artist: &#39;DeathSprout&#39;,       //歌曲作者
             url: &#34;https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8xZHJpdi1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC9zdG9yXzFkcml2X29ubWljcm9zb2Z0X2NvbS9FUkp3V1AtU2NxcE91dktveG1VNUhDc0JJQmwyT3lOU19pMUl3anBERWNwbE5n.m4a&#34; ,         //歌曲源文件地址
-            cover: &#39;cover.jpg&#39;,     //歌曲封面地址
+            cover: &#34;https://s2.loli.net/2022/05/13/Y84ArkwgyR3vK9O.png&#34;,     //歌曲封面地址
             lrc:  &#39;lrc.lrc&#39;,        //歌曲的歌词文件
             theme: &#39;#eeeeee&#39;        //主题颜色（优先）
         }]
@@ -110,10 +110,10 @@
         </item>
         <item>
         <title>旧物 | 大三实习报告 | PDF嵌入</title>
-        <link>https://deathsprout.gitee.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</link>
+        <link>https://deathsprout.github.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</link>
         <pubDate>Fri, 11 Mar 2022 11:52:08 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</guid>
+        <guid>https://deathsprout.github.io/p/%E6%97%A7%E7%89%A9-%E5%A4%A7%E4%B8%89%E5%AE%9E%E4%B9%A0%E6%8A%A5%E5%91%8A-pdf%E5%B5%8C%E5%85%A5/</guid>
         <description>&lt;script src= &#39;/js/pdf-js/build/pdf.js&#39;&gt;&lt;/script&gt;
 &lt;style&gt;
 #the-canvas {
@@ -174,7 +174,7 @@
 window.onload = function() {
 
 
-var url = &#34;https:\/\/deathsprout.gitee.io\/&#34; + &#39;post\/实习报告\/实习报告ya.pdf&#39;;
+var url = &#34;https:\/\/deathsprout.github.io\/&#34; + &#39;post\/实习报告\/实习报告ya.pdf&#39;;
 
 var hidePaginator = &#34;&#34; === &#34;true&#34;;
 var hideLoader = &#34;&#34; === &#34;true&#34;;
@@ -184,7 +184,7 @@ var selectedPageNum = parseInt(&#34;&#34;) || 1;
 var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/deathsprout.gitee.io\/&#34; + &#39;/js/pdf-js/build/pdf.worker.js&#39;;
+pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/deathsprout.github.io\/&#34; + &#39;/js/pdf-js/build/pdf.worker.js&#39;;
 
 
 var pdfDoc = null,
@@ -323,10 +323,10 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
         </item>
         <item>
         <title>如何3D打印自己的大脑</title>
-        <link>https://deathsprout.gitee.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</link>
+        <link>https://deathsprout.github.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</link>
         <pubDate>Tue, 08 Feb 2022 16:34:04 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</guid>
+        <guid>https://deathsprout.github.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</guid>
         <description>&lt;img src="https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png" alt="Featured image of post 如何3D打印自己的大脑" /&gt;&lt;h2 id=&#34;大脑打印计划-&#34;&gt;大脑打印计划 🧠&lt;/h2&gt;
 &lt;p&gt;主要参考 | &lt;a class=&#34;link&#34; href=&#34;https://christine.website/blog/brain-fmri-to-3d-model-2019-08-23&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt; &lt;i class=&#34;fas fa-link &#34;&gt;&lt;/i&gt; How I Converted my Brain fMRI to a 3D Model&lt;/a&gt;&lt;/p&gt;
@@ -496,10 +496,10 @@ mris_convert rh.pial rh.pial.stl
         </item>
         <item>
         <title>Vggface Pytorch 完全指南</title>
-        <link>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+        <link>https://deathsprout.github.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
         <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+        <guid>https://deathsprout.github.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
         <description>&lt;img src="https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png" alt="Featured image of post Vggface Pytorch 完全指南" /&gt;&lt;p&gt;VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -700,10 +700,10 @@ mris_convert rh.pial rh.pial.stl
         </item>
         <item>
         <title>Blog更改日志</title>
-        <link>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</link>
+        <link>https://deathsprout.github.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</link>
         <pubDate>Mon, 06 Dec 2021 22:31:49 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</guid>
+        <guid>https://deathsprout.github.io/p/blog%E6%9B%B4%E6%94%B9%E6%97%A5%E5%BF%97/</guid>
         <description>&lt;img src="https://s2.loli.net/2021/12/07/1rVtuJzys7Foecp.jpg" alt="Featured image of post Blog更改日志" /&gt;&lt;p&gt;&lt;meting-js server = &#34;netease&#34;  type=&#34;song&#34; id=&#34;1931747&#34; list-folded=true fixed=&#34;true&#34;&gt;&lt;/meting-js&gt;
 &lt;meting-js server = &#34;netease&#34; type=&#34;song&#34; id=&#34;22722861&#34; list-folded=true&gt;&lt;/meting-js&gt;&lt;/p&gt;
 &lt;p&gt;&lt;meting-js auto=&#34;https://link.jscdn.cn/sharepoint/aHR0cHM6Ly8xZHJpdi1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC9zdG9yXzFkcml2X29ubWljcm9zb2Z0X2NvbS9FUWtFNzZXekFsTk5uLWZGaUpDUkFKWUI0bVJoMm5fVzRoOGdVNkNRU1JKLWRRP2U9cmFBN1Q2.mp3&#34; list-folded=true&gt;&lt;/meting-js&gt;&lt;/p&gt;
@@ -1023,10 +1023,10 @@ new TypeIt(&#34;#simpleUsage&#34;, {
         </item>
         <item>
         <title>变分自编码器</title>
-        <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
+        <link>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
         <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
+        <guid>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
         <description>&lt;img src="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png" alt="Featured image of post 变分自编码器" /&gt;&lt;h2 id=&#34;autoencoder&#34;&gt;Autoencoder&lt;/h2&gt;
 &lt;p&gt;自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。&lt;/p&gt;
 &lt;ul&gt;
@@ -1305,10 +1305,10 @@ Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot 
         </item>
         <item>
         <title>重装电脑导致matlab遇到的二三事</title>
-        <link>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
+        <link>https://deathsprout.github.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
         <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
+        <guid>https://deathsprout.github.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
         <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用matlab上的工具包matconvnet，过程中先后遇到了如下两个问题。&lt;/p&gt;
 &lt;ul&gt;
@@ -1383,10 +1383,10 @@ Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot 
         </item>
         <item>
         <title>神经可塑性</title>
-        <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
+        <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
         <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
+        <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
         <description>&lt;img src="https://s2.loli.net/2021/12/05/EAlSkpHZeyqDF24.png" alt="Featured image of post 神经可塑性" /&gt;&lt;p&gt;关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性，
 LTP，稳态可塑性&lt;/p&gt;
 &lt;p&gt;神经科学领域，可变性或可修饰性被称为可塑性（Plasticity），可塑性是神经
@@ -1764,10 +1764,10 @@ Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.&lt;/p&gt;
         </item>
         <item>
         <title>神经生物和计算神经英文名词</title>
-        <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
+        <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
         <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
+        <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
         <description>&lt;h3 id=&#34;神经生物&#34;&gt;神经生物&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -2220,10 +2220,10 @@ Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.&lt;/p&gt;
         </item>
         <item>
         <title>山东大学生物信息学实验 - 转录组学数据分析和富集分析</title>
-        <link>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</link>
+        <link>https://deathsprout.github.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</link>
         <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
+        <guid>https://deathsprout.github.io/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/</guid>
         <description>&lt;img src="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png" alt="Featured image of post 山东大学生物信息学实验 - 转录组学数据分析和富集分析" /&gt;&lt;h2 id=&#34;问题如下&#34;&gt;问题如下：&lt;/h2&gt;
 &lt;p&gt;|使用Python或者Perl编程，完成以下任务：&lt;/p&gt;
 &lt;ol&gt;
@@ -2622,10 +2622,10 @@ Mechanisms[J]. Neuropsychopharmacology, 2008, 33(1):18-41.&lt;/p&gt;
         </item>
         <item>
         <title>mcmctree 定年 —— 使用氨基酸序列</title>
-        <link>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</link>
+        <link>https://deathsprout.github.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</link>
         <pubDate>Tue, 25 May 2021 06:52:23 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
+        <guid>https://deathsprout.github.io/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/</guid>
         <description>&lt;p&gt;常见定年软件&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;最大似然法：
@@ -2788,10 +2788,10 @@ method = 1
         </item>
         <item>
         <title>分形艺术 Chaotica作品</title>
-        <link>https://deathsprout.gitee.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</link>
+        <link>https://deathsprout.github.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</link>
         <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</guid>
+        <guid>https://deathsprout.github.io/p/%E5%88%86%E5%BD%A2%E8%89%BA%E6%9C%AF-chaotica%E4%BD%9C%E5%93%81/</guid>
         <description>&lt;img src="https://i.loli.net/2021/05/24/nQovGt7zCABKLXZ.png" alt="Featured image of post 分形艺术 Chaotica作品" /&gt;&lt;p&gt;chaotica 这个软件是我在一年前发现，那时候正满怀热情的学习Blender，在那之前还兴致勃勃的修完了许德民教授讲关于抽象艺术的尔雅网课。&lt;/p&gt;
 &lt;p&gt;老师关于抽象艺术的讲解很大程度上改变了我对该类艺术作品的看法，说是醍醐灌顶也不为过（惭愧的是当时是第一次修习尔雅网课，忘记了最后的考试）。&lt;/p&gt;
 &lt;p&gt;许德民教授很鼓励学生自己去创作抽象作品，也不要将其看的过高过于艰深遥远，他们课程的最后作业便是创做几幅抽象画了，我很是眼馋，然后用PS（上）和SAI 2（下）画了两幅抽象画。&lt;/p&gt;
@@ -3037,10 +3037,10 @@ Chaotica是一款新一代分形艺术应用程序，新手用户可以享受编
         </item>
         <item>
         <title>Perl实验课程笔记</title>
-        <link>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+        <link>https://deathsprout.github.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sat, 22 May 2021 19:35:28 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://deathsprout.github.io/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
         <description>&lt;img src="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg" alt="Featured image of post Perl实验课程笔记" /&gt;&lt;p&gt;关于笔记难免会选择性记忆，自己已然掌握的便不会记录，比如perl的正则表达式和python共通，便不记录在里面。（当然在这里更推荐去学python）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-perl&#34; data-lang=&#34;perl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#对数组排序（默认按照字符串排序）&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;reverse&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#列表反向排列&lt;/span&gt;
@@ -3335,10 +3335,10 @@ Chaotica是一款新一代分形艺术应用程序，新手用户可以享受编
         </item>
         <item>
         <title>从ENA高速下载FASTQ文件</title>
-        <link>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
+        <link>https://deathsprout.github.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</link>
         <pubDate>Sat, 22 May 2021 13:23:33 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
+        <guid>https://deathsprout.github.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/</guid>
         <description>&lt;p&gt;系统：Ubuntu 20.0.4&lt;/p&gt;
 &lt;p&gt;轮子：&lt;a class=&#34;link&#34; href=&#34;https://github.com/wwood/ena-fast-download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ena-fast-download&lt;/a&gt;&lt;/p&gt;
@@ -3373,10 +3373,10 @@ ERR1701760 1.fastq.gz .
         </item>
         <item>
         <title>Cas Protein</title>
-        <link>https://deathsprout.gitee.io/p/cas-protein/</link>
+        <link>https://deathsprout.github.io/p/cas-protein/</link>
         <pubDate>Sat, 15 May 2021 22:38:53 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/cas-protein/</guid>
+        <guid>https://deathsprout.github.io/p/cas-protein/</guid>
         <description>&lt;img src="https://pica.zhimg.com/v2-ffc7d038737eaeb8f680cf26b6b45df1_1440w.jpg?source=172ae18b" alt="Featured image of post Cas Protein" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/381529366&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;同样发表在知乎上&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;为什么写这篇文章&#34;&gt;为什么写这篇文章？&lt;/h3&gt;
@@ -3617,10 +3617,10 @@ RuvC结构域协同切割TS和NTS)。RuvC结构域可分为三个亚结构域：
         </item>
         <item>
         <title>一些不重要的事——为什么建这个博客</title>
-        <link>https://deathsprout.gitee.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</link>
+        <link>https://deathsprout.github.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</link>
         <pubDate>Wed, 12 May 2021 22:38:53 +0800</pubDate>
         
-        <guid>https://deathsprout.gitee.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</guid>
+        <guid>https://deathsprout.github.io/p/%E4%B8%80%E4%BA%9B%E4%B8%8D%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/</guid>
         <description>&lt;p&gt;人总有表达自我的需求，从高中到现在大三，这种需求愈发强，宣泄通路倒是逐渐弱。现在不同的领域有各自的论坛、各自的账号，也无非是一个侧写，于我，于他/她，虽然这样说，这个个人博客也只不过是一些想让别人看到的东西罢了。&lt;/p&gt;
 &lt;p&gt;我喜欢的东西很多，除本专业外，美术、音乐、哲学、物理、科幻、共产主义等等都很喜欢，自然会的挺杂。就拿美术举例，板绘参加过明日方舟的同人企划，给学校弄过些平面设计，会用blender建模，但我自己现在什么水平我自己清楚，半吊子一个不上不下，比如本来3D建模目的只是渲染出来好看就行，一到给做游戏的同学建模型时就各种破面各种问题，自己谱写的音乐少有灵动多半是狗屎。我懂分散精力在各个领域会导致我学的更浅，我体会得到自己的业余，自己毕竟不能只为了提升3D建模理解去硬啃计算机视觉的内容（或许看不懂还得有前置内容），倒也没有退缩，头脑里的莽劲已经让我将其视为足以坚持一生的爱好。&lt;/p&gt;
 &lt;p&gt;在无意中接触到Latex，实在是优美，我在大三上学期决定用latex完全替代word的需求，包括实验报告与笔记，到现在也写八九十个文档了。特别是90页、2500行左右Latex代码的实习报告，花费了我极大的精力，从苦痛慢慢变成享受，精美的完成品PDF给了我很大的成就感，但除我之外估计只有课程老师能去抽出时间草草的浏览一遍，是躺在硬盘里可有可无的东西。&lt;/p&gt;
@@ -3628,6 +3628,202 @@ RuvC结构域协同切割TS和NTS)。RuvC结构域可分为三个亚结构域：
 &lt;p&gt;我并非没有考虑过使用现有的平台写东西，知乎、CSDN、简书等都挺不错，一个高中朋友弄了个微信公众号也不错，自带平台的搜索权重岂不美哉。但多半是我想折腾，一开始打算使用我的树莓派4B作为服务器挂载这个网站（前段时间还用它挖了一天门罗币，产出和大肠杆菌鞭毛一样，无聊的紧），后来发现我并不需要一个动态的网站，仅仅挂载静态网页就可，鉴于在宿舍总不能一直开着树莓派，转向了借由github的服务挂载网页。便随意买了个网址，解析地址配置好，之后便发现使用github挂载的网页不科学上网不能稳定访问，最后就选择使用gitee了。&lt;/p&gt;
 &lt;p&gt;现在这个页面排版是基于HugoTex theme的，原因自然是它的LaTex风格。虽然对它的css和toml等配置文件进行大量改动，增加了一些功能，但它的功能仍是贫弱。现在文章尚少还能接受，推测随着文章数目的增多，我会更改theme，又免不了一阵折腾。&lt;/p&gt;
 &lt;p&gt;至于体会，一个长久居住在不同的集体宿舍的人，自己用别人提供的简单方法盖了个简陋的房子。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title></title>
+        <link>https://deathsprout.github.io/p/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/</guid>
+        <description>&lt;h3 id=&#34;617&#34;&gt;6.17&lt;/h3&gt;
+&lt;p&gt;斯诺克鲫鱼伏在桌上的身体猛地直挺，又软塌塌弯下腰，肩膀一抽一抽的，大口急喘着气，口腔里拉出来几条粘稠的血丝，边落边颤甩了一地。好久，强烈的耳鸣和晕眩才有所缓和，扶着墙摸出门趴在阳台栏杆上，风灌过他，触觉也回来了。&lt;/p&gt;
+&lt;p&gt;一个链接天地的柱子向外延申出许多平台，斯诺克鲫鱼所在的二楼阳台位于某两个平台之间，平台上是精致的环形公园，一台机器园丁在忙碌着。这是大学院的财产，方便出航的师生暂住，位于泰拉为数不多的能见到真正星空的地界，不远处就是泰拉最大的太空港&amp;ndash;幽蓝之眼太空港。鲫鱼盯着那巨大的深蓝色球体发呆，说是球体，从外太空返航时才能看出全貌，在他现在的视角里望不到边。太空港和地面中间有很宽的空间，隔一段距离就伸出几条长长的通道，要是在通道上往回看，能发现地面千层饼一样一层叠着一层。这个时间点偶尔有几艘舰船进进出出，靠着义眼的视力，鲫鱼找到了明天他们将要登上的舰船。&lt;/p&gt;
+&lt;p&gt;这艘太空船或许将在明日穿梭亚空间时遇难，斯诺克鲫鱼不太确定。虽然像是刚死过一般经历了回马灯，他更倾向于推测是睡觉时突发了什么急性病，强烈的痛苦混杂着对行程的担忧，是经过梦的加工形成的体验。看了看时间是后半夜，去附近的医院做了自助检查，。&lt;/p&gt;
+&lt;p&gt;斯诺克鲫鱼睡不着，越想越担心，准备天亮了和师弟师妹们说这次考察推迟一个船次，恐怕得一到二个行星年。很难和他们解释，但还好有几个可以并行的考察目标，一周后直接去下一个，自己担着退换产生的违约费就好了。&lt;/p&gt;
+&lt;p&gt;“鲫鱼学长，”&lt;/p&gt;
+&lt;p&gt;“空出来的这几天你们是自行安排，还是一起出去玩一玩？因为是我的问题，账能报销的报销，不能的算我头上，就是不要太多”。&lt;/p&gt;
+&lt;p&gt;一团软和的电子宠物靠在他脚边。&lt;/p&gt;
+&lt;p&gt;这些管道&lt;/p&gt;
+&lt;p&gt;这些泛着蓝的流体作为介质，在相变层上做了特殊处理，用以约束核的作用范围。&lt;/p&gt;
+&lt;p&gt;鲫鱼他小时候一直对鲫鱼到底是什么样的生物感到好奇，他没见过这种古代生物，想来不会是凡物。问过辖区智械长也没得到答案，&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title></title>
+        <link>https://deathsprout.github.io/p/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/</guid>
+        <description>&lt;h2 id=&#34;the-basics-i-classfar-fa-sticky-notei&#34;&gt;The Basics &lt;i class=&#34;far fa-sticky-note&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
+&lt;p&gt;A graph is a pair $G=(V,E)$ , $ G $ are &lt;em&gt;vertics&lt;/em&gt;, and $E$ means &lt;em&gt;edges&lt;/em&gt;, $E$ are 2-element subsets of $V$.&lt;/p&gt;
+&lt;p&gt;A vertices $v$ is  &lt;em&gt;incident&lt;/em&gt; with an edge $e$ if  $v\in e$,two vertices incident with an edge are &lt;em&gt;endvertices&lt;/em&gt; or &lt;em&gt;ends&lt;/em&gt;.The set of all the edges in $E$ at a vertices $v$ is denoted by $E(v)$.&lt;/p&gt;
+&lt;p&gt;Some concept:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;graph&amp;rsquo;s &lt;em&gt;order&lt;/em&gt; written as $|G|$, means the number of vertices. The number of edge denoted by $||G||$. &lt;em&gt;empty graph&lt;/em&gt; $(\emptyset,\emptyset)$ simply write $\emptyset$, A graph of order 0 or 1 is called &lt;em&gt;&lt;font color=purple&gt;trivial&lt;/font&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;adjacent&lt;/em&gt; or &lt;em&gt;neighbours&lt;/em&gt; : vertices have an edge ; edge have an end in common&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;complete&lt;/em&gt; : all vertices of a graph are pairwise adjacent. A complete graph on $n$ vertices is  a $K^n$, example $K^3$ is a triangle(三角形).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;independent&lt;/em&gt; : non-adjacent; for a set, if no two of its elements are adjacent.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;&lt;font color=red&gt;isomorphic&lt;/font&gt;&lt;/em&gt; ， write $G \simeq G^\prime$ (usually like write $G = G^\prime$), if two graphs exists a bijection (双射) 
+$$\varphi : V \to V^\prime ,\text{with} ,, xy\in E \Leftrightarrow \varphi (x)\varphi(y) \in E^\prime \quad \forall x,y\in V$$&lt;/p&gt;
+&lt;p&gt;so the map $\varphi$ called &lt;em&gt;&lt;font color=purple&gt;isomorphism&lt;/font&gt;&lt;/em&gt; , if $G = G^\prime$ is &lt;em&gt;automorphism&lt;/em&gt; (自同态（形）).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;graph property&lt;/em&gt; : A class of graphs that is closed under isomorphism.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;graph invariant&lt;/em&gt; : A map which assigns equal values to isomorphic graphs.  (在同形图上不变的量，比如节点数量和边数量)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Set operation :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Union : $G \cup G^\prime := (V\cup V^\prime,E\cup E^\prime)$, difference similarly, and if $G\cap G^\prime = \emptyset$, then they are &lt;em&gt;&lt;font color=royalblue&gt;disjoint&lt;/font&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;induced subgraph&lt;/em&gt; : $G \subseteq G^\prime$ and $G^\prime $ has all the edge $xy\in E$ with $x,y \in V^\prime$. write $G^\prime =: G[V^\prime]$.  (只少了点的子集，包括的点同时包括所有对应边)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;spanning subgraph&lt;/em&gt; : $G \subseteq G^\prime$ and  $V^\prime$ spans all of $G$, i.e. if $V^\prime=V$. (点都有的子图)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$G - U$ is $G [V\setminus U]$, $U$ is any set of vertices. Similarly, $G+F := (V,E\cup F)$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$G* G^\prime$ : $G$ and $G^\prime$ is disjoint, and joining all vertices with each other. For example, $K^2 * K^3 = K^5 $.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;complement&lt;/em&gt; : write is $\overline{G}$, $\overline{G} = G ([V]^2 \setminus E ) $&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;line graph&lt;/em&gt; : $L(G)$ of $G$ is the graph on $E$, which edges as vertices and adjacent edges as edges. (边视为顶点的新图)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;degree-of-a-vertex&#34;&gt;degree of a vertex&lt;/h3&gt;
+&lt;p&gt;The set of neighbours of a vertex $v$ in $G$ is denoted by $N_G(v)$ or $N(v)$, for a set $U\subseteq V$, $N(U)$ means the neighbours in $V\setminus U$ for all vertices in $U$. 
+The degree $d(v)$ is the number $|E(v)|$ of edges at $v$.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;isolated&lt;/em&gt; meaning a vertex degree is 0, $\delta(G)$ and $\Delta(G)$ is the minimum degree and maximum degree of $v\in V$.&lt;/p&gt;
+&lt;p&gt;$d(G)$ is the average degree of $G$, sometimes directly express as $\varepsilon(G) := |E|/|V|$, and $\varepsilon(G) = \frac{1}{2} d(G)$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$k$-regular : all the vertices of $G$ have same degree $k$. &lt;em&gt;cubic&lt;/em&gt; is a 3-regular graph.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Proposition :&lt;/strong&gt; The number of vertics of odd degree in a graph is always even&lt;/p&gt;
+&lt;h3 id=&#34;paths-and-cycles&#34;&gt;Paths and cycles&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;path&lt;/strong&gt; is a non-empty graph $P=(V,E)$ of the form:
+$$V={x_0,x_1,&amp;hellip;&amp;hellip;, x_k} \quad E={x_0x_1,&amp;hellip;&amp;hellip;,x_{k-1}x_k}$$&lt;/p&gt;
+&lt;p&gt;The number of edges of a path is its &lt;em&gt;length&lt;/em&gt;, denoted by $P^k$. $P^0 = K^1$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A-B path : path $P = x_0&amp;hellip;x_k$ and $V(P)\cap A={x_0} \quad V(P)\cup B={x_k}$&lt;/li&gt;
+&lt;li&gt;independent paths : none of them contains an inner vertex of another.(互不包含中间节点)&lt;/li&gt;
+&lt;li&gt;H-path : $P$ two ends in graph H&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;cycle&lt;/strong&gt;&lt;/em&gt; : $P = x_0&amp;hellip;x_{k-1}$ is a path and $k\ge 3$, the graph $C^k := P + x_{k-1}x_0$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;girth&lt;/em&gt; $g(G)$ : The minimum length cycle of $G$ .(no cycle is zero)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;circumference&lt;/em&gt; : The maximum length cycle of $G$.(no cycle is $\infty$)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;chord&lt;/em&gt; : two vertices of a cycle joining a edge but not be the edges of the cycle&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;induced cycles&lt;/em&gt; : The cycle is a subgraph of other cycle&lt;/li&gt;
+&lt;li&gt;diam $G$ : The greatest distance between any two vertices of $G$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Proposition&lt;/strong&gt; : Every graph containing a cycle satisfies $g(G)\le 2 ,\text{diam} ,G + 1$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;central&lt;/em&gt; : A vertex in $G$ its greatest distance with any other vertex is smallest. And this distance is the &lt;em&gt;radius&lt;/em&gt; of $G$, denoted by $rad G$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$rad, G \le diam ,G \le 2 , rad , G$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Corollary&lt;/strong&gt; : If $\delta (G) \ge 3$ then $g(G) &amp;lt; 2 log|G|$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;walk&lt;/em&gt; : If the vertices in a walk are all distinct, is a path.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;connected&lt;/em&gt; : any two of vertices are linked by a path in graph $G$&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;component&lt;/em&gt; : 图的一个最大联通子图&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;separates&lt;/em&gt; : 如果所有A-B路径都需要经过X的点或边，称X分割了A、B。 edges of X, deifnition of &lt;em&gt;bridge&lt;/em&gt;. two vertics is a &lt;em&gt;cutvertex&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;/i&gt;&lt;i class=&#34;fa fa-paragraph &#34;&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;h3 id=&#34;just-words&#34;&gt;just words&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;nuisanse : 麻烦事&lt;/li&gt;
+&lt;li&gt;disregard ：不理会&lt;/li&gt;
+&lt;/ul&gt;
+&lt;head&gt; 
+    &lt;script defer src=&#34;https://use.fontawesome.com/releases/v5.11.0/js/all.js&#34;&gt;&lt;/script&gt; 
+    &lt;script defer src=&#34;https://use.fontawesome.com/releases/v5.11.0/js/v4-shims.js&#34;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://use.fontawesome.com/releases/v5.11.0/css/all.css&#34;&gt;</description>
+        </item>
+        <item>
+        <title></title>
+        <link>https://deathsprout.github.io/p/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/</guid>
+        <description>&lt;h1 id=&#34;开发一个-latex-包&#34;&gt;开发一个 LaTeX 包&lt;/h1&gt;
+&lt;p&gt;写一个宏包的基本工作就是将你原本很长的文档导言拷贝到一个分离的文件中去，这个文件需要以 &lt;code&gt;.sty&lt;/code&gt;结尾，文件中需要使用一个专用的命令，声明宏包的名称：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Latex&#34; data-lang=&#34;Latex&#34;&gt;&lt;span class=&#34;k&#34;&gt;\ProvidesPackage&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;package name&lt;span class=&#34;nb&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;需求整理&#34;&gt;需求整理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 自动识别结构 ？&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 结合 &lt;code&gt;PyTikZ&lt;/code&gt; 和 自定义 &lt;code&gt;.sty&lt;/code&gt; 开发 ？&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;我目前做了啥&#34;&gt;我目前做了啥&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Fork HarisIqbal88 的 PlotNeuralNet 库，clone 这个分支到本地，这样就可以做修改了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;背景知识&#34;&gt;背景知识&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;TikZ和PGF是一种用在TeX上的CLI绘图工具, CLI和GUI是两种常见的绘图方式，前者是所想即所得的，通过类编程的思想实现绘图，后者所见即所得，如PS、Illustrator。&lt;/li&gt;
+&lt;li&gt;PGF ，全名 &lt;code&gt;portable graphics format&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;具体命令实现&#34;&gt;具体命令/实现&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\tikzset&lt;/code&gt; :  TikZ 是 PGF 引擎的前端，每个 &lt;code&gt;tikzpicture&lt;/code&gt; 都要选择 &lt;code&gt;tikz key family&lt;/code&gt; ，&lt;code&gt;\tikzset&lt;/code&gt; is a shortcut to set keys that belongs to the tikz family.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-latex&#34; data-lang=&#34;latex&#34;&gt;&lt;span class=&#34;k&#34;&gt;\def\tikzset&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;\pgfqkeys&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;/tikz&lt;span class=&#34;nb&#34;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以&lt;code&gt;\tikzset&lt;/code&gt; 是接下来给定内容的封装器，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-latex&#34; data-lang=&#34;latex&#34;&gt;&lt;span class=&#34;k&#34;&gt;\tikzset&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;help lines/.style=&lt;span class=&#34;nb&#34;&gt;{&lt;/span&gt;blue!50,very thin&lt;span class=&#34;nb&#34;&gt;}}&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;%相当于重定义了 help lines ， /.append style 表示追加， 都是覆盖定义
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\pgfmathsetmacro&lt;/code&gt; {\x}{computation}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建一个变量 &lt;code&gt;\x&lt;/code&gt; ，是后面运算的结果，例如 &lt;code&gt;{\cubey*\scale}&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\pgfmathparse&lt;/code&gt;{computation}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;暂存结果到变量 &lt;code&gt;\pgfmathresult&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\foreach&lt;/code&gt; \var in { item1, item2, &amp;hellip;, itemN} { }&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;循环操作&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Styling the Nodes&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/yishuiliunian/archive/2011/04/05/2005632.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;自己动手写latex宏包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/8c69d1021d98&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;如何利用 Git 与 GitHub 进行多人协作开发&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/tsingke/p/6649800.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Latex&amp;ndash;TikZ和PGF&amp;ndash;高级文本绘图，思维绘图，想到&amp;ndash;得到!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://tug.org/pracjourn/2007-1/beccari/beccari.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Graphics in LATEX&lt;/a&gt; 
+对LaTeX常见画图工具的简单综述&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/CTAN/macros/latex/base/clsguide.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LATEX 2ε for class and package writers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.math.tu-berlin.de/fileadmin/i26/download/AG_ModNumDiff/FG_NumMath/seminars/toolseminar/How_to_TikZ.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;How to TikZ (Slides)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/allefeld/pytikz&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PyTikZ – A Python interface to TikZ | GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://mirrors.dgut.edu.cn/CTAN/graphics/pgf/base/doc/pgfmanual.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PGFmanual.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         

@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>笔记 on DeathSprout</title>
-    <link>https://deathsprout.gitee.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <link>https://deathsprout.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 笔记 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>变分自编码器</title>
-      <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
+      <link>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
       <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
+      <guid>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
       <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。 Encoder network $g_\</description>
     </item>
     
     <item>
       <title>神经可塑性</title>
-      <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
+      <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</link>
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
+      <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/</guid>
       <description>关键字：神经可塑性，认知可塑性，功能可塑性，突触可塑性，短时突触可塑性， LTP，稳态可塑性 神经科学领域，可变性或可修饰性被称为可塑性（Pla</description>
     </item>
     
     <item>
       <title>神经生物和计算神经英文名词</title>
-      <link>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
+      <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</link>
       <pubDate>Wed, 23 Jun 2021 12:46:06 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
+      <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/</guid>
       <description>神经生物 中枢神经系统 central nervous system CNS 脑 brain 大脑皮质 cerebral cortex 基底节 basel ganglia 海马 hippocampus 杏仁核 amygdala 丘脑 thalamus 下丘脑 hypothalamus 小脑 cerebellum 脑干 brainstem 中脑 midbrain 脑桥 pons 延髓 medulla 脊髓 spinal cord 神经解剖学 neurianatomical 组织学切</description>
     </item>
     

@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Test on DeathSprout</title>
-    <link>https://deathsprout.gitee.io/categories/test/</link>
+    <link>https://deathsprout.github.io/categories/test/</link>
     <description>Recent content in Test on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://deathsprout.gitee.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://deathsprout.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

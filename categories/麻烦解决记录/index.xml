@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>麻烦解决记录 on DeathSprout</title>
-    <link>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</link>
+    <link>https://deathsprout.github.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</link>
     <description>Recent content in 麻烦解决记录 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Dec 2021 17:53:33 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Dec 2021 17:53:33 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vggface Pytorch 完全指南</title>
-      <link>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>https://deathsprout.github.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>https://deathsprout.github.io/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>VGGFace是牛津大学视觉组于2015年发表，VGGNet也是他们提出的，是基于VGGNet的人脸识别模型。 文献 官网 为什么不能在pytor</description>
     </item>
     
     <item>
       <title>重装电脑导致matlab遇到的二三事</title>
-      <link>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
+      <link>https://deathsprout.github.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</link>
       <pubDate>Sun, 26 Sep 2021 19:16:13 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
+      <guid>https://deathsprout.github.io/p/%E9%87%8D%E8%A3%85%E7%94%B5%E8%84%91%E5%AF%BC%E8%87%B4matlab%E9%81%87%E5%88%B0%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</guid>
       <description>问题描述 在一次夜间放着跑程序时被母上拔掉了电源，应当是电脑启动了系统自动更新导致系统损坏，蓝屏折腾好久最终还是重装了系统。最近需要使用mat</description>
     </item>
     

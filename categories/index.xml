@@ -2,125 +2,125 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on DeathSprout</title>
-    <link>https://deathsprout.gitee.io/categories/</link>
+    <link>https://deathsprout.github.io/categories/</link>
     <description>Recent content in Categories on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Feb 2022 16:34:04 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Feb 2022 16:34:04 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>实践</title>
-      <link>https://deathsprout.gitee.io/categories/%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://deathsprout.github.io/categories/%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Tue, 08 Feb 2022 16:34:04 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E5%AE%9E%E8%B7%B5/</guid>
+      <guid>https://deathsprout.github.io/categories/%E5%AE%9E%E8%B7%B5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>杂文</title>
-      <link>https://deathsprout.gitee.io/categories/%E6%9D%82%E6%96%87/</link>
+      <link>https://deathsprout.github.io/categories/%E6%9D%82%E6%96%87/</link>
       <pubDate>Tue, 08 Feb 2022 16:34:04 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E6%9D%82%E6%96%87/</guid>
+      <guid>https://deathsprout.github.io/categories/%E6%9D%82%E6%96%87/</guid>
       <description></description>
     </item>
     
     <item>
       <title>笔记</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%AC%94%E8%AE%B0/</link>
+      <link>https://deathsprout.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 08 Feb 2022 16:34:04 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://deathsprout.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>深度学习</title>
-      <link>https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://deathsprout.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://deathsprout.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>编程</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B/</link>
+      <link>https://deathsprout.github.io/categories/%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E7%BC%96%E7%A8%8B/</guid>
+      <guid>https://deathsprout.github.io/categories/%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     
     <item>
       <title>麻烦解决记录</title>
-      <link>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</link>
+      <link>https://deathsprout.github.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 07 Dec 2021 17:53:33 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://deathsprout.github.io/categories/%E9%BA%BB%E7%83%A6%E8%A7%A3%E5%86%B3%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog日志</title>
-      <link>https://deathsprout.gitee.io/categories/blog%E6%97%A5%E5%BF%97/</link>
+      <link>https://deathsprout.github.io/categories/blog%E6%97%A5%E5%BF%97/</link>
       <pubDate>Mon, 06 Dec 2021 22:31:49 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/blog%E6%97%A5%E5%BF%97/</guid>
+      <guid>https://deathsprout.github.io/categories/blog%E6%97%A5%E5%BF%97/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sci-tech</title>
-      <link>https://deathsprout.gitee.io/categories/sci-tech/</link>
+      <link>https://deathsprout.github.io/categories/sci-tech/</link>
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/sci-tech/</guid>
+      <guid>https://deathsprout.github.io/categories/sci-tech/</guid>
       <description></description>
     </item>
     
     <item>
       <title>非正式学术文章</title>
-      <link>https://deathsprout.gitee.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</link>
+      <link>https://deathsprout.github.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</link>
       <pubDate>Fri, 25 Jun 2021 20:54:26 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</guid>
+      <guid>https://deathsprout.github.io/categories/%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%AD%A6%E6%9C%AF%E6%96%87%E7%AB%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>生物信息学</title>
-      <link>https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</link>
+      <link>https://deathsprout.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</link>
       <pubDate>Fri, 11 Jun 2021 20:11:25 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</guid>
+      <guid>https://deathsprout.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Art</title>
-      <link>https://deathsprout.gitee.io/categories/art/</link>
+      <link>https://deathsprout.github.io/categories/art/</link>
       <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/art/</guid>
+      <guid>https://deathsprout.github.io/categories/art/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Create</title>
-      <link>https://deathsprout.gitee.io/categories/create/</link>
+      <link>https://deathsprout.github.io/categories/create/</link>
       <pubDate>Mon, 24 May 2021 16:09:47 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/create/</guid>
+      <guid>https://deathsprout.github.io/categories/create/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://deathsprout.gitee.io/categories/test/</link>
+      <link>https://deathsprout.github.io/categories/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://deathsprout.gitee.io/categories/test/</guid>
+      <guid>https://deathsprout.github.io/categories/test/</guid>
       <description></description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>深度学习 on DeathSprout</title>
-    <link>https://deathsprout.gitee.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+    <link>https://deathsprout.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 深度学习 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.gitee.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 23:49:21 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>变分自编码器</title>
-      <link>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
+      <link>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</link>
       <pubDate>Sun, 05 Dec 2021 23:49:21 +0800</pubDate>
       
-      <guid>https://deathsprout.gitee.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
+      <guid>https://deathsprout.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</guid>
       <description>Autoencoder 自编码器是一种神经网络，其设计目的是在压缩数据的同时，以无监督的方式学习恒等函数来重构原始输入，从而发现一种更有效的压缩表示。 Encoder network $g_\</description>
     </item>
     
