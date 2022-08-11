@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='基于 GTM173 | 间断更新'><title>图论学习</title>
+
+<link rel='canonical' href='https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='图论学习'>
+<meta property='og:description' content='基于 GTM173 | 间断更新'>
+<meta property='og:url' content='https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-08-10T15:32:56&#43;08:00'/><meta property='article:modified_time' content='2022-08-10T15:32:56&#43;08:00'/><meta property='og:image' content='https://s2.loli.net/2022/08/10/kohwepMSim9D1xs.png' />
+<meta name="twitter:title" content="图论学习">
+<meta name="twitter:description" content="基于 GTM173 | 间断更新"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s2.loli.net/2022/08/10/kohwepMSim9D1xs.png' />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+<style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script> 
+		(function () {
+		    const customFont = document.createElement('link');
+		    customFont.href = "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;700&display=swap"; 
+		    customFont.type = "text/css";
+		    customFont.rel = "stylesheet";
+		
+		    document.head.appendChild(customFont);
+		}());
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/">
+                
+                    <img src="https://s2.loli.net/2022/08/10/kohwepMSim9D1xs.png" loading="lazy" alt="Featured image of post 图论学习" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" >
+                笔记
+            </a>
+        
+            <a href="/categories/%E5%9B%BE%E8%AE%BA/" >
+                图论
+            </a>
+        
+            <a href="/categories/%E6%95%B0%E5%AD%A6/" >
+                数学
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/">图论学习</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        基于 GTM173 | 间断更新
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641179040873" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21721" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M852.335286 971.272293h-71.409378V803.137255v-85.900767a231.687639 231.687639 0 0 0-125.01006-205.498381 231.687639 231.687639 0 0 0 125.01006-205.49838V52.378517h71.409378a26.189258 26.189258 0 0 0 0-52.378517h-680.920716a26.189258 26.189258 0 0 0 0 52.378517h71.409377v254.035805a231.687639 231.687639 0 0 0 125.01006 205.49838 231.687639 231.687639 0 0 0-125.01006 205.323786v254.384995H171.41457a26.189258 26.189258 0 0 0 0 52.378517h680.920716a26.189258 26.189258 0 0 0 0-52.378517zM728.547391 52.378517v254.035805a178.959932 178.959932 0 0 1-2.79352 30.204945c-39.458483 12.047059-132.168457 32.998465-209.514067-5.587042-82.059676-41.204433-171.277749-26.887639-220.862745-13.094629V52.378517zM306.900333 369.093947c41.379028-11.872464 118.200853-25.490878 186.467519 8.729753a279.352089 279.352089 0 0 0 125.883035 27.586019 412.044331 412.044331 0 0 0 84.678602-9.253538 179.309122 179.309122 0 0 1-154.865815 89.567263h-74.552088a179.309122 179.309122 0 0 1-167.611253-116.629497z m167.611253 168.833419h11.174083v50.807161a26.189258 26.189258 0 0 0 52.378517 0v-50.807161h11.174084a179.483717 179.483717 0 0 1 179.309121 179.309122v66.520716c-32.649275 10.126513-109.4711 28.633589-180.705882 7.332992a192.054561 192.054561 0 0 1-31.07792-12.047059 244.433078 244.433078 0 0 0-36.490366-14.491389 333.127366 333.127366 0 0 0-185.070759 1.39676v-48.71202a179.483717 179.483717 0 0 1 179.309122-179.309122zM295.202464 971.272293V820.59676c8.031373-2.618926 18.856266-5.761637 31.7763-8.729752a310.953794 310.953794 0 0 1 73.679113-7.856778 234.131969 234.131969 0 0 1 55.346633 7.507588 195.371867 195.371867 0 0 1 37.188747 13.967604 242.687127 242.687127 0 0 0 28.109804 11.872464 295.240239 295.240239 0 0 0 98.122421 15.88815 422.170844 422.170844 0 0 0 109.121909-15.18977v132.692242z" p-id="21722" fill="#8a8a8a"></path><path d="M511.874928 708.157545a26.189258 26.189258 0 0 0 26.189258-26.189259v-13.793009a26.189258 26.189258 0 0 0-52.378517 0v13.793009a26.189258 26.189258 0 0 0 26.189259 26.189259z" p-id="21723" fill="#8a8a8a"></path></svg>
+                <time class="article-time--published">Aug 10, 2022</time>
+            </div>
+        
+
+         
+            <div>
+                <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641178880826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6745" width="200" height="200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs><path d="M399.387199 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L430.987918 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C367.786481 144.513348 381.935736 158.662603 399.387199 158.662603z" p-id="6746" fill="#8a8a8a"></path><path d="M624.957655 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L656.558373 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C593.356936 144.513348 607.506191 158.662603 624.957655 158.662603z" p-id="6747" fill="#8a8a8a"></path><path d="M427.2682 229.567489c11.341303 18.258852 42.468231 49.15963 87.164199 49.15963 44.479027 0 75.987648-30.66951 87.596034-48.789193 9.324366-14.56574 5.097088-33.745569-9.350972-43.26027-14.431687-9.499351-33.966603-5.457292-43.666522 8.856715-0.134053 0.200568-13.773701 19.992333-34.57854 19.992333-20.228717 0-32.809243-18.320251-33.662681-19.60143-9.273201-14.59644-28.607548-19.020192-43.332924-9.874905C422.608064 195.262172 418.056398 214.744899 427.2682 229.567489z" p-id="6748" fill="#8a8a8a"></path><path d="M498.431983 896.779503 259.370259 896.779503c-40.658002 0-73.734328-33.076326-73.734328-73.734328L185.635931 212.101699c0-40.658002 33.076326-73.734328 73.734328-73.734328 17.451464 0 31.600719-14.149255 31.600719-31.600719s-14.149255-31.600719-31.600719-31.600719c-75.508741 0-136.935766 61.427024-136.935766 136.935766l0 610.943476c0 75.508741 61.427024 136.935766 136.935766 136.935766l239.061724 0c17.451464 0 31.600719-14.149255 31.600719-31.600719C530.032702 910.928758 515.883447 896.779503 498.431983 896.779503z" p-id="6749" fill="#8a8a8a"></path><path d="M901.909337 212.101699c0-75.508741-61.432141-136.935766-136.935766-136.935766-17.45658 0-31.600719 14.149255-31.600719 31.600719s14.144138 31.600719 31.600719 31.600719c40.652885 0 73.734328 33.076326 73.734328 73.734328l0 431.874101c0 1.039679 0.207731 2.02103 0.305969 3.035126-3.163039 5.531993-11.175527 14.616906-30.096459 14.616906L658.681734 661.627832c-46.402843 0-93.840248 10.095939-93.840248 84.96716l0 133.947711c0 38.5899 15.08558 64.008826 44.937468 75.596745 6.897084 2.6432 13.475919 3.868097 19.853164 3.868097 20.290115 0 38.543851-12.395308 58.427714-30.783097 0.530073-0.488117 1.043772-0.997724 1.543146-1.527796 212.305337-225.220485 212.305337-261.321704 212.305337-273.186939 0-1.898233-0.178055-3.76372-0.49835-5.587252 0.25685-1.62194 0.49835-3.252067 0.49835-4.945639L901.908314 212.101699zM644.378983 883.534851c-6.907317 6.326079-11.531638 9.772574-14.354939 11.618619-0.781806-1.934049-1.980097-6.259564-1.980097-14.611789L628.043946 746.593969c0-14.385639 2.103918-18.413372 1.939165-18.413372 0 0 0 0-0.005117 0 0.910743-0.606821 6.259564-3.353374 28.704762-3.353374l126.700657 0C747.023758 771.338536 693.851745 831.011614 644.378983 883.534851z" p-id="6750" fill="#8a8a8a"></path><path d="M743.911884 523.368932 280.431947 523.368932c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 537.518187 761.368464 523.368932 743.911884 523.368932z" p-id="6751" fill="#8a8a8a"></path><path d="M743.911884 365.366362 280.431947 365.366362c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 379.515616 761.368464 365.366362 743.911884 365.366362z" p-id="6752" fill="#8a8a8a"></path></svg> 
+                <time class="article-words">
+                    888字
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="the-basics-i-classfar-fa-sticky-notei">The Basics <i class="far fa-sticky-note"></i></h2>
+<p>A graph is a pair $G=(V,E)$ , $ G $ are <em>vertics</em>, and $E$ means <em>edges</em>, $E$ are 2-element subsets of $V$.</p>
+<p>A vertices $v$ is  <em>incident</em> with an edge $e$ if  $v\in e$,two vertices incident with an edge are <em>endvertices</em> or <em>ends</em>.The set of all the edges in $E$ at a vertices $v$ is denoted by $E(v)$.</p>
+<p>Some concept:</p>
+<ul>
+<li>
+<p>graph&rsquo;s <em>order</em> written as $|G|$, means the number of vertices. The number of edge denoted by $||G||$. <em>empty graph</em> $(\emptyset,\emptyset)$ simply write $\emptyset$, A graph of order 0 or 1 is called <em><font color=purple>trivial</font></em>.</p>
+</li>
+<li>
+<p><em>adjacent</em> or <em>neighbours</em> : vertices have an edge ; edge have an end in common</p>
+</li>
+<li>
+<p><em>complete</em> : all vertices of a graph are pairwise adjacent. A complete graph on $n$ vertices is  a $K^n$, example $K^3$ is a triangle(三角形).</p>
+</li>
+<li>
+<p><em>independent</em> : non-adjacent; for a set, if no two of its elements are adjacent.</p>
+</li>
+<li>
+<p><em><font color=red>isomorphic</font></em> ， write $G \simeq G^\prime$ (usually like write $G = G^\prime$), if two graphs exists a bijection (双射)
+$$\varphi : V \to V^\prime ,\text{with} ,, xy\in E \Leftrightarrow \varphi (x)\varphi(y) \in E^\prime \quad \forall x,y\in V$$</p>
+<p>so the map $\varphi$ called <em><font color=purple>isomorphism</font></em> , if $G = G^\prime$ is <em>automorphism</em> (自同态（形）).</p>
+</li>
+<li>
+<p><em>graph property</em> : A class of graphs that is closed under isomorphism.</p>
+</li>
+<li>
+<p><em>graph invariant</em> : A map which assigns equal values to isomorphic graphs.  (在同形图上不变的量，比如节点数量和边数量)</p>
+</li>
+</ul>
+<p>Set operation :</p>
+<ul>
+<li>
+<p>Union : $G \cup G^\prime := (V\cup V^\prime,E\cup E^\prime)$, difference similarly, and if $G\cap G^\prime = \emptyset$, then they are <em><font color=royalblue>disjoint</font></em>.</p>
+</li>
+<li>
+<p><em>induced subgraph</em> : $G \subseteq G^\prime$ and $G^\prime $ has all the edge $xy\in E$ with $x,y \in V^\prime$. write $G^\prime =: G[V^\prime]$.  (只少了点的子集，包括的点同时包括所有对应边)</p>
+</li>
+<li>
+<p><em>spanning subgraph</em> : $G \subseteq G^\prime$ and  $V^\prime$ spans all of $G$, i.e. if $V^\prime=V$. (点都有的子图)</p>
+</li>
+<li>
+<p>$G - U$ is $G [V\setminus U]$, $U$ is any set of vertices. Similarly, $G+F := (V,E\cup F)$.</p>
+</li>
+<li>
+<p>$G* G^\prime$ : $G$ and $G^\prime$ is disjoint, and joining all vertices with each other. For example, $K^2 * K^3 = K^5 $.</p>
+</li>
+<li>
+<p><em>complement</em> : write is $\overline{G}$, $\overline{G} = G ([V]^2 \setminus E ) $</p>
+</li>
+<li>
+<p><em>line graph</em> : $L(G)$ of $G$ is the graph on $E$, which edges as vertices and adjacent edges as edges. (边视为顶点的新图)</p>
+</li>
+</ul>
+<h3 id="degree-of-a-vertex">degree of a vertex</h3>
+<p>The set of neighbours of a vertex $v$ in $G$ is denoted by $N_G(v)$ or $N(v)$, for a set $U\subseteq V$, $N(U)$ means the neighbours in $V\setminus U$ for all vertices in $U$.
+The degree $d(v)$ is the number $|E(v)|$ of edges at $v$.</p>
+<p><em>isolated</em> meaning a vertex degree is 0, $\delta(G)$ and $\Delta(G)$ is the minimum degree and maximum degree of $v\in V$.</p>
+<p>$d(G)$ is the average degree of $G$, sometimes directly express as $\varepsilon(G) := |E|/|V|$, and $\varepsilon(G) = \frac{1}{2} d(G)$.</p>
+<ul>
+<li>$k$-regular : all the vertices of $G$ have same degree $k$. <em>cubic</em> is a 3-regular graph.</li>
+</ul>
+<p><strong>Proposition :</strong> The number of vertics of odd degree in a graph is always even</p>
+<h3 id="paths-and-cycles">Paths and cycles</h3>
+<p>A <strong>path</strong> is a non-empty graph $P=(V,E)$ of the form:
+$$V={x_0,x_1,&hellip;&hellip;, x_k} \quad E={x_0x_1,&hellip;&hellip;,x_{k-1}x_k}$$</p>
+<p>The number of edges of a path is its <em>length</em>, denoted by $P^k$. $P^0 = K^1$.</p>
+<ul>
+<li>A-B path : path $P = x_0&hellip;x_k$ and $V(P)\cap A={x_0} \quad V(P)\cup B={x_k}$</li>
+<li>independent paths : none of them contains an inner vertex of another.(互不包含中间节点)</li>
+<li>H-path : $P$ two ends in graph H</li>
+</ul>
+<p><em><strong>cycle</strong></em> : $P = x_0&hellip;x_{k-1}$ is a path and $k\ge 3$, the graph $C^k := P + x_{k-1}x_0$.</p>
+<ul>
+<li><em>girth</em> $g(G)$ : The minimum length cycle of $G$ .(no cycle is zero)</li>
+<li><em>circumference</em> : The maximum length cycle of $G$.(no cycle is $\infty$)</li>
+<li><em>chord</em> : two vertices of a cycle joining a edge but not be the edges of the cycle</li>
+<li><em>induced cycles</em> : The cycle is a subgraph of other cycle</li>
+<li>diam $G$ : The greatest distance between any two vertices of $G$</li>
+</ul>
+<p><strong>Proposition</strong> : Every graph containing a cycle satisfies $g(G)\le 2 ,\text{diam} ,G + 1$</p>
+<ul>
+<li><em>central</em> : A vertex in $G$ its greatest distance with any other vertex is smallest. And this distance is the <em>radius</em> of $G$, denoted by $rad G$</li>
+</ul>
+<p>$$rad, G \le diam ,G \le 2 , rad , G$$</p>
+<p><strong>Corollary</strong> : If $\delta (G) \ge 3$ then $g(G) &lt; 2 log|G|$.</p>
+<ul>
+<li><em>walk</em> : If the vertices in a walk are all distinct, is a path.</li>
+<li><em>connected</em> : any two of vertices are linked by a path in graph $G$</li>
+<li><em>component</em> : 图的一个最大联通子图</li>
+<li><em>separates</em> : 如果所有A-B路径都需要经过X的点或边，称X分割了A、B。 edges of X, deifnition of <em>bridge</em>. two vertics is a <em>cutvertex</em>.</li>
+</ul>
+<h3 id="just-words--ii-classfa-fa-paragraph-i">Just Words  </i><i class="fa fa-paragraph "></i></h3>
+<ul>
+<li>nuisanse : 麻烦事</li>
+<li>disregard ：不理会</li>
+</ul>
+<head> 
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script> 
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/v4-shims.js"></script> 
+</head> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2022/02/08/XPDiofgdkRChBrz.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">如何3D打印自己的大脑</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">变分自编码器</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E7%A5%9E%E7%BB%8F%E7%94%9F%E7%89%A9%E5%92%8C%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F%E8%8B%B1%E6%96%87%E5%90%8D%E8%AF%8D/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">神经生物和计算神经英文名词</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">山东大学生物信息学实验 - 转录组学数据分析和富集分析</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/perl%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg" loading="lazy" data-key="" data-hash="https://i.loli.net/2021/12/03/b5iCUtcZKnwF1BJ.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Perl实验课程笔记</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+<div id="waline" class="waline-container"></div>
+
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: 3%;  
+ 
+    }
+    .waline-container .vcount {
+        color: var(--card-text-color-main);
+    }
+ 
+     
+    :root{
+        --waline-theme-color: #34495e;  
+        --waline-active-color: #bababa;  
+        --waline-badge-color: #34495e;  
+        --waline-avatar-size: 5rem;
+        --waline-dark-grey: #34495e;  
+    }
+ 
+   
+    :root[data-scheme="dark"] {
+        --waline-theme-color: #acc6e0;
+        --waline-white: #34495e;  
+        --waline-active-color: #8ab1d8;
+        --waline-light-grey: #666;
+        --waline-dark-grey: #acc6e0;  
+        --waline-badge-color: #acc6e0;
+ 
+         
+        --waline-text-color: rgba(255, 255, 255, 0.7);
+        --waline-bgcolor: #515151;
+        --waline-bgcolor-light: #66696b; 
+        --waline-border-color: #9B9C9C;
+        --waline-disable-bgcolor: #444;
+        --waline-disable-color: #272727;
+ 
+         
+        --waline-bq-color:  #9B9C9C;  
+ 
+         
+        --waline-info-bgcolor: #acc6e0;
+        --waline-info-color: #9B9C9C;
+    }
+        .v[data-class=v] .vcontent .vemoji {
+         width:2.2em;  
+         margin:.25em
+     }
+ </style><script>
+    
+    new Waline({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://cdn.jsdelivr.net/gh/norevi/blob-emoji-for-waline@2.0/blobs-gif"],"lang":"zh-CN","locale":{"admin":"Admin"},"requiredMeta":["name","email","url"],"serverURL":"https://blog-api-m42xyj2iz-sydddl.vercel.app/","visitor":true});
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<footer class="site-footer">
+    <section>
+        
+        <div class="site-footer foot-icon" id="foot-icon">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1660152844083" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1504" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M574.784 825.728l-14.16 50.944a366.144 366.144 0 0 0 174.72-72.496l-46.048-26.016a317.728 317.728 0 0 1-114.512 47.568zM778.176 689.312l26.016 46.032a366.08 366.08 0 0 0 72.496-174.72l-50.944 14.16a318.48 318.48 0 0 1-47.568 114.528zM334.688 778.176l-46.048 26.016a366.144 366.144 0 0 0 174.72 72.496l-14.16-50.944a318.528 318.528 0 0 1-114.512-47.568zM198.272 449.216a317.92 317.92 0 0 1 47.568-114.528l-26.016-46.032a366.08 366.08 0 0 0-72.496 174.72l50.944-14.16zM245.824 689.312a318.48 318.48 0 0 1-47.568-114.528l-50.944-14.144a366.144 366.144 0 0 0 72.496 174.72l26.016-46.048zM334.688 245.824a318.208 318.208 0 0 1 114.528-47.568l14.16-50.944a366.144 366.144 0 0 0-174.72 72.496l46.032 26.016zM574.784 198.272a318.208 318.208 0 0 1 114.528 47.568l46.048-26.016a366.144 366.144 0 0 0-174.72-72.496l14.144 50.944zM876.688 463.36a366.144 366.144 0 0 0-72.496-174.72l-26.016 46.032a318.48 318.48 0 0 1 47.568 114.528l50.944 14.16zM776.192 233.488l-14.704 8.32-44.256 25.008a322.72 322.72 0 0 1 39.952 39.952l25.008-44.256 8.32-14.704 8.128-14.384 10.496-18.56-18.56 10.496-14.384 8.128zM790.512 776.192l-8.32-14.704-25.008-44.256a322.72 322.72 0 0 1-39.952 39.952l44.256 25.008 14.704 8.32 14.384 8.128 18.56 10.496-10.496-18.56-8.128-14.384zM266.8 717.232l-25.008 44.256-8.32 14.704-8.128 14.384-10.496 18.56 18.56-10.496 14.384-8.128 14.704-8.32 44.256-25.008a322.72 322.72 0 0 1-39.952-39.952zM247.808 233.488l-14.384-8.128-18.56-10.496 10.496 18.56 8.128 14.384 8.32 14.704 25.008 44.256a322.72 322.72 0 0 1 39.952-39.952l-44.256-25.008-14.704-8.32zM263.84 657.44c3.104 5.264 6.112 10.592 9.536 15.648 3.28 4.832 6.912 9.376 10.464 14a290.288 290.288 0 0 0 53.056 53.072c4.624 3.552 9.168 7.2 14 10.48 5.056 3.424 10.368 6.432 15.648 9.536a285.728 285.728 0 0 0 72.832 30.208l-15.36-55.296c-2.56-1.008-5.136-1.968-7.664-3.072-5.968-2.608-11.84-5.392-17.552-8.464a245.088 245.088 0 0 1-15.792-9.456 241.424 241.424 0 0 1-73.104-73.12 238 238 0 0 1-9.456-15.792 236.192 236.192 0 0 1-8.464-17.552c-1.104-2.512-2.064-5.088-3.072-7.664l-55.296-15.36a286.912 286.912 0 0 0 30.224 72.832zM760.16 366.56c-3.104-5.264-6.112-10.592-9.536-15.648-3.28-4.832-6.912-9.376-10.464-14a290.288 290.288 0 0 0-53.056-53.072c-4.624-3.552-9.168-7.2-14-10.48-5.056-3.424-10.368-6.432-15.648-9.536a285.728 285.728 0 0 0-72.832-30.208l15.36 55.28c2.56 1.008 5.136 1.968 7.664 3.072 5.968 2.608 11.84 5.392 17.552 8.464 5.424 2.912 10.624 6.16 15.792 9.456a241.424 241.424 0 0 1 73.104 73.12c3.312 5.168 6.544 10.368 9.456 15.792 3.072 5.712 5.856 11.568 8.464 17.552 1.104 2.512 2.064 5.104 3.072 7.664l55.28 15.36a286.432 286.432 0 0 0-30.208-72.816zM673.088 750.624c4.832-3.28 9.376-6.928 14-10.48a289.28 289.28 0 0 0 53.056-53.072c3.552-4.624 7.2-9.168 10.464-14 3.424-5.056 6.432-10.368 9.536-15.648a285.488 285.488 0 0 0 30.208-72.832l-55.296 15.36c-1.008 2.56-1.968 5.136-3.072 7.664-2.608 5.968-5.392 11.84-8.464 17.552-2.912 5.424-6.16 10.624-9.456 15.792a241.776 241.776 0 0 1-73.104 73.12c-5.168 3.312-10.368 6.544-15.792 9.456-5.712 3.072-11.584 5.856-17.552 8.464-2.512 1.104-5.088 2.064-7.664 3.072l-15.36 55.296a285.952 285.952 0 0 0 72.832-30.208c5.28-3.104 10.608-6.128 15.664-9.536zM300.464 398.832c2.912-5.424 6.16-10.624 9.456-15.792a241.776 241.776 0 0 1 73.104-73.12c5.168-3.312 10.368-6.544 15.792-9.456 5.712-3.072 11.584-5.856 17.552-8.464 2.512-1.104 5.104-2.064 7.664-3.072l15.36-55.28a285.952 285.952 0 0 0-72.832 30.208c-5.264 3.104-10.592 6.112-15.648 9.536-4.832 3.28-9.376 6.928-14 10.48a289.28 289.28 0 0 0-53.056 53.072c-3.552 4.624-7.2 9.168-10.464 14-3.424 5.056-6.432 10.368-9.536 15.648a285.488 285.488 0 0 0-30.208 72.832l55.28-15.36c1.008-2.56 1.968-5.136 3.072-7.664 2.608-6 5.392-11.872 8.464-17.568zM544.8 209.824l-4.56-16.4-13.632-49.056-4.48-16.112-4.48-16.112L512 91.776l-5.664 20.368-4.48 16.112-4.48 16.112-13.632 49.056-4.56 16.4-4.688 16.896-14.176 51.024C476.992 274.08 494.256 272 512 272s35.008 2.08 51.664 5.744l-14.176-51.024-4.688-16.896zM895.744 501.872l-16.112-4.48-49.056-13.632-16.4-4.56-16.896-4.688-51.024-14.176C749.92 477.008 752 494.256 752 512s-2.08 34.992-5.744 51.664l51.024-14.176 16.896-4.688 16.4-4.56 49.056-13.632 16.112-4.48 16.112-4.48L932.224 512l-20.368-5.664-16.112-4.464zM512 752c-17.744 0-35.008-2.08-51.664-5.744l14.176 51.024 4.688 16.896 4.56 16.4 13.632 49.056 4.48 16.112 4.48 16.112 5.648 20.368 5.664-20.368 4.48-16.112 4.48-16.112 13.632-49.056 4.56-16.4 4.688-16.896 14.176-51.024A240.384 240.384 0 0 1 512 752zM209.824 544.8l16.896 4.688 51.024 14.176C274.08 546.992 272 529.744 272 512s2.08-34.992 5.744-51.664l-51.024 14.176-16.896 4.688-16.4 4.56-49.056 13.632-16.112 4.48-16.112 4.48L91.776 512l20.368 5.664 16.112 4.48 16.112 4.48 49.056 13.632 16.4 4.544zM512 720c20.528 0 40.32-3.104 59.056-8.672a208.16 208.16 0 0 0 20.272-7.136c0.176-0.08 0.368-0.128 0.544-0.192 6.608-2.752 13.056-5.808 19.28-9.2a209.392 209.392 0 0 0 83.648-83.648c3.392-6.24 6.448-12.688 9.2-19.28 0.08-0.176 0.128-0.368 0.192-0.544 2.736-6.592 5.088-13.36 7.136-20.272C716.896 552.32 720 532.528 720 512s-3.104-40.32-8.672-59.072a204 204 0 0 0-7.136-20.272c-0.08-0.176-0.128-0.368-0.192-0.544a204.88 204.88 0 0 0-9.2-19.28 209.488 209.488 0 0 0-83.648-83.648c-6.24-3.392-12.688-6.448-19.28-9.2-0.176-0.08-0.368-0.128-0.544-0.192a204 204 0 0 0-20.272-7.136C552.32 307.104 532.528 304 512 304s-40.32 3.104-59.056 8.672a208.16 208.16 0 0 0-20.272 7.136c-0.176 0.08-0.368 0.128-0.544 0.192-6.608 2.752-13.056 5.808-19.28 9.2a209.392 209.392 0 0 0-83.648 83.648c-3.392 6.24-6.448 12.688-9.2 19.28-0.08 0.176-0.128 0.368-0.192 0.544a204 204 0 0 0-7.136 20.272C307.104 471.68 304 491.472 304 512s3.104 40.32 8.672 59.072c2.048 6.912 4.4 13.68 7.136 20.272 0.08 0.176 0.128 0.368 0.192 0.544 2.752 6.608 5.808 13.056 9.2 19.28a209.488 209.488 0 0 0 83.648 83.648c6.24 3.392 12.688 6.448 19.28 9.2 0.176 0.08 0.368 0.128 0.544 0.192 6.592 2.736 13.36 5.088 20.272 7.136C471.68 716.896 491.472 720 512 720zM352 512c0-88.224 71.776-160 160-160s160 71.776 160 160-71.776 160-160 160-160-71.776-160-160z" fill="#d81e06" p-id="1505"></path><path d="M640 512c0-70.576-57.424-128-128-128s-128 57.424-128 128 57.424 128 128 128 128-57.424 128-128z m-208 0c0-44.112 35.888-80 80-80s80 35.888 80 80-35.888 80-80 80-80-35.888-80-80z" fill="#d81e06" p-id="1506"></path><path d="M512 512m-48 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0Z" fill="#d81e06" p-id="1507"></path></svg> 
+        </div>
+        
+        <div class="copyright">
+            &copy; 
+            
+                2020 - 
+            
+            2022  
+            <br> DeathSprout · 码了 33740 字 · 共 17 篇文章</br>
+        </div>
+    </section>
+
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <no value> designed by <b><a> DeathSprout </a></b>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#the-basics-i-classfar-fa-sticky-notei">The Basics <i class="far fa-sticky-note"></i></a>
+      <ol>
+        <li><a href="#degree-of-a-vertex">degree of a vertex</a></li>
+        <li><a href="#paths-and-cycles">Paths and cycles</a></li>
+        <li><a href="#just-words--ii-classfa-fa-paragraph-i">Just Words  </i><i class="fa fa-paragraph "></i></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -6,7 +6,115 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 07 May 2022 18:07:35 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 10 Aug 2022 15:32:56 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>图论学习</title>
+        <link>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Wed, 10 Aug 2022 15:32:56 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</guid>
+        <description>&lt;img src="https://s2.loli.net/2022/08/10/kohwepMSim9D1xs.png" alt="Featured image of post 图论学习" /&gt;&lt;h2 id=&#34;the-basics-i-classfar-fa-sticky-notei&#34;&gt;The Basics &lt;i class=&#34;far fa-sticky-note&#34;&gt;&lt;/i&gt;&lt;/h2&gt;
+&lt;p&gt;A graph is a pair $G=(V,E)$ , $ G $ are &lt;em&gt;vertics&lt;/em&gt;, and $E$ means &lt;em&gt;edges&lt;/em&gt;, $E$ are 2-element subsets of $V$.&lt;/p&gt;
+&lt;p&gt;A vertices $v$ is  &lt;em&gt;incident&lt;/em&gt; with an edge $e$ if  $v\in e$,two vertices incident with an edge are &lt;em&gt;endvertices&lt;/em&gt; or &lt;em&gt;ends&lt;/em&gt;.The set of all the edges in $E$ at a vertices $v$ is denoted by $E(v)$.&lt;/p&gt;
+&lt;p&gt;Some concept:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;graph&amp;rsquo;s &lt;em&gt;order&lt;/em&gt; written as $|G|$, means the number of vertices. The number of edge denoted by $||G||$. &lt;em&gt;empty graph&lt;/em&gt; $(\emptyset,\emptyset)$ simply write $\emptyset$, A graph of order 0 or 1 is called &lt;em&gt;&lt;font color=purple&gt;trivial&lt;/font&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;adjacent&lt;/em&gt; or &lt;em&gt;neighbours&lt;/em&gt; : vertices have an edge ; edge have an end in common&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;complete&lt;/em&gt; : all vertices of a graph are pairwise adjacent. A complete graph on $n$ vertices is  a $K^n$, example $K^3$ is a triangle(三角形).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;independent&lt;/em&gt; : non-adjacent; for a set, if no two of its elements are adjacent.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;&lt;font color=red&gt;isomorphic&lt;/font&gt;&lt;/em&gt; ， write $G \simeq G^\prime$ (usually like write $G = G^\prime$), if two graphs exists a bijection (双射)
+$$\varphi : V \to V^\prime ,\text{with} ,, xy\in E \Leftrightarrow \varphi (x)\varphi(y) \in E^\prime \quad \forall x,y\in V$$&lt;/p&gt;
+&lt;p&gt;so the map $\varphi$ called &lt;em&gt;&lt;font color=purple&gt;isomorphism&lt;/font&gt;&lt;/em&gt; , if $G = G^\prime$ is &lt;em&gt;automorphism&lt;/em&gt; (自同态（形）).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;graph property&lt;/em&gt; : A class of graphs that is closed under isomorphism.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;graph invariant&lt;/em&gt; : A map which assigns equal values to isomorphic graphs.  (在同形图上不变的量，比如节点数量和边数量)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Set operation :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Union : $G \cup G^\prime := (V\cup V^\prime,E\cup E^\prime)$, difference similarly, and if $G\cap G^\prime = \emptyset$, then they are &lt;em&gt;&lt;font color=royalblue&gt;disjoint&lt;/font&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;induced subgraph&lt;/em&gt; : $G \subseteq G^\prime$ and $G^\prime $ has all the edge $xy\in E$ with $x,y \in V^\prime$. write $G^\prime =: G[V^\prime]$.  (只少了点的子集，包括的点同时包括所有对应边)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;spanning subgraph&lt;/em&gt; : $G \subseteq G^\prime$ and  $V^\prime$ spans all of $G$, i.e. if $V^\prime=V$. (点都有的子图)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$G - U$ is $G [V\setminus U]$, $U$ is any set of vertices. Similarly, $G+F := (V,E\cup F)$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$G* G^\prime$ : $G$ and $G^\prime$ is disjoint, and joining all vertices with each other. For example, $K^2 * K^3 = K^5 $.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;complement&lt;/em&gt; : write is $\overline{G}$, $\overline{G} = G ([V]^2 \setminus E ) $&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;line graph&lt;/em&gt; : $L(G)$ of $G$ is the graph on $E$, which edges as vertices and adjacent edges as edges. (边视为顶点的新图)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;degree-of-a-vertex&#34;&gt;degree of a vertex&lt;/h3&gt;
+&lt;p&gt;The set of neighbours of a vertex $v$ in $G$ is denoted by $N_G(v)$ or $N(v)$, for a set $U\subseteq V$, $N(U)$ means the neighbours in $V\setminus U$ for all vertices in $U$.
+The degree $d(v)$ is the number $|E(v)|$ of edges at $v$.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;isolated&lt;/em&gt; meaning a vertex degree is 0, $\delta(G)$ and $\Delta(G)$ is the minimum degree and maximum degree of $v\in V$.&lt;/p&gt;
+&lt;p&gt;$d(G)$ is the average degree of $G$, sometimes directly express as $\varepsilon(G) := |E|/|V|$, and $\varepsilon(G) = \frac{1}{2} d(G)$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$k$-regular : all the vertices of $G$ have same degree $k$. &lt;em&gt;cubic&lt;/em&gt; is a 3-regular graph.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Proposition :&lt;/strong&gt; The number of vertics of odd degree in a graph is always even&lt;/p&gt;
+&lt;h3 id=&#34;paths-and-cycles&#34;&gt;Paths and cycles&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;path&lt;/strong&gt; is a non-empty graph $P=(V,E)$ of the form:
+$$V={x_0,x_1,&amp;hellip;&amp;hellip;, x_k} \quad E={x_0x_1,&amp;hellip;&amp;hellip;,x_{k-1}x_k}$$&lt;/p&gt;
+&lt;p&gt;The number of edges of a path is its &lt;em&gt;length&lt;/em&gt;, denoted by $P^k$. $P^0 = K^1$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A-B path : path $P = x_0&amp;hellip;x_k$ and $V(P)\cap A={x_0} \quad V(P)\cup B={x_k}$&lt;/li&gt;
+&lt;li&gt;independent paths : none of them contains an inner vertex of another.(互不包含中间节点)&lt;/li&gt;
+&lt;li&gt;H-path : $P$ two ends in graph H&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;cycle&lt;/strong&gt;&lt;/em&gt; : $P = x_0&amp;hellip;x_{k-1}$ is a path and $k\ge 3$, the graph $C^k := P + x_{k-1}x_0$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;girth&lt;/em&gt; $g(G)$ : The minimum length cycle of $G$ .(no cycle is zero)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;circumference&lt;/em&gt; : The maximum length cycle of $G$.(no cycle is $\infty$)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;chord&lt;/em&gt; : two vertices of a cycle joining a edge but not be the edges of the cycle&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;induced cycles&lt;/em&gt; : The cycle is a subgraph of other cycle&lt;/li&gt;
+&lt;li&gt;diam $G$ : The greatest distance between any two vertices of $G$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Proposition&lt;/strong&gt; : Every graph containing a cycle satisfies $g(G)\le 2 ,\text{diam} ,G + 1$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;central&lt;/em&gt; : A vertex in $G$ its greatest distance with any other vertex is smallest. And this distance is the &lt;em&gt;radius&lt;/em&gt; of $G$, denoted by $rad G$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$rad, G \le diam ,G \le 2 , rad , G$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Corollary&lt;/strong&gt; : If $\delta (G) \ge 3$ then $g(G) &amp;lt; 2 log|G|$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;walk&lt;/em&gt; : If the vertices in a walk are all distinct, is a path.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;connected&lt;/em&gt; : any two of vertices are linked by a path in graph $G$&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;component&lt;/em&gt; : 图的一个最大联通子图&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;separates&lt;/em&gt; : 如果所有A-B路径都需要经过X的点或边，称X分割了A、B。 edges of X, deifnition of &lt;em&gt;bridge&lt;/em&gt;. two vertics is a &lt;em&gt;cutvertex&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;just-words--ii-classfa-fa-paragraph-i&#34;&gt;Just Words  &lt;/i&gt;&lt;i class=&#34;fa fa-paragraph &#34;&gt;&lt;/i&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;nuisanse : 麻烦事&lt;/li&gt;
+&lt;li&gt;disregard ：不理会&lt;/li&gt;
+&lt;/ul&gt;
+&lt;head&gt; 
+    &lt;script defer src=&#34;https://use.fontawesome.com/releases/v5.11.0/js/all.js&#34;&gt;&lt;/script&gt; 
+    &lt;script defer src=&#34;https://use.fontawesome.com/releases/v5.11.0/js/v4-shims.js&#34;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://use.fontawesome.com/releases/v5.11.0/css/all.css&#34;&gt;</description>
+        </item>
+        <item>
         <title>Blog嵌入音乐及个人创作分享</title>
         <link>https://deathsprout.github.io/p/blog%E5%B5%8C%E5%85%A5%E9%9F%B3%E4%B9%90%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%88%9B%E4%BD%9C%E5%88%86%E4%BA%AB/</link>
         <pubDate>Sat, 07 May 2022 18:07:35 +0800</pubDate>

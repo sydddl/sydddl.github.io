@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图论 on DeathSprout</title>
+    <link>https://deathsprout.github.io/categories/%E5%9B%BE%E8%AE%BA/</link>
+    <description>Recent content in 图论 on DeathSprout</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Aug 2022 15:32:56 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E5%9B%BE%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图论学习</title>
+      <link>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 10 Aug 2022 15:32:56 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</guid>
+      <description>The Basics A graph is a pair $G=(V,E)$ , $ G $ are vertics, and $E$ means edges, $E$ are 2-element subsets of $V$. A vertices $v$ is incident with an edge $e$ if $v\in e$,two vertices incident with an edge are endvertices or ends.The set of all the edges in $E$ at a vertices $v$ is denoted by $E(v)$. Some concept: graph&amp;rsquo;s order written as $|G|$, means the number</description>
+    </item>
+    
+  </channel>
+</rss>

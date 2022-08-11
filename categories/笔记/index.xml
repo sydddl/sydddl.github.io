@@ -6,7 +6,16 @@
     <description>Recent content in 笔记 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Feb 2022 16:34:04 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Aug 2022 15:32:56 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图论学习</title>
+      <link>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 10 Aug 2022 15:32:56 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</guid>
+      <description>The Basics A graph is a pair $G=(V,E)$ , $ G $ are vertics, and $E$ means edges, $E$ are 2-element subsets of $V$. A vertices $v$ is incident with an edge $e$ if $v\in e$,two vertices incident with an edge are endvertices or ends.The set of all the edges in $E$ at a vertices $v$ is denoted by $E(v)$. Some concept: graph&amp;rsquo;s order written as $|G|$, means the number</description>
+    </item>
+    
     <item>
       <title>如何3D打印自己的大脑</title>
       <link>https://deathsprout.github.io/p/%E5%A6%82%E4%BD%953d%E6%89%93%E5%8D%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A4%A7%E8%84%91/</link>
