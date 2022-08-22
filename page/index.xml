@@ -34,5 +34,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Weekly</title>
+      <link>https://deathsprout.github.io/weekly/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://deathsprout.github.io/weekly/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

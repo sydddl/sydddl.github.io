@@ -1049,8 +1049,8 @@ mris_convert rh.pial rh.pial.stl
 &lt;p&gt;⭕ 能用  |  ❌ 一番尝试后失败&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;一开始想将&lt;a class=&#34;link&#34; href=&#34;https://feelit.khusika.com/zh-cn/theme-documentation-extended-shortcodes/#11-script&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Feelit&lt;/a&gt;上的shortcode抄过来，具体是&lt;code&gt;admonition&lt;/code&gt;❌ &lt;code&gt;music&lt;/code&gt; &lt;code&gt;typeit&lt;/code&gt;，把&lt;code&gt;\layouts\shortcodes\&lt;/code&gt;复制进来没法正常用，&lt;a class=&#34;link&#34; href=&#34;https://guanqr.com/tech/website/hugo-shortcodes-customization/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;自定义 Hugo Shortcodes 简码&lt;/a&gt;写的很详细，搬过来&lt;code&gt;align&lt;/code&gt;⭕ &lt;code&gt;quote&lt;/code&gt;❌,&lt;/p&gt;
+    &gt;Feelit&lt;/a&gt;上的shortcode抄过来，具体是&lt;code&gt;admonition&lt;/code&gt;⭕ &lt;code&gt;music&lt;/code&gt; &lt;code&gt;typeit&lt;/code&gt;，把&lt;code&gt;\layouts\shortcodes\&lt;/code&gt;复制进来没法正常用，&lt;a class=&#34;link&#34; href=&#34;https://guanqr.com/tech/website/hugo-shortcodes-customization/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;自定义 Hugo Shortcodes 简码&lt;/a&gt;写的很详细，搬过来&lt;code&gt;align&lt;/code&gt;⭕ &lt;code&gt;quote&lt;/code&gt;⭕,&lt;/p&gt;
 
 
 
@@ -1067,6 +1067,7 @@ mris_convert rh.pial rh.pial.stl
     &lt;/div&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.typeitjs.com/docs/vanilla&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Typeit&lt;/a&gt;❌&lt;/p&gt;
+&lt;p id=&#34;simpleUsage&#34;&gt;&lt;/p&gt;
 &lt;script&gt;
 new TypeIt(&#34;#simpleUsage&#34;, {
   strings: &#34;This is a simple string.&#34;,
