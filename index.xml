@@ -6,7 +6,452 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 10 Aug 2022 15:32:56 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 18 Sep 2022 13:59:42 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Large-scale model of mammalian thalamocortical systems</title>
+        <link>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</link>
+        <pubDate>Sun, 18 Sep 2022 13:59:42 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</guid>
+        <description>&lt;img src="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png" alt="Featured image of post Large-scale model of mammalian thalamocortical systems" /&gt;&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;This is a note&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;本文同时是 系统与计算神经科学22-23秋季 余山老师课程第一次作业.   ||  &lt;a class=&#34;link&#34; href=&#34;https://www.pnas.org/doi/10.1073/pnas.0712231105&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;原文链接&lt;/a&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h2 id=&#34;研究意义&#34;&gt;研究意义&lt;/h2&gt;
+&lt;p&gt;研究在不同层次上进行对大脑的仿真，模拟了一个大规模的丘脑皮质网络（虽然没有模拟丘脑以外的皮层下结构，但模拟了脑干神经调节，包括多巴胺能奖赏系统和胆碱能激活系统，神经放电时间依赖的突触可塑性只明确建模了树突STDP）, 这个模型能在没有任何外部输入源的情况下自我维持，并且自发产生节律和波。
+作为自下而上的仿真工作，这项研究加深了我们对突触和神经元过程如何相互作用以产生大脑的集体行为的理解。&lt;/p&gt;
+&lt;p&gt;该模型能呈现出一些与当前生物大脑研究中相符的特性，故而进一步开发更详细、更完整的大脑模型能够作为很好的工具，通过模拟来帮助研究药理、结构扰动、神经系统疾病等对大脑神经动力学的影响。&lt;/p&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;h3 id=&#34;模型&#34;&gt;模型&lt;/h3&gt;
+&lt;h4 id=&#34;1宏观解剖&#34;&gt;1.宏观解剖&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;用人脑核磁共振成像得到的弥散张量成像（DTI）数据，作用是将模型神经元细胞体分配到合适的位置，使模型能反映人脑脑沟和脑回的折叠皮层结构。&lt;/li&gt;
+&lt;li&gt;DTI数据用“TensorLine”算法形成白质束（小纤维束因分辨率被遗漏），白质束跨区域连接神经元。&lt;/li&gt;
+&lt;li&gt;为了使每平方毫米皮质表面的神经元密度足够大，模型的空间尺度减少了4倍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2微观解剖&#34;&gt;2.微观解剖&lt;/h4&gt;
+&lt;p&gt;下图给出了模拟灰质微电路的摘要，基于Binzegger等人对猫视觉皮层的详细重建研究。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3树突分枝&#34;&gt;3.树突分枝&lt;/h4&gt;
+&lt;p&gt;每个神经元都有一个胞体室和许多树突室，初始化过程动态确定每个神经元的树突状室的确切数量，每个室突触数少于40。&lt;/p&gt;
+&lt;p&gt;隔室用于模拟突触前神经元在树突中诱发局部EPSP，电位就近叠加引发spike，不同隔室的突触后电位引发效果差。在同一室中三个或四个突触的同时发射可以导致局部树突动作电位，然后可以传播到体细胞以引起尖峰或爆发反应。&lt;/p&gt;
+&lt;h4 id=&#34;4神经动力学&#34;&gt;4.神经动力学&lt;/h4&gt;
+&lt;p&gt;使用作者Izhikevich提出的唯象模型来模拟每个神经元和每个树突室的发放动力学，不是像HH模型那样模拟所有离子电流。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/18/1c1c6680c39bd.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/18/1c1c6680c39bd.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;对体外记录（左栏）和模拟（右栏）的四种代表性放电模式进行比较。&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;对体外记录（左栏）和模拟（右栏）的四种代表性放电模式进行比较。&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;5短时突触可塑性&#34;&gt;5.短时突触可塑性&lt;/h4&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/21/23fb3bb98d37c.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/21/23fb3bb98d37c.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;短时突触抑制和易化由一维方程建模，左侧是短时抑制；右侧短时易化。红色曲线是建模结果，相叠的灰色曲线是测量结果。&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;短时突触抑制和易化由一维方程建模，左侧是短时抑制；右侧短时易化。红色曲线是建模结果，相叠的灰色曲线是测量结果。&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;6树突stdp&#34;&gt;6.树突STDP&lt;/h4&gt;
+&lt;p&gt;模型中每个突触的电导（权重）的长期变化是根据刺激时间依赖性可塑性（STDP）模拟的。&lt;/p&gt;
+&lt;p&gt;STDP：指刺激两个神经元时, 刺激（spike）突触前神经元的时间早于刺激突触后神经元的时间时, 可以得到突触后电流的增强; 当突触前神经元的刺激晚于突触后神经元的刺激时, 突触后电流将会受到抑制。当两个刺激间时间差值发生改变时也能够影响突触后电流的增强效果。（被认为是学习记忆的基本机制）&lt;/p&gt;
+&lt;h4 id=&#34;7计算机模拟&#34;&gt;7.计算机模拟&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;程序：C语言&lt;/li&gt;
+&lt;li&gt;处理器： 60个  3GHz 1.5GB内存的 Beowulf 集群&lt;/li&gt;
+&lt;li&gt;规模 ： 100万神经元 、数千万神经元室、 近5亿突触&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;结果&#34;&gt;结果&lt;/h2&gt;
+&lt;h3 id=&#34;自发活动&#34;&gt;自发活动&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/18/fe0969d5d60e4.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/18/fe0969d5d60e4.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+文章在 t=0 时引入一些随机（种子）发放来启动网络，不论随机种子数量、突触链接初始强度或网络大小，网络活动都会很快消失。
+作者以体内体外都被观察到的微型突触后电位（mPSPs，“minis”）为原型，用刺激性随机输入喂神经元，赋予了神经元一个自发（泊松分布）的突触发放，防止网络沉默。&lt;/p&gt;
+&lt;p&gt;30分钟后关闭minis也不会导致网络沉默，作者认为是这个过程的STDP微调了突触连通性，以允许足够的神经元间动作电位来维持全局活动。关闭minis30分钟后（1h），将此刻的瞬间状态作为大多数后续模拟的初始状态。&lt;/p&gt;
+&lt;h3 id=&#34;混沌系统&#34;&gt;混沌系统&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/18/91d5e389021de.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/18/91d5e389021de.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;初始条件仅差一个spike的两个模拟，会在半秒内发散(上)，（下）显示两个模拟间不相同的神经元发放&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;初始条件仅差一个spike的两个模拟，会在半秒内发散(上)，（下）显示两个模拟间不相同的神经元发放&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+单个神经元级别的改变对整体活动影响很大，对初始条件的小扰动的敏感性高&lt;/p&gt;
+&lt;h3 id=&#34;大脑节律和波&#34;&gt;大脑节律和波&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/18/ecf364070138f.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/18/ecf364070138f.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;在模型中传播的波，红（黑）点对应兴奋性（抑制性）的 spike，原文附件有一个视频，推荐去观看&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;在模型中传播的波，红（黑）点对应兴奋性（抑制性）的 spike，原文附件有一个视频，推荐去观看&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同一类型神经元在不同位置放电频率可能会有很大差距，文章提到FS型篮（basket）细胞平均放电频率在2/3、4层 7Hz,5层大于20Hz，6层8Hz。&lt;/li&gt;
+&lt;li&gt;强烈的局部伽马节律在大的尺度被抵消，与EEG和MEG记录的伽马节律弱于颅内脑电的实验观察一致。&lt;/li&gt;
+&lt;li&gt;整个网络出现显著的低频活动，主要在 $\delta(1-3Hz)$ （哺乳动物睡眠状态的典型波段）和 $\alpha(~10Hz)$（人类皮层闲置期间的典型波段）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;收获和想法&#34;&gt;收获和想法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;收获:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;新的知识：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DTI 的新用途。&lt;/li&gt;
+&lt;li&gt;不同树突室诱发的EPSP，难以叠加引发突触后电位。&lt;/li&gt;
+&lt;li&gt;burst：一种放电模式的称呼 ，神经元在短时间内多次放电，然后进入静止期。&lt;/li&gt;
+&lt;li&gt;同一种神经细胞原来会在不同区域表现出不同的发放频率。&lt;/li&gt;
+&lt;li&gt;微型突触后电位的存在。&lt;/li&gt;
+&lt;li&gt;系统对初始条件小扰动的敏感性，即“蝴蝶效应”，是混沌系统的主要特征。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;研究思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作为复杂的仿真，为了减轻运算，可以使用唯象的模型代替过于细致的模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;想法（感慨）：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次接触这方面的工作，特别钦佩研究者能进行如此复杂的多层次仿真，同时能把这样的工作写的很易读。&lt;/li&gt;
+&lt;li&gt;仿真实现对应的C程序工作量肯定很大，很好奇这类工程是如何组织开展的，又是怎样管理的。&lt;/li&gt;
+&lt;li&gt;如果说这个仿真研究中，脑网络需要一定的微型突触后电位作为刺激随机输入防止网络沉默。那么在人类大脑发育的过程中，随着脑神经元数量增多，神经连接构成足够复杂的网络，是否也会有脑网络“点火”的一瞬间？因为我觉得脑网络应该是从沉寂自发点火再维持在一个临界的状态，不是研究中设置随机种启动再进入自我维持状态，这个阶段中或许还有个特殊的过程。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>神经解剖学笔记</title>
+        <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E8%A7%A3%E5%89%96%E5%AD%A6%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Wed, 07 Sep 2022 13:25:18 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E8%A7%A3%E5%89%96%E5%AD%A6%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://pic.jitudisk.com/public/2022/09/07/12fa725f983bb.png" alt="Featured image of post 神经解剖学笔记" /&gt;&lt;h2 id=&#34;定位&#34;&gt;定位&lt;/h2&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/ff9366b36ddce.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/ff9366b36ddce.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662529991758.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662529991758.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dorsal 背侧&lt;/li&gt;
+&lt;li&gt;rostral 吻侧&lt;/li&gt;
+&lt;li&gt;ventral 腹侧&lt;/li&gt;
+&lt;li&gt;caudal 尾侧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;脑干和小脑处命名有90度旋转。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/1334842fb3f31.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/1334842fb3f31.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662530390664.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662530390664.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;horizontal （axial transverses）&lt;/li&gt;
+&lt;li&gt;coronal plane 冠状面&lt;/li&gt;
+&lt;li&gt;sagittal plane 矢状面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;层次关系&#34;&gt;层次关系&lt;/h2&gt;
+&lt;p&gt;神经系统&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中枢神经系统 CNS
+&lt;ul&gt;
+&lt;li&gt;脑 Brain
+&lt;ul&gt;
+&lt;li&gt;端脑 Telencephalon&lt;/li&gt;
+&lt;li&gt;间脑 Diencephalon&lt;/li&gt;
+&lt;li&gt;小脑 Cerebellum&lt;/li&gt;
+&lt;li&gt;脑干 Brain stem
+&lt;ul&gt;
+&lt;li&gt;中脑 Midbrain&lt;/li&gt;
+&lt;li&gt;脑桥 Pons&lt;/li&gt;
+&lt;li&gt;延髓 Medulla oblongata&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;脊髓 Spinal cord&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;外周神经系统 Peripheral NS
+&lt;ul&gt;
+&lt;li&gt;运动神经元 Motor Neurons
+&lt;ul&gt;
+&lt;li&gt;躯体神经系统&lt;/li&gt;
+&lt;li&gt;自主神经系统
+&lt;ul&gt;
+&lt;li&gt;交感神经 (Sympathetic part)&lt;/li&gt;
+&lt;li&gt;副交感神经(Parasympathetic part)&lt;/li&gt;
+&lt;li&gt;肠部神经 Enteric division&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;感觉神经元 Sensory Neurons&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/0369b2cef67b1.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/0369b2cef67b1.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662530684306.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662530684306.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;材质&#34;&gt;材质&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CNS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Gray matter 灰质&lt;/li&gt;
+&lt;li&gt;Cortex 皮质&lt;/li&gt;
+&lt;li&gt;White matter 白质&lt;/li&gt;
+&lt;li&gt;Medulla 髓质&lt;/li&gt;
+&lt;li&gt;Nucleus 神经核&lt;/li&gt;
+&lt;li&gt;Fascicules 纤维束&lt;/li&gt;
+&lt;li&gt;Reticular formation 网状结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PNS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Ganglion 神经节&lt;/li&gt;
+&lt;li&gt;Nerve 神经&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;逐一&#34;&gt;逐一&lt;/h2&gt;
+&lt;h3 id=&#34;端脑-telencephalon&#34;&gt;端脑 Telencephalon&lt;/h3&gt;
+&lt;p&gt;由左右半球(cerebral hemisphere)及胼胝体(corpus callosum)组成。&lt;/p&gt;
+&lt;p&gt;半球由浅入深&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大脑皮质 cerebral cortex&lt;/li&gt;
+&lt;li&gt;髓质 medulla&lt;/li&gt;
+&lt;li&gt;基底核 basal nuclei&lt;/li&gt;
+&lt;li&gt;侧脑室 lateral ventricle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/0369b2cef67b1.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/0369b2cef67b1.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662530684306.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662530684306.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;脑叶&#34;&gt;脑叶&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Frontal Lobe 前额叶：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Premotor Cortex&lt;/li&gt;
+&lt;li&gt;Motor cortex
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;病变产生痉挛性对侧无力&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Prefrontal cortex
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;人类执行功能最重要的领域&lt;/li&gt;
+&lt;li&gt;个性、情绪、驱动力、背景、计算、工作记忆和注意力&lt;/li&gt;
+&lt;li&gt;对心理功能和疾病至关重要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Parietal Lobe  顶叶&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sensation ,body position, speech and language
++  Somatosensory cortex&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The Temporal Lobe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Memory,hearing,organisation and understanding language
++ Wernicke’s area (语言理解)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Medial Temporal Lobe（MTL）内侧颞叶
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/1f027e7d23016.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/1f027e7d23016.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662533663513.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662533663513.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Occipital Lobe 枕叶&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Primary visual cortex&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Insula Lobe 岛叶&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Limbic System 边缘系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;脑裂&#34;&gt;脑裂&lt;/h4&gt;
+&lt;h4 id=&#34;基底核-basal-ganglia&#34;&gt;基底核 Basal Ganglia&lt;/h4&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/70efa1fa9bfe4.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/70efa1fa9bfe4.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662534101156.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662534101156.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;白质&#34;&gt;白质&lt;/h4&gt;
+&lt;p&gt;目前无法看到全部纤维束&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Association fibers 联络纤维&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在同一半球内的脑回之间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Commissural fibers 连合纤维&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;左右半球之间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Projection fibers 投射纤维&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;连接皮层和大脑下部和脊髓，它们包括上升和下降纤维&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;分类&#34;&gt;分类&lt;/h2&gt;
+&lt;p&gt;宏观尺度脑图谱分类
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/07/b37b81c84e369.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/07/b37b81c84e369.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;1662532613398.png&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;1662532613398.png&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;国科大自动化所课程 | 脑网络组学第二讲 | 讲者：樊令仲 （临床医学背景）&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>图论学习</title>
         <link>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 10 Aug 2022 15:32:56 +0800</pubDate>

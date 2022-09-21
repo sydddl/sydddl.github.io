@@ -6,7 +6,34 @@
     <description>Recent content in Posts on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Aug 2022 15:32:56 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Sep 2022 13:59:42 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Large-scale model of mammalian thalamocortical systems</title>
+      <link>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</link>
+      <pubDate>Sun, 18 Sep 2022 13:59:42 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</guid>
+      <description>This is a note 本文同时是 系统与计算神经科学22-23秋季 余山老师课程第一次作业. || 原文链接 研究意义 研究在不同层次上进行对大脑的仿真，模拟了一个大规</description>
+    </item>
+    
+    <item>
+      <title>神经解剖学笔记</title>
+      <link>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E8%A7%A3%E5%89%96%E5%AD%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 07 Sep 2022 13:25:18 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/%E7%A5%9E%E7%BB%8F%E8%A7%A3%E5%89%96%E5%AD%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>定位 1662529991758.png dorsal 背侧 rostral 吻侧 ventral 腹侧 caudal 尾侧 脑干和小脑处命名有90度旋转。 1662530390664.png horizontal （axial transverses） coronal plane 冠状面 sagittal plane 矢状面 层次关系 神经系统 中枢</description>
+    </item>
+    
+    <item>
+      <title>Forecasting brain activity based on models of spatiotemporal brain dynamics: A comparison of graph neural network architectures</title>
+      <link>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</link>
+      <pubDate>Tue, 23 Aug 2022 23:11:23 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</guid>
+      <description>摘要 理解神经动力学的空间和时间特征之间的相互作用有助于我们理解人脑中的信息处理。图神经网络（GNN）为解释复杂脑网络中观察到的图结构信号提供</description>
+    </item>
+    
     <item>
       <title>图论学习</title>
       <link>https://deathsprout.github.io/p/%E5%9B%BE%E8%AE%BA%E5%AD%A6%E4%B9%A0/</link>

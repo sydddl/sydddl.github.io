@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>周更 on DeathSprout</title>
+    <link>https://deathsprout.github.io/categories/%E5%91%A8%E6%9B%B4/</link>
+    <description>Recent content in 周更 on DeathSprout</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Sep 2022 13:59:42 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E5%91%A8%E6%9B%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Large-scale model of mammalian thalamocortical systems</title>
+      <link>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</link>
+      <pubDate>Sun, 18 Sep 2022 13:59:42 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</guid>
+      <description>This is a note 本文同时是 系统与计算神经科学22-23秋季 余山老师课程第一次作业. || 原文链接 研究意义 研究在不同层次上进行对大脑的仿真，模拟了一个大规</description>
+    </item>
+    
+    <item>
+      <title>Forecasting brain activity based on models of spatiotemporal brain dynamics: A comparison of graph neural network architectures</title>
+      <link>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</link>
+      <pubDate>Tue, 23 Aug 2022 23:11:23 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</guid>
+      <description>摘要 理解神经动力学的空间和时间特征之间的相互作用有助于我们理解人脑中的信息处理。图神经网络（GNN）为解释复杂脑网络中观察到的图结构信号提供</description>
+    </item>
+    
+  </channel>
+</rss>

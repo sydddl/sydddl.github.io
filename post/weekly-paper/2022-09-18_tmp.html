@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2022-09-18.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%E7%A0%94%E7%A9%B6%E6%84%8F%E4%B9%89">研究意义</h2>
+<p>研究在不同层次上进行对大脑的仿真，模拟了一个大规模的丘脑皮质网络（虽然没有模拟丘脑以外的皮层下结构，但模拟了脑干神经调节，包括多巴胺能奖赏系统和胆碱能激活系统，神经放电时间依赖的突触可塑性只明确建模了树突STDP）, 这个模型能在没有任何外部输入源的情况下自我维持，并且自发产生节律和波。
+作为自下而上的仿真工作，这项研究加深了我们对突触和神经元过程如何相互作用以产生大脑的集体行为的理解。</p>
+<p>该模型能呈现出一些与当前生物大脑研究中相符的特性，故而进一步开发更详细、更完整的大脑模型能够作为很好的工具，通过模拟来帮助研究药理、结构扰动、神经系统疾病等对大脑神经动力学的影响。</p>
+<h2 id="%E6%96%B9%E6%B3%95">方法</h2>
+<h3 id="%E6%A8%A1%E5%9E%8B">模型</h3>
+<h4 id="1%E5%AE%8F%E8%A7%82%E8%A7%A3%E5%89%96">1.宏观解剖</h4>
+<ul>
+<li>用人脑核磁共振成像得到的弥散张量成像（DTI）数据，作用是将模型神经元细胞体分配到合适的位置，使模型能反映人脑脑沟和脑回的折叠皮层结构。</li>
+<li>DTI数据用“TensorLine”算法形成白质束（小纤维束因分辨率被遗漏），白质束跨区域连接神经元。</li>
+<li>为了使每平方毫米皮质表面的神经元密度足够大，模型的空间尺度减少了4倍。</li>
+</ul>
+<h4 id="2%E5%BE%AE%E8%A7%82%E8%A7%A3%E5%89%96">2.微观解剖</h4>
+<p>下图给出了模拟灰质微电路的摘要，基于Binzegger等人对猫视觉皮层的详细重建研究。</p>
+<p><img src="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png" alt=""></p>
+<h4 id="3%E6%A0%91%E7%AA%81%E5%88%86%E6%9E%9D">3.树突分枝</h4>
+<p>每个神经元都有一个胞体室和许多树突室，初始化过程动态确定每个神经元的树突状室的确切数量，每个室突触数少于40。</p>
+<p>隔室用于模拟突触前神经元在树突中诱发局部EPSP，电位就近叠加引发spike，不同隔室的突触后电位引发效果差。在同一室中三个或四个突触的同时发射可以导致局部树突动作电位，然后可以传播到体细胞以引起尖峰或爆发反应。</p>
+<h4 id="4%E7%A5%9E%E7%BB%8F%E5%8A%A8%E5%8A%9B%E5%AD%A6">4.神经动力学</h4>
+<p>使用作者Izhikevich提出的唯象模型来模拟每个神经元和每个树突室的发放动力学，不是像HH模型那样模拟所有离子电流。
+<img src="https://pic.jitudisk.com/public/2022/09/18/1c1c6680c39bd.png" alt="对体外记录（左栏）和模拟（右栏）的四种代表性放电模式进行比较。"></p>
+<h4 id="5%E7%9F%AD%E6%97%B6%E7%AA%81%E8%A7%A6%E5%8F%AF%E5%A1%91%E6%80%A7">5.短时突触可塑性</h4>
+<p><img src="https://pic.jitudisk.com/public/2022/09/21/23fb3bb98d37c.png" alt="短时突触抑制和易化由一维方程建模，左侧是短时抑制；右侧短时易化。红色曲线是建模结果，相叠的灰色曲线是测量结果。"></p>
+<h4 id="6%E6%A0%91%E7%AA%81stdp">6.树突STDP</h4>
+<p>模型中每个突触的电导（权重）的长期变化是根据刺激时间依赖性可塑性（STDP）模拟的。</p>
+<p>STDP：指刺激两个神经元时, 刺激（spike）突触前神经元的时间早于刺激突触后神经元的时间时, 可以得到突触后电流的增强; 当突触前神经元的刺激晚于突触后神经元的刺激时, 突触后电流将会受到抑制。当两个刺激间时间差值发生改变时也能够影响突触后电流的增强效果。（被认为是学习记忆的基本机制）</p>
+<h4 id="7%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A8%A1%E6%8B%9F">7.计算机模拟</h4>
+<ul>
+<li>程序：C语言</li>
+<li>处理器： 60个  3GHz 1.5GB内存的 Beowulf 集群</li>
+<li>规模 ： 100万神经元 、数千万神经元室、 近5亿突触</li>
+</ul>
+<h2 id="%E7%BB%93%E6%9E%9C">结果</h2>
+<h3 id="%E8%87%AA%E5%8F%91%E6%B4%BB%E5%8A%A8">自发活动</h3>
+<p><img src="https://pic.jitudisk.com/public/2022/09/18/fe0969d5d60e4.png" alt="">
+文章在 t=0 时引入一些随机（种子）发放来启动网络，不论随机种子数量、突触链接初始强度或网络大小，网络活动都会很快消失。
+作者以体内体外都被观察到的微型突触后电位（mPSPs，“minis”）为原型，用刺激性随机输入喂神经元，赋予了神经元一个自发（泊松分布）的突触发放，防止网络沉默。</p>
+<p>30分钟后关闭minis也不会导致网络沉默，作者认为是这个过程的STDP微调了突触连通性，以允许足够的神经元间动作电位来维持全局活动。关闭minis30分钟后（1h），将此刻的瞬间状态作为大多数后续模拟的初始状态。</p>
+<h3 id="%E6%B7%B7%E6%B2%8C%E7%B3%BB%E7%BB%9F">混沌系统</h3>
+<p><img src="https://pic.jitudisk.com/public/2022/09/18/91d5e389021de.png" alt="初始条件仅差一个spike的两个模拟，会在半秒内发散(上)，（下）显示两个模拟间不相同的神经元发放">
+单个神经元级别的改变对整体活动影响很大，对初始条件的小扰动的敏感性高</p>
+<h3 id="%E5%A4%A7%E8%84%91%E8%8A%82%E5%BE%8B%E5%92%8C%E6%B3%A2">大脑节律和波</h3>
+<p><img src="https://pic.jitudisk.com/public/2022/09/18/ecf364070138f.png" alt="在模型中传播的波，红（黑）点对应兴奋性（抑制性）的 spike，原文附件有一个视频，推荐去观看"></p>
+<ul>
+<li>同一类型神经元在不同位置放电频率可能会有很大差距，文章提到FS型篮（basket）细胞平均放电频率在2/3、4层 7Hz,5层大于20Hz，6层8Hz。</li>
+<li>强烈的局部伽马节律在大的尺度被抵消，与EEG和MEG记录的伽马节律弱于颅内脑电的实验观察一致。</li>
+<li>整个网络出现显著的低频活动，主要在 $\delta(1-3Hz)$ （哺乳动物睡眠状态的典型波段）和 $\alpha(~10Hz)$（人类皮层闲置期间的典型波段）。</li>
+</ul>
+<h2 id="%E6%94%B6%E8%8E%B7%E5%92%8C%E6%83%B3%E6%B3%95">收获和想法</h2>
+<blockquote>
+<p>收获:</p>
+</blockquote>
+<ul>
+<li>
+<p>新的知识：</p>
+<ul>
+<li>DTI 的新用途。</li>
+<li>不同树突室诱发的EPSP，难以叠加引发突触后电位。</li>
+<li>burst：一种放电模式的称呼 ，神经元在短时间内多次放电，然后进入静止期。</li>
+<li>同一种神经细胞原来会在不同区域表现出不同的发放频率。</li>
+<li>微型突触后电位的存在。</li>
+<li>系统对初始条件小扰动的敏感性，即“蝴蝶效应”，是混沌系统的主要特征。</li>
+</ul>
+</li>
+<li>
+<p>研究思路：</p>
+<ul>
+<li>作为复杂的仿真，为了减轻运算，可以使用唯象的模型代替过于细致的模型。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>想法（感慨）：</p>
+</blockquote>
+<ul>
+<li>第一次接触这方面的工作，特别钦佩研究者能进行如此复杂的多层次仿真，同时能把这样的工作写的很易读。</li>
+<li>仿真实现对应的C程序工作量肯定很大，很好奇这类工程是如何组织开展的，又是怎样管理的。</li>
+<li>如果说这个仿真研究中，脑网络需要一定的微型突触后电位作为刺激随机输入防止网络沉默。那么在人类大脑发育的过程中，随着脑神经元数量增多，神经连接构成足够复杂的网络，是否也会有脑网络“点火”的一瞬间？因为我觉得脑网络应该是从沉寂自发点火再维持在一个临界的状态，不是研究中设置随机种启动再进入自我维持状态，这个阶段中或许还有个特殊的过程。</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='论文精读第三周 | 期刊 PNAS | 作者 Izhikevich and Gerald |'><title>Large-scale model of mammalian thalamocortical systems</title>
+
+<link rel='canonical' href='https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Large-scale model of mammalian thalamocortical systems'>
+<meta property='og:description' content='论文精读第三周 | 期刊 PNAS | 作者 Izhikevich and Gerald |'>
+<meta property='og:url' content='https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/'>
+<meta property='og:site_name' content='DeathSprout'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-09-18T13:59:42&#43;08:00'/><meta property='article:modified_time' content='2022-09-18T13:59:42&#43;08:00'/><meta property='og:image' content='https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png' />
+<meta name="twitter:title" content="Large-scale model of mammalian thalamocortical systems">
+<meta name="twitter:description" content="论文精读第三周 | 期刊 PNAS | 作者 Izhikevich and Gerald |"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png' />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+<style>
+    :root {
+        --article-font-family: "Noto Serif SC", var(--base-font-family);
+    }
+</style>
+
+<script> 
+		(function () {
+		    const customFont = document.createElement('link');
+		    customFont.href = "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;700&display=swap"; 
+		    customFont.type = "text/css";
+		    customFont.rel = "stylesheet";
+		
+		    document.head.appendChild(customFont);
+		}());
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/large-scale-model-of-mammalian-thalamocortical-systems/">
+                
+                    <img src="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png" loading="lazy" alt="Featured image of post Large-scale model of mammalian thalamocortical systems" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB/" >
+                论文精读
+            </a>
+        
+            <a href="/categories/%E5%91%A8%E6%9B%B4/" >
+                周更
+            </a>
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E7%A5%9E%E7%BB%8F/" >
+                计算神经
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/large-scale-model-of-mammalian-thalamocortical-systems/">Large-scale model of mammalian thalamocortical systems</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        论文精读第三周 | 期刊 PNAS | 作者 Izhikevich and Gerald |
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641179040873" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21721" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M852.335286 971.272293h-71.409378V803.137255v-85.900767a231.687639 231.687639 0 0 0-125.01006-205.498381 231.687639 231.687639 0 0 0 125.01006-205.49838V52.378517h71.409378a26.189258 26.189258 0 0 0 0-52.378517h-680.920716a26.189258 26.189258 0 0 0 0 52.378517h71.409377v254.035805a231.687639 231.687639 0 0 0 125.01006 205.49838 231.687639 231.687639 0 0 0-125.01006 205.323786v254.384995H171.41457a26.189258 26.189258 0 0 0 0 52.378517h680.920716a26.189258 26.189258 0 0 0 0-52.378517zM728.547391 52.378517v254.035805a178.959932 178.959932 0 0 1-2.79352 30.204945c-39.458483 12.047059-132.168457 32.998465-209.514067-5.587042-82.059676-41.204433-171.277749-26.887639-220.862745-13.094629V52.378517zM306.900333 369.093947c41.379028-11.872464 118.200853-25.490878 186.467519 8.729753a279.352089 279.352089 0 0 0 125.883035 27.586019 412.044331 412.044331 0 0 0 84.678602-9.253538 179.309122 179.309122 0 0 1-154.865815 89.567263h-74.552088a179.309122 179.309122 0 0 1-167.611253-116.629497z m167.611253 168.833419h11.174083v50.807161a26.189258 26.189258 0 0 0 52.378517 0v-50.807161h11.174084a179.483717 179.483717 0 0 1 179.309121 179.309122v66.520716c-32.649275 10.126513-109.4711 28.633589-180.705882 7.332992a192.054561 192.054561 0 0 1-31.07792-12.047059 244.433078 244.433078 0 0 0-36.490366-14.491389 333.127366 333.127366 0 0 0-185.070759 1.39676v-48.71202a179.483717 179.483717 0 0 1 179.309122-179.309122zM295.202464 971.272293V820.59676c8.031373-2.618926 18.856266-5.761637 31.7763-8.729752a310.953794 310.953794 0 0 1 73.679113-7.856778 234.131969 234.131969 0 0 1 55.346633 7.507588 195.371867 195.371867 0 0 1 37.188747 13.967604 242.687127 242.687127 0 0 0 28.109804 11.872464 295.240239 295.240239 0 0 0 98.122421 15.88815 422.170844 422.170844 0 0 0 109.121909-15.18977v132.692242z" p-id="21722" fill="#8a8a8a"></path><path d="M511.874928 708.157545a26.189258 26.189258 0 0 0 26.189258-26.189259v-13.793009a26.189258 26.189258 0 0 0-52.378517 0v13.793009a26.189258 26.189258 0 0 0 26.189259 26.189259z" p-id="21723" fill="#8a8a8a"></path></svg>
+                <time class="article-time--published">Sep 18, 2022</time>
+            </div>
+        
+
+         
+            <div>
+                <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641178880826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6745" width="200" height="200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs><path d="M399.387199 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L430.987918 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C367.786481 144.513348 381.935736 158.662603 399.387199 158.662603z" p-id="6746" fill="#8a8a8a"></path><path d="M624.957655 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L656.558373 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C593.356936 144.513348 607.506191 158.662603 624.957655 158.662603z" p-id="6747" fill="#8a8a8a"></path><path d="M427.2682 229.567489c11.341303 18.258852 42.468231 49.15963 87.164199 49.15963 44.479027 0 75.987648-30.66951 87.596034-48.789193 9.324366-14.56574 5.097088-33.745569-9.350972-43.26027-14.431687-9.499351-33.966603-5.457292-43.666522 8.856715-0.134053 0.200568-13.773701 19.992333-34.57854 19.992333-20.228717 0-32.809243-18.320251-33.662681-19.60143-9.273201-14.59644-28.607548-19.020192-43.332924-9.874905C422.608064 195.262172 418.056398 214.744899 427.2682 229.567489z" p-id="6748" fill="#8a8a8a"></path><path d="M498.431983 896.779503 259.370259 896.779503c-40.658002 0-73.734328-33.076326-73.734328-73.734328L185.635931 212.101699c0-40.658002 33.076326-73.734328 73.734328-73.734328 17.451464 0 31.600719-14.149255 31.600719-31.600719s-14.149255-31.600719-31.600719-31.600719c-75.508741 0-136.935766 61.427024-136.935766 136.935766l0 610.943476c0 75.508741 61.427024 136.935766 136.935766 136.935766l239.061724 0c17.451464 0 31.600719-14.149255 31.600719-31.600719C530.032702 910.928758 515.883447 896.779503 498.431983 896.779503z" p-id="6749" fill="#8a8a8a"></path><path d="M901.909337 212.101699c0-75.508741-61.432141-136.935766-136.935766-136.935766-17.45658 0-31.600719 14.149255-31.600719 31.600719s14.144138 31.600719 31.600719 31.600719c40.652885 0 73.734328 33.076326 73.734328 73.734328l0 431.874101c0 1.039679 0.207731 2.02103 0.305969 3.035126-3.163039 5.531993-11.175527 14.616906-30.096459 14.616906L658.681734 661.627832c-46.402843 0-93.840248 10.095939-93.840248 84.96716l0 133.947711c0 38.5899 15.08558 64.008826 44.937468 75.596745 6.897084 2.6432 13.475919 3.868097 19.853164 3.868097 20.290115 0 38.543851-12.395308 58.427714-30.783097 0.530073-0.488117 1.043772-0.997724 1.543146-1.527796 212.305337-225.220485 212.305337-261.321704 212.305337-273.186939 0-1.898233-0.178055-3.76372-0.49835-5.587252 0.25685-1.62194 0.49835-3.252067 0.49835-4.945639L901.908314 212.101699zM644.378983 883.534851c-6.907317 6.326079-11.531638 9.772574-14.354939 11.618619-0.781806-1.934049-1.980097-6.259564-1.980097-14.611789L628.043946 746.593969c0-14.385639 2.103918-18.413372 1.939165-18.413372 0 0 0 0-0.005117 0 0.910743-0.606821 6.259564-3.353374 28.704762-3.353374l126.700657 0C747.023758 771.338536 693.851745 831.011614 644.378983 883.534851z" p-id="6750" fill="#8a8a8a"></path><path d="M743.911884 523.368932 280.431947 523.368932c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 537.518187 761.368464 523.368932 743.911884 523.368932z" p-id="6751" fill="#8a8a8a"></path><path d="M743.911884 365.366362 280.431947 365.366362c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 379.515616 761.368464 365.366362 743.911884 365.366362z" p-id="6752" fill="#8a8a8a"></path></svg> 
+                <time class="article-words">
+                    2149字
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <div class="details admonition note">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>This is a note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">本文同时是 系统与计算神经科学22-23秋季 余山老师课程第一次作业.   ||  <a class="link" href="https://www.pnas.org/doi/10.1073/pnas.0712231105"  target="_blank" rel="noopener"
+    >原文链接</a></div>
+        </div>
+    </div>
+<h2 id="研究意义">研究意义</h2>
+<p>研究在不同层次上进行对大脑的仿真，模拟了一个大规模的丘脑皮质网络（虽然没有模拟丘脑以外的皮层下结构，但模拟了脑干神经调节，包括多巴胺能奖赏系统和胆碱能激活系统，神经放电时间依赖的突触可塑性只明确建模了树突STDP）, 这个模型能在没有任何外部输入源的情况下自我维持，并且自发产生节律和波。
+作为自下而上的仿真工作，这项研究加深了我们对突触和神经元过程如何相互作用以产生大脑的集体行为的理解。</p>
+<p>该模型能呈现出一些与当前生物大脑研究中相符的特性，故而进一步开发更详细、更完整的大脑模型能够作为很好的工具，通过模拟来帮助研究药理、结构扰动、神经系统疾病等对大脑神经动力学的影响。</p>
+<h2 id="方法">方法</h2>
+<h3 id="模型">模型</h3>
+<h4 id="1宏观解剖">1.宏观解剖</h4>
+<ul>
+<li>用人脑核磁共振成像得到的弥散张量成像（DTI）数据，作用是将模型神经元细胞体分配到合适的位置，使模型能反映人脑脑沟和脑回的折叠皮层结构。</li>
+<li>DTI数据用“TensorLine”算法形成白质束（小纤维束因分辨率被遗漏），白质束跨区域连接神经元。</li>
+<li>为了使每平方毫米皮质表面的神经元密度足够大，模型的空间尺度减少了4倍。</li>
+</ul>
+<h4 id="2微观解剖">2.微观解剖</h4>
+<p>下图给出了模拟灰质微电路的摘要，基于Binzegger等人对猫视觉皮层的详细重建研究。</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<h4 id="3树突分枝">3.树突分枝</h4>
+<p>每个神经元都有一个胞体室和许多树突室，初始化过程动态确定每个神经元的树突状室的确切数量，每个室突触数少于40。</p>
+<p>隔室用于模拟突触前神经元在树突中诱发局部EPSP，电位就近叠加引发spike，不同隔室的突触后电位引发效果差。在同一室中三个或四个突触的同时发射可以导致局部树突动作电位，然后可以传播到体细胞以引起尖峰或爆发反应。</p>
+<h4 id="4神经动力学">4.神经动力学</h4>
+<p>使用作者Izhikevich提出的唯象模型来模拟每个神经元和每个树突室的发放动力学，不是像HH模型那样模拟所有离子电流。
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/18/1c1c6680c39bd.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/18/1c1c6680c39bd.png"
+			
+			
+			
+			loading="lazy"
+			alt="对体外记录（左栏）和模拟（右栏）的四种代表性放电模式进行比较。">
+	</a>
+	
+	<figcaption>对体外记录（左栏）和模拟（右栏）的四种代表性放电模式进行比较。</figcaption>
+	
+</figure></p>
+<h4 id="5短时突触可塑性">5.短时突触可塑性</h4>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/21/23fb3bb98d37c.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/21/23fb3bb98d37c.png"
+			
+			
+			
+			loading="lazy"
+			alt="短时突触抑制和易化由一维方程建模，左侧是短时抑制；右侧短时易化。红色曲线是建模结果，相叠的灰色曲线是测量结果。">
+	</a>
+	
+	<figcaption>短时突触抑制和易化由一维方程建模，左侧是短时抑制；右侧短时易化。红色曲线是建模结果，相叠的灰色曲线是测量结果。</figcaption>
+	
+</figure></p>
+<h4 id="6树突stdp">6.树突STDP</h4>
+<p>模型中每个突触的电导（权重）的长期变化是根据刺激时间依赖性可塑性（STDP）模拟的。</p>
+<p>STDP：指刺激两个神经元时, 刺激（spike）突触前神经元的时间早于刺激突触后神经元的时间时, 可以得到突触后电流的增强; 当突触前神经元的刺激晚于突触后神经元的刺激时, 突触后电流将会受到抑制。当两个刺激间时间差值发生改变时也能够影响突触后电流的增强效果。（被认为是学习记忆的基本机制）</p>
+<h4 id="7计算机模拟">7.计算机模拟</h4>
+<ul>
+<li>程序：C语言</li>
+<li>处理器： 60个  3GHz 1.5GB内存的 Beowulf 集群</li>
+<li>规模 ： 100万神经元 、数千万神经元室、 近5亿突触</li>
+</ul>
+<h2 id="结果">结果</h2>
+<h3 id="自发活动">自发活动</h3>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/18/fe0969d5d60e4.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/18/fe0969d5d60e4.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+文章在 t=0 时引入一些随机（种子）发放来启动网络，不论随机种子数量、突触链接初始强度或网络大小，网络活动都会很快消失。
+作者以体内体外都被观察到的微型突触后电位（mPSPs，“minis”）为原型，用刺激性随机输入喂神经元，赋予了神经元一个自发（泊松分布）的突触发放，防止网络沉默。</p>
+<p>30分钟后关闭minis也不会导致网络沉默，作者认为是这个过程的STDP微调了突触连通性，以允许足够的神经元间动作电位来维持全局活动。关闭minis30分钟后（1h），将此刻的瞬间状态作为大多数后续模拟的初始状态。</p>
+<h3 id="混沌系统">混沌系统</h3>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/18/91d5e389021de.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/18/91d5e389021de.png"
+			
+			
+			
+			loading="lazy"
+			alt="初始条件仅差一个spike的两个模拟，会在半秒内发散(上)，（下）显示两个模拟间不相同的神经元发放">
+	</a>
+	
+	<figcaption>初始条件仅差一个spike的两个模拟，会在半秒内发散(上)，（下）显示两个模拟间不相同的神经元发放</figcaption>
+	
+</figure>
+单个神经元级别的改变对整体活动影响很大，对初始条件的小扰动的敏感性高</p>
+<h3 id="大脑节律和波">大脑节律和波</h3>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/18/ecf364070138f.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/18/ecf364070138f.png"
+			
+			
+			
+			loading="lazy"
+			alt="在模型中传播的波，红（黑）点对应兴奋性（抑制性）的 spike，原文附件有一个视频，推荐去观看">
+	</a>
+	
+	<figcaption>在模型中传播的波，红（黑）点对应兴奋性（抑制性）的 spike，原文附件有一个视频，推荐去观看</figcaption>
+	
+</figure></p>
+<ul>
+<li>同一类型神经元在不同位置放电频率可能会有很大差距，文章提到FS型篮（basket）细胞平均放电频率在2/3、4层 7Hz,5层大于20Hz，6层8Hz。</li>
+<li>强烈的局部伽马节律在大的尺度被抵消，与EEG和MEG记录的伽马节律弱于颅内脑电的实验观察一致。</li>
+<li>整个网络出现显著的低频活动，主要在 $\delta(1-3Hz)$ （哺乳动物睡眠状态的典型波段）和 $\alpha(~10Hz)$（人类皮层闲置期间的典型波段）。</li>
+</ul>
+<h2 id="收获和想法">收获和想法</h2>
+<blockquote>
+<p>收获:</p>
+</blockquote>
+<ul>
+<li>
+<p>新的知识：</p>
+<ul>
+<li>DTI 的新用途。</li>
+<li>不同树突室诱发的EPSP，难以叠加引发突触后电位。</li>
+<li>burst：一种放电模式的称呼 ，神经元在短时间内多次放电，然后进入静止期。</li>
+<li>同一种神经细胞原来会在不同区域表现出不同的发放频率。</li>
+<li>微型突触后电位的存在。</li>
+<li>系统对初始条件小扰动的敏感性，即“蝴蝶效应”，是混沌系统的主要特征。</li>
+</ul>
+</li>
+<li>
+<p>研究思路：</p>
+<ul>
+<li>作为复杂的仿真，为了减轻运算，可以使用唯象的模型代替过于细致的模型。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>想法（感慨）：</p>
+</blockquote>
+<ul>
+<li>第一次接触这方面的工作，特别钦佩研究者能进行如此复杂的多层次仿真，同时能把这样的工作写的很易读。</li>
+<li>仿真实现对应的C程序工作量肯定很大，很好奇这类工程是如何组织开展的，又是怎样管理的。</li>
+<li>如果说这个仿真研究中，脑网络需要一定的微型突触后电位作为刺激随机输入防止网络沉默。那么在人类大脑发育的过程中，随着脑神经元数量增多，神经连接构成足够复杂的网络，是否也会有脑网络“点火”的一瞬间？因为我觉得脑网络应该是从沉寂自发点火再维持在一个临界的状态，不是研究中设置随机种启动再进入自我维持状态，这个阶段中或许还有个特殊的过程。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+<div id="waline" class="waline-container"></div>
+
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: 3%;  
+ 
+    }
+    .waline-container .vcount {
+        color: var(--card-text-color-main);
+    }
+ 
+     
+    :root{
+        --waline-theme-color: #34495e;  
+        --waline-active-color: #bababa;  
+        --waline-badge-color: #34495e;  
+        --waline-avatar-size: 5rem;
+        --waline-dark-grey: #34495e;  
+    }
+ 
+   
+    :root[data-scheme="dark"] {
+        --waline-theme-color: #acc6e0;
+        --waline-white: #34495e;  
+        --waline-active-color: #8ab1d8;
+        --waline-light-grey: #666;
+        --waline-dark-grey: #acc6e0;  
+        --waline-badge-color: #acc6e0;
+ 
+         
+        --waline-text-color: rgba(255, 255, 255, 0.7);
+        --waline-bgcolor: #515151;
+        --waline-bgcolor-light: #66696b; 
+        --waline-border-color: #9B9C9C;
+        --waline-disable-bgcolor: #444;
+        --waline-disable-color: #272727;
+ 
+         
+        --waline-bq-color:  #9B9C9C;  
+ 
+         
+        --waline-info-bgcolor: #acc6e0;
+        --waline-info-color: #9B9C9C;
+    }
+        .v[data-class=v] .vcontent .vemoji {
+         width:2.2em;  
+         margin:.25em
+     }
+ </style><script>
+    
+    new Waline({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://cdn.jsdelivr.net/gh/norevi/blob-emoji-for-waline@2.0/blobs-gif"],"lang":"zh-CN","locale":{"admin":"Admin"},"requiredMeta":["name","email","url"],"serverURL":"https://blog-api-m42xyj2iz-sydddl.vercel.app/","visitor":true});
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<footer class="site-footer">
+    <section>
+        
+        <div class="site-footer foot-icon" id="foot-icon">
+            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1660152844083" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1504" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M574.784 825.728l-14.16 50.944a366.144 366.144 0 0 0 174.72-72.496l-46.048-26.016a317.728 317.728 0 0 1-114.512 47.568zM778.176 689.312l26.016 46.032a366.08 366.08 0 0 0 72.496-174.72l-50.944 14.16a318.48 318.48 0 0 1-47.568 114.528zM334.688 778.176l-46.048 26.016a366.144 366.144 0 0 0 174.72 72.496l-14.16-50.944a318.528 318.528 0 0 1-114.512-47.568zM198.272 449.216a317.92 317.92 0 0 1 47.568-114.528l-26.016-46.032a366.08 366.08 0 0 0-72.496 174.72l50.944-14.16zM245.824 689.312a318.48 318.48 0 0 1-47.568-114.528l-50.944-14.144a366.144 366.144 0 0 0 72.496 174.72l26.016-46.048zM334.688 245.824a318.208 318.208 0 0 1 114.528-47.568l14.16-50.944a366.144 366.144 0 0 0-174.72 72.496l46.032 26.016zM574.784 198.272a318.208 318.208 0 0 1 114.528 47.568l46.048-26.016a366.144 366.144 0 0 0-174.72-72.496l14.144 50.944zM876.688 463.36a366.144 366.144 0 0 0-72.496-174.72l-26.016 46.032a318.48 318.48 0 0 1 47.568 114.528l50.944 14.16zM776.192 233.488l-14.704 8.32-44.256 25.008a322.72 322.72 0 0 1 39.952 39.952l25.008-44.256 8.32-14.704 8.128-14.384 10.496-18.56-18.56 10.496-14.384 8.128zM790.512 776.192l-8.32-14.704-25.008-44.256a322.72 322.72 0 0 1-39.952 39.952l44.256 25.008 14.704 8.32 14.384 8.128 18.56 10.496-10.496-18.56-8.128-14.384zM266.8 717.232l-25.008 44.256-8.32 14.704-8.128 14.384-10.496 18.56 18.56-10.496 14.384-8.128 14.704-8.32 44.256-25.008a322.72 322.72 0 0 1-39.952-39.952zM247.808 233.488l-14.384-8.128-18.56-10.496 10.496 18.56 8.128 14.384 8.32 14.704 25.008 44.256a322.72 322.72 0 0 1 39.952-39.952l-44.256-25.008-14.704-8.32zM263.84 657.44c3.104 5.264 6.112 10.592 9.536 15.648 3.28 4.832 6.912 9.376 10.464 14a290.288 290.288 0 0 0 53.056 53.072c4.624 3.552 9.168 7.2 14 10.48 5.056 3.424 10.368 6.432 15.648 9.536a285.728 285.728 0 0 0 72.832 30.208l-15.36-55.296c-2.56-1.008-5.136-1.968-7.664-3.072-5.968-2.608-11.84-5.392-17.552-8.464a245.088 245.088 0 0 1-15.792-9.456 241.424 241.424 0 0 1-73.104-73.12 238 238 0 0 1-9.456-15.792 236.192 236.192 0 0 1-8.464-17.552c-1.104-2.512-2.064-5.088-3.072-7.664l-55.296-15.36a286.912 286.912 0 0 0 30.224 72.832zM760.16 366.56c-3.104-5.264-6.112-10.592-9.536-15.648-3.28-4.832-6.912-9.376-10.464-14a290.288 290.288 0 0 0-53.056-53.072c-4.624-3.552-9.168-7.2-14-10.48-5.056-3.424-10.368-6.432-15.648-9.536a285.728 285.728 0 0 0-72.832-30.208l15.36 55.28c2.56 1.008 5.136 1.968 7.664 3.072 5.968 2.608 11.84 5.392 17.552 8.464 5.424 2.912 10.624 6.16 15.792 9.456a241.424 241.424 0 0 1 73.104 73.12c3.312 5.168 6.544 10.368 9.456 15.792 3.072 5.712 5.856 11.568 8.464 17.552 1.104 2.512 2.064 5.104 3.072 7.664l55.28 15.36a286.432 286.432 0 0 0-30.208-72.816zM673.088 750.624c4.832-3.28 9.376-6.928 14-10.48a289.28 289.28 0 0 0 53.056-53.072c3.552-4.624 7.2-9.168 10.464-14 3.424-5.056 6.432-10.368 9.536-15.648a285.488 285.488 0 0 0 30.208-72.832l-55.296 15.36c-1.008 2.56-1.968 5.136-3.072 7.664-2.608 5.968-5.392 11.84-8.464 17.552-2.912 5.424-6.16 10.624-9.456 15.792a241.776 241.776 0 0 1-73.104 73.12c-5.168 3.312-10.368 6.544-15.792 9.456-5.712 3.072-11.584 5.856-17.552 8.464-2.512 1.104-5.088 2.064-7.664 3.072l-15.36 55.296a285.952 285.952 0 0 0 72.832-30.208c5.28-3.104 10.608-6.128 15.664-9.536zM300.464 398.832c2.912-5.424 6.16-10.624 9.456-15.792a241.776 241.776 0 0 1 73.104-73.12c5.168-3.312 10.368-6.544 15.792-9.456 5.712-3.072 11.584-5.856 17.552-8.464 2.512-1.104 5.104-2.064 7.664-3.072l15.36-55.28a285.952 285.952 0 0 0-72.832 30.208c-5.264 3.104-10.592 6.112-15.648 9.536-4.832 3.28-9.376 6.928-14 10.48a289.28 289.28 0 0 0-53.056 53.072c-3.552 4.624-7.2 9.168-10.464 14-3.424 5.056-6.432 10.368-9.536 15.648a285.488 285.488 0 0 0-30.208 72.832l55.28-15.36c1.008-2.56 1.968-5.136 3.072-7.664 2.608-6 5.392-11.872 8.464-17.568zM544.8 209.824l-4.56-16.4-13.632-49.056-4.48-16.112-4.48-16.112L512 91.776l-5.664 20.368-4.48 16.112-4.48 16.112-13.632 49.056-4.56 16.4-4.688 16.896-14.176 51.024C476.992 274.08 494.256 272 512 272s35.008 2.08 51.664 5.744l-14.176-51.024-4.688-16.896zM895.744 501.872l-16.112-4.48-49.056-13.632-16.4-4.56-16.896-4.688-51.024-14.176C749.92 477.008 752 494.256 752 512s-2.08 34.992-5.744 51.664l51.024-14.176 16.896-4.688 16.4-4.56 49.056-13.632 16.112-4.48 16.112-4.48L932.224 512l-20.368-5.664-16.112-4.464zM512 752c-17.744 0-35.008-2.08-51.664-5.744l14.176 51.024 4.688 16.896 4.56 16.4 13.632 49.056 4.48 16.112 4.48 16.112 5.648 20.368 5.664-20.368 4.48-16.112 4.48-16.112 13.632-49.056 4.56-16.4 4.688-16.896 14.176-51.024A240.384 240.384 0 0 1 512 752zM209.824 544.8l16.896 4.688 51.024 14.176C274.08 546.992 272 529.744 272 512s2.08-34.992 5.744-51.664l-51.024 14.176-16.896 4.688-16.4 4.56-49.056 13.632-16.112 4.48-16.112 4.48L91.776 512l20.368 5.664 16.112 4.48 16.112 4.48 49.056 13.632 16.4 4.544zM512 720c20.528 0 40.32-3.104 59.056-8.672a208.16 208.16 0 0 0 20.272-7.136c0.176-0.08 0.368-0.128 0.544-0.192 6.608-2.752 13.056-5.808 19.28-9.2a209.392 209.392 0 0 0 83.648-83.648c3.392-6.24 6.448-12.688 9.2-19.28 0.08-0.176 0.128-0.368 0.192-0.544 2.736-6.592 5.088-13.36 7.136-20.272C716.896 552.32 720 532.528 720 512s-3.104-40.32-8.672-59.072a204 204 0 0 0-7.136-20.272c-0.08-0.176-0.128-0.368-0.192-0.544a204.88 204.88 0 0 0-9.2-19.28 209.488 209.488 0 0 0-83.648-83.648c-6.24-3.392-12.688-6.448-19.28-9.2-0.176-0.08-0.368-0.128-0.544-0.192a204 204 0 0 0-20.272-7.136C552.32 307.104 532.528 304 512 304s-40.32 3.104-59.056 8.672a208.16 208.16 0 0 0-20.272 7.136c-0.176 0.08-0.368 0.128-0.544 0.192-6.608 2.752-13.056 5.808-19.28 9.2a209.392 209.392 0 0 0-83.648 83.648c-3.392 6.24-6.448 12.688-9.2 19.28-0.08 0.176-0.128 0.368-0.192 0.544a204 204 0 0 0-7.136 20.272C307.104 471.68 304 491.472 304 512s3.104 40.32 8.672 59.072c2.048 6.912 4.4 13.68 7.136 20.272 0.08 0.176 0.128 0.368 0.192 0.544 2.752 6.608 5.808 13.056 9.2 19.28a209.488 209.488 0 0 0 83.648 83.648c6.24 3.392 12.688 6.448 19.28 9.2 0.176 0.08 0.368 0.128 0.544 0.192 6.592 2.736 13.36 5.088 20.272 7.136C471.68 716.896 491.472 720 512 720zM352 512c0-88.224 71.776-160 160-160s160 71.776 160 160-71.776 160-160 160-160-71.776-160-160z" fill="#d81e06" p-id="1505"></path><path d="M640 512c0-70.576-57.424-128-128-128s-128 57.424-128 128 57.424 128 128 128 128-57.424 128-128z m-208 0c0-44.112 35.888-80 80-80s80 35.888 80 80-35.888 80-80 80-80-35.888-80-80z" fill="#d81e06" p-id="1506"></path><path d="M512 512m-48 0a48 48 0 1 0 96 0 48 48 0 1 0-96 0Z" fill="#d81e06" p-id="1507"></path></svg> 
+        </div>
+        
+        <div class="copyright">
+            &copy; 
+            
+                2020 - 
+            
+            2022  
+            <br> DeathSprout · 码了 40765 字 · 共 21 篇文章</br>
+        </div>
+    </section>
+
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <no value> designed by <b><a> DeathSprout </a></b>
+    </section>
+
+    <script>
+        function color_tags() {
+            var colorArr = ["#428BCA", "#AEDCAE", "#ECA9A7", "#DA99FF", "#FFB380", "#D9B999"];
+            $('.tagCloud-tags a').each(function () {
+                try {
+                    tagsColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    $(this).css("background", tagsColor); 
+                }
+                catch (err) { }
+            });
+        }
+
+        $(document).ready(function () {
+            color_tags()
+        });
+    </script>
+
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1661097894889" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="51772" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M549.376 29.696C536.576 8.704 509.44 2.56 488.448 15.36c-5.632 3.584-10.752 8.704-14.336 14.336L396.288 159.744h230.912L549.376 29.696z" fill="#3366FF" p-id="51773"></path><path d="M953.344 294.4c11.776-20.48 4.608-46.592-15.872-58.368-6.144-3.584-13.312-5.632-20.992-5.632h-155.648l115.2 198.656 77.312-134.656zM147.968 429.568L264.192 230.4H107.52c-23.552 0.512-42.496 19.456-41.984 43.52 0 7.168 2.048 14.336 5.632 20.992l76.8 134.656z" fill="#AEC9FF" p-id="51774"></path><path d="M834.56 512.512c-2.56-2.56-5.12-5.632-7.168-9.216l-158.72-272.896H354.304c-1.024 4.096-2.048 7.68-4.096 11.264L193.024 510.976l156.672 269.312h322.048c1.536 0 3.072 0 4.608 0.512l151.04-259.072c2.048-3.584 4.608-6.656 7.168-9.216zM57.344 717.312c-11.776 19.968-5.12 45.568 14.848 57.344 6.656 4.096 14.848 6.144 22.528 5.632h162.816l-117.76-201.728-82.432 138.752zM966.656 717.312l-81.408-136.704-116.224 199.68h160.256c23.04 1.024 42.496-17.408 43.52-40.448 0-7.68-2.048-15.872-6.144-22.528z" fill="#3366FF" p-id="51775"></path><path d="M475.648 994.304c11.264 19.968 36.864 27.136 56.832 15.872 6.656-3.584 12.288-9.216 15.872-15.872l81.408-143.36H394.24l81.408 143.36z" fill="#AEC9FF" p-id="51776"></path></svg>
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#研究意义">研究意义</a></li>
+    <li><a href="#方法">方法</a>
+      <ol>
+        <li><a href="#模型">模型</a>
+          <ol>
+            <li><a href="#1宏观解剖">1.宏观解剖</a></li>
+            <li><a href="#2微观解剖">2.微观解剖</a></li>
+            <li><a href="#3树突分枝">3.树突分枝</a></li>
+            <li><a href="#4神经动力学">4.神经动力学</a></li>
+            <li><a href="#5短时突触可塑性">5.短时突触可塑性</a></li>
+            <li><a href="#6树突stdp">6.树突STDP</a></li>
+            <li><a href="#7计算机模拟">7.计算机模拟</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#结果">结果</a>
+      <ol>
+        <li><a href="#自发活动">自发活动</a></li>
+        <li><a href="#混沌系统">混沌系统</a></li>
+        <li><a href="#大脑节律和波">大脑节律和波</a></li>
+      </ol>
+    </li>
+    <li><a href="#收获和想法">收获和想法</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
