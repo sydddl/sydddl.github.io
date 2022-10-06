@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2022-10-05.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%E7%A0%94%E7%A9%B6%E6%84%8F%E4%B9%89">研究意义</h2>
+<p>内侧颞叶（MTL）被认为支持情景记忆，即在特定时间、特定地点对特定事件的生动回忆。一些研究表明海马和 MTL 中的神经元也具有很强的时间相关性。
+文章搭建了一个简单的数学框架，将空间位置和时间的函数作为更一般计算的特殊情况进行计算。描述的方程做出了一些定性和定量预测，可以用现有技术进行测试。并且也有一些实验结果符合它的预测。</p>
+<p>这个用来表示时间的方程，也适用于表示空间，数感，和基于信息收集的决策</p>
+<h2 id="%E6%96%B9%E6%B3%95">方法</h2>
+<h3 id="%E6%95%B0%E5%AD%A6%E6%A1%86%E6%9E%B6">数学框架：</h3>
+<ul>
+<li>$x$ : 外部世界的物理量 （如视网膜的位置或声音频率）</li>
+<li>$f(x)$ ： 这个物理量的函数</li>
+<li>$x^*$ : 一个映射，从物理变量映射到其激发细胞发放相关的顺序。一个隐变量？</li>
+<li>$\widetilde{f}(x^*)$ : $f(x)$的内部表示形式</li>
+</ul>
+<p><img src="https://pic.jitudisk.com/public/2022/10/05/2952d3808f91f.png" alt=""></p>
+<p><img src="https://pic.jitudisk.com/public/2022/10/05/a968575a5680e.png" alt="如何近似时间函数 $f(\Tau)$的示意图">
+目标是能构建到现在 $\tau$ 为止的所有时间点的函数 $f(\tau' &lt; \tau)$，每一个时间点，现在的值都驱动一个中间表示 $F(s)$，
+中间表示的细胞是速率常数 $s$ 的 leaky integrators，时间常数仅  $1/s$。用一个线性算子 $L^{-1}_k$ 构造从 $F(s)$ 到 $f(\tau)$ 的估计，这个估计是 $\widetilde{f}(x^*)$ ，是 $f(\tau)$ 的一个不精确估计，估计的时间精度时间越久越低。</p>
+<blockquote>
+<p>通过一个方程 $\alpha(\tau)$ 调节这个漏积分的框架，如果 $\alpha(\tau)$ 是某物理量 $x$ 的变化速率，以及 $f(\tau)$ 只是 $x(\tau)$ 的方程，那么 $\widetilde{f}$ 是一个估计 $x$ 的方程而不是时间的，写作 $\widetilde{f}(x^*)$。</p>
+</blockquote>
+<p>{{&lt; admonition type=tip title=&quot;leaky integrators&quot; open=true &gt;}}
+漏积分方程是一个特定的微分方程，用于描述对输入进行积分但随着时间的推移逐渐泄漏少量输入的部件或系统。</p>
+<p>方程形式为 ：
+$$\frac{dx}{dt} = -Ax + C$$
+其中C是输入，A是“泄漏”速率。
+{{&lt; /admonition &gt;}}</p>
+<p>$F(s)$ 表示描述一组神经元细胞的放电速率，每个细胞的放电速率的实值为 $s$ 。在每个时刻，所有细胞都接收当前值 $f(\tau)$ 的输入，并遵循下面这个微分方程更新数值：
+$$\frac{d F(s,\tau)}{d \tau} = \alpha(\tau)[-s F(s,\tau) + f(\tau)]$$</p>
+<ul>
+<li>$F$ 是细胞索引和时间的函数</li>
+<li>$\alpha(\tau)$ 对所有细胞都是相同的，我理解是对时间的编码</li>
+</ul>
+<p>先使 $\alpha(\tau) = 1$，解得：
+$$F(s,\tau)=\int^\tau_{-\infin} e^{-s(\tau-\tau')}f(\tau')d\tau'$$</p>
+<p>与拉普拉斯变换的标准定义比较，发现 $F$ (像函数) 是只具有实系数的 $f(\tau' &lt; \tau)$ （原函数）的拉普拉斯变换，记为：
+$$F = \mathscr{L}f$$</p>
+<ul>
+<li>变化成$F$不会丢失任何关于$f$的信息</li>
+<li>特定函数 $f$ 的拉普拉斯变换导致一个唯一的 $F$</li>
+<li><strong>可逆</strong>，恢复$f$相当于找到一种神经上可行的方法来做拉普拉斯逆变换</li>
+</ul>
+<p>每个细胞将代表不同的延迟，时间活动的历史将被跨细胞记载。因为有限的细胞，宽调谐曲线是更可取的。</p>
+<p>然后作者定义了一个近似拉普拉斯变化的线性算子 $L^{-1}_k$ ，用于描述构成中间表示 $F$ 的细胞和 构成重建 $\widetilde{f}$ 的细胞之间的连接组：
+$$\widetilde{f} \equiv L^{-1}_k F(s) \equiv C_k s^{k+1} \frac{d^k}{ds^k} F(s)$$</p>
+<ul>
+<li>$C_k$ 是取决于 k 的常数，简单地设置了发放的整体比例，确保重建的符号与输入函数的符号对应。</li>
+<li>$\frac{d^k}{ds^k}F(s)$ 是造成 $\widetilde{f}$ 状态随时间变化的因子，是 $F(s)$ 对 $s$ 的 $k$ 次导数。一个简单的带侧抑制的前馈电路足以近似二阶导数。高阶导数可以通过串联计算低阶导数的电路来计算。例如，四阶导数就是二阶导数的二阶导数。</li>
+<li>当 k 趋于无穷，$L^{-1}_k$就是拉普拉斯逆变换</li>
+</ul>
+<p>过去 $\tau_0$ 一个非0输入，则 $F(s) = e^{-s\tau_0}$</p>
+<p><img src="https://pic.jitudisk.com/public/2022/10/05/d8a1f2642ebbd.png" alt=""></p>
+<p>当输入给两个方波脉冲，$F(s)$像充电电容器呈指数增长和指数衰减，$\widetilde{f}(\tau^*)$ 的细胞不会对刺激立即反应，在出现非零值后一个特征时间发放，一个瞬时刺激导致一系列细胞在它被呈现后激活。（虚线是不同 s 值）
+<img src="https://pic.jitudisk.com/public/2022/10/05/2a205839fefdd.png" alt="当$\alpha(\tau)=1$时，$F(s)$和$\widetilde{f}(\tau^*)$">
+上面这个图表现出编码更久远时间（延迟长）的细胞的发放分布更广的特性，能用于描述记忆和时间的行为（Gallistel and Gibbon，2000；Brown et al.，2007；Chater and Brown，2008）。</p>
+<blockquote>
+<p>“The spread is deterministic and is a commitment to representing the history with decreasing accuracy.” 我个人理解是作者想表达在他这个框架的意义上，更早记忆的具体时间更难确定不是因为时间长了各种神经活动产生的噪声干扰，而是时间记忆方式本身带来的。它就是精确的，度量的最小精度会不断下降。</p>
+</blockquote>
+<h2 id="%E7%BB%93%E6%9E%9C">结果</h2>
+<h3 id="%E7%BA%AF%E7%B2%B9%E7%9A%84%E6%97%B6%E9%97%B4%E8%A1%A8%E7%A4%BA">纯粹的时间表示</h3>
+<hr>
+<p>能够确认两个定性预测</p>
+<ul>
+<li>CA1中的时间细胞，对于延迟期较晚激发的细胞，发放的时间分布会发散。</li>
+<li>时间细胞发放的时间分布是不对称的。</li>
+</ul>
+<hr>
+<p>记忆任务的延迟期间（大鼠必须记住两个物体中的哪一个被呈现，以便在延迟后呈现的一对气味中进行适当的选择并获得奖励），类似于place cells，(MacDonald et al. 2011) 观察到海马一些神经元（在这里称时间细胞）在一个特定的延迟时间响应，并且区分了在延迟之前经历的对象。</p>
+<p><img src="https://pic.jitudisk.com/public/2022/10/05/e2a4c8ffb8245.png" alt="实验观察到的海马时间细胞与 $\widetilde{f}(\tau^*)$ 的比较"></p>
+<p>上图a表示实验观察到的时间细胞随着延迟和不对称性而表现出越来越大的分布，展示了两个代表性细胞的发放数据，红线是分布的估计值，中间粗蓝线是峰值，两侧细蓝线是半高区域估值，看出后半段半高区域范围大于前半段半高区域。</p>
+<p>上图b表示来自实验数据延迟期间的整体相似性。
+上图c显示的$\widetilde{f}(\tau^*)$ 构建的整体相似性。</p>
+<p>时间细胞的时间分布也呈正偏态，在分析的63个细胞中，有45个细胞的后缘大于前缘（下图c）。这种效应并不是由于切断延迟间隔而产生的边缘效应：即使将注意力限制在间隔开始和结束1000ms内的细胞上，我们发现31/39呈正偏，比例明显大于偶然性（下图d）。</p>
+<p><img src="https://pic.jitudisk.com/public/2022/10/05/af49f57cb7af3.png" alt=""></p>
+<h2 id="%E6%94%B6%E8%8E%B7%E5%92%8C%E6%83%B3%E6%B3%95">收获和想法</h2>
+<blockquote>
+<p>收获</p>
+</blockquote>
+<ul>
+<li>一些数学知识，比如拉普拉斯变换</li>
+<li>为了看懂这文章补的海马体相关神经科学知识</li>
+<li>学习了 Leaky Integrate-and-Fire (LIF) 模型</li>
+<li>最重要的，给我带来了认知主观时间、空间神经表征的一个新视角，就很像存储记忆的同时会通过海马的一些细胞加时间戳。</li>
+</ul>
+<blockquote>
+<p>想法</p>
+</blockquote>
+<ul>
+<li>懂了但没完全懂，感觉论文写的很杂乱，很多东西交代不清楚，导致读起来很累和痛苦。</li>
+<li>相较于place cell、grid cell，我对文章引用的实验所说的“time cell”持保留意见。</li>
+<li>作为数学框架，还是很单薄。</li>
+</ul>
+<h2 id="%E9%A2%9D%E5%A4%96%E5%8F%82%E8%80%83">额外参考</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/113100777">4.1-Leaky Integrate-and-Fire (LIF) 模型</a></li>
+<li><a href="https://handwiki.org/wiki/Leaky_integrator#:~:text=In%20mathematics%2C%20a%20leaky%20integrator%20equation%20is%20a,leaks%20a%20small%20amount%20of%20input%20over%20time.">Leaky integrator --From HandWiki</a></li>
+<li><a href="https://wuli.wiki/online/LapTra.html">拉普拉斯变换 -- 小时百科</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/40783304">从另一个角度看拉普拉斯变换</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/61036141">大脑是如何为往事铺上时间线的</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/103452777">海马启发下的类脑人工智能</a></li>
+</ul>
+
+</body>
+</html>

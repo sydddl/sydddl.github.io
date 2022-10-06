@@ -6,7 +6,34 @@
     <description>Recent content in 周更 on DeathSprout</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Sep 2022 13:59:42 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E5%91%A8%E6%9B%B4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Oct 2022 03:29:26 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/categories/%E5%91%A8%E6%9B%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Unified Mathematical Framework for Coding Time, Space, and Sequences in the Hippocampal Region</title>
+      <link>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</link>
+      <pubDate>Wed, 05 Oct 2022 03:29:26 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</guid>
+      <description>This is a note 本文同时是 系统与计算神经科学22-23秋季 余山老师课程第二次作业. || 研究意义 内侧颞叶（MTL）被认为支持情景记忆，即在特定时间、特定</description>
+    </item>
+    
+    <item>
+      <title>Denoising Diffusion Probabilistic Models</title>
+      <link>https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/</link>
+      <pubDate>Mon, 03 Oct 2022 15:22:20 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/</guid>
+      <description>This is a note 本文同时是 神经科学22-23秋季 郝荣乔老师课程作业. 前情提要 先简要说明为什么我会选择这样的一篇文章，要求的范围是视觉与美学（visu</description>
+    </item>
+    
+    <item>
+      <title>How to build a cognitive map</title>
+      <link>https://deathsprout.github.io/p/how-to-build-a-cognitive-map/</link>
+      <pubDate>Fri, 30 Sep 2022 13:52:50 +0800</pubDate>
+      
+      <guid>https://deathsprout.github.io/p/how-to-build-a-cognitive-map/</guid>
+      <description>构建空间认知地图的机制是一种通用编码机制的实例，能够涵盖任何领域的抽象认知地图。 Cognitive map Tolman在1948年提出，空间或者地图的概念在小鼠的</description>
+    </item>
+    
     <item>
       <title>Large-scale model of mammalian thalamocortical systems</title>
       <link>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</link>
@@ -14,15 +41,6 @@
       
       <guid>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</guid>
       <description>This is a note 本文同时是 系统与计算神经科学22-23秋季 余山老师课程第一次作业. || 原文链接 研究意义 研究在不同层次上进行对大脑的仿真，模拟了一个大规</description>
-    </item>
-    
-    <item>
-      <title>Forecasting brain activity based on models of spatiotemporal brain dynamics: A comparison of graph neural network architectures</title>
-      <link>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</link>
-      <pubDate>Tue, 23 Aug 2022 23:11:23 +0800</pubDate>
-      
-      <guid>https://deathsprout.github.io/p/forecasting-brain-activity-based-on-models-of-spatiotemporal-brain-dynamics-a-comparison-of-graph-neural-network-architectures/</guid>
-      <description>摘要 理解神经动力学的空间和时间特征之间的相互作用有助于我们理解人脑中的信息处理。图神经网络（GNN）为解释复杂脑网络中观察到的图结构信号提供</description>
     </item>
     
   </channel>

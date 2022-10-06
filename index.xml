@@ -6,7 +6,733 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 18 Sep 2022 13:59:42 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 05 Oct 2022 03:29:26 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>A Unified Mathematical Framework for Coding Time, Space, and Sequences in the Hippocampal Region</title>
+        <link>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</link>
+        <pubDate>Wed, 05 Oct 2022 03:29:26 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</guid>
+        <description>&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;This is a note&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;本文同时是 系统与计算神经科学22-23秋季 余山老师课程第二次作业.   ||&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h2 id=&#34;研究意义&#34;&gt;研究意义&lt;/h2&gt;
+&lt;p&gt;内侧颞叶（MTL）被认为支持情景记忆，即在特定时间、特定地点对特定事件的生动回忆。一些研究表明海马和 MTL 中的神经元也具有很强的时间相关性。
+文章搭建了一个简单的数学框架，将空间位置和时间的函数作为更一般计算的特殊情况进行计算。描述的方程做出了一些定性和定量预测，可以用现有技术进行测试。并且也有一些实验结果符合它的预测。&lt;/p&gt;
+&lt;p&gt;这个用来表示时间的方程，也适用于表示空间，数感，和基于信息收集的决策&lt;/p&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;h3 id=&#34;数学框架&#34;&gt;数学框架：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;$x$ : 外部世界的物理量 （如视网膜的位置或声音频率）&lt;/li&gt;
+&lt;li&gt;$f(x)$ ： 这个物理量的函数&lt;/li&gt;
+&lt;li&gt;$x^*$ : 一个映射，从物理变量映射到其激发细胞发放相关的顺序。一个隐变量？&lt;/li&gt;
+&lt;li&gt;$\widetilde{f}(x^*)$ : $f(x)$的内部表示形式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/2952d3808f91f.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/2952d3808f91f.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/a968575a5680e.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/a968575a5680e.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;如何近似时间函数 $f(\Tau)$的示意图&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;如何近似时间函数 $f(\Tau)$的示意图&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+目标是能构建到现在 $\tau$ 为止的所有时间点的函数 $f(\tau&#39; &amp;lt; \tau)$，每一个时间点，现在的值都驱动一个中间表示 $F(s)$，
+中间表示的细胞是速率常数 $s$ 的 leaky integrators，时间常数仅  $1/s$。用一个线性算子 $L^{-1}_k$ 构造从 $F(s)$ 到 $f(\tau)$ 的估计，这个估计是 $\widetilde{f}(x^*)$ ，是 $f(\tau)$ 的一个不精确估计，估计的时间精度时间越久越低。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过一个方程 $\alpha(\tau)$ 调节这个漏积分的框架，如果 $\alpha(\tau)$ 是某物理量 $x$ 的变化速率，以及 $f(\tau)$ 只是 $x(\tau)$ 的方程，那么 $\widetilde{f}$ 是一个估计 $x$ 的方程而不是时间的，写作 $\widetilde{f}(x^*)$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;details admonition tip open&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;leaky integrators&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;漏积分方程是一个特定的微分方程，用于描述对输入进行积分但随着时间的推移逐渐泄漏少量输入的部件或系统。&lt;/p&gt;
+&lt;p&gt;方程形式为 ：
+$$\frac{dx}{dt} = -Ax + C$$
+其中C是输入，A是“泄漏”速率。&lt;/p&gt;
+&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;p&gt;$F(s)$ 表示描述一组神经元细胞的放电速率，每个细胞的放电速率的实值为 $s$ 。在每个时刻，所有细胞都接收当前值 $f(\tau)$ 的输入，并遵循下面这个微分方程更新数值：
+$$\frac{d F(s,\tau)}{d \tau} = \alpha(\tau)[-s F(s,\tau) + f(\tau)]$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$F$ 是细胞索引和时间的函数&lt;/li&gt;
+&lt;li&gt;$\alpha(\tau)$ 对所有细胞都是相同的，我理解是对时间的编码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;先使 $\alpha(\tau) = 1$，解得：
+$$F(s,\tau)=\int^\tau_{-\infin} e^{-s(\tau-\tau&#39;)}f(\tau&#39;)d\tau&#39;$$&lt;/p&gt;
+&lt;p&gt;与拉普拉斯变换的标准定义比较，发现 $F$ (像函数) 是只具有实系数的 $f(\tau&#39; &amp;lt; \tau)$ （原函数）的拉普拉斯变换，记为：
+$$F = \mathscr{L}f$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;变化成$F$不会丢失任何关于$f$的信息&lt;/li&gt;
+&lt;li&gt;特定函数 $f$ 的拉普拉斯变换导致一个唯一的 $F$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可逆&lt;/strong&gt;，恢复$f$相当于找到一种神经上可行的方法来做拉普拉斯逆变换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个细胞将代表不同的延迟，时间活动的历史将被跨细胞记载。因为有限的细胞，宽调谐曲线是更可取的。&lt;/p&gt;
+&lt;p&gt;然后作者定义了一个近似拉普拉斯变化的线性算子 $L^{-1}_k$ ，用于描述构成中间表示 $F$ 的细胞和 构成重建 $\widetilde{f}$ 的细胞之间的连接组：
+$$\widetilde{f} \equiv L^{-1}_k F(s) \equiv C_k s^{k+1} \frac{d^k}{ds^k} F(s)$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$C_k$ 是取决于 k 的常数，简单地设置了发放的整体比例，确保重建的符号与输入函数的符号对应。&lt;/li&gt;
+&lt;li&gt;$\frac{d^k}{ds^k}F(s)$ 是造成 $\widetilde{f}$ 状态随时间变化的因子，是 $F(s)$ 对 $s$ 的 $k$ 次导数。一个简单的带侧抑制的前馈电路足以近似二阶导数。高阶导数可以通过串联计算低阶导数的电路来计算。例如，四阶导数就是二阶导数的二阶导数。&lt;/li&gt;
+&lt;li&gt;当 k 趋于无穷，$L^{-1}_k$就是拉普拉斯逆变换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;过去 $\tau_0$ 一个非0输入，则 $F(s) = e^{-s\tau_0}$&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/d8a1f2642ebbd.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/d8a1f2642ebbd.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;当输入给两个方波脉冲，$F(s)$像充电电容器呈指数增长和指数衰减，$\widetilde{f}(\tau^*)$ 的细胞不会对刺激立即反应，在出现非零值后一个特征时间发放，一个瞬时刺激导致一系列细胞在它被呈现后激活。（虚线是不同 s 值）
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/2a205839fefdd.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/2a205839fefdd.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;当$\alpha(\tau)=1$时，$F(s)$和$\widetilde{f}(\tau^*)$&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;当$\alpha(\tau)=1$时，$F(s)$和$\widetilde{f}(\tau^*)$&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+上面这个图表现出编码更久远时间（延迟长）的细胞的发放分布更广的特性，能用于描述记忆和时间的行为（Gallistel and Gibbon，2000；Brown et al.，2007；Chater and Brown，2008）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“The spread is deterministic and is a commitment to representing the history with decreasing accuracy.” 我个人理解是作者想表达在他这个框架的意义上，更早记忆的具体时间更难确定不是因为时间长了各种神经活动产生的噪声干扰，而是时间记忆方式本身带来的。它就是精确的，度量的最小精度会不断下降。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;结果&#34;&gt;结果&lt;/h2&gt;
+&lt;h3 id=&#34;纯粹的时间表示&#34;&gt;纯粹的时间表示&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;能够确认两个定性预测&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CA1中的时间细胞，对于延迟期较晚激发的细胞，发放的时间分布会发散。&lt;/li&gt;
+&lt;li&gt;时间细胞发放的时间分布是不对称的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;记忆任务的延迟期间（大鼠必须记住两个物体中的哪一个被呈现，以便在延迟后呈现的一对气味中进行适当的选择并获得奖励），类似于place cells，(MacDonald et al. 2011) 观察到海马一些神经元（在这里称时间细胞）在一个特定的延迟时间响应，并且区分了在延迟之前经历的对象。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/e2a4c8ffb8245.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/e2a4c8ffb8245.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;实验观察到的海马时间细胞与 $\widetilde{f}(\tau^*)$ 的比较&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;实验观察到的海马时间细胞与 $\widetilde{f}(\tau^*)$ 的比较&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上图a表示实验观察到的时间细胞随着延迟和不对称性而表现出越来越大的分布，展示了两个代表性细胞的发放数据，红线是分布的估计值，中间粗蓝线是峰值，两侧细蓝线是半高区域估值，看出后半段半高区域范围大于前半段半高区域。&lt;/p&gt;
+&lt;p&gt;上图b表示来自实验数据延迟期间的整体相似性。
+上图c显示的$\widetilde{f}(\tau^*)$ 构建的整体相似性。&lt;/p&gt;
+&lt;p&gt;时间细胞的时间分布也呈正偏态，在分析的63个细胞中，有45个细胞的后缘大于前缘（下图c）。这种效应并不是由于切断延迟间隔而产生的边缘效应：即使将注意力限制在间隔开始和结束1000ms内的细胞上，我们发现31/39呈正偏，比例明显大于偶然性（下图d）。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/05/af49f57cb7af3.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/05/af49f57cb7af3.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;收获和想法&#34;&gt;收获和想法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;收获&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;一些数学知识，比如拉普拉斯变换&lt;/li&gt;
+&lt;li&gt;为了看懂这文章补的海马体相关神经科学知识&lt;/li&gt;
+&lt;li&gt;学习了 Leaky Integrate-and-Fire (LIF) 模型&lt;/li&gt;
+&lt;li&gt;最重要的，给我带来了认知主观时间、空间神经表征的一个新视角，就很像存储记忆的同时会通过海马的一些细胞加时间戳。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;想法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;懂了但没完全懂，感觉论文写的很杂乱，很多东西交代不清楚，导致读起来很累和痛苦。&lt;/li&gt;
+&lt;li&gt;相较于place cell、grid cell，我对文章引用的实验所说的“time cell”持保留意见。&lt;/li&gt;
+&lt;li&gt;作为数学框架，还是很单薄。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;额外参考&#34;&gt;额外参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/113100777&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;4.1-Leaky Integrate-and-Fire (LIF) 模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://handwiki.org/wiki/Leaky_integrator#:~:text=In%20mathematics%2C%20a%20leaky%20integrator%20equation%20is%20a,leaks%20a%20small%20amount%20of%20input%20over%20time.&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Leaky integrator &amp;ndash;From HandWiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://wuli.wiki/online/LapTra.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;拉普拉斯变换 &amp;ndash; 小时百科&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/40783304&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;从另一个角度看拉普拉斯变换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/61036141&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;大脑是如何为往事铺上时间线的&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/103452777&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;海马启发下的类脑人工智能&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Denoising Diffusion Probabilistic Models</title>
+        <link>https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/</link>
+        <pubDate>Mon, 03 Oct 2022 15:22:20 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/</guid>
+        <description>&lt;img src="https://pic.jitudisk.com/public/2022/10/03/9b7240cf7ec88.png" alt="Featured image of post Denoising Diffusion Probabilistic Models" /&gt;&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;This is a note&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;本文同时是 神经科学22-23秋季 郝荣乔老师课程作业.&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h2 id=&#34;前情提要&#34;&gt;前情提要&lt;/h2&gt;
+&lt;p&gt;先简要说明为什么我会选择这样的一篇文章，要求的范围是视觉与美学（visual procession、aesthetic、visual cognition、art），同时这个时期，大量的基于Diffusion Model的文字-图片生成模型工作出现在人们视野中并引起广泛讨论（特别是商业美术从业者，很多朋友因此改变了职业规划）。 从GAN 的时代我就非常关注图像生成模型（爱好画画的缘故），近一个月来的进展给我带来了极大的震撼，我研究并尝试了Midjourney (托管在discord上)、&lt;a class=&#34;link&#34; href=&#34;https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/stable_diffusion.ipynb?pli=1#scrollTo=gd-vX3cavOCt&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Stable Diffusion&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://beta.dreamstudio.ai/dream&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DreamStudio&lt;/a&gt;、 百度的文心、&lt;a class=&#34;link&#34; href=&#34;https://huggingface.co/hakurei/waifu-diffusion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Waifu Diffusion&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://novelai.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NovelAiDiffusion&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下面列出了几张我使用这些Ai生成的图片。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/40fb84e3d499e.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/40fb84e3d499e.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Midjourney&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Midjourney&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/222c91e0313ed.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/222c91e0313ed.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Waifu Diffusion&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Waifu Diffusion&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/96082f307ce8a.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/96082f307ce8a.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Waifu Diffusion&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Waifu Diffusion&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/09/05/828c540892d38.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/09/05/828c540892d38.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;DreamStudio&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;DreamStudio&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/54cfe73e1b4dd.jfif&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/54cfe73e1b4dd.jfif&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;文心&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;文心&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;国庆发现的NovelAiDiffusion，和WD一样也是基于SD，使用要10$/月订阅，所以我拿了别人生成的三张图。非常nb，在我这儿是能通过图灵测试的，我能联想到几个画风类似的画师，但我并不能分辨出来区别。（这个AI当天引起了我们一小撮人关于未来的激烈讨论（失业淘汰、自由画师赚钱吃饭、版权、未来职业形态等等），在惊叹之余都挺受打击，纯粹的画工门槛已经没有意义）&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/cf04beb66cf76.jpg&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/cf04beb66cf76.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;NovelAiDiffusion&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;NovelAiDiffusion&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/d49bf41e40e87.jpg&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/d49bf41e40e87.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;NovelAiDiffusion&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;NovelAiDiffusion&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/5e052d6497588.jpg&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/5e052d6497588.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;NovelAiDiffusion&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;NovelAiDiffusion&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;大概几周前我简单的用PS组合了一张艺术摄影和用AI生成的平面素材，制作了下面这张海报。很酷不是么，AI终究会给美术艺术带来第二次摄影冲击，
+所以我打算阅读DDPM模型的重要文章。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/c496541518725.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/c496541518725.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;文章背景&#34;&gt;文章背景&lt;/h2&gt;
+&lt;p&gt;（去噪）扩散模型有两个过程，前向过程（diffusion，不断添加高斯噪声）和反向过程（reverse，去噪过程，用来生成数据），是一个参数化的马尔可夫链。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/478f4834b2bd7.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/478f4834b2bd7.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;扩散过程&#34;&gt;扩散过程&lt;/h3&gt;
+&lt;p&gt;扩散过程是指的对数据逐渐增加高斯噪音直至数据变成随机噪音的过程。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/0eebe19177e9f.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/0eebe19177e9f.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+对于原始数据 $x_0$ ,扩散过程的每一步都是对上一步得到的数据以如下方式增加高斯噪音 ($q(x_t|x_{t-1})$是变分推理引入的用于近似后验分布的分布，可以看我之前的笔记&lt;a class=&#34;link&#34; href=&#34;https://sydddl.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;变分自编码器&lt;/a&gt;) ：
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/0cdbef0d9c2b0.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/0cdbef0d9c2b0.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+$\beta_t$ 是第$t$ 步采用的方差，DDPM会预先定义好一个线性的方差序列。因此扩散过程可以直接基于$x_0$对任意 $t$ 步的$x_t \thicksim q(x_t|x_0)$进行采样得到：&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/6e567965f13a7.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/6e567965f13a7.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;$\alpha_t = 1-\beta_t \qquad \overline{\alpha}t = \prod^t{i=1}\alpha_i$&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;$\alpha_t = 1-\beta_t \qquad \overline{\alpha}t = \prod^t{i=1}\alpha_i$&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\overline{\alpha_t}}x_{0},(1-\overline{\alpha}_t) I)$$&lt;/p&gt;
+&lt;h3 id=&#34;反向过程&#34;&gt;反向过程&lt;/h3&gt;
+&lt;p&gt;反向是从一个随机噪音逐渐去噪以生成一个真实的样本。&lt;/p&gt;
+&lt;p&gt;这一过程需要我们知道每一步的真实分布 $q(x_{t-1}|x_{t})$，似然地估计这个分布 $p_\theta(x_{t-1}|x_{t})$ 就需要用到整个训练样本，由一系列神经网络参数化的高斯分布 ( 均值和方差由训练网络$\mu_\theta(x_t,t)$和$\Sigma_\theta(x_t,t)$ 给出 ) 组成。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/011f7746c5596.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/011f7746c5596.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+在得知$x_0$时估计条件后验分布$q(x_{t-1}|x_{t},x_0)$:
+$$q(x_{t-1}|x_{t},x_0) = \mathcal{N}(x_{t-1};\widetilde{\mu}(x_t,x_0),\widetilde{\beta}_t I)$$
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/3bf9afe4e5949.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/3bf9afe4e5949.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;div class=&#34;details admonition tip open&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;推导&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;根据贝叶斯公式：
+$$ q(x_{t-1}|x_t,x_0) = q(x_t|x_{t-1},x_0) \frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}$$
+由扩散过程知道 $q(x_t|x_{t-1},x_0) = q(x_t|x_{t-1}) = \mathcal{N}(x_{t};\sqrt{1-\beta_t}x_{t-1},\beta_t I) $ , 也得出了:&lt;/p&gt;
+&lt;p&gt;$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\bar{\alpha}_t}x_{0},(1-\bar{\alpha}_t) I)$$&lt;/p&gt;
+&lt;p&gt;$$q(x_{t-1}|x_{0}) = \mathcal{N}(x_{t-1};\sqrt{\bar{\alpha}_{t-1}}x_{0},(1-\bar{\alpha}_{t-1}) I)$$&lt;/p&gt;
+&lt;p&gt;$$\therefore  q(x_{t-1}|x_t,x_0)  \varpropto exp(-\frac{1}{2} (\frac{(x_t-\sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +\frac{(x_{t-1}-\sqrt{\bar{\alpha}_{t-1} } x_{0})^2}{1-\bar{\alpha}_{t-1} } - \frac{(x_{t}-\sqrt{\bar{\alpha}_t}x_0)^2}{1-\bar{\alpha}_{t}}))$$&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/593f21b00aba6.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/593f21b00aba6.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;能化成$x_{t-1}$的二次式&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;能化成$x_{t-1}$的二次式&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+上面括号最里面等于 $\frac{(x_{t-1}-\widetilde{\mu}_t(x_t,x_0))^2}{\widetilde{\beta}_t}$, 就能得到这两个值的表示。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/3678fcde3f542.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/3678fcde3f542.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h3 id=&#34;优化目标&#34;&gt;优化目标&lt;/h3&gt;
+&lt;p&gt;这个设置非常像VAE，通过优化负对数似然的变分下界（ELBO）来进行训练 （最大化log形式的产生真实数据的可能性( $log p_\theta(x)$), 最小化真实后验分布和估计的后验分布的差异(KL散度)），其训练目标是 $-L_{VLB}$:&lt;/p&gt;
+&lt;p&gt;$$L = -L_{VLB}= \mathbb{E}_{q(x_{1:T}|x_0)}[-log\frac{p_\theta(x_{0:T})}{q(x_{1:T}|x_0)}] = \mathbb{E}_{q(x_{1:T}|x_0)}[log\frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})}] $$&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/c9270023d009b.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/c9270023d009b.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样就得到了论文第三页怼脸上的公式5.&lt;/p&gt;
+&lt;h2 id=&#34;贡献&#34;&gt;贡献&lt;/h2&gt;
+&lt;p&gt;就是说上面那些，是之前的文章（概念最早是在2015年）提出 Diffusion models 所带来的公式，其网络架构和训练方法也比较简陋。这两年的大部分扩散模型相关工作都是基于两个模型：DDPM和DDIM。&lt;/p&gt;
+&lt;p&gt;那么这 T+1 个优化目标要怎么算呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$L_T$ （最后得到的噪音的分布和先验分布的KL散度）: 因为将前向过程的方差固定了，这个KL散度没有训练参数，在学习过程该项为常量，忽略。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$L_0$ （原始数据重建）: 这里用了一个编码器来计算（文章认为这部分简单，留给未来的工作优化）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$L_{1:T-1}$ (估计分布 $p_\theta(x_{t-1}|x_{t})$ 和真实后验分布 $q(x_{t-1}|x_{t},x_0)$ 的KL散度) : 希望估计的去噪过程和依赖真实数据的去噪过程近似一致,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先是会设置固定方差  $\Sigma_\theta(x_t,t) = \sigma^2_t \quad x_0=\mathcal{N}(0,I)$  , 根据文章的实验 $\sigma^2_t = \beta_t$ 还是  $\sigma^2_t = \widetilde{\beta}_t$ 结果都差不多。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两个高斯分布的KL散度计算结果，&lt;a class=&#34;link&#34; href=&#34;https://kexue.fm/archives/8512&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;推导可见&lt;/a&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/feca7f35fbcb1.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/feca7f35fbcb1.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/0631b14d0d899.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/0631b14d0d899.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/d52cf91723562.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/d52cf91723562.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;原本这个参数在$\mu$底下，预测的是均值，文章重新参数化方程
+$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\overline{\alpha_t}}x_{0},(1-\overline{\alpha}_t) I) \to x_t(x_0,\epsilon_t) = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon_t  \quad \epsilon_t \thicksim \mathcal{N}(0,I)$$&lt;/p&gt;
+&lt;p&gt;将 $x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t-\sqrt{1-\bar{\alpha}_t}\epsilon)$ 代入 $\widetilde{\mu}_t(x_t,x_0)$ 得到：
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/874f5458536bd.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/874f5458536bd.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;因为 $x_t$ 在训练时可以作为输入，所以我们可以重新参数化高斯噪声项 $\epsilon_\theta(x_t,t)$，让它从步$t$时的输入$x_t$学得，这样就从原来的预测均值变为预测高斯噪声。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/d3626232b52ba.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/d3626232b52ba.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;代入优化目标可得（上面的$L_{t-1}$ 和下面的 $L_t$ 意义相同，都是代表当 $t \neq 0 、T$ ）:
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/a1a5a806fbbb1.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/a1a5a806fbbb1.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;DDPM近一步对上述目标进行了简化，去掉了权重系数
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/c11c8cddb5624.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/c11c8cddb5624.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/04/7d6e7d6efcbb4.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/04/7d6e7d6efcbb4.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;代码实现&#34;&gt;代码实现&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;暂时放放&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;文献&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.  （&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2006.11239&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;原文链接&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;Yang L, Zhang Z, Hong S. Diffusion models: A comprehensive survey of methods and applications[J]. arXiv preprint arXiv:2209.00796, 2022.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/536653762&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;A New Look at Denoising Diffusion Models（1）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/384144179&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Denoising Diffusion Probabilistic Model(DDPM)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1fU4y1i7kK/?spm_id_from=333.788&amp;amp;vd_source=882c2f4257e14ef1d1bd68cd93aaf6d4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;扩散模型 Diffusion Model &amp;ndash;b站&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/563661713?utm_id=0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;扩散模型之DDPM&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/138184201#:~:text=%E5%9C%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BA%94%E7%94%A8%EF%BC%8C%E4%B8%AD%E6%AF%94%E8%BE%83%E6%9C%89%E5%90%8D%E7%9A%84%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%EF%BC%88VAE%EF%BC%89%E7%9A%84%E5%BA%95%E5%B1%82%E5%B0%B1%E5%9F%BA%E4%BA%8E%E5%8F%98%E5%88%86%E6%8E%A8%E7%90%86%E3%80%82%20%E5%9C%A8%E5%8F%98%E5%88%86%E6%8E%A8%E7%90%86%E4%B8%AD%E9%80%9A%E5%B8%B8%E6%88%91%E4%BB%AC%E5%85%B3%E5%BF%83%E7%9A%84%E5%88%86%E5%B8%83%E6%98%AF%E6%9F%90%E4%B8%AA%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E9%9A%90%E5%8F%98%E9%87%8F%EF%BC%88latent%20variables%EF%BC%89%E7%9A%84%E5%90%8E%E9%AA%8C%EF%BC%88posterior%EF%BC%89%E5%88%86%E5%B8%83%20P%20%28Z%7CX%29%2C,%E5%85%B6%E4%B8%AD%20Z%20%E6%98%AF%E9%9A%90%E5%8F%98%E9%87%8F%E8%80%8C%20X%20%E6%98%AF%E8%A2%AB%E8%A7%82%E6%B5%8B%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E3%80%82&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;变分推理（variational inference）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://sydddl.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;变分自编码器&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lilianweng.github.io/posts/2021-07-11-diffusion-models/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;What are Diffusion Models?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yang-song.net/blog/2021/score/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Generative Modeling by Estimating Gradients of the Data Distribution&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://kexue.fm/archives/8512&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;两个多元正态分布的KL散度、巴氏距离和W距离&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>How to build a cognitive map</title>
+        <link>https://deathsprout.github.io/p/how-to-build-a-cognitive-map/</link>
+        <pubDate>Fri, 30 Sep 2022 13:52:50 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/how-to-build-a-cognitive-map/</guid>
+        <description>&lt;p&gt;构建空间认知地图的机制是一种通用编码机制的实例，能够涵盖任何领域的抽象认知地图。&lt;/p&gt;
+&lt;div class=&#34;details admonition info&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-info-circle fa-fw&#34;&gt;&lt;/i&gt;Cognitive map&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;Tolman在1948年提出，空间或者地图的概念在小鼠的大脑里是存在的， 成为其导航学习的基础。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Place cell ：不停的经过某个同样的地点，同一个细胞会放电&lt;/li&gt;
+&lt;li&gt;Grid cell : 感受野对空间进行周期性的放电，它可以把一个二维平面表现成一个密集堆积的六边形结构， 不同的grid-cell具有不同的空间周期。（对空间里的一个狄拉克函数（一个空间质点的表示）做傅里叶变换会得到一系列不同周期频率的波函数， 反过来这群函数或许可以作为一组表达不同物体位置的基函数。）
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/f64aa980cfbbe.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/f64aa980cfbbe.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h3 id=&#34;the-cognitive-mapping-problem&#34;&gt;The cognitive mapping problem&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;学习或关注适当的抽象是认知地图的核心问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;强化学习状态空间，图与图表示&lt;/strong&gt;
+认知图的生成问题与 RL 中的状态空间生成问题是一样的
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/03/aaa579f240a1c.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/03/aaa579f240a1c.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/96014311&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深度强化学习落地方法论（5）—— 状态空间篇&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://flashgene.com/archives/93079.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;海马启发下的类脑人工智能&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Large-scale model of mammalian thalamocortical systems</title>
         <link>https://deathsprout.github.io/p/large-scale-model-of-mammalian-thalamocortical-systems/</link>
         <pubDate>Sun, 18 Sep 2022 13:59:42 +0800</pubDate>
@@ -1714,34 +2440,37 @@ $$\tilde{p}(x)=\prod_{\mathcal{C\in G}}\phi(\mathcal{C})$$&lt;/p&gt;
 &lt;h3 id=&#34;loss-functionelbo&#34;&gt;Loss function：ELBO&lt;/h3&gt;
 &lt;p&gt;可以用KL散度去量化这两个分布之间的距离，$D_{KL}(X||Y)$ ,度量用分布Y表示X时丢失了多少信息。&lt;/p&gt;
 &lt;p&gt;我们想要参数$\phi$，使得$D_{KL}(q_\phi(z|x)||p_\theta(z|x))$最小&lt;/p&gt;
-&lt;p&gt;!!! note 为什么是 $D_{KL}(q_\phi||p_\theta)$ (reversed KL)  而不是 $D_{KL}(p_\theta||q_\phi)$ (forward KL)
-&lt;a class=&#34;link&#34; href=&#34;https://blog.evjang.com/2016/08/variational-bayes.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Bayesian Variational methods &amp;ndash; Eric Jang&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;![](https://i.loli.net/2021/11/24/N15t2gJQXbAmLRE.png)
+&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;为什么是 $D_{KL}(q_\phi||p_\theta)$ (reversed KL)  而不是 $D_{KL}(p_\theta||q_\phi)$ (forward KL)&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;pre&gt;&lt;code&gt;[Bayesian Variational methods -- Eric Jang](https://blog.evjang.com/2016/08/variational-bayes.html)
+
+![](https://i.loli.net/2021/11/24/N15t2gJQXbAmLRE.png)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;figure 
+&lt;div class=&#34;details admonition note open&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;&lt;figure 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/iaMBWCxvVHXsfR8.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/iaMBWCxvVHXsfR8.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/AKLIf9caMTjmvo4.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/AKLIf9caMTjmvo4.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;这个是学习真实分布时想要最大化的：最大化log形式的产生真实数据的可能性( $log \  p_\theta(x)$ ),最小化真实后验分布和估计的后验分布的差异。&lt;/p&gt;
 &lt;p&gt;损失函数的定义如下：&lt;/p&gt;
@@ -1749,13 +2478,10 @@ $$\tilde{p}(x)=\prod_{\mathcal{C\in G}}\phi(\mathcal{C})$$&lt;/p&gt;
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/79wcQSqyoODTMPE.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/79wcQSqyoODTMPE.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;在变分贝叶斯方法中，这个损失函数被称为变分下界或证据下界。KL散度总是非负的，$-L_{VAE}$ 就是 $log \  p_\theta(x)$ 的下界。&lt;/p&gt;
 &lt;p&gt;$$-L_{VAE}=log \  p_\theta(x) - D_{KL}(q_\phi(z|x)||p_\theta(z|x)) \leq log \ p_\theta(x)$$&lt;/p&gt;
@@ -1767,46 +2493,53 @@ $$\tilde{p}(x)=\prod_{\mathcal{C\in G}}\phi(\mathcal{C})$$&lt;/p&gt;
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/f9d5tLTNmGIhKvP.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/f9d5tLTNmGIhKvP.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/wYjfM8rT7ZkAQpR.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/wYjfM8rT7ZkAQpR.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;上图说明了重新参数化技巧如何使$z$采样过程可训练&lt;/p&gt;
 &lt;p&gt;&lt;figure 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/lxPdGnykucgSWER.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/lxPdGnykucgSWER.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
-&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;!!! note $\odot$ Hadamard product
-Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot B \ or \ A \circ B$&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;运算则是逐元素相乘
-
-![](https://i.loli.net/2021/11/24/cdhFupXg52fmlKM.png)
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;beta-vae&#34;&gt;$\beta$-VAE&lt;/h3&gt;
+&lt;/figure&gt;&lt;/p&gt;
+&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;$\odot$ Hadamard product&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;pre&gt;&lt;code&gt;Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot B \ or \ A \circ B$
+&lt;p&gt;运算则是逐元素相乘&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://i.loli.net/2021/11/24/cdhFupXg52fmlKM.png&#34; &gt;
+		&lt;img src=&#34;https://i.loli.net/2021/11/24/cdhFupXg52fmlKM.png&#34;
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;div class=&#34;details admonition note open&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;h3 id=&#34;beta-vae&#34;&gt;$\beta$-VAE&lt;/h3&gt;
 &lt;p&gt;如果 inferred latent representation $z$ 只对单一生成因素敏感，对其他因素不敏感，叫这种表示为解纠缠（disentangled）或因子化的（factorized）。好处是可解释性好，而且易于迁移到其他任务。&lt;/p&gt;
 &lt;p&gt;例如，一个模型在训练人脸照片时可能会捕捉肤色、头发颜色、头发长度、情绪、是否戴眼镜以及许多其他相对独立的因素。这样的解纠缠表示对于人脸图像的生成是非常有益的。&lt;/p&gt;
 &lt;p&gt;$\beta$-VAE是修改的VAE,特别强调发现解纠缠的潜在因素。&lt;/p&gt;
@@ -1814,13 +2547,10 @@ Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/CbvtghePrMKy3LQ.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/CbvtghePrMKy3LQ.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cs.cmu.edu/~ggordon/10725-F12/slides/16-kkt.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KKT条件&lt;/a&gt;下可以重写为有拉格朗日乘子$\beta$的拉格朗日函数，上述只有一个不等式约束的优化问题等价于最大化方程$\mathcal{F}(\theta,\phi,\beta)$&lt;/p&gt;
@@ -1828,25 +2558,19 @@ Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/wWXZsCRduxaOnKz.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/wWXZsCRduxaOnKz.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;figure 
 	&gt;
 	&lt;a href=&#34;https://i.loli.net/2021/11/24/pC4uzsLXbSQdmNc.png&#34; &gt;
 		&lt;img src=&#34;https://i.loli.net/2021/11/24/pC4uzsLXbSQdmNc.png&#34;
-			
-			
-			
-			loading=&#34;lazy&#34;
-			&gt;
-	&lt;/a&gt;
-	
+&lt;pre&gt;&lt;code&gt;		loading=&amp;quot;lazy&amp;quot;
+		&amp;gt;
+&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;$\beta$作为超参数，如果$\beta=1$，和VAE相同，更高的$\beta$值强化了对latent bottleneck的约束，能增强解纠缠。（和正则化中的权重衰减类似）&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
@@ -1858,6 +2582,15 @@ Hadamard 积，只在两个相同维度的矩阵(A\B)中定义，记作 $A\odot 
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a class=&#34;link&#34; href=&#34;https://www.jeremyjordan.me/variational-autoencoders/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Variational autoencoders.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 </description>
         </item>
         <item>

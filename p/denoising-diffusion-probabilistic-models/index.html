@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在'><title>从ENA高速下载FASTQ文件</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='论文精读第六周 | 2020年 | 作者 Ho,al'><title>Denoising Diffusion Probabilistic Models</title>
 
-<link rel='canonical' href='https://deathsprout.github.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/'>
+<link rel='canonical' href='https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='从ENA高速下载FASTQ文件'>
-<meta property='og:description' content='系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在'>
-<meta property='og:url' content='https://deathsprout.github.io/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Denoising Diffusion Probabilistic Models'>
+<meta property='og:description' content='论文精读第六周 | 2020年 | 作者 Ho,al'>
+<meta property='og:url' content='https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/'>
 <meta property='og:site_name' content='DeathSprout'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='文件下载' /><meta property='article:published_time' content='2021-05-22T13:23:33&#43;08:00'/><meta property='article:modified_time' content='2021-05-22T13:23:33&#43;08:00'/>
-<meta name="twitter:title" content="从ENA高速下载FASTQ文件">
-<meta name="twitter:description" content="系统：Ubuntu 20.0.4 轮子：ena-fast-download 环境需求： An Aspera connect client (see https://www.ibm.com/aspera/connect/ or https://www.biostars.org/p/325010/) curl(Linux自带，但版本不要太旧) Python 3 Aspera 配置 在">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-10-03T15:22:20&#43;08:00'/><meta property='article:modified_time' content='2022-10-03T15:22:20&#43;08:00'/><meta property='og:image' content='https://pic.jitudisk.com/public/2022/10/03/9b7240cf7ec88.png' />
+<meta name="twitter:title" content="Denoising Diffusion Probabilistic Models">
+<meta name="twitter:description" content="论文精读第六周 | 2020年 | 作者 Ho,al"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://pic.jitudisk.com/public/2022/10/03/9b7240cf7ec88.png' />
     <link rel="shortcut icon" href="/img/favicon.png" />
 <style>
     :root {
@@ -80,28 +81,44 @@
         </div>
     
 <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/denoising-diffusion-probabilistic-models/">
+                
+                    <img src="https://pic.jitudisk.com/public/2022/10/03/9b7240cf7ec88.png" loading="lazy" alt="Featured image of post Denoising Diffusion Probabilistic Models" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
     <header class="article-category">
         
-            <a href="/categories/sci-tech/" >
-                Sci-tech
+            <a href="/categories/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB/" >
+                论文精读
             </a>
         
-            <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/" >
-                生物信息学
+            <a href="/categories/%E5%91%A8%E6%9B%B4/" >
+                周更
+            </a>
+        
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" >
+                深度学习
             </a>
         
     </header>
     
 
     <h2 class="article-title">
-        <a href="/p/%E4%BB%8Eena%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BDfastq%E6%96%87%E4%BB%B6/">从ENA高速下载FASTQ文件</a>
+        <a href="/p/denoising-diffusion-probabilistic-models/">Denoising Diffusion Probabilistic Models</a>
     </h2>
 
+    
+    <h3 class="article-subtitle">
+        论文精读第六周 | 2020年 | 作者 Ho,al
+    </h3>
     
 
     
@@ -109,7 +126,7 @@
         
             <div>
                 <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641179040873" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21721" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M852.335286 971.272293h-71.409378V803.137255v-85.900767a231.687639 231.687639 0 0 0-125.01006-205.498381 231.687639 231.687639 0 0 0 125.01006-205.49838V52.378517h71.409378a26.189258 26.189258 0 0 0 0-52.378517h-680.920716a26.189258 26.189258 0 0 0 0 52.378517h71.409377v254.035805a231.687639 231.687639 0 0 0 125.01006 205.49838 231.687639 231.687639 0 0 0-125.01006 205.323786v254.384995H171.41457a26.189258 26.189258 0 0 0 0 52.378517h680.920716a26.189258 26.189258 0 0 0 0-52.378517zM728.547391 52.378517v254.035805a178.959932 178.959932 0 0 1-2.79352 30.204945c-39.458483 12.047059-132.168457 32.998465-209.514067-5.587042-82.059676-41.204433-171.277749-26.887639-220.862745-13.094629V52.378517zM306.900333 369.093947c41.379028-11.872464 118.200853-25.490878 186.467519 8.729753a279.352089 279.352089 0 0 0 125.883035 27.586019 412.044331 412.044331 0 0 0 84.678602-9.253538 179.309122 179.309122 0 0 1-154.865815 89.567263h-74.552088a179.309122 179.309122 0 0 1-167.611253-116.629497z m167.611253 168.833419h11.174083v50.807161a26.189258 26.189258 0 0 0 52.378517 0v-50.807161h11.174084a179.483717 179.483717 0 0 1 179.309121 179.309122v66.520716c-32.649275 10.126513-109.4711 28.633589-180.705882 7.332992a192.054561 192.054561 0 0 1-31.07792-12.047059 244.433078 244.433078 0 0 0-36.490366-14.491389 333.127366 333.127366 0 0 0-185.070759 1.39676v-48.71202a179.483717 179.483717 0 0 1 179.309122-179.309122zM295.202464 971.272293V820.59676c8.031373-2.618926 18.856266-5.761637 31.7763-8.729752a310.953794 310.953794 0 0 1 73.679113-7.856778 234.131969 234.131969 0 0 1 55.346633 7.507588 195.371867 195.371867 0 0 1 37.188747 13.967604 242.687127 242.687127 0 0 0 28.109804 11.872464 295.240239 295.240239 0 0 0 98.122421 15.88815 422.170844 422.170844 0 0 0 109.121909-15.18977v132.692242z" p-id="21722" fill="#8a8a8a"></path><path d="M511.874928 708.157545a26.189258 26.189258 0 0 0 26.189258-26.189259v-13.793009a26.189258 26.189258 0 0 0-52.378517 0v13.793009a26.189258 26.189258 0 0 0 26.189259 26.189259z" p-id="21723" fill="#8a8a8a"></path></svg>
-                <time class="article-time--published">May 22, 2021</time>
+                <time class="article-time--published">Oct 03, 2022</time>
             </div>
         
 
@@ -117,7 +134,7 @@
             <div>
                 <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1641178880826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6745" width="200" height="200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"></style></defs><path d="M399.387199 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L430.987918 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C367.786481 144.513348 381.935736 158.662603 399.387199 158.662603z" p-id="6746" fill="#8a8a8a"></path><path d="M624.957655 158.662603c17.451464 0 31.600719-14.149255 31.600719-31.600719L656.558373 96.232738c0-17.451464-14.149255-31.600719-31.600719-31.600719-17.451464 0-31.600719 14.149255-31.600719 31.600719l0 30.829146C593.356936 144.513348 607.506191 158.662603 624.957655 158.662603z" p-id="6747" fill="#8a8a8a"></path><path d="M427.2682 229.567489c11.341303 18.258852 42.468231 49.15963 87.164199 49.15963 44.479027 0 75.987648-30.66951 87.596034-48.789193 9.324366-14.56574 5.097088-33.745569-9.350972-43.26027-14.431687-9.499351-33.966603-5.457292-43.666522 8.856715-0.134053 0.200568-13.773701 19.992333-34.57854 19.992333-20.228717 0-32.809243-18.320251-33.662681-19.60143-9.273201-14.59644-28.607548-19.020192-43.332924-9.874905C422.608064 195.262172 418.056398 214.744899 427.2682 229.567489z" p-id="6748" fill="#8a8a8a"></path><path d="M498.431983 896.779503 259.370259 896.779503c-40.658002 0-73.734328-33.076326-73.734328-73.734328L185.635931 212.101699c0-40.658002 33.076326-73.734328 73.734328-73.734328 17.451464 0 31.600719-14.149255 31.600719-31.600719s-14.149255-31.600719-31.600719-31.600719c-75.508741 0-136.935766 61.427024-136.935766 136.935766l0 610.943476c0 75.508741 61.427024 136.935766 136.935766 136.935766l239.061724 0c17.451464 0 31.600719-14.149255 31.600719-31.600719C530.032702 910.928758 515.883447 896.779503 498.431983 896.779503z" p-id="6749" fill="#8a8a8a"></path><path d="M901.909337 212.101699c0-75.508741-61.432141-136.935766-136.935766-136.935766-17.45658 0-31.600719 14.149255-31.600719 31.600719s14.144138 31.600719 31.600719 31.600719c40.652885 0 73.734328 33.076326 73.734328 73.734328l0 431.874101c0 1.039679 0.207731 2.02103 0.305969 3.035126-3.163039 5.531993-11.175527 14.616906-30.096459 14.616906L658.681734 661.627832c-46.402843 0-93.840248 10.095939-93.840248 84.96716l0 133.947711c0 38.5899 15.08558 64.008826 44.937468 75.596745 6.897084 2.6432 13.475919 3.868097 19.853164 3.868097 20.290115 0 38.543851-12.395308 58.427714-30.783097 0.530073-0.488117 1.043772-0.997724 1.543146-1.527796 212.305337-225.220485 212.305337-261.321704 212.305337-273.186939 0-1.898233-0.178055-3.76372-0.49835-5.587252 0.25685-1.62194 0.49835-3.252067 0.49835-4.945639L901.908314 212.101699zM644.378983 883.534851c-6.907317 6.326079-11.531638 9.772574-14.354939 11.618619-0.781806-1.934049-1.980097-6.259564-1.980097-14.611789L628.043946 746.593969c0-14.385639 2.103918-18.413372 1.939165-18.413372 0 0 0 0-0.005117 0 0.910743-0.606821 6.259564-3.353374 28.704762-3.353374l126.700657 0C747.023758 771.338536 693.851745 831.011614 644.378983 883.534851z" p-id="6750" fill="#8a8a8a"></path><path d="M743.911884 523.368932 280.431947 523.368932c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 537.518187 761.368464 523.368932 743.911884 523.368932z" p-id="6751" fill="#8a8a8a"></path><path d="M743.911884 365.366362 280.431947 365.366362c-17.451464 0-31.600719 14.149255-31.600719 31.600719 0 17.451464 14.149255 31.600719 31.600719 31.600719l463.479937 0c17.45658 0 31.600719-14.149255 31.600719-31.600719C775.512602 379.515616 761.368464 365.366362 743.911884 365.366362z" p-id="6752" fill="#8a8a8a"></path></svg> 
                 <time class="article-words">
-                    602字
+                    2068字
                 </time>
             </div>
         
@@ -127,48 +144,470 @@
 </header>
 
     <section class="article-content">
-    <p>系统：Ubuntu 20.0.4</p>
-<p>轮子：<a class="link" href="https://github.com/wwood/ena-fast-download"  target="_blank" rel="noopener"
-    >ena-fast-download</a></p>
-<p>环境需求：</p>
+    <div class="details admonition note">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>This is a note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">本文同时是 神经科学22-23秋季 郝荣乔老师课程作业.</div>
+        </div>
+    </div>
+<h2 id="前情提要">前情提要</h2>
+<p>先简要说明为什么我会选择这样的一篇文章，要求的范围是视觉与美学（visual procession、aesthetic、visual cognition、art），同时这个时期，大量的基于Diffusion Model的文字-图片生成模型工作出现在人们视野中并引起广泛讨论（特别是商业美术从业者，很多朋友因此改变了职业规划）。 从GAN 的时代我就非常关注图像生成模型（爱好画画的缘故），近一个月来的进展给我带来了极大的震撼，我研究并尝试了Midjourney (托管在discord上)、<a class="link" href="https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/stable_diffusion.ipynb?pli=1#scrollTo=gd-vX3cavOCt"  target="_blank" rel="noopener"
+    >Stable Diffusion</a>、<a class="link" href="https://beta.dreamstudio.ai/dream"  target="_blank" rel="noopener"
+    >DreamStudio</a>、 百度的文心、<a class="link" href="https://huggingface.co/hakurei/waifu-diffusion"  target="_blank" rel="noopener"
+    >Waifu Diffusion</a>、<a class="link" href="https://novelai.net/"  target="_blank" rel="noopener"
+    >NovelAiDiffusion</a>。</p>
+<p>下面列出了几张我使用这些Ai生成的图片。</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/40fb84e3d499e.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/40fb84e3d499e.png"
+			
+			
+			
+			loading="lazy"
+			alt="Midjourney">
+	</a>
+	
+	<figcaption>Midjourney</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/222c91e0313ed.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/222c91e0313ed.png"
+			
+			
+			
+			loading="lazy"
+			alt="Waifu Diffusion">
+	</a>
+	
+	<figcaption>Waifu Diffusion</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/96082f307ce8a.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/96082f307ce8a.png"
+			
+			
+			
+			loading="lazy"
+			alt="Waifu Diffusion">
+	</a>
+	
+	<figcaption>Waifu Diffusion</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/09/05/828c540892d38.png" >
+		<img src="https://pic.jitudisk.com/public/2022/09/05/828c540892d38.png"
+			
+			
+			
+			loading="lazy"
+			alt="DreamStudio">
+	</a>
+	
+	<figcaption>DreamStudio</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/54cfe73e1b4dd.jfif" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/54cfe73e1b4dd.jfif"
+			
+			
+			
+			loading="lazy"
+			alt="文心">
+	</a>
+	
+	<figcaption>文心</figcaption>
+	
+</figure></p>
+<p>国庆发现的NovelAiDiffusion，和WD一样也是基于SD，使用要10$/月订阅，所以我拿了别人生成的三张图。非常nb，在我这儿是能通过图灵测试的，我能联想到几个画风类似的画师，但我并不能分辨出来区别。（这个AI当天引起了我们一小撮人关于未来的激烈讨论（失业淘汰、自由画师赚钱吃饭、版权、未来职业形态等等），在惊叹之余都挺受打击，纯粹的画工门槛已经没有意义）</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/cf04beb66cf76.jpg" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/cf04beb66cf76.jpg"
+			
+			
+			
+			loading="lazy"
+			alt="NovelAiDiffusion">
+	</a>
+	
+	<figcaption>NovelAiDiffusion</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/d49bf41e40e87.jpg" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/d49bf41e40e87.jpg"
+			
+			
+			
+			loading="lazy"
+			alt="NovelAiDiffusion">
+	</a>
+	
+	<figcaption>NovelAiDiffusion</figcaption>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/5e052d6497588.jpg" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/5e052d6497588.jpg"
+			
+			
+			
+			loading="lazy"
+			alt="NovelAiDiffusion">
+	</a>
+	
+	<figcaption>NovelAiDiffusion</figcaption>
+	
+</figure></p>
+<p>大概几周前我简单的用PS组合了一张艺术摄影和用AI生成的平面素材，制作了下面这张海报。很酷不是么，AI终究会给美术艺术带来第二次摄影冲击，
+所以我打算阅读DDPM模型的重要文章。</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/c496541518725.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/c496541518725.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<h2 id="文章背景">文章背景</h2>
+<p>（去噪）扩散模型有两个过程，前向过程（diffusion，不断添加高斯噪声）和反向过程（reverse，去噪过程，用来生成数据），是一个参数化的马尔可夫链。
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/478f4834b2bd7.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/478f4834b2bd7.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<h3 id="扩散过程">扩散过程</h3>
+<p>扩散过程是指的对数据逐渐增加高斯噪音直至数据变成随机噪音的过程。
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/0eebe19177e9f.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/0eebe19177e9f.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+对于原始数据 $x_0$ ,扩散过程的每一步都是对上一步得到的数据以如下方式增加高斯噪音 ($q(x_t|x_{t-1})$是变分推理引入的用于近似后验分布的分布，可以看我之前的笔记<a class="link" href="https://sydddl.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/"  target="_blank" rel="noopener"
+    >变分自编码器</a>) ：
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/0cdbef0d9c2b0.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/0cdbef0d9c2b0.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+$\beta_t$ 是第$t$ 步采用的方差，DDPM会预先定义好一个线性的方差序列。因此扩散过程可以直接基于$x_0$对任意 $t$ 步的$x_t \thicksim q(x_t|x_0)$进行采样得到：</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/03/6e567965f13a7.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/03/6e567965f13a7.png"
+			
+			
+			
+			loading="lazy"
+			alt="$\alpha_t = 1-\beta_t \qquad \overline{\alpha}t = \prod^t{i=1}\alpha_i$">
+	</a>
+	
+	<figcaption>$\alpha_t = 1-\beta_t \qquad \overline{\alpha}t = \prod^t{i=1}\alpha_i$</figcaption>
+	
+</figure></p>
+<p>$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\overline{\alpha_t}}x_{0},(1-\overline{\alpha}_t) I)$$</p>
+<h3 id="反向过程">反向过程</h3>
+<p>反向是从一个随机噪音逐渐去噪以生成一个真实的样本。</p>
+<p>这一过程需要我们知道每一步的真实分布 $q(x_{t-1}|x_{t})$，似然地估计这个分布 $p_\theta(x_{t-1}|x_{t})$ 就需要用到整个训练样本，由一系列神经网络参数化的高斯分布 ( 均值和方差由训练网络$\mu_\theta(x_t,t)$和$\Sigma_\theta(x_t,t)$ 给出 ) 组成。</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/011f7746c5596.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/011f7746c5596.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+在得知$x_0$时估计条件后验分布$q(x_{t-1}|x_{t},x_0)$:
+$$q(x_{t-1}|x_{t},x_0) = \mathcal{N}(x_{t-1};\widetilde{\mu}(x_t,x_0),\widetilde{\beta}_t I)$$
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/3bf9afe4e5949.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/3bf9afe4e5949.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>推导<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>根据贝叶斯公式：
+$$ q(x_{t-1}|x_t,x_0) = q(x_t|x_{t-1},x_0) \frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}$$
+由扩散过程知道 $q(x_t|x_{t-1},x_0) = q(x_t|x_{t-1}) = \mathcal{N}(x_{t};\sqrt{1-\beta_t}x_{t-1},\beta_t I) $ , 也得出了:</p>
+<p>$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\bar{\alpha}_t}x_{0},(1-\bar{\alpha}_t) I)$$</p>
+<p>$$q(x_{t-1}|x_{0}) = \mathcal{N}(x_{t-1};\sqrt{\bar{\alpha}_{t-1}}x_{0},(1-\bar{\alpha}_{t-1}) I)$$</p>
+<p>$$\therefore  q(x_{t-1}|x_t,x_0)  \varpropto exp(-\frac{1}{2} (\frac{(x_t-\sqrt{\alpha_t} x_{t-1})^2}{\beta_t} +\frac{(x_{t-1}-\sqrt{\bar{\alpha}_{t-1} } x_{0})^2}{1-\bar{\alpha}_{t-1} } - \frac{(x_{t}-\sqrt{\bar{\alpha}_t}x_0)^2}{1-\bar{\alpha}_{t}}))$$</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/593f21b00aba6.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/593f21b00aba6.png"
+			
+			
+			
+			loading="lazy"
+			alt="能化成$x_{t-1}$的二次式">
+	</a>
+	
+	<figcaption>能化成$x_{t-1}$的二次式</figcaption>
+	
+</figure>
+上面括号最里面等于 $\frac{(x_{t-1}-\widetilde{\mu}_t(x_t,x_0))^2}{\widetilde{\beta}_t}$, 就能得到这两个值的表示。
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/3678fcde3f542.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/3678fcde3f542.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+</div>
+        </div>
+    </div>
+<h3 id="优化目标">优化目标</h3>
+<p>这个设置非常像VAE，通过优化负对数似然的变分下界（ELBO）来进行训练 （最大化log形式的产生真实数据的可能性( $log p_\theta(x)$), 最小化真实后验分布和估计的后验分布的差异(KL散度)），其训练目标是 $-L_{VLB}$:</p>
+<p>$$L = -L_{VLB}= \mathbb{E}_{q(x_{1:T}|x_0)}[-log\frac{p_\theta(x_{0:T})}{q(x_{1:T}|x_0)}] = \mathbb{E}_{q(x_{1:T}|x_0)}[log\frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})}] $$</p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/c9270023d009b.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/c9270023d009b.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>这样就得到了论文第三页怼脸上的公式5.</p>
+<h2 id="贡献">贡献</h2>
+<p>就是说上面那些，是之前的文章（概念最早是在2015年）提出 Diffusion models 所带来的公式，其网络架构和训练方法也比较简陋。这两年的大部分扩散模型相关工作都是基于两个模型：DDPM和DDIM。</p>
+<p>那么这 T+1 个优化目标要怎么算呢？</p>
 <ul>
-<li>An Aspera connect client (see <a class="link" href="https://www.ibm.com/aspera/connect/"  target="_blank" rel="noopener"
-    >https://www.ibm.com/aspera/connect/</a> or <a class="link" href="https://www.biostars.org/p/325010/"  target="_blank" rel="noopener"
-    >https://www.biostars.org/p/325010/</a>)</li>
-<li>curl(Linux自带，但版本不要太旧)</li>
-<li>Python 3</li>
+<li>
+<p>$L_T$ （最后得到的噪音的分布和先验分布的KL散度）: 因为将前向过程的方差固定了，这个KL散度没有训练参数，在学习过程该项为常量，忽略。</p>
+</li>
+<li>
+<p>$L_0$ （原始数据重建）: 这里用了一个编码器来计算（文章认为这部分简单，留给未来的工作优化）</p>
+</li>
+<li>
+<p>$L_{1:T-1}$ (估计分布 $p_\theta(x_{t-1}|x_{t})$ 和真实后验分布 $q(x_{t-1}|x_{t},x_0)$ 的KL散度) : 希望估计的去噪过程和依赖真实数据的去噪过程近似一致,</p>
+<ul>
+<li>首先是会设置固定方差  $\Sigma_\theta(x_t,t) = \sigma^2_t \quad x_0=\mathcal{N}(0,I)$  , 根据文章的实验 $\sigma^2_t = \beta_t$ 还是  $\sigma^2_t = \widetilde{\beta}_t$ 结果都差不多。</li>
 </ul>
-<h3 id="aspera-配置">Aspera 配置</h3>
-<p>在 <a class="link" href="https://www.ibm.com/aspera/connect/"  target="_blank" rel="noopener"
-    >https://www.ibm.com/aspera/connect/</a>下载合适的IBM Aspera Connect。解压结束在shell运行那个.sh文件，安装IBM Aspera Connect。</p>
-<p>配置$PATH,手动配置是在/home/user（用户名,我的是sprout）位置的.bashrc文件最后添加</p>
-<pre tabindex="0"><code>export PATH=/home/sprout/.aspera/connect/bin:$PATH 
-</code></pre><p>asperaweb_id_dsa.putty  和asperaweb_id_dsa.openssh是密匙文件，要在最后ascp使用时用到，在后面加 -i 密匙文件的位置，正常使用ascp是如果putty不能用就用openssh，这个脚本ena-fast-download用的密匙是openssh，所以环境变量也要加上。</p>
-<pre tabindex="0"><code>export PATH=/home/sprout/.aspera/connect/etc/asperaweb_id_dsa.openssh:$PATH
-</code></pre><h3 id="使用">使用</h3>
-<p>Linux下是将ena-fast-download这里面的python脚本放到想下数据的文件夹中，执行下面的命令。</p>
-<pre tabindex="0"><code>./ena-fast-download.py ERR1701760
-</code></pre><p>实际上这个脚本是用ERR1701760得到完整的路径去使用ascp，比如上面这个最终会生成(其中一个，双端测序数据，还一个2)</p>
-<pre tabindex="0"><code>ascp-T-1 300m -P33001-i $HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh
-era-fasp@fasp.sra.ebi.ac.uk:/vol1/fastq/ERR1701/000/ERR1701760/
-ERR1701760 1.fastq.gz .
-</code></pre><h3 id="问题">问题</h3>
-<p>我一开始使用下着下着会中断，不清楚是什么问题，可能是Ubuntu长时间不动熄屏导致，也可能是流程里有什么东西变了导致现在用不了。
-单纯的运行ascp脚本报错如下：</p>
-<pre tabindex="0"><code>Session Stop (Error:Session data transfer timeout(server),Session data transfer timeout)
-</code></pre><p>后来发现是实验室网络问题，在宿舍运行速度可以达到60MB/s。</p>
+<p>两个高斯分布的KL散度计算结果，<a class="link" href="https://kexue.fm/archives/8512"  target="_blank" rel="noopener"
+    >推导可见</a>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/feca7f35fbcb1.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/feca7f35fbcb1.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/0631b14d0d899.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/0631b14d0d899.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure>
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/d52cf91723562.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/d52cf91723562.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>原本这个参数在$\mu$底下，预测的是均值，文章重新参数化方程
+$$q(x_t|x_{0}) = \mathcal{N}(x_{t};\sqrt{\overline{\alpha_t}}x_{0},(1-\overline{\alpha}_t) I) \to x_t(x_0,\epsilon_t) = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon_t  \quad \epsilon_t \thicksim \mathcal{N}(0,I)$$</p>
+<p>将 $x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t-\sqrt{1-\bar{\alpha}_t}\epsilon)$ 代入 $\widetilde{\mu}_t(x_t,x_0)$ 得到：
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/874f5458536bd.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/874f5458536bd.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>因为 $x_t$ 在训练时可以作为输入，所以我们可以重新参数化高斯噪声项 $\epsilon_\theta(x_t,t)$，让它从步$t$时的输入$x_t$学得，这样就从原来的预测均值变为预测高斯噪声。
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/d3626232b52ba.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/d3626232b52ba.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>代入优化目标可得（上面的$L_{t-1}$ 和下面的 $L_t$ 意义相同，都是代表当 $t \neq 0 、T$ ）:
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/a1a5a806fbbb1.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/a1a5a806fbbb1.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<p>DDPM近一步对上述目标进行了简化，去掉了权重系数
+<figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/c11c8cddb5624.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/c11c8cddb5624.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+</li>
+</ul>
+<p><figure 
+	>
+	<a href="https://pic.jitudisk.com/public/2022/10/04/7d6e7d6efcbb4.png" >
+		<img src="https://pic.jitudisk.com/public/2022/10/04/7d6e7d6efcbb4.png"
+			
+			
+			
+			loading="lazy"
+			>
+	</a>
+	
+</figure></p>
+<h2 id="代码实现">代码实现</h2>
+<blockquote>
+<p>暂时放放</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<ul>
+<li>
+<p>文献</p>
+<ul>
+<li>Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.  （<a class="link" href="https://arxiv.org/abs/2006.11239"  target="_blank" rel="noopener"
+    >原文链接</a>）</li>
+<li>Yang L, Zhang Z, Hong S. Diffusion models: A comprehensive survey of methods and applications[J]. arXiv preprint arXiv:2209.00796, 2022.</li>
+</ul>
+</li>
+<li>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/536653762"  target="_blank" rel="noopener"
+    >A New Look at Denoising Diffusion Models（1）</a></p>
+</li>
+<li>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/384144179"  target="_blank" rel="noopener"
+    >Denoising Diffusion Probabilistic Model(DDPM)</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.bilibili.com/video/BV1fU4y1i7kK/?spm_id_from=333.788&amp;vd_source=882c2f4257e14ef1d1bd68cd93aaf6d4"  target="_blank" rel="noopener"
+    >扩散模型 Diffusion Model &ndash;b站</a></p>
+</li>
+<li>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/563661713?utm_id=0"  target="_blank" rel="noopener"
+    >扩散模型之DDPM</a></p>
+</li>
+<li>
+<p><a class="link" href="https://zhuanlan.zhihu.com/p/138184201#:~:text=%E5%9C%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BA%94%E7%94%A8%EF%BC%8C%E4%B8%AD%E6%AF%94%E8%BE%83%E6%9C%89%E5%90%8D%E7%9A%84%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%EF%BC%88VAE%EF%BC%89%E7%9A%84%E5%BA%95%E5%B1%82%E5%B0%B1%E5%9F%BA%E4%BA%8E%E5%8F%98%E5%88%86%E6%8E%A8%E7%90%86%E3%80%82%20%E5%9C%A8%E5%8F%98%E5%88%86%E6%8E%A8%E7%90%86%E4%B8%AD%E9%80%9A%E5%B8%B8%E6%88%91%E4%BB%AC%E5%85%B3%E5%BF%83%E7%9A%84%E5%88%86%E5%B8%83%E6%98%AF%E6%9F%90%E4%B8%AA%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E9%9A%90%E5%8F%98%E9%87%8F%EF%BC%88latent%20variables%EF%BC%89%E7%9A%84%E5%90%8E%E9%AA%8C%EF%BC%88posterior%EF%BC%89%E5%88%86%E5%B8%83%20P%20%28Z%7CX%29%2C,%E5%85%B6%E4%B8%AD%20Z%20%E6%98%AF%E9%9A%90%E5%8F%98%E9%87%8F%E8%80%8C%20X%20%E6%98%AF%E8%A2%AB%E8%A7%82%E6%B5%8B%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E3%80%82"  target="_blank" rel="noopener"
+    >变分推理（variational inference）</a></p>
+</li>
+<li>
+<p><a class="link" href="https://sydddl.github.io/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/"  target="_blank" rel="noopener"
+    >变分自编码器</a></p>
+</li>
+<li>
+<p><a class="link" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"  target="_blank" rel="noopener"
+    >What are Diffusion Models?</a></p>
+</li>
+<li>
+<p><a class="link" href="https://yang-song.net/blog/2021/score/"  target="_blank" rel="noopener"
+    >Generative Modeling by Estimating Gradients of the Data Distribution</a></p>
+</li>
+<li>
+<p><a class="link" href="https://kexue.fm/archives/8512"  target="_blank" rel="noopener"
+    >两个多元正态分布的KL散度、巴氏距离和W距离</a></p>
+</li>
+</ul>
 
 </section>
 
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/">文件下载</a>
-        
-    </section>
-
 
     
     <section class="article-copyright">
@@ -220,48 +659,78 @@ ERR1701760 1.fastq.gz .
                 
                     
 <article class="">
-    <a href="/p/mcmctree-%E5%AE%9A%E5%B9%B4-%E4%BD%BF%E7%94%A8%E6%B0%A8%E5%9F%BA%E9%85%B8%E5%BA%8F%E5%88%97/">
+    <a href="/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">mcmctree 定年 —— 使用氨基酸序列</h2>
+            <h2 class="article-title">A Unified Mathematical Framework for Coding Time, Space, and Sequences in the Hippocampal Region</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/how-to-build-a-cognitive-map/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">How to build a cognitive map</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/p/%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7/">
+    <a href="/p/large-scale-model-of-mammalian-thalamocortical-systems/">
         
         
             <div class="article-image">
                 
-                    <img src="https://s2.loli.net/2021/12/05/EAlSkpHZeyqDF24.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/05/EAlSkpHZeyqDF24.png"/>
+                    <img src="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png" loading="lazy" data-key="" data-hash="https://pic.jitudisk.com/public/2022/09/18/0061f95634cbf.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">神经可塑性</h2>
+            <h2 class="article-title">Large-scale model of mammalian thalamocortical systems</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/p/%E5%B1%B1%E4%B8%9C%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AE%9E%E9%AA%8C-%E8%BD%AC%E5%BD%95%E7%BB%84%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/">
+    <a href="/p/vggface-pytorch-%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">
         
         
             <div class="article-image">
                 
-                    <img src="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/03/obycVOJlgKFZpjA.png"/>
+                    <img src="https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/07/e1lHXDzs5pMjirJ.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">山东大学生物信息学实验 - 转录组学数据分析和富集分析</h2>
+            <h2 class="article-title">Vggface Pytorch 完全指南</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png" loading="lazy" data-key="" data-hash="https://s2.loli.net/2021/12/06/diyx52IXO7aWuPw.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">变分自编码器</h2>
         </div>
     </a>
 </article>
@@ -524,13 +993,17 @@ ERR1701760 1.fastq.gz .
                 <div class="widget--toc">
                     <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#前情提要">前情提要</a></li>
+    <li><a href="#文章背景">文章背景</a>
       <ol>
-        <li><a href="#aspera-配置">Aspera 配置</a></li>
-        <li><a href="#使用">使用</a></li>
-        <li><a href="#问题">问题</a></li>
+        <li><a href="#扩散过程">扩散过程</a></li>
+        <li><a href="#反向过程">反向过程</a></li>
+        <li><a href="#优化目标">优化目标</a></li>
       </ol>
     </li>
+    <li><a href="#贡献">贡献</a></li>
+    <li><a href="#代码实现">代码实现</a></li>
+    <li><a href="#参考">参考</a></li>
   </ol>
 </nav>
                 </div>
