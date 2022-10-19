@@ -6,7 +6,223 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 05 Oct 2022 03:29:26 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 11 Oct 2022 14:20:38 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Signal propagation via cortical hierarchies</title>
+        <link>https://deathsprout.github.io/p/signal-propagation-via-cortical-hierarchies/</link>
+        <pubDate>Tue, 11 Oct 2022 14:20:38 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/signal-propagation-via-cortical-hierarchies/</guid>
+        <description>&lt;img src="https://pic.jitudisk.com/public/2022/10/13/41255e9640096.png" alt="Featured image of post Signal propagation via cortical hierarchies" /&gt;&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;This is a note&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://sydddl.github.io/p/signal-propagation-via-cortical-hierarchies/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;本文&lt;/a&gt;同时是 系统与计算神经科学22-23秋季 余山老师课程第三次作业.&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h2 id=&#34;文献信息&#34;&gt;文献信息&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标题 :&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://direct.mit.edu/netn/article/4/4/1072/95842/Signal-propagation-via-cortical-hierarchies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Signal propagation via cortical hierarchies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;期刊 :&lt;/strong&gt; network neuroscience&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;作者 :&lt;/strong&gt; Bertha Vázquez-Rodríguez 、Zhen-Qi Liu&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DOI :&lt;/strong&gt; 10.1162/netn_a_00153&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keywords :&lt;/strong&gt; Brain connectivity; Connectome; Navigation; Neural communication; Neural networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;术语定义&#34;&gt;术语定义&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shortest path&lt;/strong&gt; 拓扑最短路径 ： 两个节点间的最小连续边集&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://neuroscientificallychallenged.com/glossary/association-areas&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;association areas&lt;/a&gt;&lt;/strong&gt; 关联区域 :  关联区域整合传入的感觉信息，并在感觉和运动区域之间形成连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://link.springer.com/referenceworkentry/10.1007/978-0-387-79948-3_810&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Unimodal association cortices&lt;/a&gt;&lt;/strong&gt; 单模态关联皮层 ：&lt;em&gt;同义词 Secondary association cortex，也为Unimodal Cortex。&lt;/em&gt; 主要处理来自一种感觉方式的信息的关联区域，已定义两种（感觉和运动），单模态感觉关联皮层有三种典型（视、听、躯体感觉）, 单模态皮层被认为是负责解码(分析)和/或重新编码(合成)从各自的初级皮层接收到的感觉输入。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://link.springer.com/referenceworkentry/10.1007/978-0-387-79948-3_738&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Heteromodal association cortex&lt;/a&gt;&lt;/strong&gt; 多模态关联皮层 ：&lt;em&gt;同义词 Tertiary（第三级）cortex 和 Heteromodal Cortex&lt;/em&gt;。 指接收来自多个感觉或多模式区域的输入的区域。由于它们的多模式输入，这些皮层区域被认为是负责更复杂或综合的认知活动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Unimodal-transmodal hierarchy&lt;/strong&gt; : 将单模态感觉运动皮层与跨模态关联皮层分离的连续轴。 (transmodal 我认为等价于 heteromodal)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://how-emotions-are-made.com/notes/Intrinsic_networks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;intrinsic networks&lt;/a&gt;&lt;/strong&gt;  固有（内在）网络 : 大脑区域的子网络，具有连贯的时间过程，通过聚类、独立成分分析或社区检测识别出来。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://how-emotions-are-made.com/w/images/heam/f/f4/Intrinsic_networks.jpg&#34; &gt;
+		&lt;img src=&#34;https://how-emotions-are-made.com/w/images/heam/f/f4/Intrinsic_networks.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+这篇文章中，简写 ：DM = default mode, FP = frontoparietal, LIM = limbic, VA = ventral attention, DA = dorsal attention, SM = somatomotor, VIS = visual.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;研究简述&#34;&gt;研究简述&lt;/h2&gt;
+&lt;p&gt;信号的传播很可能受到皮层分层环路组织的限制，这种连续的轴或梯度可以在皮层的功能结构中观察到。&lt;/p&gt;
+&lt;p&gt;研究了功能层次如何塑造信号的传播。研究者重建结构网络（目前的重建仅包括皮质区域，忽略了皮质下和小脑）上的路径（拓扑最短路径是推断网络中潜在信号路径的一种简单方法），并通过 &lt;em&gt;Unimodal-transmodal hierarchy&lt;/em&gt; 梯度追踪它们的轨迹。发现大脑皮层的分层组织限制了路径轨迹，因此许多路径遵循规范的自下而上(向上升级)或自上而下(向下降级)的轨迹。&lt;/p&gt;
+&lt;h2 id=&#34;研究结果&#34;&gt;研究结果&lt;/h2&gt;
+&lt;h3 id=&#34;path-motifs&#34;&gt;path motifs&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/11/62290f4f6d51d.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/11/62290f4f6d51d.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			&gt;
+	&lt;/a&gt;
+	
+&lt;/figure&gt;
+结构和功能网络分别由dwMRI和静息态fMRI重建,在两个节点之间的最短路径上遇到的节点注释序列。
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/11/e67f6b6a60daa.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/11/e67f6b6a60daa.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;path motifs&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;path motifs&lt;/figcaption&gt;
+	
+&lt;/figure&gt;
+首先研究路径如何映射到假定的Unimodal-transmodal hierarchy，层次被划分为10个等级，上图展示了源节点的三个级别(2、6和9; 行)和目标节点的三个级别(列)的 path motif，阴影区域表示95%的置信区间，颜色用于划分路径长度。&lt;/p&gt;
+&lt;p&gt;对于大多数路径而言，motifs 通过层级顺序过渡，但在过渡的性质上存在着系统性的差异。穿越层次结构中较大差异的路径(如2到9)往往遵循更为单调的轨迹。当源节点和目标节点在层次结构中占据相同或相邻的位置时，路径更可能遵循 U 形，有效地绕道到层次结构的中间部分(如2到2)。文章的支持材料里放了与具有随机拓扑和随机层次标签的 Null 网络的轨迹，得到结论是 path motifs既受网络拓扑结构的影响，也受 Unimodal-transmodal hierarchy 的空间结构的影响。&lt;/p&gt;
+&lt;h3 id=&#34;拐点&#34;&gt;拐点&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/11/2adb10b8c69a6.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/11/2adb10b8c69a6.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;通讯流中的拐点&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;通讯流中的拐点&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(A) 一个路径序列的示意，红点表示这个点在层次结构上是上升的(正斜率，从单模态皮层到多模态皮层)，蓝点相反，更大的点表示转折点。&lt;/li&gt;
+&lt;li&gt;(B) 每个节点的平均斜率(y)与其在层次结构中的位置成反相关。主要表现为正平均斜率的区域是辅助运动区、躯体运动皮层和视觉皮层。具有负斜率的区域包括前额叶皮层、后顶叶皮层、听觉皮层和颞下皮层。&lt;/li&gt;
+&lt;li&gt;(C) 七个固有网络的平均斜率，边缘和默认网络平均斜率是负的&lt;/li&gt;
+&lt;li&gt;(D) 上下转折点的平均概率。背侧注意和腹侧注意出现上转折点出现概率最大，默认网络出现下转折点的概率最大。&lt;/li&gt;
+&lt;li&gt;(E-F) 单个区域出现转折概率，上转折点最可能出现在注意力相关的网络中，下转折点最可能出现在上额叶和背外侧前额叶，颞下叶和颞叶外侧皮质。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基于层次的导航&#34;&gt;基于层次的导航&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Navigation&lt;/strong&gt; ：一种去中心化的通信机制，信号被转发到距离目标最近的连接邻居。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;想知道是否可以通过遵循层次结构来重新概括网络的路径体系结构。所以研究了如果信号被转发到Unimodal-transmodal hierarchy 结构中最接近目标节点的邻居，那么信号是否可以重现网络的路径结构。为了将导航量化为一个通信过程，研究者测量成功恢复的路径比例 $S_R$。&lt;/p&gt;
+&lt;p&gt;这里重定义了距离，线性组合由参数β加权的三维欧氏距离和的层次距离，两个值都被归一化到 $[0,1]$ ,导航可以简单地反映成本最小化策略,将 β 从0调整到1，并找到使导航成功率最大化的 β。&lt;/p&gt;
+&lt;p&gt;$$d(i,j)=\beta\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2} + (1-\beta)(h_i-h_j)$$
+&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/13/41255e9640096.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/13/41255e9640096.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;网络拓扑可以在多大程度上重述最短路径。&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;网络拓扑可以在多大程度上重述最短路径。&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;B 显示了使每个源-目标对的导航成功率最大化的β参数的分布,在两个极值处有显著的峰值，表明大多数节点对层次导航或空间导航都有强偏好。&lt;/li&gt;
+&lt;li&gt;C ：通过对固有网络包含的节点按彼此间的关系进行分层，发现每个网络都有一个独特的指纹。视觉系统、外侧颞皮质和背外侧前额叶皮质的部分区域对空间导航表现出强烈的偏好（红色；β&amp;gt;0.8）；内侧顶叶皮质、内侧前额叶皮层和左侧颞顶叶皮质表现出对分层导航的强烈偏好（蓝色；β&amp;lt;0.2）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;研究方法&#34;&gt;研究方法&lt;/h2&gt;
+&lt;h3 id=&#34;数据采集&#34;&gt;数据采集&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;66健康青年（16女，25.3正负4.9岁），无任务要求
+&lt;ul&gt;
+&lt;li&gt;对白质灰质对比敏感的 magnetization-prepared rapid acquisition gradient echo (MPRAGE) sequence&lt;/li&gt;
+&lt;li&gt;DSI（扩散光谱成像）序列&lt;/li&gt;
+&lt;li&gt;对BOLD对比敏感的梯度回波EPI序列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;结构网络重建&#34;&gt;结构网络重建&lt;/h3&gt;
+&lt;p&gt;灰质被分割成68个皮层节点(Desikan et al., 2006)，这些区域进一步被分为1000个左右大小相近的节点(Cammoun et al., 2012)，参与者的结构连接性使用确定性流线型纤维束成像评估（deterministic streamline tractography），程序在 Connectome Mapper Toolkit (Daducci et al., 2012)。区域对之间的结构连通性被定义为由两个区域的平均流线长度和平均表面积归一化的流线数目，称为纤维密度(Hagmann et al., 2008)。为了减轻对个体参与者连接重建不一致，采用了一种叫群体共识方法（group-consensus approach）。&lt;/p&gt;
+&lt;h3 id=&#34;功能网络重建&#34;&gt;功能网络重建&lt;/h3&gt;
+&lt;p&gt;矫正FMRI数据后，对BOLD时间序列进行低通滤波，去掉前四个时间点，数据根据定义结构网络的相同atlas分组后，单个个体的功能连接矩阵被定义为FMRI BOLD时间序列的0时延皮尔逊相关性，群体在这基础上做平均。&lt;/p&gt;
+&lt;h3 id=&#34;diffusion-map-embedding&#34;&gt;Diffusion Map Embedding&lt;/h3&gt;
+&lt;p&gt;扩散映射嵌入是一种非线性降维算法(Coifman et al.,2005) ,使用的工具箱 Dimensionality Reduction Toolbox.&lt;/p&gt;
+&lt;h3 id=&#34;最短路径检索&#34;&gt;最短路径检索&lt;/h3&gt;
+&lt;p&gt;定义了一个拓扑距离度量，将加权邻接矩阵通过 $L =-log(W)$ 变换为连接长度矩阵，把更大权重的连接映射为更短的边。使用 Floyd-Warshall 算法恢复加权最短路径，会在所有源-目标对之间产生唯一的路径。&lt;/p&gt;
+&lt;h3 id=&#34;斜率与拐点&#34;&gt;斜率与拐点&lt;/h3&gt;
+&lt;p&gt;节点都有一个相关的层次位置值 $h(v_i)$ ,因此节点 $v_i$ 在某一条路径上的斜率为 $s_{v_i} = h(v_{i+1}) - h(v_i)$ ,平均斜率就是这个节点参与的所有路径的均值。&lt;/p&gt;
+&lt;h3 id=&#34;转移概率&#34;&gt;转移概率&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;转移概率：信号从源节点转发到目标节点的概率。&lt;/li&gt;
+&lt;li&gt;$\sharp{sp:\circ}$ : 表示满足条件 $\circ$ 的所有最短路径集合中最短路径数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于 1-hop 转移概率矩阵 $T$ ，$i,j$ 表示层次结构、$t$ 是位置&lt;/p&gt;
+&lt;p&gt;$$T_{ij}(t) = \frac{\sharp{sp:sp(t) = i,sp(t+1)=j}}{\sharp{sp:length(sp)\geq t+1}} $$&lt;/p&gt;
+&lt;h2 id=&#34;个人想法&#34;&gt;个人想法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对文章提到的 Unimodal-transmodal hierarchy 定义的脑区的层次，我个人的理解是层次越高，涉及到（接受）的信息的模态越多，对信息的复杂整合也越多。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我认为比较有意思的，在单模态到单模态节点的路径motifs 和 多模态到多模态节点的路径 motifs，除非很短的路径，都会探到中等层次的皮层，路径越长越明显；而中等层次到中等层次motifs的曲线是接近水平的。是否意味着Unimodal-transmodal hierarchy 中的中间层次会更多的负责区域间信息交流/或是连接更广泛。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在拐点那张图中，有一个结果：&lt;em&gt;背侧注意和腹侧注意出现上转折点出现概率最大（特别是背侧注意网络），默认网络出现下转折点的概率最大&lt;/em&gt; 。考虑到这里提到的网络具有如下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背侧注意网络的功能是提供自上而下的注意定向（根据期望和有意识的目标，有选择性地挑选需集中注意力的地方），腹侧注意网络负责自下而上的注意定向 (对前意识刺激（如运动、意外的噪声或视觉变换）的注意力转移) 。&lt;/li&gt;
+&lt;li&gt;通常在个体清醒静息的状态，不专注于外界时默认模式网络就会活动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那么是否说明默认网络最有可能是  Unimodal-transmodal hierarchy  层次较低区域之间的信息中转，背侧注意和腹侧注意网络最有可能作为较高层次区域之间的信息中转。 注意机制（不论是自上而下和自下而上的注意定向）作用于经过注意网络传递到的多模态脑区。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;原文中提到下面这一句，之前并未了解过，我也对提到的理论产生一定兴趣，有时间会阅读相关的文献。
+&lt;div class=&#34;details admonition question&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-question-circle fa-fw&#34;&gt;&lt;/i&gt;?&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;The finding that attention networks are anatomically positioned to redirect signal traffic resonates with &lt;strong&gt;modern theories of how attention and control networks shape fluid transitions between segregated and integrated states&lt;/strong&gt;, guiding adaptive reconfiguration during rest and task (de Pasquale et al., 2012; Fair et al., 2007; Miši ́ c, Fatima et al., 2014; Mohr et al., 2016; Shine et al., 2016).&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;&lt;/p&gt;
+&lt;h2 id=&#34;额外参考&#34;&gt;额外参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://link.springer.com/referenceworkentry/10.1007/978-0-387-79948-3_810&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Unimodal Cortex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://neuroscientificallychallenged.com/glossary/association-areas&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;association areas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://link.springer.com/referenceworkentry/10.1007/978-0-387-79948-3_738&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Heteromodal association cortex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://how-emotions-are-made.com/notes/Intrinsic_networks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;intrinsic networks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/466380914&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;几种常见的功能性脑网络划分方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/minks/p/4850270.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;脑网络组基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/33777233&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;大脑皮层中各层的分工&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>A Unified Mathematical Framework for Coding Time, Space, and Sequences in the Hippocampal Region</title>
         <link>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</link>
         <pubDate>Wed, 05 Oct 2022 03:29:26 +0800</pubDate>

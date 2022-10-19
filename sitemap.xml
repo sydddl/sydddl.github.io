@@ -2,22 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</loc>
-    <lastmod>2022-10-05T03:29:26+08:00</lastmod>
-  </url><url>
     <loc>https://deathsprout.github.io/categories/</loc>
-    <lastmod>2022-10-05T03:29:26+08:00</lastmod>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
   </url><url>
     <loc>https://deathsprout.github.io/</loc>
-    <lastmod>2022-10-05T03:29:26+08:00</lastmod>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
   </url><url>
     <loc>https://deathsprout.github.io/post/</loc>
-    <lastmod>2022-10-05T03:29:26+08:00</lastmod>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
+  </url><url>
+    <loc>https://deathsprout.github.io/p/signal-propagation-via-cortical-hierarchies/</loc>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
   </url><url>
     <loc>https://deathsprout.github.io/categories/%E5%91%A8%E6%9B%B4/</loc>
-    <lastmod>2022-10-05T03:29:26+08:00</lastmod>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
   </url><url>
     <loc>https://deathsprout.github.io/categories/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB/</loc>
+    <lastmod>2022-10-11T14:20:38+08:00</lastmod>
+  </url><url>
+    <loc>https://deathsprout.github.io/p/a-unified-mathematical-framework-for-coding-time-space-and-sequences-in-the-hippocampal-region/</loc>
     <lastmod>2022-10-05T03:29:26+08:00</lastmod>
   </url><url>
     <loc>https://deathsprout.github.io/p/denoising-diffusion-probabilistic-models/</loc>
