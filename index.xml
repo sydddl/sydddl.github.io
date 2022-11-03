@@ -6,7 +6,133 @@
         <description>Recent content on DeathSprout</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 11 Oct 2022 14:20:38 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 28 Oct 2022 16:28:05 +0800</lastBuildDate><atom:link href="https://deathsprout.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Priority coding in the visual system</title>
+        <link>https://deathsprout.github.io/p/priority-coding-in-the-visual-system/</link>
+        <pubDate>Fri, 28 Oct 2022 16:28:05 +0800</pubDate>
+        
+        <guid>https://deathsprout.github.io/p/priority-coding-in-the-visual-system/</guid>
+        <description>&lt;img src="https://pic.jitudisk.com/public/2022/10/28/03c4eb75ce064.png" alt="Featured image of post Priority coding in the visual system" /&gt;&lt;div class=&#34;details admonition note&#34;&gt;
+        &lt;div class=&#34;details-summary admonition-title&#34;&gt;
+            &lt;i class=&#34;icon fas fa-pencil-alt fa-fw&#34;&gt;&lt;/i&gt;This is a note&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;details-content&#34;&gt;
+            &lt;div class=&#34;admonition-content&#34;&gt;本文 同时是 系统与计算神经科学22-23秋季 余山老师课程第四次作业.&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;h2 id=&#34;文献信息&#34;&gt;文献信息&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标题 :&lt;/strong&gt; &lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/s41583-022-00582-9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Priority coding in the visual system&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;期刊 :&lt;/strong&gt; Nature Reviews Neuroscience&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;作者 :&lt;/strong&gt; Nicole C. Rust &amp;amp; Marlene R. Cohen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DOI :&lt;/strong&gt; 10.1038/s41583-022-00582-9&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;主要内容&#34;&gt;主要内容&lt;/h2&gt;
+&lt;p&gt;落在视网膜上的视觉信息只有一部分子集被感知、被记忆或者影响行为。视觉与认知因素结合以确定那些视觉事件是优先的，不同的视觉优先级编码都有类似的行为效应（将某些刺激的优先级高于其他刺激），但在许多方面不同（时间尺度从几十毫秒到几个月；作用的特征等级（低级别特征如方向，高级概念如对象类别）不同等），这篇综述着重在优先编码影响视觉处理不同阶段神经群体活动的几个指标，特别是它们之间的相似性（是否反映了优先级编码的一般原则）和差异性。&lt;/p&gt;
+&lt;p&gt;文章提出，视觉系统使用部分重叠的神经活动子空间将不同类型的优先级组合成统一的优先级信号，同时还保留区分它们的能力。&lt;/p&gt;
+&lt;h3 id=&#34;优先编码的形式&#34;&gt;优先编码的形式&lt;/h3&gt;
+&lt;p&gt;优先编码的普遍存在导致了，人们讨论对不同形式的优先排序是视为同一类别的一部分还是应该加以区分，这里不再关注术语或类别的定义，而是关注不同的行为优先级特征是否由重叠的相关神经介导。结合神经生理学和行为研究，目前研究最好的是非人灵长类的视觉系统，文章重点介绍了灵长类视觉系统中的五个行为优先特征的例子。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/28/f0590ff1ebc32.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/28/f0590ff1ebc32.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Forms of priority coding&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Forms of priority coding&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;perceptual learning&lt;/strong&gt; ： 知觉学习（上图 a ）涉及广义的训练任务，知觉学习提高了观察者在几周或几个月的时间内在特定的训练位置区分刺激的能力，在视觉空间中熟悉的位置对刺激进行优先排序。训练地点（绿色圆圈）的心理物理阈值随着训练时数的增加而降低，并在训练中断后基本保持不变，而未经训练的位置（黄色圆圈）的辨别阈值仍然很高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;goal-directed visual attention&lt;/strong&gt; ：目标导向的视觉注意（上图 b ）会影响整个视觉通路中神经元的活动，使观察者能够灵活地对视觉场景的不同位置、特征、对象或其他部分进行优先级排序，并过滤掉与任务无关的信息。 图中是一个波斯纳提示范式的实验，两个重复闪烁的刺激和一个提示位置的线索，刺激会发生角度变化，靠下的是正确率和变化角度的心理测量曲线，对于无线索提示的黄点，提示线索的曲线是整体左移的。目标导向的视觉注意可能是研究最广泛的优先编码形式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;visual salience&lt;/strong&gt; ： 视觉显著（上图 c ），视觉显著性使得复杂图像的某些区域能够被优先考虑，因为这些区域的属性本质上是吸引注意力的。心理物理学的角度来看，研究显著性通常有三种方法。
+&lt;ul&gt;
+&lt;li&gt;比较“弹出”和“不弹出”的刺激，刺激在视觉特征或开始时间上与背景不同。&lt;/li&gt;
+&lt;li&gt;是否符合 Search template，观察者搜索不同于干扰物的目标，图c就是这种方法的例子。&lt;/li&gt;
+&lt;li&gt;自由观看范式，根据参与者注视模式的一致规律来量化图像的显著性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面的三种优先编码通常研究视觉系统的早期阶段（如V1、V2和V4），因为空间特异性表明是由具有小感受野的神经元介导。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;image memorability&lt;/strong&gt; ：图像可记忆性使得一些刺激能够被优先考虑，因为这些图像的属性本质上更容易被记住。在视觉识别记忆任务中，参与者被要求查看新的和重复的图像，并报告他们以前是否见过这些图像（上图 d ）。研究发现一些图像比其他图像更令人难忘（ 图像记忆性得分 0 ~ 1，表示重复图像时记得看过这个图像的参与者比例）。高层次的属性效应更强，包括对象类型（脸通常比自然场景更容易记忆）和对象非典型性（形状像手的怪椅子更容易记忆）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;visual novelty&lt;/strong&gt; ： 当图像新奇时也会有优先效应（上图 e ），右侧图为猴子花在自由观看新奇图像(高优先级)上的时间与花在重复图像(低优先级)上的时间的比较。人类婴儿，猴子和其他动物偏爱看不同于以前遇到的图像，称为 preferential looking 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这两种优先通常与视觉系统的高级阶段 (如 IT) 的处理有关，因为它们与更高层次、以物体为中心的属性和快速、持久的可塑性有关。&lt;/p&gt;
+&lt;h3 id=&#34;神经相关的优先编码&#34;&gt;神经相关的优先编码&lt;/h3&gt;
+&lt;p&gt;这里作者定义一个 Neural correlate 是神经群体活动的一种表现形式，当解码时能产生优先顺序，下面这张图中提到的编码 proposals 都对应着几篇文献，如果对具体文献感兴趣请看原文引用。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/28/03c4eb75ce064.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/28/03c4eb75ce064.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Proposals for priority coding&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Proposals for priority coding&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Magnitude variation&lt;/strong&gt;（图a）： 幅度编码,优先级高的图像的神经群体响应更激烈。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Correlated trial variability&lt;/strong&gt; （图b）：（试验变异性相关,也称为噪声相关性，发放数相关性或 $r_{SC}$）单个神经元在相同实验条件和视觉刺激的重复实例中反应的变异性。优先顺序的确定取决于神经元之间共享的变异性，影响下游信息的解码方式。我理解是高优先级的刺激，单个神经元发放分布的协方差更小。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Correlated nuisance variability&lt;/strong&gt; （图c）：干扰变异性相关，类似于试验变异性相关，但仅限于需要将多个刺激组合在一起，同时忽略它们之间的其他差异的任务。例如物体识别，它可以被认为是将包含同一物体的所有图像组合在一起，同时忽略这些物体出现的细节变化，例如它们的空间位置、大小和背景上下文。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optimized decoder&lt;/strong&gt; （图d）：优化解码器，优先顺序是通过提高下游解码器的效率而不是改变神经元总体响应本身来实现的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Synchrony and coherence&lt;/strong&gt; （图e）: 同步性和一致性，优先顺序遵循在非常段的时间尺度上改变同步活动，可能是由群体之间共享的振荡活动介导的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Communication subspace alignment&lt;/strong&gt; （图f）：子空间对齐，神经群体子空间被定义为同时记录的神经元响应代表一个维度的空间。优先编码是通过影响优先视觉信息与神经群体子空间对齐的程度来实现的，刺激的总信息量是相同的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;一个统一但可区分的编码&#34;&gt;一个统一但可区分的编码&lt;/h3&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://pic.jitudisk.com/public/2022/10/28/2f185136f2461.png&#34; &gt;
+		&lt;img src=&#34;https://pic.jitudisk.com/public/2022/10/28/2f185136f2461.png&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;优先编码的子空间&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;优先编码的子空间&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(a) 视觉身份的表示很大程度上反映为群体尖峰模式，或者等效地反映为群体向量方向；幅度编码则对矢量幅度的进行调节，对优先编码用乘法缩放发放率。&lt;/li&gt;
+&lt;li&gt;(b) 当猴子报告图像新颖性（对比度随机变化），记录的颞下皮质反应的2D线性子空间示意图。虽然关于新颖性和对比度在幅度编码上存在重叠，但一个与对比度正交的新颖性解码器可以解释神经反应与猴子行为模式的映射。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;围绕检查神经群体空间的子空间(Communication subspace alignment) ，已经出现了一个思考神经编码的框架（subspace framework）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;some insights&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;1.在许多任务中，大多数相关的群体活动都存在于维度比理论上限低得多的子空间中。（比如在IT中，神经活动对新颖的映射表征是可线性解码的）&lt;/li&gt;
+&lt;li&gt;2.优先编码与响应构成的相关子空间似乎被配置为使得优先编码不会显著影响视觉身份的表示。（例如下图a）&lt;/li&gt;
+&lt;li&gt;3.不同形式的优先顺序会影响部分重叠的神经活动子空间。&lt;/li&gt;
+&lt;li&gt;4.大脑区域之间的功能交流改变，可能不会改变两个群体之间共享的激活子空间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;个人收获&#34;&gt;个人收获&lt;/h2&gt;
+&lt;p&gt;读这篇综述的兴趣，是被余老师讲视觉的神经环路与机制那节课上放的关于视觉的 GIF 引起的。最直观的收获，是了解了灵长类视觉系统中的五种行为优先特征，课里面关于视觉优先编码的严格来说只有“视觉显著”这一种。海边帆船旁坐一个小男孩那张图片，如果整张图片不跟着频闪的话，改变的物件相当于是“弹出”，其他部分是“不弹出”，吸引了我们对它进行优先编码，而跟着频闪相当于整张图片都是“弹出”，没有优先编码的效应，所以我们很难一下子找到发生改变的部分。&lt;/p&gt;
+&lt;p&gt;同样是属于视觉显著这块，第二个视觉搜索任务在另一门叫认知科学与脑成像的课中进行了详细了解，具有高显著性的刺激（高优先级）“弹出”一个独有的特征（称为单特征搜索，也被称为并行搜索），搜索时间与集合大小无关。低显著性的刺激（低优先级）是多个特征中仅有一项与干扰物不同（目标的多个属性都有干扰图像与其共享，称为联合搜索，也叫串行搜索），搜索时间随着干扰因素的数量而增加。也是在这门课里提到了老师展示的 “场景同时发生很多变化，对其中很多变化都不能察觉” 这种被称为变化盲（change blindness）的现象。&lt;/p&gt;
+&lt;p&gt;这篇文献并没有说清楚统一的子空间框架是怎样的数学形式，我觉得是个依据神经群体发放数据搭的唯像模型，神经相关的优先编码和后面四条 insight 总结自很多实验文献，虽然概况成子空间的分布来表示很简洁，对我来说总有缺少真实数据的实感，也是因为我对他们处理从特定脑区收集的群体神经元信号不熟悉。另外应该强调，本文关注的视觉优先编码是包含在视觉注意当中的。&lt;/p&gt;
+&lt;h2 id=&#34;术语定义&#34;&gt;术语定义&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Prioritization  ：优先排序，表现为行为表现的提高，刺激的反应时减少。&lt;/li&gt;
+&lt;li&gt;Search template ：搜索模板定义在视觉搜索任务中查找的组合特征集。&lt;/li&gt;
+&lt;li&gt;Trial variability ：单个神经元在相同实验条件和视觉刺激的重复实例中反应的变异性。&lt;/li&gt;
+&lt;li&gt;Noise correlations ： 相同视觉刺激和其他实验条件下，不同 units（应该指被试？）间实验变异性的度量。&lt;/li&gt;
+&lt;li&gt;Nuisance variability ： 由与任务无关的参数(如需要提取对象身份的任务中对象位置或大小)引起的峰值变化。&lt;/li&gt;
+&lt;li&gt;Population vector direction ：群体向量方向在对群体向量长度进行归一化后，群体响应向量在N维空间（其中N等于神经元的数量）中的单位向量。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Signal propagation via cortical hierarchies</title>
         <link>https://deathsprout.github.io/p/signal-propagation-via-cortical-hierarchies/</link>
         <pubDate>Tue, 11 Oct 2022 14:20:38 +0800</pubDate>
