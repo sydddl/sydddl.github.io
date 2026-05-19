@@ -3,7 +3,10 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches:
-      - master # 如果你的主分支叫 master，请改为 master
+      - master # 如果你的主分支叫 master，请改为 masterenv
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24:true
 
 permissions:
   contents: read
@@ -27,7 +30,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.125.0'
           extended: true # 大多数现代 Hugo 主题需要 extended 版本支持 SCSS/SASS
 
       - name: Setup Pages
@@ -42,7 +45,6 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
