@@ -1,0 +1,61 @@
+.pagination {
+    display: flex;
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    border-radius: 50px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    margin: var(--section-separation) auto;
+    width: fit-content;
+
+    justify-content: center;
+    align-items: center;
+
+    .page-next {
+        padding: 2px 9px;
+        margin: 6px;
+        border-radius: 50px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        &.widget-icon {
+            svg {
+                margin: -2px;
+                height: 16px;
+                width: 16px;
+                fill: var(--card-text-color-main);
+            }
+        }
+
+        &:hover {
+            background-color: var(--card-background-selected);
+        }
+    }
+
+    .page-link {
+        padding: 7px 12px;
+        margin: 5.5px;
+        border-radius: 50px;
+        display: inline-flex;
+
+        &.current {
+            font-style: oblique;
+            background-color: var(--scrollbar-thumb);
+            color: var(--card-text-color-main);
+        }
+
+        color: var(--card-text-color-secondary);
+        
+        &:hover {
+            background-color: var(--card-background-selected);
+        }
+    }
+}
+
+.pagination a:first-child {
+    margin-right: 25px;
+}
+.pagination a:last-child {
+    margin-left: 25px;
+}

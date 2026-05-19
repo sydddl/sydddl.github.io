@@ -1,0 +1,1050 @@
+<section class="canvas-section">
+    <canvas class="illo"></canvas>
+</section>
+
+<script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+
+<script type="text/javascript">
+    // Made with Zdog
+    var BokehShape = Zdog.Shape.subclass({
+    bokehSize: 5,
+    bokehLimit: 64,
+    });
+
+    BokehShape.prototype.updateBokeh = function() {
+    // bokeh 0 -> 1
+    this.bokeh = Math.abs( this.sortValue ) / this.bokehLimit;
+    this.bokeh = Math.max( 0, Math.min( 1, this.bokeh ) );
+    return this.bokeh;
+    };
+
+    BokehShape.prototype.getLineWidth = function() {
+    return this.stroke + this.bokehSize * this.bokeh * this.bokeh;
+    };
+
+    BokehShape.prototype.getBokehAlpha = function() {
+    var alpha = 1 - this.bokeh;
+    alpha *= alpha;
+    return alpha * 0.8 + 0.2;
+    };
+
+    BokehShape.prototype.renderCanvasDot = function( ctx ) {
+    this.updateBokeh();
+    ctx.globalAlpha = this.getBokehAlpha(); // set opacity
+    Zdog.Shape.prototype.renderCanvasDot.apply( this, arguments );
+    ctx.globalAlpha = 1; // reset
+    };
+
+    BokehShape.prototype.renderPath = function( ctx, renderer ) {
+    this.updateBokeh();
+    // set opacity
+    if ( renderer.isCanvas ) {
+        ctx.globalAlpha = this.getBokehAlpha();
+    }
+    Zdog.Shape.prototype.renderPath.apply( this, arguments );
+    // reset opacity
+    if ( renderer.isCanvas ) {
+        ctx.globalAlpha = 1;
+    }
+    };
+
+    var TAU = Zdog.TAU;
+
+    function makeMadeline( isGood, colors, options ) {
+
+    var rotor = new Zdog.Anchor( options );
+
+    var body = new Zdog.Group({
+        addTo: rotor,
+        rotate: { x: -TAU/8 },
+        translate: { z: -48 },
+        updateSort: true,
+    });
+
+    var head = new Zdog.Anchor({
+        addTo: body,
+        translate: { y: -11, z: -2 },
+        rotate: { x: TAU/8 },
+    });
+
+    // face
+    var face = new Zdog.Ellipse({
+        diameter: 6,
+        addTo: head,
+        translate: { z: 4 },
+        stroke: 8,
+        color: colors.skin,
+    });
+
+    var eyeGroup = new Zdog.Group({
+        addTo: face,
+        translate: { z: face.stroke/2 - 0.5 },
+    });
+
+
+    // eyes
+    [ -1, 1 ].forEach( function( xSide ) {
+        // cheek blush
+        if ( isGood ) {
+        new Zdog.Ellipse({
+            width: 2,
+            height: 1.3,
+            addTo: eyeGroup,
+            translate: { x: 4.5*xSide, y: 3, z: -1 },
+            rotate: { y: -TAU/16*xSide },
+            stroke: 1,
+            color: '#FA8',
+            fill: true,
+        });
+        }
+
+        var eyeX = 3.5*xSide;
+
+        // eye
+        new Zdog.Ellipse({
+        width: 0.75,
+        height: 1.5,
+        addTo: eyeGroup,
+        color: colors.eye,
+        translate: { x: eyeX },
+        stroke: 2,
+        fill: true,
+        });
+
+        // eye brow
+        new Zdog.Ellipse({
+        addTo: eyeGroup,
+        height: 3,
+        width: 1.2,
+        quarters: 2,
+        translate: { x: eyeX, y: -3 },
+        rotate: { z: -TAU/4 + 0.15*xSide * (isGood ? 1 : -1) },
+        color: colors.hair,
+        stroke: 1,
+        fill: false,
+        closed: true,
+        });
+
+    });
+
+
+    // hair ball
+    new Zdog.Shape({
+        path: [
+        { x: -1 },
+        { x: 1 },
+        { z: -4 },
+        ],
+        addTo: head,
+        translate: { y: -4, z: -1 },
+        stroke: 18,
+        color: colors.hair,
+    });
+
+    var bang = new Zdog.Shape({
+        path: [
+        {},
+        { arc: [
+            { z: 4, y: 4 },
+            { z: 0, y: 8 },
+        ]},
+        ],
+        addTo: head,
+        translate: { x: 2, y: -7.5, z: 6 },
+        rotate: { x: 0.5, z: -0.5 },
+        stroke: 4,
+        color: colors.hair,
+        closed: false,
+    });
+    bang.copy({
+        translate: { x: 5, y: -6, z: 5 },
+        rotate: { x: -0.3, z: -0.5 },
+    });
+    bang.copy({
+        translate: { x: 5, y: -6, z: 3 },
+        rotate: { y: -0.7, z: -1 },
+    });
+
+    // left side
+    bang.copy({
+        translate: { x: -2, y: -7.5, z: 6 },
+        rotate: { x: 0, z: TAU/16*6 },
+    });
+    bang.copy({
+        translate: { x: -5, y: -6, z: 5 },
+        rotate: { x: 0, z: TAU/4 },
+    });
+    bang.copy({
+        translate: { x: -5, y: -6, z: 3 },
+        rotate: { y: 0.7, z: 1 },
+    });
+
+    // hair cover
+    new Zdog.Shape({
+        path: [
+        { x: -3 },
+        { x:  3 },
+        ],
+        addTo: head,
+        stroke: 7,
+        translate: { y: -8, z: 5 },
+        color: colors.hair,
+    });
+
+    // trail locks
+
+    var trailLock = new Zdog.Shape({
+        path: [
+        { y: -4, z: 0 },
+        { bezier: [
+            { y: -10, z: -14 },
+            { y: 0, z: -16 },
+            { y: 0, z: -26 }
+        ]},
+        ],
+        addTo: head,
+        translate: { z: -4, y: 0 },
+        stroke: 10,
+        color: colors.hair,
+        closed: false,
+    });
+
+    trailLock.copy({
+        translate: { x: -3, z: -4 },
+        rotate: { z: -TAU/8 },
+        stroke: 8,
+    });
+    trailLock.copy({
+        translate: { x: 3, z: -4 },
+        rotate: { z: TAU/8 },
+        stroke: 8,
+    });
+    trailLock.copy({
+        translate: { y: 2 },
+        // rotate: { z: TAU/2 },
+        scale: { y: 0.5 },
+        stroke: 8,
+    });
+
+    // ----- torso ----- //
+
+    // 2nd rib
+    var torsoRib = new Zdog.Ellipse({
+        width: 12,
+        height: 10,
+        addTo: body,
+        rotate: { x: -TAU/4 },
+        translate: { y: -1 },
+        stroke: 6,
+        color: colors.parkaLight,
+        fill: true,
+    });
+    // neck rib
+    torsoRib.copy({
+        width: 6,
+        height: 6,
+        translate: { y: -5 },
+    });
+    // 3rd rib
+    torsoRib.copy({
+        translate: { y: 3 },
+    });
+    // 4th rib
+    torsoRib.copy({
+        translate: { y: 7 },
+        color: colors.parkaDark,
+    });
+    // waist
+    new Zdog.Ellipse({
+        width: 10,
+        height: 8,
+        addTo: body,
+        rotate: { x: -TAU/4 },
+        translate: { y: 11 },
+        stroke: 4,
+        color: colors.tight,
+        fill: true,
+    });
+
+    // arms
+    [ -1, 1 ].forEach( function( xSide ) {
+        var isLeft = xSide == 1;
+        // shoulder ball
+        new Zdog.Shape({
+        addTo: body,
+        stroke: 6,
+        translate: { x: 6*xSide, y: -5, z: -1 },
+        color: colors.parkaLight,
+        });
+
+        var shoulderJoint = new Zdog.Anchor({
+        addTo: body,
+        translate: { x: 9*xSide, y: -3, z: -2 },
+        rotate: isLeft ? { x: TAU/8*3, z: -TAU/32 } : { z: TAU/16*2, x: -TAU/16*2 },
+        });
+
+        // top shoulder rib
+        var armRib = new Zdog.Ellipse({
+        diameter: 2,
+        rotate: { x: -TAU/4 },
+        addTo: shoulderJoint,
+        translate: { x: 0*xSide },
+        stroke: 6,
+        color: colors.parkaLight,
+        fill: true,
+        });
+        armRib.copy({
+        translate: { y: 4 },
+        });
+
+        var elbowJoint = new Zdog.Anchor({
+        addTo: shoulderJoint,
+        translate: { y: 8 },
+        rotate: isLeft ? {} : { z: TAU/8 },
+        });
+
+        armRib.copy({
+        addTo: elbowJoint,
+        translate: { x: 0, y: 0 },
+        });
+        armRib.copy({
+        addTo: elbowJoint,
+        translate: { y: 4 },
+        color: colors.parkaDark,
+        });
+
+        // hand
+        new Zdog.Shape({
+        addTo: elbowJoint,
+        translate: { y: 9, z: -1 },
+        stroke: 8,
+        color: colors.skin,
+        });
+
+        // ----- legs ----- //
+        var knee = { y: 7 };
+        var thigh = new Zdog.Shape({
+        path: [ { y: 0 }, knee ],
+        addTo: body,
+        translate: { x: 4*xSide, y: 13 },
+        rotate: isLeft ? {} : { x: TAU/16*3, z: TAU/16 },
+        stroke: 8,
+        color: colors.tight,
+        });
+
+        var shin = new Zdog.Shape({
+        path: [ { y: 0 }, { y: 8 } ],
+        addTo: thigh,
+        stroke: 6,
+        translate: knee,
+        rotate: isLeft ? {} : { x: -TAU/16*5 },
+        color: colors.tight,
+        });
+
+    });
+
+    // butt
+    new Zdog.Shape({
+        path: [
+        { x: -3 },
+        { x: 3 },
+        ],
+        visible: false,
+        addTo: body,
+        translate: { y: 11, z: -2 },
+        stroke: 8,
+        color: colors.tight,
+    });
+
+    }
+
+    window.makeBird = function( options ) {
+
+    var spin = options.spin || 0;
+
+    var arrow = new Zdog.Anchor({
+        addTo: options.addTo,
+        scale: 2/3,
+        rotate: { z: spin },
+    });
+
+    var bird = new Zdog.Group({
+        addTo: arrow,
+        translate: { x: 87 },
+        rotate: { x: -spin },
+    });
+
+    // bird body
+    new Zdog.Shape({
+        path: [
+        { x: -3, y: 0 },
+        { arc: [
+            { x: -2, y: 1.5 },
+            { x: 0, y: 1.5 },
+        ]},
+        { arc: [
+            { x: 2, y: 1.5 },
+            { x: 2, y: 0 },
+        ]},
+        ],
+        addTo: bird,
+        translate: { x: 0.5 },
+        stroke: 3,
+        color: options.color,
+        fill: true,
+    });
+
+    // bird head
+    new Zdog.Shape({
+        translate: { x: 4, y: -1 },
+        addTo: bird,
+        stroke: 4,
+        color: options.color,
+    });
+    
+    // beak
+    new Zdog.Shape({
+        path: [
+        { x: 0, y: -1 },
+        { x: 3, y: 0 },
+        { x: 0, y: 1 },
+        ],
+        addTo: bird,
+        translate: { x: 5, y: -1 },
+        stroke: 1,
+        color: options.color,
+        fill: true,
+    });
+
+    // tail feather
+    new Zdog.Shape({
+        path: [
+        { x: -3, z: -2 },
+        { x:  0, z:  0 },
+        { x: -3, z:  2 },
+        ],
+        addTo: bird,
+        translate: { x: -4, y: 0 },
+        stroke: 2,
+        color: options.color,
+        fill: true,
+    });
+    
+    var wing = new Zdog.Shape({
+        path: [
+        { x: 3, y: 0 },
+        { x: -1, y: -9 },
+        { arc: [
+            { x: -5, y: -4 },
+            { x: -3, y: 0 },
+        ]},
+        ],
+        addTo: bird,
+        translate: { z: -1.5},
+        rotate: { x: TAU/8 },
+        stroke: 1,
+        color: options.color,
+        fill: true,
+    });
+
+    wing.copy({
+        translate: { z: 1.5},
+        scale: { z: -1 },
+        rotate: { x: -TAU/8 },
+    });
+
+    };
+
+    // -------------------------- demo -------------------------- //
+
+    var illoElem = document.querySelector('.illo');
+    var w = 160;
+    var h = 160;
+    var minWindowSize = Math.min( window.innerWidth, window.innerHeight );
+    var zoom = Math.min( 5, Math.floor( minWindowSize / w ) );
+    illoElem.setAttribute( 'width', w * zoom );
+    illoElem.setAttribute( 'height', h * zoom );
+
+    var isSpinning = true;
+    var TAU = Zdog.TAU;
+
+    var illo = new Zdog.Illustration({
+    element: illoElem,
+    zoom: zoom,
+    rotate: { y: -TAU/4 },
+    dragRotate: true,
+    onDragStart: function() {
+        isSpinning = false;
+    },
+    });
+
+    var madColor = {
+    skin: '#FD9',
+    hair: '#D53',
+    parkaLight: '#67F',
+    parkaDark: '#35D',
+    tight: '#742',
+    eye: '#333',
+    };
+    var badColor = {
+    skin: '#EBC',
+    hair: '#D4B',
+    parkaLight: '#85A',
+    parkaDark: '#527',
+    tight: '#412',
+    eye: '#D02',
+    };
+
+    var glow = 'hsla(60, 100%, 80%, 0.3)';
+    var featherGold = '#FE5';
+
+    // -- illustration shapes --- //
+
+    makeMadeline( true, madColor, {
+    addTo: illo,
+    });
+    makeMadeline( false, badColor, {
+    addTo: illo,
+    rotate: { y: TAU/2 },
+    });
+
+
+    // ----- feather ----- //
+
+    var feather = new Zdog.Group({
+    addTo: illo,
+    rotate: { y: -TAU/4 },
+    });
+
+    ( function() {
+
+    var featherPartCount = 8;
+    var radius = 12;
+    var angleX = (TAU/featherPartCount) / 2;
+    var sector = (TAU * radius)/2 / featherPartCount;
+
+    for ( var i=0; i < featherPartCount; i++ ) {
+        var curve = Math.cos( (i/featherPartCount) * TAU*3/4 + TAU*1/4 );
+        var x = 4 - curve*2;
+        var y0 = sector/2;
+        // var y2 = -sector/2;
+        var isLast = i == featherPartCount - 1;
+        var y3 = isLast ? sector * -1 : -y0;
+        var z1 = -radius + 2 + curve*-1.5;
+        var z2 = isLast ? -radius : -radius;
+        var barb = new Zdog.Shape({
+        path: [
+            { x: 0, y: y0, z: -radius },
+            { x: x, y: -sector/2, z: z1 },
+            { x: x, y: -sector*3/4, z: z1 },
+            { x: 0, y: y3, z: z2 },
+        ],
+        addTo: feather,
+        rotate: { x: angleX * -i + TAU/8 },
+        stroke: 1,
+        color: featherGold,
+        fill: true,
+        });
+        barb.copy({
+        scale: { x: -1 },
+        });
+    }
+
+    // rachis
+    var rachis = new Zdog.Ellipse({
+        addTo: feather,
+        diameter: radius*2,
+        quarters: 2,
+        rotate: { y: -TAU/4 },
+        stroke: 2,
+        color: featherGold,
+    });
+    rachis.copy({
+        stroke: 8,
+        color: glow,
+        rotate: { y: -TAU/4, x: -0.5 }
+    });
+    })();
+
+    // ----- rods ----- //
+
+    ( function() {
+
+    var rodCount = 14;
+    for ( var i=0; i < rodCount; i++ ) {
+        var zRotor = new Zdog.Anchor({
+        addTo: illo,
+        rotate: { z: TAU/rodCount * i },
+        });
+
+        var y0 = 32;
+        var y1 = y0 + 2 + Math.random()*24;
+        new BokehShape({
+        path: [
+            { y: y0 },
+            { y: y1 },
+        ],
+        addTo: zRotor,
+        rotate: { x: ( Math.random() * 2 - 1 ) * TAU/8 },
+        color: madColor.skin,
+        stroke: 1,
+        bokehSize: 6,
+        bokehLimit: 70,
+        });
+    }
+
+    })();
+
+    // dots
+
+    ( function() {
+    var dotCount = 64;
+
+    for ( var i=0; i < dotCount; i++ ) {
+        var yRotor = new Zdog.Anchor({
+        addTo: illo,
+        rotate: { y: TAU/dotCount * i },
+        });
+
+        new BokehShape({
+        path: [
+            { z: 40*(1 - Math.random()*Math.random()) + 32 },
+        ],
+        addTo: yRotor,
+        rotate: { x: ( Math.random() * 2 - 1 ) * TAU*3/16 },
+        color: badColor.skin,
+        stroke: 1 + Math.random(),
+        bokehSize: 6,
+        bokehLimit: 74,
+        });
+    }
+
+    })();
+
+    // ----- birds ----- //
+
+    var birdRotor = new Zdog.Anchor({
+    addTo: illo,
+    rotate: { y: TAU*-1/8 },
+    });
+
+    makeBird({
+    addTo: birdRotor,
+    color: madColor.parkaLight,
+    spin: TAU/2,
+    });
+
+    makeBird({
+    addTo: birdRotor,
+    color: featherGold,
+    spin: -TAU * 3/8,
+    });
+
+    makeBird({
+    addTo: birdRotor,
+    color: 'white',
+    spin: -TAU/4,
+    });
+
+    makeBird({
+    addTo: birdRotor,
+    color: madColor.hair,
+    spin: -TAU/8,
+    });
+
+    makeBird({
+    addTo: birdRotor,
+    color: madColor.parkaDark,
+    spin: TAU/8,
+    });
+
+    // -- animate --- //
+
+    var isSpinning = true;
+    var rotateSpeed = -TAU/60;
+    var xClock = 0;
+    var then = new Date() - 1/60;
+
+    function animate() {
+    update();
+    illo.renderGraph();
+    requestAnimationFrame( animate );
+    }
+
+    animate();
+
+    // -- update -- //
+
+    function update() {
+    var now = new Date();
+    var delta = now - then;
+    // auto rotate
+    if ( isSpinning ) {
+        var theta = rotateSpeed/60 * delta * -1;
+        illo.rotate.y += theta;
+        xClock += theta/4;
+        illo.rotate.x = Math.sin( xClock ) * TAU/12;
+    }
+
+    illo.updateGraph();
+
+    then = now;
+    }
+
+</script>
+<!-- ############################################################################# -->
+<script type="text/javascript">
+    
+window.addEventListener("load", windowLoadHandler, false);
+var sphereRad = 280;
+var radius_sp=1;
+//for debug messages
+var Debugger = function() { };
+Debugger.log = function(message) {
+	try {
+		console.log(message);
+	}
+	catch (exception) {
+		return;
+	}
+}
+
+function windowLoadHandler() {
+	canvasApp();
+}
+
+function canvasSupport() {
+	return Modernizr.canvas;
+}
+
+function canvasApp() {
+	if (!canvasSupport()) {
+		return;
+	}
+	
+	var theCanvas = document.getElementById("canvasOne");
+	var context = theCanvas.getContext("2d");
+	
+	var displayWidth;
+	var displayHeight;
+	var timer;
+	var wait;
+	var count;
+	var numToAddEachFrame;
+	var particleList;
+	var recycleBin;
+	var particleAlpha;
+	var r,g,b;
+	var fLen;
+	var m;
+	var projCenterX;
+	var projCenterY;
+	var zMax;
+	var turnAngle;
+	var turnSpeed;
+	var sphereCenterX, sphereCenterY, sphereCenterZ;
+	var particleRad;
+	var zeroAlphaDepth;
+	var randAccelX, randAccelY, randAccelZ;
+	var gravity;
+	var rgbString;
+	//we are defining a lot of variables used in the screen update functions globally so that they don't have to be redefined every frame.
+	var p;
+	var outsideTest;
+	var nextParticle;
+	var sinAngle;
+	var cosAngle;
+	var rotX, rotZ;
+	var depthAlphaFactor;
+	var i;
+	var theta, phi;
+	var x0, y0, z0;
+		
+	init();
+	
+	function init() {
+		wait = 1;
+		count = wait - 1;
+		numToAddEachFrame = 8;
+		
+		//particle color
+		r = 70;
+		g = 255;
+		b = 140;
+		
+		rgbString = "rgba("+r+","+g+","+b+","; //partial string for color which will be completed by appending alpha value.
+		particleAlpha = 1; //maximum alpha
+		
+		displayWidth = theCanvas.width;
+		displayHeight = theCanvas.height;
+		
+		fLen = 320; //represents the distance from the viewer to z=0 depth.
+		
+		//projection center coordinates sets location of origin
+		projCenterX = displayWidth/2;
+		projCenterY = displayHeight/2;
+		
+		//we will not draw coordinates if they have too large of a z-coordinate (which means they are very close to the observer).
+		zMax = fLen-2;
+		
+		particleList = {};
+		recycleBin = {};
+		
+		//random acceleration factors - causes some random motion
+		randAccelX = 0.1;
+		randAccelY = 0.1;
+		randAccelZ = 0.1;
+		
+		gravity = -0; //try changing to a positive number (not too large, for example 0.3), or negative for floating upwards.
+		
+		particleRad = 2.5;
+		
+		sphereCenterX = 0;
+		sphereCenterY = 0;
+		sphereCenterZ = -3 - sphereRad;
+		
+		//alpha values will lessen as particles move further back, causing depth-based darkening:
+		zeroAlphaDepth = -750; 
+		
+		turnSpeed = 2*Math.PI/1200; //the sphere will rotate at this speed (one complete rotation every 1600 frames).
+		turnAngle = 0; //initial angle
+		
+		timer = setInterval(onTimer, 10/24);
+	}
+	
+	function onTimer() {
+		//if enough time has elapsed, we will add new particles.		
+		count++;
+			if (count >= wait) {
+						
+			count = 0;
+			for (i = 0; i < numToAddEachFrame; i++) {
+				theta = Math.random()*2*Math.PI;
+				phi = Math.acos(Math.random()*2-1);
+				x0 = sphereRad*Math.sin(phi)*Math.cos(theta);
+				y0 = sphereRad*Math.sin(phi)*Math.sin(theta);
+				z0 = sphereRad*Math.cos(phi);
+				
+				//We use the addParticle function to add a new particle. The parameters set the position and velocity components.
+				//Note that the velocity parameters will cause the particle to initially fly outwards away from the sphere center (after
+				//it becomes unstuck).
+				var p = addParticle(x0, sphereCenterY + y0, sphereCenterZ + z0, 0.002*x0, 0.002*y0, 0.002*z0);
+				
+				//we set some "envelope" parameters which will control the evolving alpha of the particles.
+				p.attack = 50;
+				p.hold = 50;
+				p.decay = 100;
+				p.initValue = 0;
+				p.holdValue = particleAlpha;
+				p.lastValue = 0;
+				
+				//the particle will be stuck in one place until this time has elapsed:
+				p.stuckTime = 90 + Math.random()*20;
+				
+				p.accelX = 0;
+				p.accelY = gravity;
+				p.accelZ = 0;
+			}
+		}
+		
+		//update viewing angle
+		turnAngle = (turnAngle + turnSpeed) % (2*Math.PI);
+		sinAngle = Math.sin(turnAngle);
+		cosAngle = Math.cos(turnAngle);
+
+		//background fill
+		context.fillStyle = "#000000";
+		context.fillRect(0,0,displayWidth,displayHeight);
+		
+		//update and draw particles
+		p = particleList.first;
+		while (p != null) {
+			//before list is altered record next particle
+			nextParticle = p.next;
+			
+			//update age
+			p.age++;
+			
+			//if the particle is past its "stuck" time, it will begin to move.
+			if (p.age > p.stuckTime) {	
+				p.velX += p.accelX + randAccelX*(Math.random()*2 - 1);
+				p.velY += p.accelY + randAccelY*(Math.random()*2 - 1);
+				p.velZ += p.accelZ + randAccelZ*(Math.random()*2 - 1);
+				
+				p.x += p.velX;
+				p.y += p.velY;
+				p.z += p.velZ;
+			}
+			
+			/*
+			We are doing two things here to calculate display coordinates.
+			The whole display is being rotated around a vertical axis, so we first calculate rotated coordinates for
+			x and z (but the y coordinate will not change).
+			Then, we take the new coordinates (rotX, y, rotZ), and project these onto the 2D view plane.
+			*/
+			rotX =  cosAngle*p.x + sinAngle*(p.z - sphereCenterZ);
+			rotZ =  -sinAngle*p.x + cosAngle*(p.z - sphereCenterZ) + sphereCenterZ;
+			m =radius_sp* fLen/(fLen - rotZ);
+			p.projX = rotX*m + projCenterX;
+			p.projY = p.y*m + projCenterY;
+				
+			//update alpha according to envelope parameters.
+			if (p.age < p.attack+p.hold+p.decay) {
+				if (p.age < p.attack) {
+					p.alpha = (p.holdValue - p.initValue)/p.attack*p.age + p.initValue;
+				}
+				else if (p.age < p.attack+p.hold) {
+					p.alpha = p.holdValue;
+				}
+				else if (p.age < p.attack+p.hold+p.decay) {
+					p.alpha = (p.lastValue - p.holdValue)/p.decay*(p.age-p.attack-p.hold) + p.holdValue;
+				}
+			}
+			else {
+				p.dead = true;
+			}
+			
+			//see if the particle is still within the viewable range.
+			if ((p.projX > displayWidth)||(p.projX<0)||(p.projY<0)||(p.projY>displayHeight)||(rotZ>zMax)) {
+				outsideTest = true;
+			}
+			else {
+				outsideTest = false;
+			}
+			
+			if (outsideTest||p.dead) {
+				recycle(p);
+			}
+			
+			else {
+				//depth-dependent darkening
+				depthAlphaFactor = (1-rotZ/zeroAlphaDepth);
+				depthAlphaFactor = (depthAlphaFactor > 1) ? 1 : ((depthAlphaFactor<0) ? 0 : depthAlphaFactor);
+				context.fillStyle = rgbString + depthAlphaFactor*p.alpha + ")";
+				
+				//draw
+				context.beginPath();
+				context.arc(p.projX, p.projY, m*particleRad, 0, 2*Math.PI, false);
+				context.closePath();
+				context.fill();
+			}
+			
+			p = nextParticle;
+		}
+	}
+		
+	function addParticle(x0,y0,z0,vx0,vy0,vz0) {
+		var newParticle;
+		var color;
+		
+		//check recycle bin for available drop:
+		if (recycleBin.first != null) {
+			newParticle = recycleBin.first;
+			//remove from bin
+			if (newParticle.next != null) {
+				recycleBin.first = newParticle.next;
+				newParticle.next.prev = null;
+			}
+			else {
+				recycleBin.first = null;
+			}
+		}
+		//if the recycle bin is empty, create a new particle (a new ampty object):
+		else {
+			newParticle = {};
+		}
+		
+		//add to beginning of particle list
+		if (particleList.first == null) {
+			particleList.first = newParticle;
+			newParticle.prev = null;
+			newParticle.next = null;
+		}
+		else {
+			newParticle.next = particleList.first;
+			particleList.first.prev = newParticle;
+			particleList.first = newParticle;
+			newParticle.prev = null;
+		}
+		
+		//initialize
+		newParticle.x = x0;
+		newParticle.y = y0;
+		newParticle.z = z0;
+		newParticle.velX = vx0;
+		newParticle.velY = vy0;
+		newParticle.velZ = vz0;
+		newParticle.age = 0;
+		newParticle.dead = false;
+		if (Math.random() < 0.5) {
+			newParticle.right = true;
+		}
+		else {
+			newParticle.right = false;
+		}
+		return newParticle;		
+	}
+	
+	function recycle(p) {
+		//remove from particleList
+		if (particleList.first == p) {
+			if (p.next != null) {
+				p.next.prev = null;
+				particleList.first = p.next;
+			}
+			else {
+				particleList.first = null;
+			}
+		}
+		else {
+			if (p.next == null) {
+				p.prev.next = null;
+			}
+			else {
+				p.prev.next = p.next;
+				p.next.prev = p.prev;
+			}
+		}
+		//add to recycle bin
+		if (recycleBin.first == null) {
+			recycleBin.first = p;
+			p.prev = null;
+			p.next = null;
+		}
+		else {
+			p.next = recycleBin.first;
+			recycleBin.first.prev = p;
+			recycleBin.first = p;
+			p.prev = null;
+		}
+	}	
+}
+
+
+$(function() {
+    $( "#slider-range" ).slider({
+      range:false,
+      min: 20,
+      max: 500,
+      value: 280,
+      slide: function( event, ui ) {
+         console.log(ui.value);
+        sphereRad = ui.value;
+      }
+    });
+  });
+
+$(function() {
+    $( "#slider-test" ).slider({
+      range:false,
+      min: 1.0,
+      max: 2.0,
+      value: 1,
+      step:0.01,
+      slide: function( event, ui ) {
+        radius_sp = ui.value;
+      }
+    });
+  });
+
+</script>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2023.9.27-28.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%E6%96%87%E7%8C%AE%E4%BF%A1%E6%81%AF">文献信息</h2>
+<ul>
+<li><strong>标题 :</strong> <a href="https://huzeyann.github.io/mem">Memory Encoding Model</a></li>
+<li><strong>期刊 :</strong> 目前挂在 arxiv</li>
+<li><strong>作者 :</strong> Huzheng Yang et.al</li>
+<li><strong>DOI :</strong></li>
+<li><strong>类型：</strong> 类脑建模，竞赛</li>
+<li><strong>来源：</strong> Algonauts 2023 最佳模型</li>
+</ul>
+<h2 id="%E7%AB%9E%E8%B5%9B%E7%9B%B8%E5%85%B3">竞赛相关</h2>
+<p><a href="http://algonauts.csail.mit.edu/">The Algonauts Project 2023</a> $\parallel$ <a href="https://penno365-my.sharepoint.com/:p:/g/personal/huze_upenn_edu/EcuvlCSxjSBDk719Q_Dxc7ABNUebclx8wIUKAg2VGKwNXQ?rtime=SNvGyia_20g">slice</a> $\parallel$ <a href="https://docs.google.com/forms/d/e/1FAIpQLSehZkqZOUNk18uTjRTuLj7UYmRGz-OkdsU25AyO3Wm6iAb0VA/viewform">Download the data for Algonauts 2023</a></p>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-0.png" alt=""></p>
+<p>该模型 Rank 1 ，<strong>Score 70.85</strong>，<strong>OrganizerBaseline	40.4222</strong> , 表现上遥遥领先。</p>
+<h3 id="%E7%9B%AE%E7%9A%84">目的</h3>
+<p>Algonauts 2023 挑战的重点是预测人类参与者感知复杂的自然视觉场景时大脑的反应。通过与自然场景数据集(NSD)团队的合作，是目前最大的可用脑数据集。</p>
+<p><img src="http://algonauts.csail.mit.edu/img/challenge_overview_compressed_1.jpg" alt=""></p>
+<p>目的就是将模型预测大脑活动的结果与真实结果比较，<strong>评估得分是在所有可用的顶点计算的，而不是在任何单个ROI上计算出来的</strong>，选出最佳的模型。</p>
+<p>例如本文结果：</p>
+<p><img src="http://algonauts.csail.mit.edu/visualizations_2023/01_huze.png" alt=""></p>
+<p>具体的比较方法如下图所示</p>
+<p><img src="http://algonauts.csail.mit.edu/img/challenge_evaluation_metric_compressed.jpg" alt=""></p>
+<ul>
+<li>将预测的fMRI数据与相应的真实数据相关联（皮尔逊相关系数），跨图像的，在每个体素上独立计算</li>
+<li>每个体素上的相关系数平方</li>
+<li>用噪声上限归一化结果</li>
+<li>度量由所有受试者和半球中所有顶点的平均噪声标准化编码精度决定</li>
+</ul>
+<p>$$ \text{metric} = Mean \left( \frac{R^2_1}{NC_1}, \dots , \frac{R^2_v}{NC_v} \right) \times 100$$</p>
+<h3 id="%E6%95%B0%E6%8D%AE">数据</h3>
+<h4 id="train-data">Train Data</h4>
+<ul>
+<li><strong>Images</strong> : 具有八个主题的 <code>.png</code> 图像集，数量分布为 $\left[ 9841, 9841, 9082, 8779, 9841, 9082, 9841, 8779\right]$ , 如主题1的第一张图像命名为 <code>Train-0001_NSD-00013.png</code> ，第二个索引表示对应于 73000 个 NSD 图像的 ID，可以用它映射回原始 Hdf5 文件再得到 COCO 数据集里的原始图像文件（实验中用的是裁剪版本，该比赛提供了从COCO原数据裁剪图像的<a href="https://github.com/styvesg/nsd_gnet8x/blob/main/data_preparation.ipynb">代码</a>）</li>
+<li><strong>fMRI</strong> : 对应图像，有相应的fMRI反应文件 <code>lh_training_fmri.npy</code> ，<code>rh_training_fmri.npy</code>，<strong>数据是在每个NSD扫描会话中 z-scored 后在图像重复间平均，总体上是一个二维矩阵，行数是图像数量，列是NSD实验期间对该图像有可靠响应的顶点</strong>。左和右半球文件分别有 <code>18978</code> 和 <code>20544</code> 个顶点（除受试者 6 、8 由于缺少数据只有 ( 18978, 20220 ) / ( 18981, 20530 )）</li>
+</ul>
+<h4 id="test-data">Test Data</h4>
+<ul>
+<li><strong>Images</strong> ：8个主题中的每个主题，每个主题都有$\left[159、159、293、395、159、293、159、395 \right]$ 不同的图像，命名规则如上。</li>
+<li><strong>fMRI</strong> : 无，这是要预测的</li>
+</ul>
+<h4 id="region-of-interest-roi-indices">Region-of-Interest (ROI) Indices</h4>
+<p>提供了用于选择ROI的 index，可以自行决定使用。</p>
+<ul>
+<li>早期视网膜视觉区 （PRF-VisualOIS）：V1v, V1d, V2v, V2d, V3v, V3d, hV4.</li>
+<li>身体选择性区域 ： EBA, FBA-1, FBA-2, mTL-bodies.</li>
+<li>面孔选择区域 ：OFA, FFA-1, FFA-2, mTL-faces, aTL-faces.</li>
+<li>位置选择区 ：OPA, PPA, RSC.</li>
+<li>词语选择区 ：OWFA, VWFA-1, VWFA-2, mfs-words, mTL-words.</li>
+<li>Anatomical（解剖） streams：early, midventral, midlateral, midparietal, ventral, lateral, parietal.</li>
+</ul>
+<p><img src="http://algonauts.csail.mit.edu/img/all_rois_surface_plots.png" alt=""></p>
+<h2 id="%E6%80%9D%E8%B7%AF">思路</h2>
+<p>最近的工作基于“大脑反应纯粹由当前呈现的图像引起”这样的假设，准确的预测了早期视觉皮层，但复杂且非视觉的大脑皮层很大程度上是无法预测的。</p>
+<p>大脑可以在不看图像的情况下思考图像，也可以区分新见到的图像和看过的图像，这些属性是ViT不具备的。该文章的思路符合预测编码理论的假设，</p>
+<p>好像大脑在无意识情况下不断的以可预测的周期重现看过的图像，</p>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-1.png" alt=""></p>
+<blockquote>
+<p>Fig 1. 视觉记忆任务期间假设的记忆重放过程</p>
+</blockquote>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-2.png" alt=""></p>
+<blockquote>
+<p>Fig 2. 本文发现如果使用与记忆相关的信息，整个皮层（包括非视觉部分）变得能被很好的预测。该图为皮层映射预测分数（单次试验 Pearson 的 r），展示的是 subject#1 的 beta2。<br>
+A：重复实验测得的噪声上限。<br>
+B：基线模型输入是当前图像帧，不涉及记忆。<br>
+C：完整记忆模型输入是之前的32帧，加上条件向量。</p>
+</blockquote>
+<h2 id="%E6%96%B9%E6%B3%95">方法</h2>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-3.png" alt=""></p>
+<blockquote>
+<p>Fig 3. 内存编码模型概述。每个体素有 RetinaMapper 和 LayerSelector 特征选择的唯一物理坐标，具有特定于该体素的线性回归权重。</p>
+</blockquote>
+<p>作者认为该模型主要依靠两项创新：</p>
+<ul>
+<li>模型输入结合了当前图像、行为反应和记忆图像。 RetinaMapper 和 LayerSelector 模块专门复制视网膜拓扑。</li>
+<li>随机 ROI 嵌入方案得益于大脑体素的隐式交互和分层组织。</li>
+</ul>
+<p>周期性延迟响应 ：通过构建输入看过的图像的预测模型来检查数据，观察到视觉/非视觉大脑中反应与之前第6-7个图像相关，与刚刚过去的1-2个图像无关。文章表示在八个被试中都能观察到 6-7 帧的周期性相关上升，与工作记忆的周期性匹配。海马尾部的预测响应与该周期一致，而海马头部不是。</p>
+<p>引出了文章的假设：记忆从海马体加载并定期再生，也许是为了通过计算来扩大工作记忆。</p>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-8.png" alt=""></p>
+<h3 id="%E6%A8%A1%E5%9E%8B">模型</h3>
+<h4 id="%E6%A8%A1%E5%9E%8B%E4%B8%BB%E5%B9%B2">模型主干</h4>
+<p>使用预训练的图像主干模型 DiNOv2-ViT-B , 使用LoRA技术优化ViT中的注意力层和MLP（LoRA训练始终比冻结的ViT权重分数高，完全解冻比冻结分数低）</p>
+<p>动机是空间上接近的体素具有相似的功能作用，RetinaMapper 和 LayerSelector 旨在强制输入特征h对每个受空间坐标约束的体素是唯一的。</p>
+<p><strong>RetinaMapper :</strong> 将体素的空间坐标转换为图像空间的二维坐标 $u_i \in \mathcal{R}^2$</p>
+<p>$$u = tanh (MLP(PE(p)))$$</p>
+<p>PE 表示正弦位置编码，tanh 确保 u 不会越界，对所有层是相同的。</p>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-4.png" alt=""></p>
+<blockquote>
+<p>RetinaMapper 将体素的 3D 物理坐标转换为 2D 潜像特征图空间。特征向量在2D特征图上通过线性插值进行采样。<br>
+a: 仅包括视觉脑的体素，点由 LayerSelector 的 argmax 层着色<br>
+b：视网膜转换是在没有视网膜拓扑监督下端到端训练的</p>
+</blockquote>
+<p><strong>LayerSelector ：</strong> 将体素的空间坐标转换成 ViT 主干的权重 $\eta_i \in \mathcal{R}^4$，类似一个遮罩<br>
+$$\eta = softmax(MLP(PE(p)))$$</p>
+<p>熵正则化 $L_{ent} = \sum_{j=1}^4 \eta^j , log , \eta^j$ 用于防止在早期训练阶段收敛到局部最小值</p>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-5.png" alt=""></p>
+<blockquote>
+<p>LayerSelector 权重以及特征向量和来自各个backbone层，</p>
+</blockquote>
+<p><img src="file:///g:/blog/hugo_extended/blog/content/post/weekly-paper/image/2023-37-6.png" alt=""></p>
+<p>AdaLN 模块</p>
+
+</body>
+</html>

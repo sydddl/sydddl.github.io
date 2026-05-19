@@ -1,0 +1,44 @@
+{{- $query := first 1 (where .Site.Pages "Layout" "==" "archives") -}}
+{{- if $query -}}
+    {{- $archivesPage := index $query 0 -}}
+    <section class="widget archives">
+        <div class="widget-icon">
+            {{ partial "helper/icon" "square_stack_3d_down_dottedline" }} 
+            <a class="widget-title">{{ T "widget.archives.title" }}</a>
+        </div>
+
+        {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+        {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+        {{ $filtered := ($pages | intersect $notHidden) }}
+        {{ $archives := $filtered.GroupByDate "2006" }}
+        
+        <div class="widget-archive--list" style="display: inline-block;">
+            {{ range $index, $item := first (add .Site.Params.widgets.archives.limit 1) ($archives) }}
+                {{- $id := lower (replace $item.Key " " "-") -}}
+                <div class="archives-year">
+                    <a href="{{ $archivesPage.RelPermalink }}#{{ $id }}">
+                        {{ if eq $index $.Site.Params.widgets.archives.limit }}
+                            <span class="year">{{ T "widget.archives.more" }}</span>
+                        {{ else }}
+                            <span class="year">{{ .Key }}</span>
+                            <span class="count">{{ len $item.Pages }}</span>
+                        {{ end }}
+                    </a> 
+                </div>
+            {{ end }}
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.css"/>
+        <div id="sakana-widget" style="display: inline-block;position:relative;left:10px;bottom:-10px;"></div>
+        <script>
+            function initSakanaWidget() {
+                new SakanaWidget({autoFit:"True",character:'takina'}).setState({ i: 0.01, d: 0.99 }).mount('#sakana-widget');
+            }
+        </script>
+        <script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.5.0/lib/sakana.min.js">
+        </script>
+
+    </section>
+{{- else -}}
+    {{- warnf "Archives page not found. Create a page with layout: archives." -}}
+{{- end -}}

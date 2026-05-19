@@ -1,0 +1,36 @@
+footer.site-footer {
+    padding: 15px 0 var(--section-separation) 25px;
+    background-color: var(--card-background);
+    font-size: 1.4rem;
+    line-height: 1.75;
+    margin-top: var(--section-separation);
+
+    .foot-icon {
+        display:inline-block;
+        svg {
+            margin-bottom: -13px;
+            height: 64px;
+            width: 64px;
+        }
+    }
+
+    .copyright {
+        padding: 15px;
+        display:inline-block;
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    .powerby {
+        padding-top: 5px;
+        color: var(--body-text-color);
+        font-weight: normal;
+        font-size: 1.2rem;
+
+        a {
+            color: var(--body-text-color);
+        }
+    }
+}
+
+

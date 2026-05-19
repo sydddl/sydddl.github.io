@@ -1,0 +1,85 @@
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+{{- $description := partialCached "data/description" . .RelPermalink -}}
+<meta name='description' content='{{ $description }}'>
+
+{{- $title := partialCached "data/title" . .RelPermalink -}}
+<title>{{ $title }}</title>
+
+<link rel='canonical' href='{{ .Permalink }}'>
+
+{{- partial "head/style.html" . -}}
+{{- partial "head/script.html" . -}}
+{{- partial "head/opengraph/include.html" . -}}
+
+{{- range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{- end -}}
+
+{{ with .Site.Params.favicon }}
+    <link rel="shortcut icon" href="{{ . }}" />
+{{ end }}
+
+{{- template "_internal/google_analytics.html" . -}}
+{{- partial "head/custom.html" . -}}
+
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+<!-- ############ -->
+<!-- 
+<div class="head-div">
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script type="text/javascript">
+    // 获取canvas元素 <canvas id="canvasone" ></canvas>
+    const canvas = document.getElementById('canvasone');
+    // 创建渲染器
+    const renderer = new THREE.WebGLRenderer({ canvas });
+
+    // 设置渲染器的大小和像素比
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // 创建相机和场景
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.z = 1;
+    const scene = new THREE.Scene();
+    
+    // 创建白模立方体
+    const geometry = new THREE.BoxGeometry(1, 4, 8);
+    const material = new THREE.MeshBasicMaterial({ color: 0x808080 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    // 创建光源
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(0, 0, 10);
+    scene.add(light);
+
+    // // 加载glTF格式模型
+    // const loader = new THREE.GLTFLoader();
+    // const url = '../../../assets/3D/watermelone/scene.gltf';
+    // loader.load(url, (gltf) => {
+    // const model = gltf.scene;
+    // scene.add(model);
+    // }, undefined, function (error) {
+    // console.error(error);
+    // });
+    // 将渲染器输出到指定的元素中
+    const container = document.querySelector('.head-div');
+    container.appendChild(renderer.domElement);
+    // 渲染场景
+    function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+    }
+    animate();
+</script>
+-->

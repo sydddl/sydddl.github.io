@@ -1,0 +1,11 @@
+Model Information:
+* title:	Watermelone 🍉
+* source:	https://sketchfab.com/3d-models/watermelone-23197344dd544a679176e3a16fc8a544
+* author:	Soenon.obj (https://sketchfab.com/Soenon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Watermelone 🍉" (https://sketchfab.com/3d-models/watermelone-23197344dd544a679176e3a16fc8a544) by Soenon.obj (https://sketchfab.com/Soenon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

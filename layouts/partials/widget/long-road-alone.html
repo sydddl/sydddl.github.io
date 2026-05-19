@@ -1,0 +1,87 @@
+<section class="widget">
+    <div class="widget-icon">
+        {{ partial "helper/icon" "infinity2"}}
+        <a class="widget-title"> voluminous </a>
+    </div>
+
+    <div class = "container_wid">
+    <!-- 手风琴 侧栏 爱好活动 -->
+        <div class="item " style="background-image:url(https://i.loli.net/2021/05/24/nQovGt7zCABKLXZ.png);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    {{ partial "helper/icon" "艺术"}}
+                </div>
+                <div class="text">
+                    <div class="tit">美术</div>
+                    <div class="sub">创作·临摹·生成</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="background-image:url(https://s2.loli.net/2022/05/13/Y84ArkwgyR3vK9O.png);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    {{ partial "helper/icon" "音乐"}}
+                </div>
+                <div class="text">
+                    <div class="tit">音乐</div>
+                    <div class="sub">垃圾编曲·心头肉</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item active" style="background-image:url(https://i.loli.net/2021/05/24/IHvTeboOgsia5SN.png);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    {{ partial "helper/icon" "1_write"}}
+                </div>
+                <div class="text">
+                    <div class="tit">写作</div>
+                    <div class="sub">散文·科幻小说</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" style="background-image:url(https://cards.scryfall.io/large/front/a/9/a9b037f1-3298-4ba8-92a8-0843f6e497d7.jpg?1562929191);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    {{ partial "helper/icon" "游戏"}}
+                </div>
+                <div class="text">
+                    <div class="tit">游戏</div>
+                    <div class="sub">玩·杂谈·制作</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+    let items=document.querySelectorAll(".item");
+
+    function setActive(){
+        items.forEach((item)=>{
+            item.classList.remove("active");
+        })
+        this.classList.add("active");
+    }
+    items.forEach((item)=>{
+        item.addEventListener("click",setActive);
+    })
+
+    items.forEach((item) =>{
+        item.addEventListener('click',function(e){
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+
+            let ripples = document.createElement("span-click");
+            ripples.style.left = x + "px";
+            ripples.style.top = y + "px";
+            this.appendChild(ripples);
+        })
+    })
+</script>
+</section>

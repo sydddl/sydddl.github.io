@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>小说2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>“鲫鱼学长！”，斯诺克鲫鱼抬头看见师弟李推开包间的门进来，又涌进来四人，是他同门的师兄弟。李走到桌前坐到同时浮起来的半圆凳上，“是有什么要紧事吗？”，说话间同僚都落了座准备点菜。“额”，鲫鱼瞧见一圈都盯着自己，脑子疯狂转动，“是的，我先道个歉，因为个人原因耽搁大家。我昨天头很疼，诊断说是神经接口系统老旧腐蚀导致的局部炎症”。他停下来瞟了瞟他们的表情，“所以想征求下你们的意见，能不能缓几天再出发？”。</p>
+<p>“师兄，身体重要”，“师妹说得对，我查了查，可以把这个考察目标挪到最后去做”，“不过按理说现在的材料用非常长时间都不会被生理液腐蚀啊”，“师兄做手术的地方是很偏远的星域，可能没有很好的条件”。众人你一句我一句的讨论起来，斯诺克鲫鱼打哈哈的附和道：“何况我那时候只能要的起最便宜的，之后没啥问题就用到现在了”。</p>
+<p>“那......空出来的这几天你们是自行安排，还是一起出去玩一玩？因为是我的问题，账能报销的报销，不能的算我头上“，他顿了一下，”就是不要太多”。</p>
+<p>众人达成了报销可以，不劳师兄破费的一致观点。饭后两男两女去玩了，剩下的普博塔将它的机械臂搭到斯诺克鲫鱼肩上，握住帽子用大拇指指着他的铁皮脑壳，“有没有兴趣做晶化？”。鲫鱼明白这是它的邀请，普博塔是老式纯机电结构的机器人，在他入学那年被某个教授从大学院储藏室找到，翻新重构后教授给它塞了个新生儿晶化大脑拷贝，</p>
+<p>这些管道</p>
+<p>这些泛着蓝的流体作为介质，在相变层上做了特殊处理，用以约束核的作用范围。</p>
+<p>鲫鱼他小时候一直对鲫鱼到底是什么样的生物感到好奇，他没见过这种古代生物，想来不会是凡物。问过辖区智械长也没得到答案，</p>
+<p>“神交”，这个词汇混杂了生理和心理的意味，是泰拉社会里亲密等级最高的人际关系，备受一些当代诗人的推崇。通常恋人经历如胶似漆的热恋，那一股劲过后彼此的生活交融，他们会通过专门的设备进行神交，试图更加理解彼此。百来年前这技术诞生自大学院一位神经心理学教授手中，<br>
+前瓦戈程式脑中的一类芯片可以调控脑节律，准确说能像芯片超频一样拉升整个脑系统的速度。 节律共振，</p>
+<p>斯诺克鲫鱼很喜欢来大图书馆这儿，它是泰拉上唯一一个贯穿所有区层的建筑，中间高达万米的粗大中柱，盘着令人绝望的螺旋步梯，柱中塞着十几个只有跨区层才允许坐的特快超导轨道胶囊舱，柱面空闲处都做了书架。大图书馆每个区层有二十多层，第一层是大厅和各种服务区，其他每层都像个套在中柱上的超大甜甜圈，辐射状摆着大量书架，最外面是阅读区。层和中柱只靠着一条桥连通，所以空出来的空间也支持读者使用或租用微型飞行器。斯诺克鲫鱼仍然记得那种浮在半空中，往上看往下看都黑洞洞一片见不到头的心悸感。</p>
+<p>除了最古早的书仍是纸质的，绝大部分内容都是存在于特制的黑盒子里，读者要使用自身的神经接口摄取信息，因此大图书馆的冷气很足。鲫鱼费了相当的功夫才找到对应编号的书架，摸出后脑扣着的接头小心的插进一册黑盒，检索后筛出的大量信息投射到鲫鱼的视网膜上，他侧倾脑袋慢慢蹲在闪着点点幽光的黑暗中。</p>
+<p>“大学院文盲”是鲫鱼独有的称号，并不是因为缺乏知识，在鲫鱼所处的时代文盲生来便注定，根源于这可悲大脑低下的信息获取效率。大学院学生的生理父母都很显赫，受精后在罐里就会进行前瓦戈程式，脑细胞混着各种神经形态芯片一起发育，并在特定的发育节点施加严格规定的干涉，他们脑的机能是斯诺克鲫鱼这种古早脑机界面难以企及的。当然不仅体现在效率上，近半的超集文献里都存在鲫鱼不能访问的数据，他只能诉诸些数学手段去尝试分析数据的一角，但这往往将数据分享者意图的内容打碎。他也尝试请求同僚蹩脚又抽象的口头描述他们所直观的性质，就像个不识字的哑巴指着字典问读音，文盲的外号就在自嘲中得来了。他一辈子都读不完任何一册黑盒的信息，不得不常食用智能程序反刍的草料，总让鲫鱼感觉这些黑盒子如同知识的墓碑，刻着淡淡荧光的烫金墓志铭，是绝望到让他不敢在书架间大口呼吸的某种崇高存在。而那个人，鲫鱼永远不会忘记这差距带来的震撼。</p>
+<p>中柱书架上塞的是已知所有星域的历史，越往下越旧，大学院历史系和考古系一入学就有门实践课会要求在学期间步行读完这中柱，毕业结算时分数和进度挂钩。朝圣般，完成者能得到该系的最高荣誉，基本上每过几十年都会出现一个赛博超人完成这项壮举。</p>
+<p>鲫鱼收好盒子打算去中柱旁休息区，远远瞅见门前停了一个装着大量高浓缩营养液空瓶的随行学院小车。他走进去看到一个阴燃的草垛，毫无形象的瘫坐一旁，粗暴的补充着水分。热气顺着她宽大的风衣聚集到脖颈处溢出，白色雾气从扎着的汗湿卷发缝隙飘走，“人形加湿器” 斯诺克鲫鱼心想。他靠过去试着抬了下手，看到迎过来的目光，</p>
+
+</body>
+</html>

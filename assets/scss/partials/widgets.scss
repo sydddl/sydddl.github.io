@@ -1,0 +1,275 @@
+.widget {
+    .widget-icon {
+        display: flex;
+        align-items:center;
+        margin-bottom: 10px;
+
+        background:var(--glass-blur);
+        backdrop-filter: blur(6px);
+        padding-left: 10px;
+        margin-right: 120px;
+        border-radius: 50px;
+        overflow: hidden;
+
+        svg {
+            width: 28px;
+            height: 28px;
+            stroke-width: 1.6;
+            fill: var(--card-text-color-main);
+        }
+        .widget-title {
+            color: var(--card-text-color-main);
+            text-transform: uppercase;
+            margin-left: 15px;
+            padding-bottom: 2px;
+            font-weight: 600;
+        }
+
+        &::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+          
+        &:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        &::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 0 0 0 0;
+            background: linear-gradient(-90deg,var(--tag-color),var(--card-background));
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+    }
+}
+
+/* Tag cloud widget */
+.tagCloud {
+    .tagCloud-tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        a {
+            display: flex;
+            border: none;
+            background: linear-gradient(135deg,var(--tag-color),var(--card-background));
+            box-shadow:  1px 1px 2px #5a5a5a,
+            -1px -1px 3px #ffffffa4;
+            border-radius: var(--tag-border-radius);
+            padding: 6px 12px;
+
+            color: var(--card-text-color-main);
+            margin-bottom: 9px;
+            margin-right: 9px;
+            font-size: 1.2rem;
+            transition: box-shadow 0.3s ease;
+
+            &:hover {
+                box-shadow: var(--shadow-l2);
+                background:#ffffff00;
+            }
+        }
+    }
+}
+
+/* Archives widget */
+.widget.archives {
+    .widget-archive--list {
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        background-color: var(--card-background);
+        width: 48%;
+    }
+
+    .archives-year {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid var(--card-separator-color);
+        }
+
+        a {
+            font-size: 1.3rem;
+            padding: 12px 25px;
+            display: flex;
+
+            span.year {
+                flex: 1;
+                color: var(--card-text-color-main);
+                font-weight: bold;
+            }
+
+            span.count {
+                color: var(--card-text-color-tertiary);
+            }
+        }
+    }
+
+    .archives-year:hover {
+        background: linear-gradient(to right,var(--card-separator-color),transparent);
+    }
+}
+
+
+.long-road {
+    .field-art{
+        display: inline-flex;
+
+        height: 180px;
+        background-color: var(--card-background);
+        border-radius: 10px;
+
+        .image { 
+            img {
+                border-radius: 10px;
+                gap: 24px;
+                width:100%;
+                height:100%;
+                object-fit: cover;
+                overflow: auto;
+            }
+        }
+
+        a {
+            padding: 0px;
+            color: brown;
+        }
+    }
+}
+
+.container_wid{
+    display: flex;
+    width: auto;
+    border: 1px solid var(--glass-blur);
+    height: 220px;
+    backdrop-filter: blur(6px);
+    border-radius: 30px;
+
+    .item{
+        position: relative;
+        width: 40px;
+        margin: 7px;
+        cursor: pointer;
+        border-radius: 30px;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        transition: 0.5s cubic-bezier(0.05,0.61,0.41,0.95);
+    }
+    .item .shadow{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        transition: 0.5 cubic-bezier(0.05,0.61,0.41,0.95);
+    }
+    .item .content{
+        display: flex;
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        bottom: 10px;
+        height: 25px;
+    }
+    .item .content .icon{
+        min-width: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color:var(--card-background);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.2;
+            fill: var(--card-text-color-main);
+        }
+    }
+    .item .content .text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left:12px;
+        margin-bottom: 5px;
+        color: #fff;
+        width: 100%;
+    }
+    .item .content .text div{
+        width: calc(100% -70px);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display:none;
+        white-space: nowrap;
+        transition: opacity 0.5s ease-out;
+    }
+    .item .content .text .tit{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .item .content .text .sub{
+        transition-delay: 0.1s;
+    }
+    // 选中态
+    .item.active{
+        flex: 1;
+        margin: 0;
+    }
+    .item.active .content{
+        left: 15px;
+        height: 45px;
+    }
+    .item.active .content .icon{
+        display:none;
+    }
+    .item.active .content .text div{
+        display:flex;
+    }
+    .item.active .shadow{
+        background: linear-gradient(to top,rgba(0,0,0,0.35) 65%,transparent);
+    }
+
+}
+
+// 点击效果
+.span-click{
+    position: absolute;
+    background: #fff;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: animate 1s linear infinite;
+}
+@keyframes animate{
+    0%
+    {
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+    100%
+    {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+    
+}
+
+// https://codepen.io/desandro/pen/RQeYYp
+canvas {
+    display: block;
+    margin: 0 auto;
+    cursor: move;
+    height: 200px;
+}
+.canvas-section{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: -20px;
+}

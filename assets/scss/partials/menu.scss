@@ -1,0 +1,428 @@
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+
+.hamburger {
+    padding-top: 10px;
+    display: inline-block;
+    cursor: pointer;
+    transition-property: opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: linear;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    overflow: visible;
+}
+.hamburger:hover {
+    opacity: 0.7;
+}
+.hamburger.is-active:hover {
+    opacity: 0.7;
+}
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+    background-color: #000;
+}
+
+.hamburger-box {
+    width: 30px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+    width: 30px;
+    height: 2px;
+    background-color: var(--card-text-color-main);
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+}
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: "";
+    display: block;
+}
+.hamburger-inner::before {
+    top: -10px;
+}
+.hamburger-inner::after {
+    bottom: -10px;
+}
+
+.hamburger--spin .hamburger-inner {
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.hamburger--spin .hamburger-inner::before {
+    transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+.hamburger--spin .hamburger-inner::after {
+    transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--spin.is-active .hamburger-inner {
+    transform: rotate(225deg);
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.hamburger--spin.is-active .hamburger-inner::before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+.hamburger--spin.is-active .hamburger-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+#toggle-menu {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    z-index: 2;
+    cursor: pointer;
+
+    @include respond(md) {
+        display: none;
+    }
+
+    outline: none;
+
+    &.is-active {
+        .hamburger-inner,
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            background-color: var(--accent-color);
+        }
+    }
+}
+
+
+/* 参考 ： https://blog.csdn.net/flow_camphor/article/details/124520624 */
+$borderRadius: 10px;
+$spacer: 1rem;
+$linkHeight: $spacer * 3.5;
+$timing: 250ms;
+$transition: $timing ease all;
+
+/* 参考：b站总监日记 */
+.wrap-bili {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.nav {
+    width:70px;
+    margin-top:5px;
+    background: var(--card-background);
+    /* why */
+    backdrop-filter: opacity(50%);
+    
+    border-radius:20px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.nav:hover {
+    width:160px;
+}
+
+.line {
+    width:40px;
+    height:1.5px;
+    background:var(--card-separator-color);
+    margin: 15px 15px;
+    transition: 0.5s;
+}
+.nav:hover .line {
+    width: 130px;
+}
+
+/* Menu style */
+.menu {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-size: 1.4rem;
+
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    display: none;
+
+    margin: 0 -15px;
+
+    &.show {
+        display: block;
+    }
+
+    @include respond(md) {
+        align-items: flex-end;
+        display: flex;
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+        margin:0px;
+        margin-top: var(--sidebar-element-separation);
+    }
+
+    @include respond(xl) {
+        margin-top: 30px;
+    }
+
+    li {
+        position: relative;
+        vertical-align: middle;
+        padding: 10px 30px;
+        align: center;
+
+        &:not(:last-of-type) {
+            margin-bottom: 15px;
+
+            @include respond(xl) {
+                margin-bottom: 20px;
+            }
+        }
+
+        @include respond(md) {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        div {
+            width: 4px;
+            height: 34px;
+            background: var(--scrollbar-thumb);
+            position: absolute;
+            left: 0px;
+            top: 5px;
+            transform: 0.7s;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            opacity: 0;
+            
+        }
+
+        svg {
+            stroke-width: 1.33;
+            margin-left: 25px;
+            margin-right: 30px;
+            fill:var(--card-text-color-main);
+            width: 20px;
+            height: 20px;
+        }
+
+        a {
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            color: var(--card-text-color-main);
+
+        }
+        .a:hover {
+            background:rgba(255,255,255,0.1);
+        }
+
+        span {
+            flex: 1;
+        }
+
+        &.current {
+            a {
+                color: var(--accent-color);
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+ol li:hover {
+    background:linear-gradient(to left,var(--card-separator-color),transparent);
+    radius:10px;
+}
+
+ol li:hover div{
+    opacity: 1;
+}
+
+
+
+
+// 左下角控制 -- css动画
+.menu-control{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 5%;
+    
+    position:relative;
+    margin: 0 auto;
+    top:-100px;
+
+    transition: all 300ms cubic-bezier(.61, .01, .42, 1);
+    cursor: pointer;
+    background: var(--card-background);
+    border: 0px;
+
+    div{
+        height: 0px;
+        border: 1.8px solid var(--card-text-color-main);
+        width: 20px;
+        left:10px;
+        display: block;
+        position: absolute;
+        transition: all 300ms cubic-bezier(.61, .01, .42, 1);
+        background:var(--card-text-color-main);
+    }
+}
+.menu-control:hover {
+    transition:0.5s;
+    transform: scale(1.1);
+}
+
+.menu-control:hover div:nth-child(3):before {
+width: 2px;
+height: 2px;
+border-radius: 50%;
+background: #F26451;
+}
+
+.menu-control:hover div {
+border: 2px solid var(--card-text-color-main);
+height: 10px;
+border-radius: 50%;
+margin-left: -1px;
+margin-top: 2px;
+animation: atom 300ms linear 1;
+width: 28px;
+top: 0px;
+background:transparent;
+}
+
+.menu-control:focus {
+outline: 0px;
+}
+
+.menu-control div:nth-child(1) {
+top: 10px;
+}
+
+.menu-control div:nth-child(2) {
+top: 18px;
+}
+
+.menu-control div:nth-child(3) {
+top: 26px;
+}
+
+.menu-control div:nth-child(3):before {
+opacity: 0;
+animation: ball 1.5s linear infinite;
+content: '';
+border: 2px solid #fff;
+display: block;
+position: relative;
+top: 0.25px;
+}
+
+.menu-control:hover div:nth-child(1) {
+transform: rotate(-33deg);
+top:12px;
+left:7px;
+}
+
+.menu-control:hover div:nth-child(2) {
+transform: rotate(90deg);
+top:12px;
+left:7px;
+}
+
+.menu-control:hover div:nth-child(3) {
+transform: rotate(33deg);
+top:12px;
+left:7px;
+}
+
+.menu-control:hover div:nth-child(3):before {
+opacity: 1;
+transition: opacity 600ms cubic-bezier(.61, .01, .42, 1);
+;
+}
+@keyframes atom {
+    0% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  @keyframes division {
+    0% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  @keyframes ball {
+    0% {
+      left: -20%;
+      top: 10%;
+    }
+    10% {
+      left: 10%;
+      top: -35%;
+    }
+    25% {
+      left: 45%;
+      top: -50%;
+    }
+    40% {
+      left: 80%;
+      top: -20%;
+    }
+    50% {
+      left: 98%;
+      top: 18%;
+    }
+    60% {
+      left: 80%;
+      top: 50%;
+    }
+    75% {
+      left: 45%;
+      top: 80%;
+    }
+    90% {
+      left: 0%;
+      top: 60%;
+    }
+    100% {
+      left: -20%;
+      top: 10%;
+    }
+  }
