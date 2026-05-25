@@ -15,9 +15,9 @@
     article {
         // 
             
-        display: inline-block;   // ✅ 新增
-        width: 100%;             // ✅ 新增（关键）
-        break-inside: avoid;     // ✅ 新增（核心）
+        display: inline-block;   //
+        width: 100%;             
+        break-inside: avoid;     
 
         // display: flex;
         flex-direction: column;
