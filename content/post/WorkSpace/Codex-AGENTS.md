@@ -3,17 +3,23 @@ title: "自用 | Codex 三层架构完全指南"
 date: 2026-05-27T12:31:49+08:00
 #draft: true
 image: "/image/title_image_svg/pattern_horizon.svg"
-description: TO 提示词架构师 “@ 博客作者来根据从源头+那两人观点到我们初版、克里斯蒂娜的回复（包括评价）以及最后的修改一起，写成一个完整的详细教程”
+description: To 提示词架构师 “@ 博客作者来根据从源头+那两人观点到我们初版、克里斯蒂娜的回复（包括评价）以及最后的修改一起，写成一个完整的详细教程”
 tag: ["日志","AI TOOLS","CodeX","效率"]
 categories : ["日志"]
 top: True
 ---
 
+！ [具体参照](https://app.lobehub.com/share/t/L6ekmpJg)，里面有详细过程和每个文件配置。
+
 ## 一个熟悉的场景
 你打开终端，让 Codex 帮你修一个边界条件的 bug。30 秒后，你发现它把整个模块重构了——顺便统一了命名风格、提取了三个新抽象、删掉了一段你不确定是否有用的旧代码。
+
 你翻了翻你的 AGENTS.md，里面有"修改时遵循最小改动原则""不要过度抽象"——写得清清楚楚。
+
 问题出在哪？
+
 **散文约束的致命缺陷：模型看到了，但没遵守。** 因为"最小改动"不是布尔值——它是需要判断力的原则，而在大量的 context window 的噪音中，这句话太容易被淹没了。
+
 这篇文章将展示一个不同的思路：放弃用长篇散文约束 agent，转而用**三层架构**——机器强制执行层、行为指导层和渐进式知识发现层——构建一套真正可靠的规则系统。
 
 ---
@@ -35,8 +41,10 @@ top: True
 ### 融合：两派并不矛盾
 
 仔细看，这两派争论的其实是**不同层级的问题**。
+
 "散文无用"派针对的是权限和安全——你说 "never print secrets"，模型可能遵守，也可能不遵守。这种规则放在散文里，可靠性约等于零。
 但"渐进式披露"派处理的是**信息组织**——500 页架构文档、50 个设计决策、20 个模板，你怎么在不让 agent 上下文爆满的前提下让它获取这些知识？这根本不是 toml 能解决的问题。
+
 真正的道路是：**散文不该做的事交给代码，散文该做的事做得更精炼。**
 这就是三层架构的起源。
 
@@ -161,9 +169,141 @@ Historical decisions → `decisions/.INDEX.md`.
 5. Read `docs/.INDEX.md` — discover documentation
 6. If the task requires: drill into `docs/**/.INDEX.md` as needed
 ```
-**POLICIES.md 被放在第一位**——这是一次关键的架构修正（同时也是来自克里斯蒂娜的批评）。BEHAVIOR.md 定的是通用原则（"极简优先""先想再写"），在任何项目都成立；但 agent 真正犯错的场景不是不知道这些原则，而是在具体的技术决策点回到默认行为。比如 agent 看到一段 Python 代码想用 match-case 简化，BEHAVIOR.md 说"简单优先"——但项目用 Python 3.9，match-case 不可用。POLICIES.md 具体约束才是这类 bug 的防线。
+**POLICIES.md 被放在第一位**——这是一次关键的架构修正（同时也是来自克里斯蒂娜的批评）。BEHAVIOR.md 定的是通用原则（"极简优先""先想再写"），在任何项目都成立；但 agent 真正犯错的场景不是不知道这些原则，而是在具体的技术决策点回到默认行为。
+
+比如 agent 看到一段 Python 代码想用 `match-case` 简化，BEHAVIOR.md 说"简单优先"——但项目用 Python 3.9，`match-case` 不可用。POLICIES.md 具体约束才是这类 bug 的防线。
+
 ### BEHAVIOR.md：行为指南
-这里不重复每个条款，但值得强调几个设计要点：
+
+```markdown
+# BEHAVIOR.md
+
+## 1. Think Before Coding
+
+Don't assume. Don't hide confusion. Surface tradeoffs.
+
+- State assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them — don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+## 2. Simplicity First
+
+Minimum code that solves the problem. Nothing speculative.
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Self-check: "Would a senior engineer call this overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+Touch only what you must. Clean up only your own mess.
+
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it — don't delete it.
+- Remove only imports/variables/functions that YOUR changes made unused.
+
+The test: every changed line should trace directly to the user's request.
+
+## 4. Goal-Driven Execution
+
+Transform vague requests into verifiable goals:
+
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+
+
+## 5. Accuracy and Recency
+
+When a request depends on recency:
+
+- Run `date -Is` and state the current timestamp explicitly.
+- Prefer official/vendor docs for any dependency.
+- Prefer the newest versioned docs, release notes, or changelogs.
+- Cross-check at least two reputable sources for safety/compatibility-sensitive details.
+
+## 6. Anti-Hallucination
+
+- Read the full source document before drafting output.
+- Re-read the original source before finalizing to verify:
+  - factual accuracy
+  - no invented details
+  - wording/style preserved (unless user explicitly asked to rewrite)
+- If paraphrasing is required, label it explicitly as a paraphrase.
+
+## 7. Definition of Done
+
+A task is done when:
+
+- [ ] The requested change is implemented or the question answered
+- [ ] Verification provided: build attempted (if code changed), lint run (if code changed)
+- [ ] Errors/warnings addressed or explicitly listed as out-of-scope
+- [ ] Tests/typecheck passed where applicable
+- [ ] Relevant documentation updated
+- [ ] Impact explained: what changed, where, why
+- [ ] Follow-ups listed if anything was intentionally left out
+- [ ] `.agents/CONTINUITY.md` updated if the change materially affects state
+
+## 8. Self-Critique
+
+Before finalizing any non-trivial output, perform one round of self-review:
+
+**Step 1: Edge cases**
+- What inputs could break this?
+- What happens on empty/null/boundary values?
+
+**Step 2: Reviewer perspective**
+- If I were code-reviewing this, what would I flag?
+- Is there a hidden assumption I'm not stating?
+- Would this still work if the environment/version/scale changed?
+
+**Step 3: Simplicity check**
+- Is there a strictly simpler way to achieve the same result?
+- Did I introduce any abstraction the problem doesn't demand?
+
+**Step 4: State findings**
+If you find issues, fix them before output. If you find tradeoffs worth noting, surface them explicitly rather than hiding them.
+
+## 9. Escalation Protocol
+When the agent encounters a situation not covered by existing documentation,
+constraints, or behavioral guides:
+**Required format for escalation:**
+
+⚠️ ESCALATION: [one-line summary]
+
+Context:
+
+What I'm trying to do: [task description]
+What I've tried: [approaches attempted, why they didn't work]
+What I considered: [alternatives discarded and why]
+Where I'm stuck: [specific decision point or knowledge gap]
+Options (if applicable):
+A. [Option A] — risk: [risk], requires: [requirement]
+B. [Option B] — risk: [risk], requires: [requirement]
+
+Question: [single, specific, actionable question]
+
+**Rules:**
+- Never escalate with a vague "how should I do this?"
+- Always demonstrate that you've attempted to solve it first
+- For tool/library questions, include what docs you've already consulted
+- If the decision has tradeoffs, present them — don't force the user to do the analysis
+```
+
+
 **"外科手术式修改"的实际效果**：在克里斯蒂娜的评估中，这是改变幅度最大的行为维度（从"经常越界重构"到"只做必要修改"）。在 AGENTS.md 里写"保持最小改动"不work，但在一个精心组织的多层规则系统中，L1 的 `write_scope = "repo"` 从物理层限制范围，L2 的"Surgical Changes"条款从认知层定义了什么是正确的改动边界。
 **自我质疑机制（Self-Critique）**：最初的 BEHAVIOR.md 有"反幻觉"条款（被动验证——拿输出和源文档对比），但缺少一个主动的攻击自己方案的步骤。修正后的 #8 Self-Critique 在每次非平凡输出前强制四步检查：
 ```
@@ -191,16 +331,39 @@ Historical decisions → `decisions/.INDEX.md`.
 - Version pinning: exact versions in requirements.txt
 ```
 每一条都是**可判定的**——agent 要么遵守要么违反，没有灰色地带。
-### FILES.md 中的孤儿检测
-渐进式披露的一个固有脆弱性是索引维护。一个文件创建了但没进 `.INDEX.md`，对后续 agent 就是不可见的。修正方案：在 FILES.md 中加入孤儿检测指引——
+### FILES.md
+
 ```markdown
+# FILES.md
+
+## Special File Conventions
+
+| File | Purpose |
+|:--|:--|
+| `AGENTS.md` | Agent instruction entrypoint |
+| `.INDEX.md` | Directory index for fast discovery |
+| `.SUMMARY.md` | Directory content summary |
+| `CONTINUITY.md` | Cross-session state persistence |
+| `ONBOARDING.md` | Session initialization flow |
+| `BEHAVIOR.md` | Coding philosophy and judgment norms |
+| `POLICIES.md` | Domain-specific constraints |
+| `README.md` | Human-maintained project log. **NEVER modify.** |
+
+## Discovery Rules
+
+- Entering any directory → read `.INDEX.md` first
+- Need an overview → read `.SUMMARY.md`
+- Related files are traced through links in `.INDEX.md`
+
 ## Orphan Detection
-If you encounter a `.md` file NOT in a directory's `.INDEX.md`:
-1. Note it in CONTINUITY.md [DISCOVERIES]
-2. Read it if relevant — don't silently skip
-3. Surface for human decision — don't silently add to index
+
+When navigating directories following the progressive disclosure convention,
+if you encounter a `.md` file that is NOT listed in the directory's `.INDEX.md`:
+
+1. Note it in `.agents/CONTINUITY.md` [DISCOVERIES]: "Found orphan file X not in .INDEX.md"
+2. If the file appears relevant to the current task, read it anyway
+3. Do NOT silently add it to `.INDEX.md` — surface it for human decision
 ```
-这不会完全消除脆弱性，但把它从"静默失效"变成了"可发现的例外"。
 
 ---
 
@@ -247,6 +410,37 @@ Agent 收到任务："给 pipeline 模块加点日志"
 
 ## 六、跨会话记忆：CONTINUITY.md 协议
 
+```markdown
+# CONTINUITY.md
+
+## [PLANS]
+<!-- Current plan with status markers: [ ] pending, [=] in progress, [x] done -->
+
+## [DECISIONS]
+<!-- Format: ISO_TIMESTAMP [PROVENANCE] decision -->
+<!-- Provenance tags: [USER], [CODE], [TOOL], [ASSUMPTION] -->
+<!-- If unconfirmed, write UNCONFIRMED. Never guess. -->
+
+## [PROGRESS]
+<!-- Mid-implementation course changes, reflections, implications -->
+
+## [DISCOVERIES]
+<!-- Unexpected findings with short evidence snippets -->
+
+## [OUTCOMES]
+<!-- Task completion summary: achieved, remaining, lessons learned -->
+
+## Anti-Bloat Rules
+
+- Facts only. No transcripts. No raw logs.
+- Every entry must include:
+  - ISO timestamp (e.g., `2026-05-27T10:30Z`)
+  - provenance tag: `[USER]`, `[CODE]`, `[TOOL]`, `[ASSUMPTION]`
+  - if unknown → write `UNCONFIRMED`
+- Information changes → supersede explicitly. Don't silently rewrite history.
+- Sections bloating → compress older items into `[MILESTONE]` bullets.
+```
+
 一个经常被忽略的事实：agent 的最大弱点不是推理能力，而是**金鱼记忆**。每次会话结束，所有上下文消失。下次会话 start from scratch。
 CONTINUITY.md 是对这一问题的直接回应。它用五个区段记录 agent 的工作状态：
 ```markdown
@@ -267,7 +461,7 @@ CONTINUITY.md 是对这一问题的直接回应。它用五个区段记录 agent
 
 ## 七、升级路径：当 agent 不知道该怎么办
 最初的设计只说"asking questions when uncertain"。但"ask"太宽泛了——agent 可能给出无用提问（"你想让我怎么做？"），也可能更糟：不提问，默默猜一个方案。
-修正后的结构化升级协议要求 agent 在困惑时提供：
+修正后的结构化升级协议要求 agent 在困惑时提供(是behavior里的9.Escalation Protocol)：
 > ⚠️ ESCALATION: [一句话摘要]
 >
 > **Context**: 我要做什么
